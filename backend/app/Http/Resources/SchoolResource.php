@@ -17,7 +17,10 @@ class SchoolResource extends JsonResource
         return [
             'id'=>$this->id,
             'name'=>$this->name,
-            // 'type'=> new TypeEducationResource($this->type_education_id)
+            'img'=>$this->img,
+            'type'=> new TypeEducationResource($this->type_education_id),
+
+            
         ];
     }
 }
