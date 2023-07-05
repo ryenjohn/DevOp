@@ -6,14 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class TypeEducation extends Model
+class Subjects extends Model
 {
     use HasFactory;
     protected $fillable=[
         'name'
     ];
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 
-    public function school():HasMany{
-        return $this->hasMany(School::class);
+    public function skills():HasMany{
+        return $this->hasMany(Skill::class);
     }
+   
 }
