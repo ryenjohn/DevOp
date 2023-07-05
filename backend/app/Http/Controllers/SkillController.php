@@ -14,10 +14,15 @@ class SkillController extends Controller
     public function MajorDetail($id)
     {
         $subject=Skill::find($id);
-        
-        $subject = new SkillResource($subject);
+        if($subject!=''){
 
-        return response()->json(['success'=>true,'data'=>$subject],200);
+            $subject = new SkillResource($subject);
+    
+            return response()->json(['success'=>true,'data'=>$subject],200);
+        }
+        return response()->json(['message'=>"No data"],200);
+    
+
 
 
     }
