@@ -12,6 +12,7 @@ class WorkShop extends Model
     use HasFactory;
     protected $fillable=[
         'name',
+        'img',
         'description',
         'start_date',
         'expired_date',

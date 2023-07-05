@@ -13,6 +13,7 @@ class ScholarShip extends Model
     use HasFactory;
     protected $fillable=[
         'name',
+        'img',
         'description',
         'post_date',
         'expired_date',

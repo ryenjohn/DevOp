@@ -11,28 +11,15 @@ use Illuminate\Http\Request;
 class SkillController extends Controller
 {
     //
-    public function MajorDetail($id)
+    public function getmajors()
     {
-        $subject=Skill::find($id);
-        if($subject!=''){
-
-            $subject = new SkillResource($subject);
-    
-            return response()->json(['success'=>true,'data'=>$subject],200);
-        }
-        return response()->json(['message'=>"No data"],200);
+            $skills = Skill::all();
+            $skills = SkillResource::collection($skills);
+            return response()->json(['success'=>true,'data'=>$skills],200);
     
 
 
 
     }
-    // public function getskill()
-    // {
-    //     $school=School::all();
-    //     // $school = new SchoolResource($school);
-
-    //     return response()->json(['success'=>true,'data'=>$school],200);
-
-
-    // }
+   
 }

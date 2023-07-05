@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('work_shops', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->string('img')->nullable();
+            $table->string('address')->nullable();
             $table->string('description')->nullable();
             $table->date('start_date')->nullable();
             $table->date('expired_date')->nullable();
-            $table->date('time')->nullable();
+            $table->time('time')->nullable();
             $table->unsignedBigInteger('school_id')->unsigned();
             $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade');
             $table->timestamps();

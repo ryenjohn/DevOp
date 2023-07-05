@@ -35,7 +35,7 @@ class School extends Model
     }
     
     public function type():BelongsTo{
-        return $this->belongsTo(TypeEducation::class);
+        return $this->belongsTo(TypeEducation::class,"type_education_id","id");
     }
 
     public function address():BelongsTo{
