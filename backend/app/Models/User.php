@@ -41,10 +41,8 @@ class User extends Authenticatable
             $user = self::create($user);
             $id = $user->$id;
      
-
-        $token = null;
-        $token = $user->createToken('TOKEN', ['select', 'create', 'update', 'delete']);
-        return response()->json(['success' =>true, 'data' => $user,'token' => $token->plainTextToken],201);
+            return $user;  
+        
     }
 
     /**

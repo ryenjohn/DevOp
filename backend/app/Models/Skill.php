@@ -25,7 +25,7 @@ class Skill extends Model
         return $this->belongsToMany(Subjects::class,'skill_subject','skill_id','subject_id');
     }
     public function schools():BelongsToMany{
-        return $this->belongsToMany(School::class,'school_skills','school_id','skill_id');
+        return $this->belongsToMany(School::class,'school_skill');
     }
     
     public function scholarship():HasMany{

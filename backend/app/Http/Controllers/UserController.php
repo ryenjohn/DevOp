@@ -13,7 +13,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return response()->json(['message' => "Your get data use is success", 'data' => $users], 200);
     }
 
     /**
@@ -21,8 +22,14 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+        $existingUser = User::where('email', $request->email)->first();
+        if ($existingUser) {
+            return response()->json(['exists' => false, 'message' => 'Email already exists'], 400);
+        }
+       
         $user = User::store($request);
-        return $user;
+        $token = $user->createToken('API Token')->plainTextToken;
+        return response()->json(['exists' => true, 'message' => "Your account is created", 'data' => $user, 'token' => $token], 200);
     }
 
     /**
