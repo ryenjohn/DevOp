@@ -39,6 +39,7 @@ Route::get('/majors/{id}',[SkillController::class,'MajorDetail']);
 
 // User side -----------------------------------------
 Route::post('/users',[UserController::class, 'store']);
+Route::get('/users',[UserController::class, 'index']);
 Route::post('/roles',[RoleController::class, 'store']);
 
 
