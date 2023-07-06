@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createWebHistory, createRouter  } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import SignUp from '../components/authentication/SignUp.vue'
 

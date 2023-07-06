@@ -20,7 +20,7 @@ class SkillResource extends JsonResource
             'description'=>$this->description,
             'image'=>$this->image,
             'subjects'=> SubjectResource::collection($this->subjects),
-            // "schools"=> SchoolResource::collection($this->schools)
+            "schools"=> SchoolResource::collection($this->schools)
             
         ];
     }
