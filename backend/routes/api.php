@@ -22,5 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/majors',[SkillController::class,'getmajors']);
-Route::get('/schools',[SchoolController::class,'getschools']);
+Route::get('/schools/{id}',[SchoolController::class,'getschool']);
 

@@ -15,13 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('img')->nullable();
-            $table->string('address')->nullable();
+            $table->unsignedBigInteger('address_id')->unsigned();
+            $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
+            $table->unsignedBigInteger('school_id')->unsigned();
+            $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade');
             $table->string('description')->nullable();
             $table->date('start_date')->nullable();
             $table->date('expired_date')->nullable();
             $table->time('time')->nullable();
-            $table->unsignedBigInteger('school_id')->unsigned();
-            $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade');
             $table->timestamps();
         });
     }
