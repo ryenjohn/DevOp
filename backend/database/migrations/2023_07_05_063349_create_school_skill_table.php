@@ -11,18 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('work_shops', function (Blueprint $table) {
+        Schema::create('school_skill', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('img')->nullable();
-            $table->unsignedBigInteger('address_id')->unsigned();
-            $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
             $table->unsignedBigInteger('school_id')->unsigned();
             $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade');
-            $table->string('description')->nullable();
-            $table->date('start_date')->nullable();
-            $table->date('expired_date')->nullable();
-            $table->time('time')->nullable();
+            $table->unsignedBigInteger('skill_id')->unsigned();
+            $table->foreign('skill_id')->references('id')->on('skills')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -32,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('work_shops');
+        Schema::dropIfExists('school_skill');
     }
 };

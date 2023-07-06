@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SkillController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/majors',[SkillController::class,'MajorDetail']);
-Route::get('/majors/{id}',[SkillController::class,'Detail']);
+Route::get('/majors',[SkillController::class,'getmajors']);
+Route::get('/majors/{id}',[SkillController::class,'getmajor']);
+Route::get('/schools/{id}',[SchoolController::class,'getschool']);
+
 

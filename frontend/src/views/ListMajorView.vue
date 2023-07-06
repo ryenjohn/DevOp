@@ -16,33 +16,8 @@
 </template>
 
 <script>
-
-
-// import axios from 'axios';
-
 export default ({
     props:['listMajor'],
-    // data(){
-//         return {
-//             showMajor:{},
-//             url: 'http://127.0.0.1:8000/api/majors',
-//         }
-//     },
-
-//     methods:{
-//         Detail(index){
-//             console.log(index);
-//             axios.get(this.url+"/"+index).then((response) =>{
-//                 this.showMajor = response.data.data;
-//                 console.log(response.data.data)
-//             })
-//             // return  this.$router.currentRoute.value.params.index;
-//         },
-    
-//         mounted() {
-//             this.getMajorDetail();
-//         },
-//     }
 })
 </script>
 

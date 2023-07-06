@@ -20,8 +20,7 @@ export default ({
     data(){
         return {
             showMajor:{},
-            url: 'http://127.0.0.1:8000/api/majors/',
-           
+            url: 'http://127.0.0.1:8000/api/majors/',     
             
         }
     },
@@ -35,8 +34,6 @@ export default ({
                 console.log(response.data.data)
             })
         },
-        
-    
         
     },
     mounted() {

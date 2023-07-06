@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('scholar_ships', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->string('img')->nullable();
             $table->string('description')->nullable();
             $table->date('post_date')->nullable();
             $table->date('expired_date')->nullable();
