@@ -25,9 +25,9 @@ export default {
   margin-left: 20px;
 }
 ::before {
-    color: white;
+    /* color: white; */
 }
 a {
-  color: white;
+  /* color: white; */
 }
 </style>
