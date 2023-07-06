@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-      <div class="image">
-        <img src="../../assets/register.png" style="width: 600px;" alt="Image description">
+      <div class="imageregister">
+        <img src="../../assets/images/register.png" style="width: 600px; height: 800px;" alt="Image description">
       </div>
       <div class="form-container">
         <form >
