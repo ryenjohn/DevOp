@@ -1,17 +1,45 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
-</template>
+  <section>
+    <nav>
+      <router-link to="/">University</router-link> |
+      <router-link to="/skill">Skill</router-link> |
+      <router-link to="/workshop">Workshop</router-link> |
+      <router-link to="/scholarship">Scholarship</router-link>
+    </nav>
+    <router-view/>
+    <!-- <card-container></card-container> -->
 
+  </section>
+</template>
+<script>
+</script>
 <style>
+:root {
+  --main-color: #ffff;
+  --main-color-light: #e21ee9;
+  --secondary-color: orange;
+}
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--main-color);
+}
+
+.right-main-button {
+  float: right;
+  margin-right: 2rem;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 
