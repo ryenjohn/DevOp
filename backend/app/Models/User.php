@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -24,10 +25,25 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
-        'address_id',
-        'work_shops_id'
+        'address_id'
     ];
     
+    public static function store($request , $id = null){
+        $user = $request->only([
+            'name',
+            'email',
+            'password',
+            'role_id',
+            'address_id',
+        ]);
+        $user['password'] = Hash::make($user['password']);
+      
+            $user = self::create($user);
+            $id = $user->$id;
+     
+            return $user;  
+        
+    }
 
     /**
      * The attributes that should be hidden for serialization.

@@ -4,11 +4,10 @@
       <router-link to="/">University</router-link> |
       <router-link to="/skill">Skill</router-link> |
       <router-link to="/workshop">Workshop</router-link> |
-      <router-link to="/scholarship">Scholarship</router-link>
+      <router-link to="/scholarship">Scholarship</router-link> |
+      <router-link to="/signUp">sign up</router-link>
     </nav>
     <router-view/>
-    <!-- <card-container></card-container> -->
-
   </section>
 </template>
 <script>

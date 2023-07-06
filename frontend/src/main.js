@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import 'vuetify/dist/vuetify.min.css'
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
@@ -45,4 +46,3 @@ app.component('title-text', TitleView);
 app.use(router);
 app.use(vuetify);
 app.mount('#app');
-

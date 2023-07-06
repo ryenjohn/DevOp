@@ -18,4 +18,12 @@ class SchoolController extends Controller
         }
         return response()->json(['success'=>true,'data'=>"No data !"],200);
     }
+
+
+    public function getschools(){
+        $school = School::all();
+        return response()->json(['Get success'=>true, 'data'=>$school],200);
+    }
+
+
 }
