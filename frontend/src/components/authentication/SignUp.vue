@@ -103,7 +103,6 @@
     emailTakenError: false,
     visible: false,
   }
-  
   const state = reactive(Object.assign({}, initialState))
  
   // Set role for password
