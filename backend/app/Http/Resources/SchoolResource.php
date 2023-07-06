@@ -18,6 +18,8 @@ class SchoolResource extends JsonResource
             'id'=>$this->id,
             'name'=>$this->name,
             'img'=>$this->img,
+            'address'=>$this->address->link
+
             
         ];
     }
