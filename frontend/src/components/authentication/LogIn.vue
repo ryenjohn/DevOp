@@ -61,7 +61,11 @@
               <v-btn class="me-4" @click="v$.$touch()">Log in</v-btn>
             </div>
             <div v-else class="sign-in">
-              <v-btn class="me-4" @click="logIn">Log in</v-btn>
+              <v-btn class="me-4" @click="logIn"
+                ><router-link class="link-log-in" to="/"
+                  >Log in</router-link
+                ></v-btn
+              >
             </div>
           </div>
           <p class="log-in">
@@ -121,15 +125,12 @@ async function logIn() {
       role_id: "1",
       password: state.password,
     };
-
     // Make an API call to add data to the database
     const response = await axios.post("http://127.0.0.1:8000/api/logIn", data);
 
     // Check the server response and alert the user accordingly
     if (response.status === 200) {
       Cookies.set("userData", JSON.stringify(response.data), { expires: 10 });
-      alert("Form submitted successfully");
-
       clear();
     }
   } catch (error) {
@@ -141,7 +142,7 @@ function resetIncorrectPasswordError() {
   state.incorrectPasswordError = false;
 }
 </script>
-
+<!-- style for sign up form -->
 <style scoped>
 .container {
   display: flex;
@@ -191,5 +192,10 @@ label {
   color: #f6eeee;
   margin-left: 4px;
   margin-top: 20px;
+}
+.link-log-in {
+  color: #fff;
+  background-color: #634b7a;
+  text-decoration: none;
 }
 </style>

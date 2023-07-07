@@ -64,17 +64,7 @@
           @input="v$.password.$touch"
           @blur="v$.password.$touch"
         ></v-text-field>
-        <!-- <v-select
-            class="err select-role"
-            v-model="state.role_id"
-            :items="role_id"
-            :error-messages="v$.role_id.$errors.map((e) => e.$message)"
-            label="Role"
-            disabled
-            required
-            @change="v$.role_id.$touch"
-            @blur="v$.role_id.$touch"
-          ></v-select> -->
+
         <v-checkbox
           class="err"
           v-model="state.checkbox"
@@ -84,13 +74,18 @@
           @change="v$.checkbox.$touch"
           @blur="v$.checkbox.$touch"
         ></v-checkbox>
+
         <div class="btn">
           <div>
             <div v-if="v$.$invalid">
               <v-btn class="me-4" @click="v$.$touch()">Sign up</v-btn>
             </div>
             <div v-else class="sign-in">
-              <v-btn class="me-4" @click="submit">Sign up</v-btn>
+              <v-btn class="me-4" @click="singIn"
+                ><router-link class="link-sign-up" to="/"
+                  >Sign up</router-link
+                ></v-btn
+              >
             </div>
           </div>
           <p>
@@ -120,9 +115,7 @@ const initialState = {
   emailTakenError: false,
   visible: false,
 };
-
 const state = reactive(Object.assign({}, initialState));
-
 // Set role for password
 const passwordRule = (value) => {
   const regex =
@@ -158,7 +151,7 @@ function clear() {
   v$.value.$reset();
 }
 // Insert data into dabase
-async function submit() {
+async function singIn() {
   try {
     const data = {
       name: state.name,
@@ -176,17 +169,16 @@ async function submit() {
 
     // Check the server response and alert the user accordingly
     if (response.status === 200) {
-      alert("Register successfully");
       clear();
     } else {
-      alert("Failed to submit the form");
+      alert("Failed to singIn the form");
     }
   } catch (error) {
     console.error(error);
   }
 }
 </script>
-
+<!-- style for log in form -->
 <style scoped>
 .container {
   display: flex;
@@ -237,5 +229,10 @@ label {
   background-color: #634b7a;
   color: #f6eeee;
   margin-left: 10px;
+}
+.link-sign-up {
+  color: #fff;
+  background-color: #634b7a;
+  text-decoration: none;
 }
 </style>
