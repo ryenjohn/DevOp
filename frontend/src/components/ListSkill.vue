@@ -49,6 +49,14 @@ export default ({
 </script>
 <style scoped>
   .card-item{
+    transition: all 0.2s ease-in-out;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
   }
+  .card-item:hover{
+    transform: scale(1.05);
+    border: 1px solid rgb(110, 110, 110)
+  }
+  .card-item:hover strong {
+    color: orange;
+}
 </style>

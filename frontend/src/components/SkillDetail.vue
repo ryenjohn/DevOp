@@ -17,18 +17,16 @@ export default {
   data() {
     return {
       showMajor: {},
-      listSchools: {},
-      listSubjects: {},
       url: "http://127.0.0.1:8000/api/majors/",
     };
   },
   methods: {
     Detail() {
       const id = this.$route.params.id;
+      console.log(id);
       axios.get(`http://127.0.0.1:8000/api/majors/${id}`).then((response) => {
         this.showMajor = response.data.data;
         this.listSchools = response.data.data.schools;
-        this.listSubjects = response.data.data.subjects;
       });
     },
   },
