@@ -27,6 +27,14 @@ import ListUniversity from './components/ListUniversity.vue';
 import CardDetail from './components/CardDetail.vue';
 import TitleView from './components/TitleView.vue';
 
+//university detail
+import EachUniversity from './components/unversity/EachUniversityDetail.vue';
+import EachMajor from './components/unversity/EachMajorDetail.vue';
+import EachScholarship from './components/unversity/EachScholarshipDetail.vue';
+import EachWorkshop from './components/unversity/EachWorkshopDetail.vue';
+
+
+
 const app = createApp(App);
 
 app.component('list-university', ListUniversity);
@@ -41,6 +49,12 @@ app.component('card-container', CardContainer);
 app.component('base-button', BaseButton);
 app.component('base-dialog', BaseDialog);
 app.component('title-text', TitleView);
+//university
+app.component('each-univer', EachUniversity);
+app.component('each-major', EachMajor);
+app.component('each-workshop', EachWorkshop);
+app.component('each-scholarship', EachScholarship);
+
 // app.component('card-container', CardContainer);
 
 app.use(router);

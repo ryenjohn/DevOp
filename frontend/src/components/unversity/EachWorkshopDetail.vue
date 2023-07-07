@@ -1,24 +1,27 @@
 <template>
+  <section>
+    <title-text v-if="isWorkshope">Choose Workshops</title-text>
     <card-container>
-        <v-col cols="12" sm="3" v-for="(school, index) in schools" :key="index">
+        <v-col cols="12" sm="3" v-for="(workshop, index) in workshops" :key="workshop">
         <v-sheet class=" ma-5">
-              <card-info :to="`/university/${school.id}`" class='card-item pa-5' >
+              <card-info @click="showDetail(index)" class='card-item pa-5' >
                 <template #img >
                         <v-img 
-                        :src="school.img"
+                        :src="workshop.image"
                         height="200px"
                         cover
                       ></v-img>
                 </template>
                 <template #title>
                             <v-card-text>
-                            <strong>{{school.name}}</strong>
+                            <strong>{{workshop.name}}</strong>
                           </v-card-text>
                 </template>
               </card-info>
         </v-sheet>
     </v-col>
     </card-container>
+  </section>
 </template>
 <script>
 // @ is an alias to /src
@@ -26,24 +29,26 @@ import axios from 'axios';
 export default {
 data(){
     return {
-      schools: [],
+      isWorkshope: false,
+      workshops: [],
       is_update: false,
-      url: 'http://127.0.0.1:8000/api/schools',
+      url: 'http://127.0.0.1:8000/api/schools/',
     }
     },
   methods:{
-
-    listSchool(){
-      axios.get(this.url).then((response) =>{
-        this.schools = response.data.data
+    listWorkshop(){
+        const id = this.$route.params.id;
+        console.log(id);
+        axios.get(this.url+id).then((response) =>{
+        this.workshops = response.data.data.workshops;
+        if(this.workshops.length > 0){
+          this.isWorkshope = true;
+        }
       })
     },
-    showDetail(id){
-      this.$router.push("/university/" + id)
-    }
     },
     mounted() {
-      this.listSchool();
+      this.listWorkshop();
     },
 }
 </script>
