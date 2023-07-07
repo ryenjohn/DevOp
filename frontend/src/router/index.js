@@ -3,6 +3,10 @@ import HomeView from '../views/HomeView.vue'
 import SignUp from '../components/authentication/SignUp.vue'
 import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
+import AdminPage from '../components/adminpage/AdminPage.vue'
+import AllStudentData from '../components/adminpage/AllStudentData.vue'
+import AllUniversity from '../components/adminpage/AllUniversity.vue'
+import AllUser from '../components/adminpage/AllUser.vue'
 
 const routes = [
   {
@@ -24,6 +28,28 @@ const routes = [
     path: '/contact',
     name: 'contact',
     component: Contact
+  },
+
+  // Admin route
+  {
+    path: '/admin',
+    name: 'admin',
+    component: AdminPage
+  },
+  {
+    path: '/allstudents',
+    name: 'student',
+    component: AllStudentData
+  },
+  {
+    path: '/alluniversity',
+    name: 'alluniversity',
+    component: AllUniversity
+  },
+  {
+    path: '/allusers',
+    name: 'allusers',
+    component: AllUser
   }
 ]
 

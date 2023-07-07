@@ -40,3 +40,4 @@ Route::get('/schools/{id}',[SchoolController::class,'getschool']);
 Route::get('/schools',[SchoolController::class,'getschools']);
 
 
+
