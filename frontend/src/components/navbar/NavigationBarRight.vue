@@ -26,12 +26,12 @@ export default {
           .then(() => {
             Cookies.remove("userData");
             delete axios.defaults.headers.common["Authorization"];
-            this.$router.push("/login");
+            this.$router.push("/signUp");
           })
           .catch(() => {
             Cookies.remove("userData");
             delete axios.defaults.headers.common["Authorization"];
-            this.$router.push("/login");
+            this.$router.push("/signUp");
           });
       }
     },
