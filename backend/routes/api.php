@@ -3,10 +3,11 @@
 use App\Http\Controllers\MajorController;
 
 use App\Http\Controllers\RoleController;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ScholarshipController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SkillController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\WorkShopController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,5 +39,12 @@ Route::post('/roles',[RoleController::class, 'store']);
 Route::get('/majors',[SkillController::class,'getmajors']);
 Route::get('/schools/{id}',[SchoolController::class,'getschool']);
 Route::get('/schools',[SchoolController::class,'getschools']);
+Route::get('/scholarships',[ScholarshipController::class,'scholarships']);
+Route::get('/workshops',[WorkShopController::class,'workshops']);
+
+
+
+
+
 
 
