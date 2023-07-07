@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ScholarshipResource;
 use App\Models\ScholarShip;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,11 @@ class ScholarshipController extends Controller
     {
        
         $scholarship = ScholarShip::all();
-        return response()->json(['Get success'=>true, 'data'=>$scholarship],200);
+        if($scholarship!=''){
+            $scholarship = ScholarshipResource::collection($scholarship);
+            return  response()->json(['success'=>true,'data'=>$scholarship],200);
+        }
+        return response()->json(['success'=>true,'data'=>"No data !"],200);
         
     }
 
