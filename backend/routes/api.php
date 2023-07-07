@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\MajorController;
 
 use App\Http\Controllers\RoleController;
@@ -39,4 +40,6 @@ Route::get('/majors',[SkillController::class,'getmajors']);
 Route::get('/schools/{id}',[SchoolController::class,'getschool']);
 Route::get('/schools',[SchoolController::class,'getschools']);
 
+// log in and log out
 
+Route::post('/logIn', [AuthenticationController::class,'login']);
