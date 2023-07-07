@@ -18,4 +18,9 @@ class AuthenticationController extends Controller
         }
         return response()->json(['message' => "Invalid credentail"], 401);
     }
+    public function logout(Request $request){
+        $userLogOut = request()->user()->tokens()->delete();
+        $userLogOut = Auth::user();
+        return response()->json(['message' => "log out successfull", 'data'=> $userLogOut], 401);
+    }
 }

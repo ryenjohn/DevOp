@@ -41,5 +41,7 @@ Route::get('/schools/{id}',[SchoolController::class,'getschool']);
 Route::get('/schools',[SchoolController::class,'getschools']);
 
 // log in and log out
-
+Route::middleware(['auth:sanctum'])->group(function(){
+    Route::post('/logOut', [AuthenticationController::class, 'logout']);
+});
 Route::post('/logIn', [AuthenticationController::class,'login']);

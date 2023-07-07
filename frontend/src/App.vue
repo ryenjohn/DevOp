@@ -1,10 +1,13 @@
 <template>
-  <navigation-bar></navigation-bar>
+  <navigation-bar @submit.delete="submitLogOut"></navigation-bar>
   <router-view></router-view>
   <footer-bar></footer-bar>
 </template>
+<script>
 
-<style scoped>
+
+</script>
+<style scoped> 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -2,7 +2,7 @@
   <v-btn
     v-for="icon in icons"
     :key="icon"
-    class="mx-4"
+    class="mx-5 icon"
     :icon="icon"
     variant="text"
   ></v-btn>
@@ -15,9 +15,9 @@ export default {
   }),
 };
 </script>
-<style>
-img {
-  height: 100px;
-  width: 100px;
+<style scoped>
+
+.icon{
+  margin-left: 20px;
 }
 </style>
