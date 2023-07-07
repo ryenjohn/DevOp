@@ -18,9 +18,7 @@
     "vue": "^3.2.13",
     "vue-axios": "^3.5.2",
     "vue-router": "^4.2.2",
-=======
     "vue-router": "^4.0.13",
->>>>>>> 033173f4a463da3cc3c0a7d09fddf2856fbaf2ab
     "vuetify": "^3.3.6"
   },
   "devDependencies": {
