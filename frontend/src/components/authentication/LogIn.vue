@@ -4,28 +4,13 @@
     <div class="image">
       <img
         src="../../assets/images/register.png"
-        style="width: 600px; height: inherit"
+        style="width: 600px; height: initial"
         alt="Image description"
       />
     </div>
     <div class="form-container">
       <form>
-        <h1>Register</h1>
-        <v-text-field
-          class="err"
-          v-model="state.name"
-          :error-messages="v$.name.$errors.map((e) => e.$message)"
-          :counter="10"
-          density="compact"
-          placeholder="Enter your name"
-          prepend-inner-icon="mdi-account"
-          variant="outlined"
-          color="#634B7A"
-          required
-          @input="v$.name.$touch"
-          @blur="v$.name.$touch"
-        ></v-text-field>
-
+        <h1>Log in</h1>
         <v-text-field
           class="err"
           v-model="state.email"
@@ -39,9 +24,6 @@
           @input="v$.email.$touch"
           @blur="v$.email.$touch"
         ></v-text-field>
-        <p v-if="state.emailTakenError" class="text-error">
-          Email is already taken.
-        </p>
 
         <v-text-field
           class="err"
@@ -61,42 +43,29 @@
                 : 'Value required and should contain uppercase, lowercase, number, sign and more than 8 characters'
             )
           "
-          @input="v$.password.$touch"
+          @input="
+            v$.password.$touch;
+            resetIncorrectPasswordError();
+          "
           @blur="v$.password.$touch"
         ></v-text-field>
-        <!-- <v-select
-            class="err select-role"
-            v-model="state.role_id"
-            :items="role_id"
-            :error-messages="v$.role_id.$errors.map((e) => e.$message)"
-            label="Role"
-            disabled
-            required
-            @change="v$.role_id.$touch"
-            @blur="v$.role_id.$touch"
-          ></v-select> -->
-        <v-checkbox
-          class="err"
-          v-model="state.checkbox"
-          :error-messages="v$.checkbox.$errors.map((e) => e.$message)"
-          label="Do you agree?"
-          required
-          @change="v$.checkbox.$touch"
-          @blur="v$.checkbox.$touch"
-        ></v-checkbox>
+        <p v-if="state.incorrectPasswordError" class="text-error">
+          Incorrect email or password. Please try again.
+        </p>
+        <p class="forgot-password">
+          <router-link to="/">Forgot password</router-link>
+        </p>
         <div class="btn">
           <div>
             <div v-if="v$.$invalid">
-              <v-btn class="me-4" @click="v$.$touch()">Sign up</v-btn>
+              <v-btn class="me-4" @click="v$.$touch()">Log in</v-btn>
             </div>
             <div v-else class="sign-in">
-              <v-btn class="me-4" @click="submit">Sign up</v-btn>
+              <v-btn class="me-4" @click="logIn">Log in</v-btn>
             </div>
           </div>
-          <p>
-            Already have an account?<router-link to="/logIn"
-              >Log in</router-link
-            >
+          <p class="log-in">
+            Have not an account?<router-link to="/signUp">Sign up</router-link>
           </p>
         </div>
       </form>
@@ -112,13 +81,12 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const initialState = {
-  name: "",
   email: "",
   role_id: "",
-  checkbox: null,
   password: "",
   emailTakenError: false,
   visible: false,
+  incorrectPasswordError: false,
 };
 
 const state = reactive(Object.assign({}, initialState));
@@ -133,20 +101,8 @@ const passwordRule = (value) => {
 
 // Rule for name email password
 const rules = {
-  name: { required, minLength: minLength(3) },
-  email: {
-    required,
-    email,
-    async unique() {
-      const response = await axios.get(`http://127.0.0.1:8000/api/users`);
-      // compare new data email with data in database
-      const datas = response.data.data;
-      const emailExists = datas.some((data) => data.email === state.email);
-      state.emailTakenError = emailExists;
-    },
-  },
+  email: { required, email },
   password: { required, minLength: minLength(8), custom: passwordRule },
-  checkbox: { required },
 };
 
 // Clear validation when input correct
@@ -158,32 +114,31 @@ function clear() {
   v$.value.$reset();
 }
 // Insert data into dabase
-async function submit() {
+async function logIn() {
   try {
     const data = {
-      name: state.name,
       email: state.email,
       role_id: "1",
-      checkbox: state.checkbox,
       password: state.password,
     };
 
     // Make an API call to add data to the database
-    const response = await axios.post("http://127.0.0.1:8000/api/users", data);
-    Cookies.set("userData", JSON.stringify(response.data.token), {
-      expires: 10,
-    });
+    const response = await axios.post("http://127.0.0.1:8000/api/logIn", data);
 
     // Check the server response and alert the user accordingly
     if (response.status === 200) {
-      alert("Register successfully");
+      Cookies.set("userData", JSON.stringify(response.data), { expires: 10 });
+      alert("Form submitted successfully");
+
       clear();
-    } else {
-      alert("Failed to submit the form");
     }
   } catch (error) {
-    console.error(error);
+    state.incorrectPasswordError = true;
   }
+}
+// Add this event handler to the password field to hide the error message
+function resetIncorrectPasswordError() {
+  state.incorrectPasswordError = false;
 }
 </script>
 
@@ -194,29 +149,30 @@ async function submit() {
 .image {
   flex: 1;
 }
-
+.image img {
+  max-width: 90%;
+  height: auto;
+}
 .btn {
   display: flex;
 }
 h1 {
   margin-bottom: 25px;
   margin-top: 10px;
+  text-align: center;
 }
-p {
+.log-in {
   margin-bottom: 20px;
-  margin-left: 23%;
-  margin-top: 12px;
+  margin-left: 40%;
+  margin-top: 30px;
 }
 .err {
   text-align: start;
 }
 .text-error {
-  text-align: start;
-  font-family: sans-serif;
-  font-size: 12px;
-  margin-bottom: 15px;
-  margin-top: -20px;
-  margin-left: 15px;
+  color: red;
+  font-size: 14px;
+  margin-top: -15px;
 }
 label {
   color: #634b7a;
@@ -225,17 +181,15 @@ label {
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   margin-right: 60px;
-  margin-top: 40px;
-  margin-bottom: 10px;
   margin: 60px;
   flex: 1;
   padding: 35px;
-  /* height: 90vh; */
   border-radius: 10px;
 }
 .btn > div > div > button {
   background-color: #634b7a;
   color: #f6eeee;
-  margin-left: 10px;
+  margin-left: 4px;
+  margin-top: 20px;
 }
 </style>
