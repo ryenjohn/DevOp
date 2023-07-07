@@ -193,6 +193,7 @@ async function submit() {
 .image {
   flex: 1;
 }
+
 .btn {
   display: flex;
 }
