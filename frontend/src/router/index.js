@@ -25,6 +25,7 @@ const routes = [
     name: 'contact',
     component: Contact
   }
+  
 ]
 
 const router = createRouter({

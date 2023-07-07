@@ -34,9 +34,11 @@ app.component('footer-details', FooterDetails);
 import NavigationBar from './components/navbar/NavigationBar.vue'
 import NavigationBarRight from './components/navbar/NavigationBarRight.vue'
 import NavigationBarLink from './components/navbar/NavigationBarLink.vue'
+import NavigationBarContent from './components/navbar/NavigationBarContent.vue'
 app.component('navigation-bar', NavigationBar);
 app.component('navigationbar-right', NavigationBarRight);
 app.component('navigationbar-link', NavigationBarLink);
+app.component('navigationbar-content',NavigationBarContent)
 
 
 
