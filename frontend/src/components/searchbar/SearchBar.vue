@@ -1,32 +1,47 @@
 <template>
-  <v-card>
-    <v-card-title>
-      <h3>Find University</h3>
-      <v-spacer></v-spacer>
+  <h3>Find University</h3>
+  <v-card color="#8a2be2" max-width="500" class="search-field">
+    <v-card-text >
       <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
+        :loading="loading"
+        density="compact"
+        variant="solo"
+        label="Search templates"
+        append-inner-icon="mdi-magnify"
         single-line
         hide-details
+        @click:append-inner="onClick"
       ></v-text-field>
-    </v-card-title>
+    </v-card-text>
   </v-card>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      search: "",
-    };
+  data: () => ({
+    loaded: false,
+    loading: false,
+  }),
+
+  methods: {
+    onClick() {
+      this.loading = true;
+
+      setTimeout(() => {
+        this.loading = false;
+        this.loaded = true;
+      }, 2000);
+    },
   },
 };
 </script>
 <style>
-  h3{
-    display: flex;
-    
-    justify-content: flex-start;
-  }
+h3 {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+}
+.search-field{
+  margin-bottom: 20px;
+}
 </style>
