@@ -5,6 +5,7 @@ import UniversityView from '../views/UniversityView.vue'
 import SkillView from '../views/SkillView.vue'
 import WorkshopView from '../views/WorkshopView.vue'
 import ScholarshipView from '../views/ScholarshipView.vue'
+import SignUp from '../components/authentication/SignUp.vue'
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     path: '/skill/:id',
     name: 'skill/:id',
     component: SkillDetail
+  },
+  {
+    path: '/signUp',
+    name: 'SignUp',
+    component: SignUp
   },
 ]
 

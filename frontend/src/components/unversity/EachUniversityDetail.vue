@@ -3,7 +3,7 @@
         <!-- <template #title><v-card-title>Royal University of Phnom Penh</v-card-title></template> -->
         <template #img>    <v-img
             class="align-end text-white"
-            height="200"
+            height="400"
             :src="university.img"
             cover
             >
