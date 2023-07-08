@@ -19,6 +19,16 @@ class AdminController extends Controller
 
     }
 
+    // get all student register
+    
+    public function getStudents()
+    {
+        //
+        $role = Role::where('name', 'student')->first();
+        $students = User::where('role_id', $role->id)->get();
+    
+        return response()->json(['message' => "Your get data request is successful", 'data' => $students], 200);
+    }
 
     /**
      * Store a newly created resource in storage.
