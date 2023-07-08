@@ -2,16 +2,7 @@
   <navigation-bar></navigation-bar>
   <router-view></router-view>
   <footer-bar></footer-bar>
-  <section>
-  <nav>
-      <router-link to="/">University</router-link> |
-      <router-link to="/skill">Skill</router-link> |
-      <router-link to="/workshop">Workshop</router-link> |
-      <router-link to="/scholarship">Scholarship</router-link> |
-      <router-link to="/signUp">sign up</router-link>
-    </nav>
-    <router-view/>
-  </section>
+  
 </template>
 <script>
 </script>
