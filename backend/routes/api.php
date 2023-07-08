@@ -29,5 +29,6 @@ Route::get('/schools/{id}',[SchoolController::class,'getschool']);
 Route::get('/workshops',[Workshops::class,'getWorkshops']);
 Route::get('/workshop/{id}',[Workshops::class,'getWorkshop']);
 Route::get('/user/{id}',[UserController::class,'getUser']);
+Route::put('/user/{id}',[UserController::class,'saveChange']);
 
 
