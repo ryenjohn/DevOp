@@ -36,5 +36,14 @@ class RoleSeeder extends Seeder
                 'name' => $faker->role(),
             ]);
         }
+
+$roles = ['student', 'university_manager'];
+
+for ($i = 0; $i < 10; $i++) {
+    DB::table('roles')->insert([
+        'name' => $faker->randomElement($roles)
+    ]);
+}
+
     }
 }

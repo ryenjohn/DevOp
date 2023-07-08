@@ -24,10 +24,10 @@ export default {
   margin-right: 20px;
   margin-left: 20px;
 }
-::before {
-    color: white;
-}
-a {
-  color: white;
-}
+/* ::before { */
+    /* color: white; */
+/* } */
+/* a { */
+  /* color: white; */
+/* } */
 </style>
