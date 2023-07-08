@@ -10,6 +10,7 @@ const vuetify = createVuetify({
   components,
   directives,
 })
+<<<<<<< HEAD
 const app = createApp(App)
 
 // Search bar
@@ -43,3 +44,55 @@ app.component('navigationbar-link', NavigationBarLink);
 app.use(vuetify)
 app.use(router)
 app.mount('#app')
+=======
+
+// Include globaly all widgets
+import BaseCard from './components/widgets/card/BaseCard.vue';
+import CardInfo from './components/widgets/card/CardInfo.vue';
+import CardContainer from './components/widgets/card/CardContainer.vue';
+import CardItemDetail  from './components/widgets/card/CardDetail.vue';
+import BaseButton from './components/widgets/button/BaseButton.vue';
+import BaseDialog from './components/widgets/dialog/BaseDialog.vue';
+
+// Include globaly all components
+import ListSkill from './components/ListSkill.vue';
+import ListWorkshop from './components/ListWorkshop.vue';
+import ListScholarship from './components/ListScholarship.vue';
+import ListUniversity from './components/ListUniversity.vue';
+import CardDetail from './components/CardDetail.vue';
+import TitleView from './components/TitleView.vue';
+
+//university detail
+import EachUniversity from './components/unversity/EachUniversityDetail.vue';
+import EachMajor from './components/unversity/EachMajorDetail.vue';
+import EachScholarship from './components/unversity/EachScholarshipDetail.vue';
+import EachWorkshop from './components/unversity/EachWorkshopDetail.vue';
+
+
+
+const app = createApp(App);
+
+app.component('list-university', ListUniversity);
+app.component('list-workshop', ListWorkshop);
+app.component('list-scholarship', ListScholarship);
+app.component('list-skill', ListSkill);
+app.component('card-detail', CardDetail);
+app.component('card-item', CardItemDetail);
+app.component('base-card', BaseCard);
+app.component('card-info', CardInfo);
+app.component('card-container', CardContainer);
+app.component('base-button', BaseButton);
+app.component('base-dialog', BaseDialog);
+app.component('title-text', TitleView);
+//university
+app.component('each-univer', EachUniversity);
+app.component('each-major', EachMajor);
+app.component('each-workshop', EachWorkshop);
+app.component('each-scholarship', EachScholarship);
+
+// app.component('card-container', CardContainer);
+
+app.use(router);
+app.use(vuetify);
+app.mount('#app');
+>>>>>>> f900c011a528702e195864374e341ca4bba3b7e7
