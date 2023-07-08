@@ -36,6 +36,7 @@ data(){
     listScholarship(){
       axios.get(this.url).then((response) =>{
         this.scholarships = response.data.data
+        console.log(this.scholarships)
       })
     },
     showDetail(id){

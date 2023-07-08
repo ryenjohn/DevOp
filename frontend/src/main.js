@@ -26,6 +26,7 @@ import ListScholarship from './components/ListScholarship.vue';
 import ListUniversity from './components/ListUniversity.vue';
 import CardDetail from './components/CardDetail.vue';
 import TitleView from './components/TitleView.vue';
+import ScholarshipDetailView from './components/ScholarshipDetail.vue';
 
 //university detail
 import EachUniversity from './components/unversity/EachUniversityDetail.vue';
@@ -49,6 +50,7 @@ app.component('card-container', CardContainer);
 app.component('base-button', BaseButton);
 app.component('base-dialog', BaseDialog);
 app.component('title-text', TitleView);
+app.component('scholarship-detail', ScholarshipDetailView);
 //university
 app.component('each-univer', EachUniversity);
 app.component('each-major', EachMajor);
