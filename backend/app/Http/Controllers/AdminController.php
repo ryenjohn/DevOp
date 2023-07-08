@@ -20,24 +20,6 @@ class AdminController extends Controller
     }
 
 
-
-    public function getStudents()
-    {
-        //
-        $role = Role::where('name', 'student')->first();
-        $students = User::where('role_id', $role->id)->get();
-    
-        return response()->json(['message' => "Your get data request is successful", 'data' => $students], 200);
-    }
-
-    public function getUniversityDirectors()
-    {
-        $role = Role::where('name', 'university_manager')->first();
-        $universityDirectors = User::where('role_id', $role->id)->get();
-
-        return response()->json(['message' => "Your get data request is successful", 'data' => $universityDirectors], 200);
-    }
-
     /**
      * Store a newly created resource in storage.
      */
