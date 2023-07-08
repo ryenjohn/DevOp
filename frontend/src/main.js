@@ -42,11 +42,15 @@ app.component('navigationbar-content',NavigationBarContent)
 
 // contents
 import contentList from './components/contents/ContentList.vue'
+import scholarshipContent from './components/contents/ScholarshipWorkshopList.vue'
 app.component('content-list', contentList);
+app.component('scholarship-workshop-card', scholarshipContent);
 
-// Content detail
-// import contentDetail from './components/contents/contentDetail.vue'
-// app.component('content-detail', contentDetail);
+
+// map
+import mapShow from './components/Map/MapShow.vue'
+app.component('map-show', mapShow);
+
 
 
 // Include globaly all widgets
@@ -57,14 +61,13 @@ import CardItemDetail  from './components/widgets/card/CardDetail.vue';
 import BaseButton from './components/widgets/button/BaseButton.vue';
 import BaseDialog from './components/widgets/dialog/BaseDialog.vue';
 
-// Include globaly all components
-// import TitleView from './components/TitleView.vue';
 
-//university detail
-import EachUniversity from './components/unversity/EachUniversityDetail.vue';
-import EachMajor from './components/unversity/EachMajorDetail.vue';
-import EachScholarship from './components/unversity/EachScholarshipDetail.vue';
-import EachWorkshop from './components/unversity/EachWorkshopDetail.vue';
+
+import TitleView from './components/contents/ContentTitle.vue';
+
+
+
+
 
 
 
@@ -74,12 +77,11 @@ app.component('card-info', CardInfo);
 app.component('card-container', CardContainer);
 app.component('base-button', BaseButton);
 app.component('base-dialog', BaseDialog);
-// app.component('title-text', TitleView);
-//university
-app.component('each-univer', EachUniversity);
-app.component('each-major', EachMajor);
-app.component('each-workshop', EachWorkshop);
-app.component('each-scholarship', EachScholarship);
+
+
+app.component('title-text', TitleView);
+
+
 
 app.use(vuetify)
 app.use(router)

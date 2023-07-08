@@ -6,6 +6,7 @@ import Home from '../views/HomeView.vue'
 import Detail from '../views/DetailView.vue'
 // import 
 
+
 const routes = [
   {
     path: '/',
@@ -28,11 +29,12 @@ const routes = [
     component: Contact
   },
   {
-    path: '/detail/:id/:dataname',
+    path: '/detail/:dataname/:id',
     name: 'detail',
     component: Detail
-  }
+  },
   
+
 ]
 
 const router = createRouter({

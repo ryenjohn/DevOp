@@ -1,12 +1,12 @@
 <template>
-  <v-container class="pa-2">
+  <div class="px-5">
     <v-row
       class="mb-4"
       no-gutters
     >
     <slot></slot>
     </v-row>
-  </v-container>
+  </div>
 </template>
 <script>
 export default {
@@ -17,3 +17,5 @@ export default {
   }
 }
 </script>
+<style scoped>
+</style>

@@ -1,7 +1,5 @@
 <template>
-    <v-card
-      class="mx-auto "
-      max-width="344"
+    <v-card class="card"
     >
       <slot name="img"></slot>
       <br>
@@ -16,3 +14,8 @@
     }),
   }
 </script>
+<style scoped>
+  .card{
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  }
+</style>

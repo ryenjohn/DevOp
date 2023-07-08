@@ -17,14 +17,17 @@ class SchoolSkillSeeder extends Seeder
         $faker = Faker::create();
 
     
-    for ($i = 0; $i < 10; $i++) {
-        $typeEducationId = $faker->numberBetween($min = 1, $max = 6);
-        $skillId = $faker->numberBetween($min = 1, $max = 10);
-    
-        DB::table('school_skill')->insert([
-            'school_id' => $typeEducationId,
-            'skill_id' => $skillId,
-        ]);
+        for ($i = 0; $i < 10; $i++) {
+            $typeEducationId = $faker->numberBetween($min = 1, $max = 6);
+            $skillId = $faker->numberBetween($min = 1, $max = 10);
+        
+            $schoolId = $typeEducationId;
+            $skillIdValue = $skillId;
+        
+            DB::table('school_skill')->insert([
+                'school_id' => $schoolId,
+                'skill_id' => $skillIdValue,
+            ]);
         }
     }
 }

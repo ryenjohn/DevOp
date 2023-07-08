@@ -8,7 +8,7 @@
 </script>
 <style>
 :root {
-  --main-color: #ffff;
+  --main-color: #ffffffb0;
   --main-color-light: #e21ee9;
   --secondary-color: orange;
 }

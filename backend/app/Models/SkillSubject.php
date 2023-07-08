@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class SkillSubject extends Model
 {
     use HasFactory;
-    
-
+  
    
 }

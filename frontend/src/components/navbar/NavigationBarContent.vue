@@ -1,12 +1,12 @@
 <template>
- <v-tabs>
+ <v-tabs class="category">
     <v-tab @click="contentData('schools')">Universities</v-tab>
     <v-tab @click="contentData('majors')">Skills</v-tab>
     <v-tab @click="contentData('workshops')">Workshops</v-tab>
     <v-tab @click="contentData('scholarships')">Scholarships</v-tab>
   </v-tabs>
-  <content-list :datas="datas" :dataname='dataname' ></content-list>
- 
+  <content-list v-if='dataname!="scholarships" && dataname!="workshops" ' :datas="datas" :dataname='dataname' ></content-list>
+ <scholarship-workshop-card v-else  class="mt-10" :datas="datas" :dataname='dataname'></scholarship-workshop-card>
 </template>
 <script>
 import axios from 'axios'
@@ -28,6 +28,7 @@ export default {
       this.dataname=dataName
       axios.get(this.url+dataName).then((response)=>{
         this.datas = response.data.data
+        console.log(this.datas)
       })
     }
   },
@@ -36,11 +37,6 @@ export default {
         this.datas = response.data.data
       })
   }
-  
-  
-
-
-
 }
 </script>
 <style scoped>
@@ -50,5 +46,9 @@ export default {
     }
     a{
     color: rgb(32, 10, 10);
+    }
+    .category{
+      margin-left:50px;
+      margin-top: 10px;
     }
 </style>
