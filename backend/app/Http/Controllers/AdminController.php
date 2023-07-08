@@ -30,6 +30,16 @@ class AdminController extends Controller
         return response()->json(['message' => "Your get data request is successful", 'data' => $students], 200);
     }
 
+
+
+    // get all manager register
+    public function getUniversityDirectors()
+    {
+        $role = Role::where('name', 'university_manager')->first();
+        $universityDirectors = User::where('role_id', $role->id)->get();
+
+        return response()->json(['message' => "Your get data request is successful", 'data' => $universityDirectors], 200);
+    }
     /**
      * Store a newly created resource in storage.
      */

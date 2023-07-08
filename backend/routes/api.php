@@ -48,6 +48,7 @@ Route::get('/workshops',[WorkShopController::class,'workshops']);
 
 Route::get('/admin', [AdminController::class, 'index']);
 Route::get('/admin/students', [AdminController::class, 'getStudents']);
+Route::get('/admin/managers', [AdminController::class, 'getUniversityDirectors']);
 
 
 
