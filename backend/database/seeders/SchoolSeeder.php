@@ -1,8 +1,8 @@
 <?php
 
 namespace Database\Seeders;
-use Faker\Factory as Faker;
 
+use App\Models\School;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -14,21 +14,12 @@ class SchoolSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
+        $school = [
+            ["name" => "PNC","img" => "https://i.pinimg.com/564x/62/d7/90/62d79024b48bf9d6dc8dc7e2388b7d6e.jpg", "type_education_id"=>1,"address_id"=>1]
+        ];
+        foreach($school as $school){
+            School::create($school);
+        }
 
-    
-    for ($i = 0; $i < 10; $i++) {
-        $universityName = $faker->company . ' University';
-        $img = $faker->imageUrl($width = 640, $height = 480);
-        $typeEducationId = $faker->numberBetween($min = 1, $max = 6);
-        $addressId = $faker->numberBetween($min = 1, $max = 10);
-
-        DB::table('schools')->insert([
-            'name' => $universityName,
-            'img' => $img,
-            'type_education_id' => $typeEducationId,
-            'address_id' => $addressId,
-        ]);
-}
     }
 }

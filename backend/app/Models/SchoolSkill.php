@@ -9,5 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class SchoolSkill extends Model
 {
     use HasFactory;
-   
+    protected $fillable = [
+        'school_id',
+        'skill_id' 
+    ];
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }

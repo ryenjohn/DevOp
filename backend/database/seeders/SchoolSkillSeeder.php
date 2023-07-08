@@ -1,11 +1,11 @@
 <?php
 
 namespace Database\Seeders;
-use Faker\Factory as Faker;
 
+use App\Models\SchoolSkill;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+
 
 class SchoolSkillSeeder extends Seeder
 {
@@ -14,17 +14,12 @@ class SchoolSkillSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
-
-    
-    for ($i = 0; $i < 10; $i++) {
-        $typeEducationId = $faker->numberBetween($min = 1, $max = 6);
-        $skillId = $faker->numberBetween($min = 1, $max = 10);
-    
-        DB::table('school_skill')->insert([
-            'school_id' => $typeEducationId,
-            'skill_id' => $skillId,
-        ]);
+        $school_skill = [
+            ["school_id"=>1, "skill_id"=>1]
+           
+        ];
+        foreach($school_skill as $ss){
+            SchoolSkill::create($ss);
         }
     }
 }

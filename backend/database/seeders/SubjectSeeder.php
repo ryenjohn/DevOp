@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-use Faker\Factory as Faker;
+
 use App\Models\Subjects;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,12 +15,14 @@ class SubjectSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
-        $highSchoolSubjects = array('Math', 'English', 'History', 'Science', 'Foreign Language');
-            for ($i = 0; $i < 10; $i++) {
-                DB::table('subjects')->insert([
-                'name' => $faker->randomElement($highSchoolSubjects),
-            ]);
+        $subjects = [
+            ["name" => "Math"],
+            ["name" => "Physics"],
+            ["name" => "Chemistry"],
+            ["name" => "English"],
+        ];
+        foreach($subjects as $subject){
+            Subjects::create($subject);
         }
     }
 }
