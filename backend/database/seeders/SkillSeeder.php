@@ -7,7 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class AddressSeeder extends Seeder
+class SkillSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,9 +17,15 @@ class AddressSeeder extends Seeder
         $faker = Faker::create();
 
         for ($i = 0; $i < 10; $i++) {
-            DB::table('addresses')->insert([
-                'link' => $faker->url,
+            $skillName = $faker->jobTitle;
+            $description = $faker->sentence;
+            $img = $faker->imageUrl($width = 640, $height = 480);
+        
+            DB::table('skills')->insert([
+                'name' => $skillName,
+                'description' => $description,
+                'image' => $img,
             ]);
         }
-
-}}
+    }
+}

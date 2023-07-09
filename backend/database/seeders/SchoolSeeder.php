@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 use Faker\Factory as Faker;
+
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,13 +16,28 @@ class SchoolSeeder extends Seeder
     {
         $faker = Faker::create();
 
-for ($i = 0; $i < 10; $i++) {
-    DB::table('schools')->insert([
-        'name' => $faker->sentence($nbWords = 3, $variableNbWords = true),
-        'img' => $faker->imageUrl($width = 640, $height = 480),
-        'type_education_id' => $faker->numberBetween($min = 1, $max = 5),
-        'address_id' => $faker->numberBetween($min = 1, $max = 25),
-    ]);
-}
+
+    
+    for ($i = 0; $i < 10; $i++) {
+        $universityName = $faker->company . ' University';
+        $img = $faker->imageUrl($width = 640, $height = 480);
+        $typeEducationId = $faker->numberBetween($min = 1, $max = 6);
+        $addressId = $faker->numberBetween($min = 1, $max = 10);
+
+        DB::table('schools')->insert([
+            'name' => $universityName,
+            'img' => $img,
+            'type_education_id' => $typeEducationId,
+            'address_id' => $addressId,
+        ]);
+    for ($i = 0; $i < 10; $i++) {
+        DB::table('schools')->insert([
+            'name' => $faker->sentence($nbWords = 3, $variableNbWords = true),
+            'img' => $faker->imageUrl($width = 640, $height = 480),
+            'type_education_id' => $faker->numberBetween($min = 1, $max = 5),
+            'address_id' => $faker->numberBetween($min = 1, $max = 25),
+        ]);
     }
+    }
+}
 }

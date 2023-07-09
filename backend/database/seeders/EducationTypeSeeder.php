@@ -7,7 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class RoleSeeder extends Seeder
+class EducationTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,34 +16,25 @@ class RoleSeeder extends Seeder
     {
         $faker = Faker::create();
         $faker->addProvider(new class($faker) extends \Faker\Provider\Base {
-            protected static $roles = [
+            protected static $education = [
                 
-                'university_manager',
-                'student',
-                'admin'
+                'university',
+                'organization'
+           
                             
             ];
         
-            public function role()
+            public function education()
             {
-                return static::randomElement(static::$roles);
+                return static::randomElement(static::$education);
             }
         });
         
         // Use the custom provider to generate roles
         for ($i = 0; $i < 2; $i++) {
-            DB::table('roles')->insert([
-                'name' => $faker->role(),
+            DB::table('type_education')->insert([
+                'name' => $faker->education(),
             ]);
         }
-
-$roles = ['student', 'university_manager'];
-
-for ($i = 0; $i < 10; $i++) {
-    DB::table('roles')->insert([
-        'name' => $faker->randomElement($roles)
-    ]);
-}
-
     }
 }

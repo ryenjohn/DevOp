@@ -15,15 +15,30 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
+        for ($i = 0; $i < 10; $i++) {
+            $fullName = $faker->name;
+            $email = $faker->email;
+            $password = $faker->password;
+            $roleId = $faker->numberBetween($min = 1, $max = 10);
+            $addressId = $faker->numberBetween($min = 1, $max = 10);
+        
+            DB::table('users')->insert([
+                'name' => $fullName,
+                'email' => $email,
+                'password' => $password,
+                'role_id' => $roleId,
+                'address_id' => $addressId,
+            ]);
+        }
 
-for ($i = 0; $i < 10; $i++) {
-    DB::table('users')->insert([
-        'name' => $faker->name,
-        'email' => $faker->email,
-        'password' => bcrypt($faker->password),
-        'role_id' => $faker->numberBetween(1, 5), // assuming you have 5 roles
-        'address_id' => $faker->numberBetween(1, 9), // assuming you have 100 addresses
-    ]);
-}
+    for ($i = 0; $i < 10; $i++) {
+        DB::table('users')->insert([
+            'name' => $faker->name,
+            'email' => $faker->email,
+            'password' => bcrypt($faker->password),
+            'role_id' => $faker->numberBetween(1, 5), // assuming you have 5 roles
+            'address_id' => $faker->numberBetween(1, 9), // assuming you have 100 addresses
+        ]);
+    }
     }
 }
