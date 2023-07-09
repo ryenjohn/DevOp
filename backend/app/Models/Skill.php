@@ -13,24 +13,39 @@ class Skill extends Model
     protected $fillable = [
         'name',
         'description',
-        'image',
-        
+        'image'
     ];
+    public static function skill($request, $id = null)
+    {
+        $skill = $request->only([
+            'name',
+            'description',
+            'image'
+        ]);
+        
+        $skill = self::updateOrCreate(['id'=>$id], $skill);
+        $subjects = request('subjects');
+        $skill->subjects()->sync($subjects);
+        return $skill;
+    }
 
     protected $hidden = [
         'created_at',
         'updated_at'
     ];
-    public function subjects():BelongsToMany{
-        return $this->belongsToMany(Subjects::class,'skill_subject','skill_id','subject_id');
+
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class, 'skill_subjects')->withTimestamps();
     }
-    public function schools():BelongsToMany{
-        return $this->belongsToMany(School::class,'school_skill');
+
+    public function schools(): BelongsToMany
+    {
+        return $this->belongsToMany(School::class, 'school_skill');
     }
-    
-    public function scholarship():HasMany{
+
+    public function scholarship(): HasMany
+    {
         return $this->hasMany(ScholarShip::class);
-    } 
-    
-  
+    }
 }
