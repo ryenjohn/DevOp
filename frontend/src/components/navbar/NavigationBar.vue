@@ -17,5 +17,8 @@
   align-items: center;
   background-color: blueviolet;
   padding: 5px;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 </style>

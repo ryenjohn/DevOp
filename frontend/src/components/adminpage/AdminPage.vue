@@ -1,9 +1,5 @@
 <template>
-
-<!-- <router-view></router-view> -->
-<!-- <navigation-bar></navigation-bar> -->
 <SideBar />
-
 </template>
 
 <script>

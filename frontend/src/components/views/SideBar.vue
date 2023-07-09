@@ -1,14 +1,12 @@
 <template>
   <v-card>
     <v-layout>
-      <v-navigation-drawer
-        
-      >
+      <v-navigation-drawer class="sidebar">
         <v-list>
           <v-list-item
             prepend-avatar="https://i.pinimg.com/564x/4a/61/d8/4a61d8c53b8a1219b0bd7319c5eb8b69.jpg"
-            subtitle="sandra_a88@gmailcom"
-          ></v-list-item>
+            subtitle="sandra_a88@gmailcom">
+          </v-list-item>
         </v-list>
 
         <v-divider></v-divider>
@@ -24,3 +22,12 @@
     </v-layout>
   </v-card>
 </template>
+
+
+
+<style  scoped>
+
+    .sidebar{
+      margin-top: 5%;
+    }
+</style>
