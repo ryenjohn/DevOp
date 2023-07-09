@@ -18,7 +18,7 @@ class SkillResource extends JsonResource
             'id'=>$this->id,
             'name'=>$this->name,
             'description'=>$this->description,
-            'image'=>$this->image,
+            'img'=>$this->image,
             'subjects'=> SubjectResource::collection($this->subjects),
             "schools"=> SchoolResource::collection($this->schools)
             
