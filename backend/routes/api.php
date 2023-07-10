@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\MajorController;
 
 use App\Http\Controllers\RoleController;
@@ -50,4 +51,8 @@ Route::get('/workshops',[WorkShopController::class,'workshops']);
 
 
 
-
+// log in and log out
+Route::middleware(['auth:sanctum'])->group(function(){
+    Route::post('/logOut', [AuthenticationController::class, 'logout']);
+});
+Route::post('/logIn', [AuthenticationController::class,'login']);
