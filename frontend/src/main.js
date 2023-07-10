@@ -11,40 +11,26 @@ const vuetify = createVuetify({
   components,
   directives,
 })
-<<<<<<< HEAD
-const app = createApp(App)
 
+const app = createApp(App);
 // Search bar
 import SearchBar from './components/searchbar/SearchBar.vue'
 app.component('search-bar', SearchBar);
 
 // HidedeLimiter
 import HidedeLimiter from './components/hidedelimiters/HidedeLimiter.vue'
-app.component('hidede-limiter', HidedeLimiter);
 
 // Footer bar
 import FooterBar from './components/footer/FooterBar.vue'
 import FooterIcon from './components/footer/FooterIcon.vue'
 import FooterAvatar from './components/footer/FooterAvatar.vue'
 import FooterDetails from './components/footer/FooterDetails.vue'
-app.component('footer-bar', FooterBar);
-app.component('footer-icon', FooterIcon);
-app.component('footer-avatar', FooterAvatar);
-app.component('footer-details', FooterDetails);
+
 
 // Navigation bar
 import NavigationBar from './components/navbar/NavigationBar.vue'
 import NavigationBarRight from './components/navbar/NavigationBarRight.vue'
 import NavigationBarLink from './components/navbar/NavigationBarLink.vue'
-app.component('navigation-bar', NavigationBar);
-app.component('navigationbar-right', NavigationBarRight);
-app.component('navigationbar-link', NavigationBarLink);
-
-
-app.use(vuetify)
-app.use(router)
-app.mount('#app')
-=======
 
 // Include globaly all widgets
 import BaseCard from './components/widgets/card/BaseCard.vue';
@@ -70,8 +56,10 @@ import EachWorkshop from './components/unversity/EachWorkshopDetail.vue';
 
 
 
-const app = createApp(App);
-
+app.component('hidede-limiter', HidedeLimiter);
+app.component('navigation-bar', NavigationBar);
+app.component('navigationbar-right', NavigationBarRight);
+app.component('navigationbar-link', NavigationBarLink);
 app.component('list-university', ListUniversity);
 app.component('list-workshop', ListWorkshop);
 app.component('list-scholarship', ListScholarship);
@@ -89,10 +77,13 @@ app.component('each-univer', EachUniversity);
 app.component('each-major', EachMajor);
 app.component('each-workshop', EachWorkshop);
 app.component('each-scholarship', EachScholarship);
+app.component('footer-bar', FooterBar);
+app.component('footer-icon', FooterIcon);
+app.component('footer-avatar', FooterAvatar);
+app.component('footer-details', FooterDetails);
 
 // app.component('card-container', CardContainer);
 
 app.use(router);
 app.use(vuetify);
 app.mount('#app');
->>>>>>> f900c011a528702e195864374e341ca4bba3b7e7

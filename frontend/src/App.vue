@@ -1,9 +1,7 @@
 <template>
-<<<<<<< HEAD
   <navigation-bar></navigation-bar>
   <router-view></router-view>
   <footer-bar></footer-bar>
-=======
   <section>
     <nav>
       <router-link to="/">University</router-link> |
@@ -14,7 +12,6 @@
     </nav>
     <router-view/>
   </section>
->>>>>>> f900c011a528702e195864374e341ca4bba3b7e7
 </template>
 <script>
 </script>

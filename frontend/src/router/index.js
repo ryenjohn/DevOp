@@ -49,7 +49,6 @@ const routes = [
     name: 'signUp',
     component: SignUp
   },
-<<<<<<< HEAD
   {
     path: '/about',
     name: 'about',
@@ -82,8 +81,6 @@ const routes = [
     name: 'allusers',
     component: AllUser
   }
-=======
->>>>>>> f900c011a528702e195864374e341ca4bba3b7e7
 ]
 
 const router = createRouter({
