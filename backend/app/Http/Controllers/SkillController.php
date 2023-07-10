@@ -46,6 +46,25 @@ class SkillController extends Controller
         return response()->json(['message' => "Create skills success", 'data' => $skills], 201);
     }
 
+    public function editeSkill(SkillRequest $request, string $id)
+    {
+        $skill  = Skill::find($id);
+        if ($skill) {
+            $skill  = Skill::skill($request, $id);
+            return response()->json(['Update skill  success' => true, 'data' => $skill], 200);
+        }
+        return response()->json(['message' => "Skill id not found"], 404);
+    }
+
+    public function deleteSkill(string $id)
+    {
+        $skill = Skill::find($id);
+        if (!$skill) {
+            return response()->json(['message' => 'Skill id not found'], 404);
+        }
+        $skill->delete();
+        return response()->json(['Delete skill successfully' => true, 'data' => $skill], 201);
+    }
 
 
 }
