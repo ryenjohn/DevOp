@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('work_shops', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('img')->nullable();
+            $table->string('image')->nullable();
             $table->unsignedBigInteger('address_id')->unsigned();
             $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
             $table->unsignedBigInteger('school_id')->unsigned();

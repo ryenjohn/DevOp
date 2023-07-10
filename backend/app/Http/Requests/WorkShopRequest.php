@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator as ValidationValidator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class SkillRequest extends FormRequest
+class WorkShopRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,10 +27,14 @@ class SkillRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>'required',
-            'description'=> 'required',
+            'name' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'subjects' => 'required'
+            'address_id' => 'required',
+            'school_id' => 'required',
+            'description' => 'required',
+            'start_date' => 'required|date',
+            'expired_date' => 'required|date|after:start_date',
+            'time' => 'required',
         ];
     }
 }

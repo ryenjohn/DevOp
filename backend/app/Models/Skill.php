@@ -22,7 +22,13 @@ class Skill extends Model
             'description',
             'image'
         ]);
-        
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('src/skills', $filename);
+            $skill['image'] = $filename;
+  
+        }
         $skill = self::updateOrCreate(['id'=>$id], $skill);
         $subjects = request('subjects');
         $skill->subjects()->sync($subjects);

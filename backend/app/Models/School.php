@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class School extends Model
 {
     use HasFactory;
-    protected $fillable=[
+    protected $fillable = [
         'name',
         'img',
         'type_education_id',
@@ -23,32 +23,38 @@ class School extends Model
         'updated_at'
     ];
 
-    public function scholarship():HasMany{
+    public function scholarship(): HasMany
+    {
         return $this->hasMany(ScholarShip::class);
     }
 
-    public function skills():BelongsToMany{
-        return $this->belongsToMany(Skill::class,'school_skill','skill_id','school_id');
+    public function skills(): BelongsToMany
+    {
+        return $this->belongsToMany(Skill::class, 'school_skill', 'skill_id', 'school_id');
     }
 
-    public function schedule():HasMany{
+    public function schedule(): HasMany
+    {
         return $this->hasMany(schedule::class);
     }
-    
-    public function type():BelongsTo{
-        return $this->belongsTo(TypeEducation::class,"type_education_id","id");
+
+    public function type(): BelongsTo
+    {
+        return $this->belongsTo(TypeEducation::class, "type_education_id", "id");
     }
 
-    public function address():BelongsTo{
+    public function address(): BelongsTo
+    {
         return $this->belongsTo(Address::class);
     }
 
-    public function comment():HasMany{
+    public function comment(): HasMany
+    {
         return $this->hasMany(Comment::class);
     }
 
-    public function workshop(): HasMany{
+    public function workshops(): HasMany
+    {
         return $this->hasMany(WorkShop::class);
     }
-    
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WorkShopController;
 use App\Http\Resources\SubjectResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -39,7 +40,7 @@ Route::post('/roles',[RoleController::class, 'store']);
 Route::get('/schools/{id}',[SchoolController::class,'getschool']);
 Route::get('/schools',[SchoolController::class,'getschools']);
 
-// Major route
+// Skill route
 Route::get('/skills',[SkillController::class,'getSkills']);
 Route::get('/skills/{id}',[SkillController::class,'getSkillById']);
 Route::post('/skills',[SkillController::class,'createSkill']);
@@ -48,3 +49,10 @@ Route::delete('/skills/{id}',[SkillController::class,'deleteSkill']);
 
 // subject route
 Route::get('/subjects',[SkillController::class,'getSubjects']);
+
+// Major route
+Route::get('/workShops',[WorkShopController::class,'getWorkShops']);
+Route::get('/workShops/{id}',[WorkShopController::class,'getWorkShopById']);
+Route::post('/workShops',[WorkShopController::class,'createWorkShop']);
+Route::put('/workShops/{id}',[WorkShopController::class,'editeWorkShop']);
+Route::delete('/workShops/{id}',[WorkShopController::class,'deleteWorkShop']);
