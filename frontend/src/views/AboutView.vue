@@ -1,4 +1,5 @@
 <template>
+
   <p>This is about page</p>
 </template>
 
@@ -11,3 +12,4 @@ export default {
 <style>
 
 </style>
+
