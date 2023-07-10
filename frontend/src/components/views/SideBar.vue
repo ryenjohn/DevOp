@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-layout>
-      <v-navigation-drawer class="sidebar">
+      <v-navigation-drawer style="height: 300px" class="sidebar" color="purple">
         <v-list>
           <v-list-item
             prepend-avatar="https://i.pinimg.com/564x/4a/61/d8/4a61d8c53b8a1219b0bd7319c5eb8b69.jpg"
@@ -9,7 +9,7 @@
           </v-list-item>
         </v-list>
 
-        <v-divider></v-divider>
+        <v-divider style="height: 300px"></v-divider>
 
         <v-list density="compact" nav>
           <v-list-item :to="{ path: '/allstudents' }" prepend-icon="mdi-account-school"  title="Students" value="Students"></v-list-item>
@@ -18,7 +18,7 @@
         </v-list>
       </v-navigation-drawer>
 
-      <v-main style="height: 250px"></v-main>
+      <v-main></v-main>
     </v-layout>
   </v-card>
 </template>

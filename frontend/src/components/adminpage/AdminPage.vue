@@ -1,4 +1,6 @@
 <template>
+<!-- <navigation-bar></navigation-bar> -->
+
 <SideBar />
 </template>
 

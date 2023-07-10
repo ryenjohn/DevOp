@@ -1,10 +1,9 @@
 <template>
-    <h1>All Students List</h1>
-    <div class="button">
-        <!-- <v-btn @click="add()" style="color: blue;"><span class="mdi mdi-plus">Add</span></v-btn> -->
-        <span @click="add()" class="mdi mdi-plus">Add</span>
-        
-    </div>
+    <h1>All Students List <br>
+      <span @click="add()" class=" button mdi mdi-plus-circle">ADD</span>
+    </h1>
+
+    
   <div>
     <v-table class="my-table">
     <thead>
@@ -24,13 +23,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="student in students" :key="student.id">
+      <tr v-for="student in students" :key="student.id" class="text-center">
         <td>{{ student.id }}</td>
         <td>{{ student.name }}</td>
         <td>{{ student.email }}</td>
         <td>        
-          <span @click="edit()" class="mdi mdi-pencil" style="color: blue;"></span>
-          <span @click="del()" class="mdi mdi-delete" style="color: red;"></span>
+          <span @click="edit()" class="mdi mdi-pencil" style="color: blue; font-size: 24px; "></span>
+          <span @click="del()" class="mdi mdi-delete" style="color: red; font-size: 24px;"></span>
+          
         </td>
       </tr>
     </tbody>
@@ -82,11 +82,11 @@ export default {
 
 <style  scoped>
 .my-table {
-  /* font-size: 14px; */
   padding: 8px;
   width: 72%;
   margin-left: 23%;
   border: 1px solid rgb(181, 177, 177);
+  margin-bottom: 5%;
 }
 
 th{
@@ -95,21 +95,19 @@ th{
 td{
   font-size: 18px;
 }
-.button span {
-  font-size: 19px;
-  background-color: rgb(195, 11, 195);
-  padding: 8px;
-  border-radius: 20px;
+.button{
+  font-size: 23px; 
+  margin-left: -48%;
+  margin-bottom: 2%;
+  background-color: rgb(137, 27, 240);
   color: white;
-  
+  padding: 6px;
+  font-family: sans-serif;
 }
-.button {
-      margin-left: -46%;
-      margin-bottom: 2%;
-}
+
 h1{
+  text-align: center;
   margin-top: 5%;
-  margin-bottom: 5%;
 }
 
 </style>

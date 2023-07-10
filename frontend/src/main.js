@@ -11,7 +11,6 @@ const vuetify = createVuetify({
   components,
   directives,
 })
-<<<<<<< HEAD
 const app = createApp(App)
 
 // Search bar
@@ -41,10 +40,9 @@ app.component('navigationbar-right', NavigationBarRight);
 app.component('navigationbar-link', NavigationBarLink);
 
 
-app.use(vuetify)
-app.use(router)
-app.mount('#app')
-=======
+// app.use(vuetify)
+// app.use(router)
+// app.mount('#app')
 
 // Include globaly all widgets
 import BaseCard from './components/widgets/card/BaseCard.vue';
@@ -70,7 +68,7 @@ import EachWorkshop from './components/unversity/EachWorkshopDetail.vue';
 
 
 
-const app = createApp(App);
+// const app = createApp(App);
 
 app.component('list-university', ListUniversity);
 app.component('list-workshop', ListWorkshop);
@@ -95,4 +93,3 @@ app.component('each-scholarship', EachScholarship);
 app.use(router);
 app.use(vuetify);
 app.mount('#app');
->>>>>>> f900c011a528702e195864374e341ca4bba3b7e7
