@@ -26,6 +26,7 @@ class SkillController extends Controller
             $skill= new ShowSkillResource($skill);
             return response()->json(['success'=>true,'data'=>$skill],200);
         }
+        
         return response()->json(['success'=>true,'data'=>'No data !'],200);
     }
 }

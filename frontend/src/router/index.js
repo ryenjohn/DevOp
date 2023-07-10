@@ -1,44 +1,40 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import ListMajorView from '../views/ListMajorView.vue'
-// import MajorDetail from '../views/MajorDetail.vue'
-import UniversityDetail from '../views/UniversityDetail.vue'
-import SkillDetail from '../views/SkillDetail.vue'
-import UniversityView from '../views/UniversityView.vue'
-import SkillView from '../views/SkillView.vue'
-import WorkshopView from '../views/WorkshopView.vue'
-import ScholarshipView from '../views/ScholarshipView.vue'
+
+import SignUp from '../components/authentication/SignUp.vue'
+import About from '../views/AboutView.vue'
+import Contact from '../views/ContactView.vue'
+import Home from '../views/HomeView.vue'
+import Detail from '../views/DetailView.vue'
+// import 
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: UniversityView
+    component: Home
   },
   {
-    path: '/skill/',
-    name: 'skill/',
-    component: SkillView
+    path: '/signUp',
+    name: 'signUp',
+    component: SignUp
   },
   {
-    path: '/workshop/',
-    name: 'workshop/',
-    component: WorkshopView
+    path: '/about',
+    name: 'about',
+    component: About
   },
   {
-    path: '/scholarship/',
-    name: 'scholarship/',
-    component: ScholarshipView
+    path: '/contact',
+    name: 'contact',
+    component: Contact
   },
   {
-    path: '/university/:id',
-    name: 'university/:id',
-    component: UniversityDetail
+    path: '/detail/:dataname/:id',
+    name: 'detail',
+    component: Detail
   },
-  {
-    path: '/skill/:id',
-    name: 'skill/:id',
-    component: SkillDetail
-  },
+  
+
 ]
 
 const router = createRouter({
