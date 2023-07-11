@@ -11,30 +11,28 @@ const vuetify = createVuetify({
   components,
   directives,
 })
-const app = createApp(App)
 
+
+const app = createApp(App);
 // Search bar
 import SearchBar from './components/searchbar/SearchBar.vue'
 app.component('search-bar', SearchBar);
 
 // HidedeLimiter
 import HidedeLimiter from './components/hidedelimiters/HidedeLimiter.vue'
-app.component('hidede-limiter', HidedeLimiter);
 
 // Footer bar
 import FooterBar from './components/footer/FooterBar.vue'
 import FooterIcon from './components/footer/FooterIcon.vue'
 import FooterAvatar from './components/footer/FooterAvatar.vue'
 import FooterDetails from './components/footer/FooterDetails.vue'
-app.component('footer-bar', FooterBar);
-app.component('footer-icon', FooterIcon);
-app.component('footer-avatar', FooterAvatar);
-app.component('footer-details', FooterDetails);
+
 
 // Navigation bar
 import NavigationBar from './components/navbar/NavigationBar.vue'
 import NavigationBarRight from './components/navbar/NavigationBarRight.vue'
 import NavigationBarLink from './components/navbar/NavigationBarLink.vue'
+
 import NavigationBarContent from './components/navbar/NavigationBarContent.vue'
 app.component('navigation-bar', NavigationBar);
 app.component('navigationbar-right', NavigationBarRight);
@@ -54,6 +52,7 @@ app.component('map-show', mapShow);
 
 
 
+
 // Include globaly all widgets
 import BaseCard from './components/widgets/card/BaseCard.vue';
 import CardInfo from './components/widgets/card/CardInfo.vue';
@@ -61,6 +60,7 @@ import CardContainer from './components/widgets/card/CardContainer.vue';
 import CardItemDetail  from './components/widgets/card/CardDetail.vue';
 import BaseButton from './components/widgets/button/BaseButton.vue';
 import BaseDialog from './components/widgets/dialog/BaseDialog.vue';
+
 
 
 
@@ -74,6 +74,13 @@ import TitleView from './components/contents/ContentTitle.vue';
 
 
 
+
+app.component('hidede-limiter', HidedeLimiter);
+app.component('navigation-bar', NavigationBar);
+app.component('navigationbar-right', NavigationBarRight);
+app.component('navigationbar-link', NavigationBarLink);
+
+
 app.component('card-item', CardItemDetail);
 app.component('base-card', BaseCard);
 app.component('card-info', CardInfo);
@@ -83,6 +90,18 @@ app.component('base-dialog', BaseDialog);
 
 
 app.component('title-text', TitleView);
+
+//university
+app.component('each-univer', EachUniversity);
+app.component('each-major', EachMajor);
+app.component('each-workshop', EachWorkshop);
+app.component('each-scholarship', EachScholarship);
+app.component('footer-bar', FooterBar);
+app.component('footer-icon', FooterIcon);
+app.component('footer-avatar', FooterAvatar);
+app.component('footer-details', FooterDetails);
+
+
 
 
 //About page
@@ -102,7 +121,9 @@ import ContactBar from '../src/components/contact/ContactBar.vue'
 app.component('contact-bar', ContactBar);
 
 
-app.use(vuetify)
-app.use(router)
-app.mount('#app')
+
+
+app.use(router);
+app.use(vuetify);
+app.mount('#app');
 

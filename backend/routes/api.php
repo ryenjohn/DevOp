@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MajorController;
 
 use App\Http\Controllers\RoleController;
@@ -44,6 +45,14 @@ Route::get('/schools',[SchoolController::class,'getschools']);
 Route::get('/scholarships/{id}',[ScholarshipController::class,'getScholarship']);
 Route::get('/scholarships',[ScholarshipController::class,'scholarships']);
 Route::get('/workshops',[WorkShopController::class,'workshops']);
+
+
+// Admin side --------------------------------
+
+Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin/students', [AdminController::class, 'getStudents']);
+Route::get('/admin/managers', [AdminController::class, 'getUniversityDirectors']);
+
 
 
 
