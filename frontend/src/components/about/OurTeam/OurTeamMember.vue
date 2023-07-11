@@ -54,7 +54,7 @@ export default {
           src: require("@/assets/images/navin.jpg"),
         },
         {
-          name: "DAV OF",
+          name: "DAVOPS",
           description:
             "My name is Loeub Vibol. I'm 20 years old. I'm from Kompong Cham province. My position is DevOf.",
           src: require("@/assets/images/vibol.jpg"),
