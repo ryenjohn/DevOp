@@ -38,6 +38,18 @@ app.component('navigation-bar', NavigationBar);
 app.component('navigationbar-right', NavigationBarRight);
 app.component('navigationbar-link', NavigationBarLink);
 
+//About page
+import AboutOurSchoolMission from '../src/components/about/OurSchool/OurSchoolMission.vue'
+app.component('aboutmissionour-school', AboutOurSchoolMission);
+import AboutOurSchoolVision from '../src/components/about/OurSchool/OurSchoolVision.vue'
+app.component('aboutvisionour-school', AboutOurSchoolVision);
+
+import AboutOurTeam from '../src/components/about/OurTeam/AboutOurTeam.vue'
+app.component('aboutour-team', AboutOurTeam);
+
+import OurTeamMember from '../src/components/about/OurTeam/OurTeamMember.vue'
+app.component('ourteam-member', OurTeamMember);
+
 
 
 app.use(vuetify)
