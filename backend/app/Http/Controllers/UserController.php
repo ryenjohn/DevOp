@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Client;
+
 
 class UserController extends Controller
 {
@@ -31,7 +34,6 @@ class UserController extends Controller
         $token = $user->createToken('API Token')->plainTextToken;
         return response()->json(['exists' => true, 'message' => "Your account is created", 'data' => $user, 'token' => $token], 200);
     }
-
     /**
      * Display the specified resource.
      */

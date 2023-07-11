@@ -15,7 +15,7 @@ class CommentSeeder extends Seeder
     public function run(): void
     {
         $comments = [
-            ["content" => "I love this school", "school_id" => 2, "user_id" => 1],
+            ["content" => "I love this school", "school_id" => 1, "user_id" => 1],
             
         ];
         foreach($comments as $comment){

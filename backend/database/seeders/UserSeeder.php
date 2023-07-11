@@ -16,8 +16,8 @@ class UserSeeder extends Seeder
     {
         $users = [
             ["name" => "TheJay","email" => "jj@gmail.com","password" => "jayJay123*","role_id" => 1, "address_id"=>1],
-           
         ];
+        
         foreach($users as $users){
             User::create($users);
         }
