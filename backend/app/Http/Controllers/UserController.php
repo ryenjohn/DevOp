@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class UserController extends Controller
         ]);
 
         return response()->json(['success'=>true, 'data'=>$user],200);
-
+    }
 
     /**
      * Display a listing of the resource.
@@ -76,4 +77,4 @@ class UserController extends Controller
     {
         //
     }
-}}
+}

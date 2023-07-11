@@ -1,9 +1,9 @@
 <template>
 <!-- <navigation-bar></navigation-bar> -->
 <h1>All Users List <br>
-      <span @click="add()" class=" button mdi mdi-plus-circle">ADD</span>
+      <!-- <span @click="add()" class=" button mdi mdi-plus-circle">ADD</span> -->
+<span class="button"><AddForm /></span>
     </h1>
-
     
   <div>
     <v-table class="my-table">
@@ -39,13 +39,15 @@
   </div>
 
 <SideBar />
+
 </template>
 
 <script>
-import SideBar from '../views/SideBar.vue';
+import SideBar from '../../views/SideBar.vue';
+import AddForm from '../adminpage/AddForm.vue'
 export default {
   components: {
-        SideBar,
+        SideBar,AddForm
   },
   
   data() {
@@ -98,9 +100,6 @@ td{
 }
 .button{
   font-size: 23px; 
-  margin-left: -48%;
-  margin-bottom: 2%;
-  background-color: rgb(137, 27, 240);
   color: white;
   padding: 6px;
   font-family: sans-serif;
@@ -110,5 +109,6 @@ h1{
   text-align: center;
   margin-top: 5%;
 }
+
 
 </style>

@@ -1,15 +1,39 @@
 <template>
-  <div class="container">
+  <v-row justify="center">
+    <v-dialog
+      v-model="dialog"
+      persistent
+      width="1024"
+    >
+      <template v-slot:activator="{ props }">
+        <v-btn
+          class="button"
+          color="primary"
+          v-bind="props"
+        >
+          Add
+        </v-btn>
+      </template>
+      <v-card>
+        <v-card-title>
+          <span class="text-h5">Add new user</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container>
+            
+            <!-- <v-row> -->  
+            <!-- </v-row> -->
+              <div class="container">
     <div class="image">
       <img
         src="../../assets/images/register.png"
-        style="width: 600px; height: inherit"
+        style="width: 400px; height: inherit"
         alt="Image description"
       />
     </div>
     <div class="form-container">
-      <form>
-        <h1>Register</h1>
+      <form style="width: 300px; height: 400px">
+        <!-- <h1>Register</h1> -->
         <v-text-field
           class="err"
           v-model="state.name"
@@ -63,7 +87,12 @@
           @input="v$.password.$touch"
           @blur="v$.password.$touch"
         ></v-text-field>
-       
+        <v-select
+            label="Select Role"
+            :items="['Student', 'University_manager']"
+            v-model="selectedRole"
+            @input="onSelectRole"
+        ></v-select>
         <v-checkbox
           class="err"
           v-model="state.checkbox"
@@ -73,23 +102,48 @@
           @change="v$.checkbox.$touch"
           @blur="v$.checkbox.$touch"
         ></v-checkbox>
-        <div class="btn">
-          <div>
-            <div v-if="v$.$invalid">
-              <v-btn class="me-4" @click="v$.$touch()">Sign up</v-btn>
-            </div>
-            <div v-else class="sign-in">
-              <v-btn class="me-4" @click="submit">Sign up</v-btn>
-            </div>
-          </div>
-          <p>
-            Already have an account?<router-link to="/" >Log in</router-link>
-          </p>
+        <div class="btn d-flex justify-space-between">
+            <v-btn class="btnone"
+                color="purple-darken-1"
+                variant="text"
+                @click="dialog = false; clear()">
+                Cancel
+              </v-btn>
+              <div>
+                <div v-if="v$.$invalid">
+                  <v-btn class="me-4" @click="v$.$touch()">Create</v-btn>
+                </div>
+                <div v-else class="sign-in">
+                  <v-btn class="me-4" @click="submit">Create</v-btn>
+                </div>
+              </div>
+          
         </div>
       </form>
     </div>
   </div>
+
+
+
+
+
+
+
+
+
+
+          </v-container>
+          <small>*indicates required field</small>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+         
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-row>
 </template>
+
 
 <script setup>
 import { reactive } from "vue";
@@ -174,18 +228,31 @@ async function submit() {
   
 }
 </script>
+<script>
+  export default {
+    data: () => ({
+      dialog: false,
+    
+
+    }),
+   
+  }
+</script>
 
 <style>
 .container {
   display: flex;
+  margin-top: -5%;
+ 
+}
+form {
+  margin: auto;
 }
 .image {
   flex: 1;
+  margin-top: 3%;
 }
 
-.btn {
-  display: flex;
-}
 h1 {
   margin-bottom: 25px;
   margin-top: 10px;
@@ -222,8 +289,12 @@ label {
   border-radius: 10px;
 }
 .btn > div > div > button {
-  background-color: #634b7a;
+  background-color: #634b7a; 
   color: #f6eeee;
-  margin-left: 10px;
+
+  margin-left: 5%;
+}
+.button{
+  margin-left: -48%;
 }
 </style>

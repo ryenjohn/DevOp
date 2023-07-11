@@ -21,10 +21,10 @@ app.component('search-bar', SearchBar);
 import HidedeLimiter from './components/hidedelimiters/HidedeLimiter.vue'
 
 // Footer bar
-import FooterBar from './components/footer/FooterBar.vue'
-import FooterIcon from './components/footer/FooterIcon.vue'
-import FooterAvatar from './components/footer/FooterAvatar.vue'
-import FooterDetails from './components/footer/FooterDetails.vue'
+// import FooterBar from './components/footer/FooterBar.vue'
+// import FooterIcon from './components/footer/FooterIcon.vue'
+// import FooterAvatar from './components/footer/FooterAvatar.vue'
+// import FooterDetails from './components/footer/FooterDetails.vue'
 
 
 // Navigation bar
