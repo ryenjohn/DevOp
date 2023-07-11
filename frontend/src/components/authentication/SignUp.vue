@@ -1,4 +1,3 @@
-// copy from vutity
 <template>
   <div class="container">
     <div class="image">
