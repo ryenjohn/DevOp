@@ -23,6 +23,10 @@
 </template>
 
 <style scoped>
+*{
+  margin: 0;
+  padding: 0;
+}
 .mision {
   display: flex;
   flex-direction: row-reverse;

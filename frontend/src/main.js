@@ -50,6 +50,9 @@ app.component('aboutour-team', AboutOurTeam);
 import OurTeamMember from '../src/components/about/OurTeam/OurTeamMember.vue'
 app.component('ourteam-member', OurTeamMember);
 
+//Contact page
+import ContactBar from '../src/components/contact/ContactBar.vue'
+app.component('contact-bar', ContactBar);
 
 
 app.use(vuetify)

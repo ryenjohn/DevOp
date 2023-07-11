@@ -1,40 +1,43 @@
 <template>
-  <div class="lop" v-for="(item, index) in menbers" :key="index">
-    <div class="mision" v-if="index % 2 == 0">
-      <div class="text">
-        <div class="missiontext">
-          <div>
-            <h4>{{ item.name }}</h4>
-            <p>{{ item.description }}</p>
+  <section>
+    <div class="lop" v-for="(item, index) in menbers" :key="index">
+      <div class="mision" v-if="index % 2 == 0">
+        <div class="text">
+          <div class="missiontext">
+            <div>
+              <h4>{{ item.name }}</h4>
+              <p>{{ item.description }}</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="image" v-if="index % 2 == 0">
-        <img
-          :src="item.src"
-          alt="Image"
-          style="width: 200px; height: 200px; border-radius: 100px"
-        />
-      </div>
-    </div>
-    <div class="misions" v-if="index % 2 !== 0">
-      <div class="text">
-        <div class="missiontext">
-          <div>
-            <h4>{{ item.name }}</h4>
-            <p>{{ item.description }}</p>
-          </div>
+        <div class="image" v-if="index % 2 == 0">
+          <img
+            :src="item.src"
+            alt="Image"
+            style="width: 200px; height: 200px; border-radius: 100px"
+          />
         </div>
       </div>
-      <div class="image" v-if="index % 2 !== 0">
-        <img
-          :src="item.src"
-          alt="Image"
-          style="width: 200px; height: 200px; border-radius: 100px"
-        />
+      <div class="misions" v-if="index % 2 !== 0">
+        <div class="text">
+          <div class="missiontext">
+            <div>
+              <h4>{{ item.name }}</h4>
+              <p>{{ item.description }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="image" v-if="index % 2 !== 0">
+          <img
+            :src="item.src"
+            alt="Image"
+            style="width: 200px; height: 200px; border-radius: 100px"
+          />
+        </div>
       </div>
     </div>
-  </div>
+
+  </section>
 </template>
 <script>
 export default {
@@ -48,15 +51,15 @@ export default {
           src: require("@/assets/images/seyla.jpg"),
         },
         {
-          name: "SCRAMMASTER",
+          name: "SCRAM MASTER",
           description:
             "Hello, my name is Navin Chhorn💙. I'm 19 years old. I'm from Kompong Cham province. Currently I'm a second years student at Passerellesnumeriques Cambodia. On the free time I like: cooking🫕🥗 , travelling🚵🏻🏕🏝, sleeping 🤪🤪",
           src: require("@/assets/images/navin.jpg"),
         },
         {
-          name: "DAVOPS",
+          name: "DAVOPS MASTER",
           description:
-            "My name is Loeub Vibol. I'm 20 years old. I'm from Kompong Cham province. My position is DevOf.",
+            "My name is Phoung Vibol. I'm 20 years old. I'm from Kompong Cham province. My position is DevOps. My hobby, I like reseachering, cooking and reading books.😍",
           src: require("@/assets/images/vibol.jpg"),
         },
         {
@@ -85,6 +88,7 @@ export default {
 
 <style scoped>
 .mision {
+  background: #e4e3e3;;
   display: flex;
   padding: 20px;
   width: 100%;
@@ -108,5 +112,8 @@ export default {
   flex-direction: column;
   align-items: center;
   text-align: center;
+}
+h4{
+  color:orange;
 }
 </style>
