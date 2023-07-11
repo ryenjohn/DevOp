@@ -1,7 +1,7 @@
 <template>
   <v-card
     class="mx-auto"
-    max-width="800"
+    max-width="1000"
   >
     <slot name="title"></slot>
     <slot name="img"></slot>

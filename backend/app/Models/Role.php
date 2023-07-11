@@ -12,6 +12,20 @@ class Role extends Model
     protected $fillable=[
         "name"
     ];
+    
+    public static function store($request , $id = null){
+        $role = $request->only([
+            'name'
+        ]);
+
+        $role = self::create($role);
+            $id = $role->$id;
+        return response()->json(['success' =>true, 'data' => $role],201);
+   
+    }
+
+
+
     protected $hidden = [
         'created_at',
         'updated_at'

@@ -3,10 +3,9 @@
       class="mx-auto "
       max-width="344"
     >
-      <slot name="img">
-
-      </slot>
-      
+      <slot name="img"></slot>
+      <br>
+      <hr>
       <slot name="title"></slot>
     </v-card>
 </template>

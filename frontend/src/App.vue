@@ -1,14 +1,16 @@
 <template>
+  <navigation-bar></navigation-bar>
+  <router-view></router-view>
+  <footer-bar></footer-bar>
   <section>
     <nav>
       <router-link to="/">University</router-link> |
       <router-link to="/skill">Skill</router-link> |
       <router-link to="/workshop">Workshop</router-link> |
-      <router-link to="/scholarship">Scholarship</router-link>
+      <router-link to="/scholarship">Scholarship</router-link> |
+      <router-link to="/signUp">sign up</router-link>
     </nav>
-    <router-view/>
-    <!-- <card-container></card-container> -->
-
+    <!-- <router-view/> -->
   </section>
 </template>
 <script>
@@ -42,18 +44,5 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   background: #634B7A;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>

@@ -4,20 +4,49 @@
         <template #img>    <v-img
             class="align-end text-white"
             height="200"
-            src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+            :src="university.img"
             cover
             >
             </v-img>
         </template>
         <template #info>    
             <v-card-text>
-                <div> <strong>Name: </strong>Whitehaven Beach stro</div>
-                <div> <strong>Description: </strong>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas fugit alias harum voluptatum voluptas veritatis tenetur expedita consequuntur delectus, nulla at quia blanditiis ea. Velit reiciendis suscipit harum ipsum labore.</div>
-                <iframe class="mt-8" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15636.102953370799!2d104.92916978110985!3d11.550011341730425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310956d330da8527%3A0x7eff3ca8d12ecc0f!2sKoh%20Pich!5e0!3m2!1sen!2snl!4v1688563080575!5m2!1sen!2snl"></iframe>
+                <div> <strong>Name: </strong>{{university.name}}</div>
+                <div> <strong>Type: </strong>{{university.type}}</div>
+                <iframe class="mt-8" :src="university.address"></iframe>
             </v-card-text>
         </template>
     </card-item>
 </template>
+<script>
+// @ is an alias to /src
+import axios from 'axios';
+export default {
+data(){
+    return {
+      university: [],
+      is_update: false,
+      url: 'http://127.0.0.1:8000/api/schools/',
+    }
+    },
+  methods:{
+    listUniversity(){
+        const id = this.$route.params.id;
+        console.log(id);
+        axios.get(this.url+id).then((response) =>{
+        this.university = response.data.data
+        console.log(response.data.data);
+      })
+    },
+    showDetail(id){
+      this.$router.push("/university/" + id)
+    }
+    },
+    mounted() {
+      this.listUniversity();
+    },
+}
+</script>
 <style scoped>
  iframe{
   width:100%; height:200px;

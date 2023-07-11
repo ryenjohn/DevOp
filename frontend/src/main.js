@@ -1,14 +1,37 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import 'vuetify/dist/vuetify.min.css'
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
+import '@mdi/font/css/materialdesignicons.css'
 const vuetify = createVuetify({
   components,
   directives,
 })
+
+const app = createApp(App);
+// Search bar
+import SearchBar from './components/searchbar/SearchBar.vue'
+app.component('search-bar', SearchBar);
+
+// HidedeLimiter
+import HidedeLimiter from './components/hidedelimiters/HidedeLimiter.vue'
+
+// Footer bar
+import FooterBar from './components/footer/FooterBar.vue'
+import FooterIcon from './components/footer/FooterIcon.vue'
+import FooterAvatar from './components/footer/FooterAvatar.vue'
+import FooterDetails from './components/footer/FooterDetails.vue'
+
+
+// Navigation bar
+import NavigationBar from './components/navbar/NavigationBar.vue'
+import NavigationBarRight from './components/navbar/NavigationBarRight.vue'
+import NavigationBarLink from './components/navbar/NavigationBarLink.vue'
+
 
 // Include globaly all widgets
 import BaseCard from './components/widgets/card/BaseCard.vue';
@@ -28,7 +51,13 @@ import CardDetail from './components/CardDetail.vue';
 import TitleView from './components/TitleView.vue';
 import UniversityInSkill from './components/UniversityInSkill.vue';
 
-const app = createApp(App);
+//university detail
+
+
+app.component('hidede-limiter', HidedeLimiter);
+app.component('navigation-bar', NavigationBar);
+app.component('navigationbar-right', NavigationBarRight);
+app.component('navigationbar-link', NavigationBarLink);
 
 app.component('list-university', ListUniversity);
 app.component('list-workshop', ListWorkshop);
@@ -49,4 +78,3 @@ app.component('university-skill', UniversityInSkill);
 app.use(router);
 app.use(vuetify);
 app.mount('#app');
-
