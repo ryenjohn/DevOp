@@ -30,14 +30,14 @@ import FooterAvatar from './components/footer/FooterAvatar.vue'
 import FooterDetails from './components/footer/FooterDetails.vue'
 
 // side bar 
-import SideBar from './components/navbar/SideBar.vue'
+import SideBar from './components/navbars/SideBar.vue'
 app.component("side-bar",SideBar)
 // Navigation bar
-import NavigationBar from './components/navbar/NavigationBar.vue'
-import NavigationBarRight from './components/navbar/NavigationBarRight.vue'
-import NavigationBarLink from './components/navbar/NavigationBarLink.vue'
+import NavigationBar from './components/navbars/NavigationBar.vue'
+import NavigationBarRight from './components/navbars/NavigationBarRight.vue'
+import NavigationBarLink from './components/navbars/NavigationBarLink.vue'
 
-import NavigationBarContent from './components/navbar/NavigationBarContent.vue'
+import NavigationBarContent from './components/navbars/NavigationBarContent.vue'
 app.component('navigation-bar', NavigationBar);
 app.component('navigationbar-right', NavigationBarRight);
 app.component('navigationbar-link', NavigationBarLink);

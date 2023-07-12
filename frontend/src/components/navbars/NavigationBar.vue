@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <div class="navbar">
-      <img class="img" src="../../assets/images/logo.png" alt="">
+      <!-- <img class="img" src="../../assets/images/logo.png" alt=""> -->
       <v-toolbar-title>
         <navigationbar-link></navigationbar-link>
       </v-toolbar-title>
