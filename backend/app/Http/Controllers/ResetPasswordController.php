@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserMail;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ResetPasswordController extends Controller
 {
@@ -34,4 +37,25 @@ class ResetPasswordController extends Controller
         }
         
     }
+
+    public function SendMail(Request $request)
+    {
+        $data =[
+            'subject' =>"Reset Password",
+            'body' =>"Please click link below to reset your password",
+            'email' =>$request->email
+        ];
+        try
+        {
+            $user = User::where('email',$data['email'])->get();
+            Mail::to($data['email'])->send(new UserMail($data));
+            return response()->json("great check you mail box");
+        }
+        catch(Exception $th)
+        {
+            return response()->json("Sorry something went wrong"); 
+        }
+    }
+
+
 }
