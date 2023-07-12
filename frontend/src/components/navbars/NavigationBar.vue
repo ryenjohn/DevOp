@@ -18,6 +18,9 @@
   justify-content: start;
   align-items: center;
   background-color: blueviolet;
+}
+.img{
+  width: 5%;
   padding: 5px;
   position: fixed;
   top: 0;
