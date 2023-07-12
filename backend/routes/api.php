@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\ResetPasswordController;
 
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -62,3 +63,5 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::post('/logOut', [AuthenticationController::class, 'logout']);
 });
 Route::post('/logIn', [AuthenticationController::class,'login']);
+Route::patch('/resetPassword',[ResetPasswordController::class,'resetPassword']);
+
