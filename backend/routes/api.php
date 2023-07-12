@@ -64,4 +64,5 @@ Route::middleware(['auth:sanctum'])->group(function(){
 });
 Route::post('/logIn', [AuthenticationController::class,'login']);
 Route::patch('/resetPassword',[ResetPasswordController::class,'resetPassword']);
+Route::post('/sendMail',[ResetPasswordController::class,'SendMail']);
 
