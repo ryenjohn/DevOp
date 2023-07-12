@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <div class="navbar">
-      <img src="../../assets/images/logo.png" alt="">
+      <img class="img" src="../../assets/images/logo.png" alt="">
       <v-toolbar-title>
         <navigationbar-link></navigationbar-link>
       </v-toolbar-title>
@@ -17,6 +17,8 @@
   justify-content: start;
   align-items: center;
   background-color: blueviolet;
-  padding: 5px;
+}
+.img{
+  width: 5%;
 }
 </style>

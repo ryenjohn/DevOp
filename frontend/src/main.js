@@ -69,11 +69,6 @@ import BaseDialog from './components/widgets/dialog/BaseDialog.vue';
 import TitleView from './components/contents/ContentTitle.vue';
 
 
-
-
-
-
-
 app.component('card-item', CardItemDetail);
 app.component('base-card', BaseCard);
 app.component('card-info', CardInfo);

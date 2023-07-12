@@ -1,5 +1,5 @@
 <template>
-  <navigation-bar @submit.delete="submitLogOut"></navigation-bar>
+  <navigation-bar></navigation-bar>
   <router-view></router-view>
   <footer-bar></footer-bar>
   
@@ -36,6 +36,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  background: #634B7A;
+  /* background: #634B7A; */
 }
 </style>
