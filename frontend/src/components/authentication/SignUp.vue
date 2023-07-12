@@ -3,7 +3,7 @@
     <div class="image">
       <img
         src="../../assets/images/register.png"
-        style="width: 600px; height: inherit"
+        style="width: 100%; height: inherit"
         alt="Image description"
       />
     </div>
@@ -73,18 +73,17 @@
           @change="v$.checkbox.$touch"
           @blur="v$.checkbox.$touch"
         ></v-checkbox>
-
         <div class="btn">
           <div>
             <div v-if="v$.$invalid">
               <v-btn class="me-4" @click="v$.$touch()">Sign up</v-btn>
             </div>
             <div v-else class="sign-in">
-              <v-btn class="me-4" @click="singIn"
-                ><router-link class="link-sign-up" to="/"
-                  >Sign up</router-link
-                ></v-btn
-              >
+              <v-btn class="me-4" @click="singIn">
+                <!-- <router-link  to="/" class="link-sign-up">Sign up</router-link> -->
+                <router-link class="link-sign-up" v-if="state.role_id === '1'" to="/"> Sign up</router-link>
+                <router-link class="link-sign-up" v-else to="/logIn">Sign up</router-link>
+              </v-btn>
             </div>
           </div>
           <p>
@@ -108,11 +107,10 @@ import Cookies from "js-cookie";
 const initialState = {
   name: "",
   email: "",
-  role_id: "",
+  role_id: "1",
   checkbox: null,
   password: "",
   emailTakenError: false,
-  visible: false,
 };
 const state = reactive(Object.assign({}, initialState));
 // Set role for password
@@ -155,16 +153,15 @@ async function singIn() {
     const data = {
       name: state.name,
       email: state.email,
-      role_id: "1",
+      role_id: state.role_id,
       checkbox: state.checkbox,
       password: state.password,
     };
 
     // Make an API call to add data to the database
     const response = await axios.post("http://127.0.0.1:8000/api/users", data);
-    Cookies.set("userData", JSON.stringify(response.data.token), {
-      expires: 10,
-    });
+    Cookies.set("userData", JSON.stringify(response.data), { expires: 30,});
+    console.log(response);
 
     // Check the server response and alert the user accordingly
     if (response.status === 200) {
@@ -190,13 +187,14 @@ async function singIn() {
   display: flex;
 }
 h1 {
-  margin-bottom: 25px;
-  margin-top: 10px;
+  margin-bottom: 5%;
+  margin-top: 3%;
+  text-align: center;
 }
 p {
-  margin-bottom: 20px;
-  margin-left: 23%;
-  margin-top: 12px;
+  /* margin-bottom: 5%; */
+  margin-left: 33%;
+  margin-top: 3%;
 }
 .err {
   text-align: start;
@@ -215,19 +213,16 @@ label {
 .form-container {
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  margin-right: 60px;
-  margin-top: 40px;
-  margin-bottom: 10px;
-  margin: 60px;
+  margin-right: 6%;
+  margin: 6%;
   flex: 1;
-  padding: 35px;
-  /* height: 90vh; */
-  border-radius: 10px;
+  padding: 2%;
+  border-radius: 10PX;
 }
 .btn > div > div > button {
   background-color: #634b7a;
   color: #f6eeee;
-  margin-left: 10px;
+  margin-left: 6%;
 }
 .link-sign-up {
   color: #fff;

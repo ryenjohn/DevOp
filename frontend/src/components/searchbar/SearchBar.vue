@@ -1,5 +1,9 @@
 <template>
-  <h3>Find University</h3>
+  <div class="title-menu">
+    <div>
+      <h3>Find University</h3>
+    </div>
+  </div>
   <v-card color="#8a2be2" max-width="500" class="search-field">
     <v-card-text >
       <v-text-field
@@ -21,8 +25,8 @@ export default {
   data: () => ({
     loaded: false,
     loading: false,
+    
   }),
-
   methods: {
     onClick() {
       this.loading = true;
@@ -35,7 +39,8 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
+
 h3 {
   margin-top: 70px;
   display: flex;
@@ -44,4 +49,5 @@ h3 {
 .search-field{
   margin-bottom: 20px;
 }
+
 </style>

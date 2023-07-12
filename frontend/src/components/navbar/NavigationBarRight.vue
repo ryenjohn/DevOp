@@ -1,45 +1,64 @@
 <template>
   <div class="sidebarleft">
-    <v-tabs>
-      <router-link to="/signUp"><v-tab>SignUp</v-tab></router-link>
-      <router-link to="/signUp"><v-tab>SignIn</v-tab></router-link>
-    </v-tabs>
     <div class="icon">
       <v-icon size="large" color="light" icon="mdi-bell"></v-icon>
     </div>
-    <v-avatar>
-      <v-img src="https://cdn.vuetifyjs.com/images/john.jpg" @click="submitLogOut" alt="John"></v-img>
-    </v-avatar>
-
+    <v-tabs v-if="userName==null">
+      <router-link class="link-sign-up" to="/signUp"
+        ><v-tab>SignUp</v-tab></router-link
+      >
+      <router-link class="link-log-in" to="/logIn"
+        ><v-tab>SignIn</v-tab></router-link
+      >
+    </v-tabs>
+    <div class="img-icon">
+      <v-avatar style="margin-left: 20px;">
+        <v-img
+          v-if="userName!=null"
+          class="img"
+          src="https://cdn.vuetifyjs.com/images/john.jpg"
+          @click="showMenu = !showMenu"
+          alt="John"
+        ></v-img>
+      </v-avatar>
+    </div>
+    <Menu :show-menu="showMenu"  @submitLogOut="submitLogOut" :userName="userName"/>
   </div>
 </template>
+
 <script>
-import axios from "axios";
+
+// import axios from "axios";
 import Cookies from "js-cookie";
+import Menu from './Menu.vue';
 export default {
   name: "App",
+  components: {
+    Menu
+  },
+  emits: ["submitLogOut"],
   data() {
     return {
+      userName: null,
+      userId: "",
+      showMenu: false,
     };
   },
   methods: {
     // copy https://stackoverflow.com/questions/52021405/vue-js-laravel-handle-logout-correctly
-    submitLogOut() {
-      if (confirm("Are you sure you want to log out?")) {
-        axios
-          .get("http://127.0.0.1:8000/api/logOut")
-          .then(() => {
-            Cookies.remove("userData");
-            delete axios.defaults.headers.common["Authorization"];
-            this.$router.push("/signUp");
-          })
-          .catch(() => {
-            Cookies.remove("userData");
-            delete axios.defaults.headers.common["Authorization"];
-            this.$router.push("/signUp");
-          });
+    setUser() {
+      // Get the value of the "userData" cookie
+      const userData = Cookies.get("userData");
+      // If the "userData" cookie exists, parse it and set the user ID in the component data
+      if (userData) {
+        const userDataObj = JSON.parse(userData);
+        this.userName = userDataObj.data.name;
+        this.userId = userDataObj.data.role_id;
       }
     },
+  },
+  mounted() {
+    this.setUser();
   },
 };
 </script>
@@ -47,12 +66,23 @@ export default {
 <style scoped>
 .sidebarleft {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: start;
+  align-items: start;
+  margin-right: 1%;
 }
 .icon {
-  margin-right: 20px;
-  margin-left: 20px;
+  margin-right: 0%;
+  margin-top: 4%;
+}
+.img-icon {
+  display: flex;
+}
+
+.link-sign-up,
+.link-log-in {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 5%;
 }
 
 

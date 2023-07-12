@@ -17,6 +17,6 @@ button.v-btn.v-slide-group-item--active.v-tab--selected.v-theme--light.v-btn--de
   background: orange;
 }
 a{
-  color: white;
+  color: white; 
 }
 </style>

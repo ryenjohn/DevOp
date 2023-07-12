@@ -73,17 +73,10 @@ import BaseDialog from './components/widgets/dialog/BaseDialog.vue';
 import TitleView from './components/contents/ContentTitle.vue';
 
 
-
-
-
-
-
-
 app.component('hidede-limiter', HidedeLimiter);
 app.component('navigation-bar', NavigationBar);
 app.component('navigationbar-right', NavigationBarRight);
 app.component('navigationbar-link', NavigationBarLink);
-
 
 app.component('card-item', CardItemDetail);
 app.component('base-card', BaseCard);

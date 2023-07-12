@@ -4,7 +4,7 @@
     <div class="image">
       <img
         src="../../assets/images/register.png"
-        style="width: 600px; height: initial"
+        style="width: 100%; height: initial"
         alt="Image description"
       />
     </div>
@@ -61,11 +61,10 @@
               <v-btn class="me-4" @click="v$.$touch()">Log in</v-btn>
             </div>
             <div v-else class="sign-in">
-              <v-btn class="me-4" @click="logIn"
-                ><router-link class="link-log-in" to="/"
-                  >Log in</router-link
-                ></v-btn
-              >
+              <v-btn class="me-4"  @click="logIn">
+                <router-link class="link-log-in" v-if="state.role !== '1'" to="/"> log in</router-link>
+                <router-link class="link-log-in" v-else to="/signUp">log in</router-link>
+              </v-btn>
             </div>
           </div>
           <p class="log-in">
@@ -84,13 +83,15 @@ import { email, required, minLength } from "@vuelidate/validators";
 import axios from "axios";
 import Cookies from "js-cookie";
 
+const userRole =  Cookies.get("userData") ? JSON.parse(Cookies.get("userData")).data : "";
 const initialState = {
   email: "",
-  role_id: "",
   password: "",
   emailTakenError: false,
   visible: false,
   incorrectPasswordError: false,
+  role: userRole
+  
 };
 
 const state = reactive(Object.assign({}, initialState));
@@ -103,7 +104,7 @@ const passwordRule = (value) => {
   return result;
 };
 
-// Rule for name email password
+// Rule for email password
 const rules = {
   email: { required, email },
   password: { required, minLength: minLength(8), custom: passwordRule },
@@ -122,7 +123,6 @@ async function logIn() {
   try {
     const data = {
       email: state.email,
-      role_id: "1",
       password: state.password,
     };
     // Make an API call to add data to the database
@@ -130,7 +130,7 @@ async function logIn() {
 
     // Check the server response and alert the user accordingly
     if (response.status === 200) {
-      Cookies.set("userData", JSON.stringify(response.data), { expires: 10 });
+      Cookies.set("userData", JSON.stringify(response.data), { expires: 30 });
       clear();
     }
   } catch (error) {
@@ -158,14 +158,14 @@ function resetIncorrectPasswordError() {
   display: flex;
 }
 h1 {
-  margin-bottom: 25px;
-  margin-top: 10px;
+  margin-bottom: 4%;
+  margin-top: 3%;
   text-align: center;
 }
 .log-in {
-  margin-bottom: 20px;
+  margin-bottom: 2%;
   margin-left: 40%;
-  margin-top: 30px;
+  margin-top: 8%;
 }
 .err {
   text-align: start;
@@ -181,10 +181,10 @@ label {
 .form-container {
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  margin-right: 60px;
-  margin: 60px;
+  margin-right: 6%;
+  margin: 6%;
   flex: 1;
-  padding: 35px;
+  padding: 2%;
   border-radius: 10px;
 }
 .btn > div > div > button {
