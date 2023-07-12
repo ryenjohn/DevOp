@@ -1,5 +1,6 @@
 <template>
-  <title-text >Choose {{dataname}}</title-text>
+
+  <title-text v-if='datas!=null && datas!=""' >Choose {{dataname}}</title-text>
   <card-container >
         <v-col cols="12" sm="3" v-for="(data, index) in datas" :key="data">
           <v-sheet class=" ma-8">
@@ -20,11 +21,12 @@
           </v-sheet>
        </v-col>
   </card-container>
+
 </template>
 
 <script>
     export default{
       props:{datas:Array,dataname:String},
-
+     
     }
 </script>
