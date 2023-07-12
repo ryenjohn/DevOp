@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="lop" v-for="(item, index) in menbers" :key="index">
-      <div class="mision" v-if="index % 2 == 0">
+      <div class="mision" >
         <div class="text">
           <div class="missiontext">
             <div>
@@ -10,7 +10,7 @@
             </div>
           </div>
         </div>
-        <div class="image" v-if="index % 2 == 0">
+        <div class="image" >
           <img
             :src="item.src"
             alt="Image"
@@ -18,23 +18,7 @@
           />
         </div>
       </div>
-      <div class="misions" v-if="index % 2 !== 0">
-        <div class="text">
-          <div class="missiontext">
-            <div>
-              <h4>{{ item.name }}</h4>
-              <p>{{ item.description }}</p>
-            </div>
-          </div>
-        </div>
-        <div class="image" v-if="index % 2 !== 0">
-          <img
-            :src="item.src"
-            alt="Image"
-            style="width: 200px; height: 200px; border-radius: 100px"
-          />
-        </div>
-      </div>
+    
     </div>
 
   </section>
@@ -92,13 +76,9 @@ export default {
   display: flex;
   padding: 20px;
   width: 100%;
+  justify-content: space-around;
 }
-.misions {
-  display: flex;
-  flex-direction: row-reverse;
-  padding: 20px;
-  width: 100%;
-}
+
 .text {
   display: flex;
   flex-direction: column;

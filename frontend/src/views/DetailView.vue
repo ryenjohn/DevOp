@@ -1,7 +1,7 @@
 <template>
-    <div class="btn"> 
+    <!-- <div class="btn"> 
         <router-link to="/"><v-tab>Back</v-tab></router-link>
-    </div>
+    </div> -->
     <div class="cardImage">
         <card-item class="ms-12 me-12 mt-10 mb-5">
         <template #img>    <v-img
@@ -80,6 +80,7 @@ import axios from 'axios';
 <style scoped>
     .cardImage {
         width: 100%;
+        margin-top:100px ;
     }
     .btn{
         display: flex;

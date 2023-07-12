@@ -33,26 +33,30 @@
                 </div>
             </div>
         </div>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3909.0138353924453!2d104.87847017128021!3d11.55086501936944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310951add5e2cd81%3A0x171e0b69c7c6f7ba!2sPasserelles%20num%C3%A9riques%20Cambodia%20(PNC)!5e0!3m2!1sen!2snl!4v1689046457730!5m2!1sen!2snl" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="containmap">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3909.0138353924453!2d104.87847017128021!3d11.55086501936944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310951add5e2cd81%3A0x171e0b69c7c6f7ba!2sPasserelles%20num%C3%A9riques%20Cambodia%20(PNC)!5e0!3m2!1sen!2snl!4v1689046457730!5m2!1sen!2snl" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
     </section>
 </template>
 <script>
 </script>
 
 <style scoped>
-    *{
-        margin: 0;
-        padding: 0;
+    .containmap{
+        display: flex;
+        width: 100%;
+        
     }
     iframe {
-        width: 1300px;
+        margin: auto;
+        width: 1400px;
         height:400px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         margin-bottom:20px;
 
     }
     .title{
-        margin-top: 20px;
+        margin-top: 100px;
         text-align: center;
         margin-bottom: 40px;
     }
@@ -64,6 +68,7 @@
         margin-bottom: 40px;
     }
     .card{
+        text-align: center;
         width: 30%;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         padding: 10px;

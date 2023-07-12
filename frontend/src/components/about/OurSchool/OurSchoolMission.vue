@@ -32,10 +32,17 @@
 <style scoped>
 .mision {
   display: flex;
-  width: 100%;
+  width: 95%;
+  margin: auto;
+  margin-top:20px ;
+  
 }
 .text {
+ 
   margin: auto;
-  width: 50%;
+  width: 60%;
+}
+h4{
+   color: orange;
 }
 </style>

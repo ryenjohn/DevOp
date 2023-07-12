@@ -14,9 +14,11 @@ const vuetify = createVuetify({
 
 
 const app = createApp(App);
-// Search bar
+// Admin page (test)
 import SearchBar from './components/searchbar/SearchBar.vue'
+import listUser from './components/adminpage/ListUser.vue'
 app.component('search-bar', SearchBar);
+app.component('list-user', listUser);
 
 // HidedeLimiter
 import HidedeLimiter from './components/hidedelimiters/HidedeLimiter.vue'
@@ -27,7 +29,9 @@ import FooterIcon from './components/footer/FooterIcon.vue'
 import FooterAvatar from './components/footer/FooterAvatar.vue'
 import FooterDetails from './components/footer/FooterDetails.vue'
 
-
+// side bar 
+import SideBar from './components/navbar/SideBar.vue'
+app.component("side-bar",SideBar)
 // Navigation bar
 import NavigationBar from './components/navbar/NavigationBar.vue'
 import NavigationBarRight from './components/navbar/NavigationBarRight.vue'
@@ -92,10 +96,6 @@ app.component('base-dialog', BaseDialog);
 app.component('title-text', TitleView);
 
 //university
-app.component('each-univer', EachUniversity);
-app.component('each-major', EachMajor);
-app.component('each-workshop', EachWorkshop);
-app.component('each-scholarship', EachScholarship);
 app.component('footer-bar', FooterBar);
 app.component('footer-icon', FooterIcon);
 app.component('footer-avatar', FooterAvatar);

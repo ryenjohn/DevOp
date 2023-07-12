@@ -34,7 +34,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // User side -----------------------------------------
 Route::post('/users',[UserController::class, 'store']);
-Route::get('/users',[UserController::class, 'index']);
+// Route::get('/users',[UserController::class, 'index']);
 Route::post('/roles',[RoleController::class, 'store']);
 
 
@@ -49,12 +49,9 @@ Route::get('/workshops',[WorkShopController::class,'workshops']);
 
 // Admin side --------------------------------
 
-Route::get('/admin', [AdminController::class, 'index']);
-Route::get('/admin/students', [AdminController::class, 'getStudents']);
-Route::get('/admin/managers', [AdminController::class, 'getUniversityDirectors']);
-
-
-
+Route::get('/users', [AdminController::class, 'index']);
+Route::get('/students', [AdminController::class, 'getStudents']);
+Route::get('/managers', [AdminController::class, 'getUniversityDirectors']);
 
 
 

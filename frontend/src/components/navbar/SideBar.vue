@@ -12,9 +12,10 @@
         <v-divider style="height: 300px"></v-divider>
 
         <v-list density="compact" nav>
-          <v-list-item :to="{ path: '/allstudents' }" prepend-icon="mdi-account-school"  title="Students" value="Students"></v-list-item>
-          <v-list-item :to="{ path: '/alluniversity' }" prepend-icon="mdi-school" title="University" value="University"></v-list-item>
-          <!-- <v-list-item :to="{ path: '/allusers' }" prepend-icon="mdi-account" title="Users" value="Users"></v-list-item> -->
+          <v-list-item  @click="changedata('students')" prepend-icon="mdi-account-school"  title="Students" value="Students"></v-list-item>
+          <v-list-item  @click="changedata('managers')" prepend-icon="mdi-school" title="University" value="University"></v-list-item>
+  
+         
         </v-list>
       </v-navigation-drawer>
 
@@ -23,7 +24,15 @@
   </v-card>
 </template>
 
-
+<script>
+  export default {
+    methods:{
+      changedata(dataname){
+        return this.$emit("dataname",dataname);
+      }
+    }
+  }
+</script>
 
 <style  scoped>
 

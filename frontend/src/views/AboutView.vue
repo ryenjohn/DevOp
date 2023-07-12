@@ -15,6 +15,12 @@
     display: flex;
     flex-direction: column;
     margin: auto;
+    margin-top: 70px;
+    text-align: center;
+    
+  }
+  h1{
+    color: orange;
   }
 </style>
 

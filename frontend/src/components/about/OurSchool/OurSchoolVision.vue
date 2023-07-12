@@ -23,17 +23,19 @@
 </template>
 
 <style scoped>
-*{
-  margin: 0;
-  padding: 0;
-}
+
 .mision {
   display: flex;
   flex-direction: row-reverse;
-  width: 100%;
+  width: 95%;
+  margin: auto;
 }
 .text {
   margin: auto;
-  width: 50%;
+  text-align: center;
+  width: 60%;
+}
+h4{
+  color: orange;
 }
 </style>
