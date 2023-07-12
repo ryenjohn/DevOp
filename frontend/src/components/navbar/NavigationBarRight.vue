@@ -1,7 +1,7 @@
 <template>
   <div class="sidebarleft">
     <div class="icon">
-      <v-icon size="large" color="light" icon="mdi-bell"></v-icon>
+      <v-icon size="large" color="white" icon="mdi-bell"></v-icon>
     </div>
     <v-tabs v-if="userName==null">
       <router-link class="link-sign-up" to="/signUp"
@@ -11,18 +11,7 @@
         ><v-tab>SignIn</v-tab></router-link
       >
     </v-tabs>
-    <div class="img-icon">
-      <v-avatar style="margin-left: 20px;">
-        <v-img
-          v-if="userName!=null"
-          class="img"
-          src="https://cdn.vuetifyjs.com/images/john.jpg"
-          @click="showMenu = !showMenu"
-          alt="John"
-        ></v-img>
-      </v-avatar>
-    </div>
-    <Menu :show-menu="showMenu"  @submitLogOut="submitLogOut" :userName="userName"/>
+    <Menu v-if="userName!=null" :show-menu="showMenu"  @submitLogOut="submitLogOut" :userName="userName"/>
   </div>
 </template>
 
@@ -84,6 +73,4 @@ export default {
   text-decoration: none;
   margin-left: 5%;
 }
-
-
 </style>

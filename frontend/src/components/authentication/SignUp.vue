@@ -81,16 +81,15 @@
             </div>
             <div v-else class="sign-in">
               <v-btn class="me-4" @click="singIn">
-                <!-- <router-link  to="/" class="link-sign-up">Sign up</router-link> -->
-                <router-link class="link-sign-up" v-if="state.role_id === '1'" to="/"> Sign up</router-link>
-                <router-link class="link-sign-up" v-else to="/logIn">Sign up</router-link>
+                <router-link
+                  class="link-sign-up"
+                  v-if="state.role_id === '1'" to="/"> Sign up</router-link>
+                <router-link class="link-sign-up" v-else to="/logIn" >Sign up</router-link>
               </v-btn>
             </div>
           </div>
           <p>
-            Already have an account?<router-link to="/logIn"
-              >Log in</router-link
-            >
+            Already have an account?<router-link to="/logIn">Log in</router-link>
           </p>
         </div>
       </form>
@@ -161,7 +160,7 @@ async function singIn() {
 
     // Make an API call to add data to the database
     const response = await axios.post("http://127.0.0.1:8000/api/users", data);
-    Cookies.set("userData", JSON.stringify(response.data), { expires: 30,});
+    Cookies.set("userData", JSON.stringify(response.data), { expires: 30 });
     console.log(response);
 
     // Check the server response and alert the user accordingly
@@ -218,7 +217,7 @@ label {
   margin: 6%;
   flex: 1;
   padding: 2%;
-  border-radius: 10PX;
+  border-radius: 10px;
 }
 .btn > div > div > button {
   background-color: #634b7a;
