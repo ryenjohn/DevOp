@@ -42,7 +42,7 @@ export default {
 <style scoped>
 
 h3 {
-  margin-top: 10px;
+  margin-top: 70px;
   display: flex;
   justify-content: flex-start;
 }

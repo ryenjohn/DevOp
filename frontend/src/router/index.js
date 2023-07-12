@@ -4,9 +4,12 @@ import SignUp from '../components/authentication/SignUp.vue'
 import LogIn from '../components/authentication/LogIn.vue'
 import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
+
 import Home from '../views/HomeView.vue'
 import Detail from '../views/DetailView.vue'
+import Admin from '../views/AdminView.vue'
 // import 
+
 
 const routes = [
   {
@@ -19,11 +22,13 @@ const routes = [
     name: 'signUp',
     component: SignUp
   },
+
   {
     path: '/logIn',
     name: 'logIn',
     component: LogIn
   },
+
   {
     path: '/about',
     name: 'about',
@@ -40,6 +45,11 @@ const routes = [
     component: Detail
   },
   
+  {
+    path: '/admin',
+    name: 'admin',
+    component: Admin
+  }
 
 ]
 

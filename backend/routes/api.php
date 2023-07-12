@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MajorController;
 
 use App\Http\Controllers\RoleController;
@@ -33,7 +34,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // User side -----------------------------------------
 Route::post('/users',[UserController::class, 'store']);
-Route::get('/users',[UserController::class, 'index']);
+// Route::get('/users',[UserController::class, 'index']);
 Route::post('/roles',[RoleController::class, 'store']);
 
 
@@ -46,6 +47,11 @@ Route::get('/scholarships',[ScholarshipController::class,'scholarships']);
 Route::get('/workshops',[WorkShopController::class,'workshops']);
 
 
+// Admin side --------------------------------
+
+Route::get('/users', [AdminController::class, 'index']);
+Route::get('/students', [AdminController::class, 'getStudents']);
+Route::get('/managers', [AdminController::class, 'getUniversityDirectors']);
 
 
 

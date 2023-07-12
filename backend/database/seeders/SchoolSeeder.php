@@ -16,6 +16,7 @@ class SchoolSeeder extends Seeder
     {
         $faker = Faker::create();
 
+
     
     for ($i = 0; $i < 10; $i++) {
         $universityName = $faker->company . ' University';
@@ -29,6 +30,14 @@ class SchoolSeeder extends Seeder
             'type_education_id' => $typeEducationId,
             'address_id' => $addressId,
         ]);
-}
+    for ($i = 0; $i < 10; $i++) {
+        DB::table('schools')->insert([
+            'name' => $faker->sentence($nbWords = 3, $variableNbWords = true),
+            'img' => $faker->imageUrl($width = 640, $height = 480),
+            'type_education_id' => $faker->numberBetween($min = 1, $max = 5),
+            'address_id' => $faker->numberBetween($min = 1, $max = 25),
+        ]);
     }
+    }
+}
 }

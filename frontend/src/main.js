@@ -11,30 +11,32 @@ const vuetify = createVuetify({
   components,
   directives,
 })
-const app = createApp(App)
 
-// Search bar
+
+const app = createApp(App);
+// Admin page (test)
 import SearchBar from './components/searchbar/SearchBar.vue'
+import listUser from './components/adminpage/ListUser.vue'
 app.component('search-bar', SearchBar);
+app.component('list-user', listUser);
 
 // HidedeLimiter
 import HidedeLimiter from './components/hidedelimiters/HidedeLimiter.vue'
-app.component('hidede-limiter', HidedeLimiter);
 
 // Footer bar
 import FooterBar from './components/footer/FooterBar.vue'
 import FooterIcon from './components/footer/FooterIcon.vue'
 import FooterAvatar from './components/footer/FooterAvatar.vue'
 import FooterDetails from './components/footer/FooterDetails.vue'
-app.component('footer-bar', FooterBar);
-app.component('footer-icon', FooterIcon);
-app.component('footer-avatar', FooterAvatar);
-app.component('footer-details', FooterDetails);
 
+// side bar 
+import SideBar from './components/navbar/SideBar.vue'
+app.component("side-bar",SideBar)
 // Navigation bar
 import NavigationBar from './components/navbar/NavigationBar.vue'
 import NavigationBarRight from './components/navbar/NavigationBarRight.vue'
 import NavigationBarLink from './components/navbar/NavigationBarLink.vue'
+
 import NavigationBarContent from './components/navbar/NavigationBarContent.vue'
 app.component('navigation-bar', NavigationBar);
 app.component('navigationbar-right', NavigationBarRight);
@@ -54,6 +56,7 @@ app.component('map-show', mapShow);
 
 
 
+
 // Include globaly all widgets
 import BaseCard from './components/widgets/card/BaseCard.vue';
 import CardInfo from './components/widgets/card/CardInfo.vue';
@@ -65,9 +68,19 @@ import BaseDialog from './components/widgets/dialog/BaseDialog.vue';
 
 
 
+
 // content title
 import TitleView from './components/contents/ContentTitle.vue';
 
+
+
+
+
+
+app.component('hidede-limiter', HidedeLimiter);
+app.component('navigation-bar', NavigationBar);
+app.component('navigationbar-right', NavigationBarRight);
+app.component('navigationbar-link', NavigationBarLink);
 
 app.component('card-item', CardItemDetail);
 app.component('base-card', BaseCard);
@@ -79,10 +92,35 @@ app.component('base-dialog', BaseDialog);
 
 app.component('title-text', TitleView);
 
+//university
+app.component('footer-bar', FooterBar);
+app.component('footer-icon', FooterIcon);
+app.component('footer-avatar', FooterAvatar);
+app.component('footer-details', FooterDetails);
 
 
 
-app.use(vuetify)
-app.use(router)
-app.mount('#app')
+
+//About page
+import AboutOurSchoolMission from '../src/components/about/OurSchool/OurSchoolMission.vue'
+app.component('aboutmissionour-school', AboutOurSchoolMission);
+import AboutOurSchoolVision from '../src/components/about/OurSchool/OurSchoolVision.vue'
+app.component('aboutvisionour-school', AboutOurSchoolVision);
+
+import AboutOurTeam from '../src/components/about/OurTeam/AboutOurTeam.vue'
+app.component('aboutour-team', AboutOurTeam);
+
+import OurTeamMember from '../src/components/about/OurTeam/OurTeamMember.vue'
+app.component('ourteam-member', OurTeamMember);
+
+//Contact page
+import ContactBar from '../src/components/contact/ContactBar.vue'
+app.component('contact-bar', ContactBar);
+
+
+
+
+app.use(router);
+app.use(vuetify);
+app.mount('#app');
 

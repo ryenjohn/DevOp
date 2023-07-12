@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\TypeEducation;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -33,6 +35,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SkillSubjectSeeder::class);
         $this->call(ScholarshipUserSeeder::class);
         $this->call(CommentSeeder::class);
+
 
 
 
