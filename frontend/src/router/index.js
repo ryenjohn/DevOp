@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import SignUp from '../components/authentication/SignUp.vue'
 import LogIn from '../components/authentication/LogIn.vue'
+import sendMail from '../components/authentication/sendEmail.vue'
+import resetPassword from '../components/authentication/resetPassword.vue'
 import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
 
@@ -49,6 +51,16 @@ const routes = [
     path: '/admin',
     name: 'admin',
     component: Admin
+  },
+  {
+    path: '/sendMail',
+    name: 'sendMail',
+    component: sendMail
+  },
+  {
+    path: '/resetPassword',
+    name: 'resetPassword',
+    component: resetPassword
   }
 
 ]

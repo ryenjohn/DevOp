@@ -53,7 +53,9 @@
           Incorrect email or password. Please try again.
         </p>
         <p class="forgot-password">
-          <router-link to="/">Forgot password</router-link>
+          <!-- <router-link to="/">Forgot password</router-link> -->
+          <router-link to="/sendMail">Forgot password</router-link>
+
         </p>
         <div class="btn">
           <div>

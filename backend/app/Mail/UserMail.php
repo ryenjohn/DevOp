@@ -32,6 +32,6 @@ class UserMail extends Mailable
     {
         return $this->from('saisaya422@gmail.com',"Admin")
         ->subject($this->data['subject'])
-        ->view('email')->with('data', $this->data);
+        ->view('userEmail')->with('data', $this->data);
     }
 }

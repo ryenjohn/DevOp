@@ -47,7 +47,7 @@ class ResetPasswordController extends Controller
         ];
         try
         {
-            $user = User::where('email',$data['email'])->get();
+            $user = User::where('email',$data['email'])->first();
             Mail::to($data['email'])->send(new UserMail($data));
             return response()->json("great check you mail box");
         }
