@@ -1,30 +1,16 @@
+// copy from vutity
 <template>
   <div class="container">
     <div class="image">
       <img
         src="../../assets/images/register.png"
-        style="width: 100%; height: inherit"
+        style="width: 100%; height: initial"
         alt="Image description"
       />
     </div>
     <div class="form-container">
       <form>
-        <h1>Register</h1>
-        <v-text-field
-          class="err"
-          v-model="state.name"
-          :error-messages="v$.name.$errors.map((e) => e.$message)"
-          :counter="10"
-          density="compact"
-          placeholder="Enter your name"
-          prepend-inner-icon="mdi-account"
-          variant="outlined"
-          color="#634B7A"
-          required
-          @input="v$.name.$touch"
-          @blur="v$.name.$touch"
-        ></v-text-field>
-
+        <h1>Log in</h1>
         <v-text-field
           class="err"
           v-model="state.email"
@@ -38,9 +24,6 @@
           @input="v$.email.$touch"
           @blur="v$.email.$touch"
         ></v-text-field>
-        <p v-if="state.emailTakenError" class="text-error">
-          Email is already taken.
-        </p>
 
         <v-text-field
           class="err"
@@ -60,34 +43,32 @@
                 : 'Value required and should contain uppercase, lowercase, number, sign and more than 8 characters'
             )
           "
-          @input="v$.password.$touch"
+          @input="
+            v$.password.$touch;
+            resetIncorrectPasswordError();
+          "
           @blur="v$.password.$touch"
         ></v-text-field>
-        <v-checkbox
-          class="err"
-          v-model="state.checkbox"
-          :error-messages="v$.checkbox.$errors.map((e) => e.$message)"
-          label="Do you agree?"
-          required
-          @change="v$.checkbox.$touch"
-          @blur="v$.checkbox.$touch"
-        ></v-checkbox>
+        <p v-if="state.incorrectPasswordError" class="text-error">
+          Incorrect email or password. Please try again.
+        </p>
+        <p class="forgot-password">
+          <router-link to="/">Forgot password</router-link>
+        </p>
         <div class="btn">
           <div>
             <div v-if="v$.$invalid">
-              <v-btn class="me-4" @click="v$.$touch()">Sign up</v-btn>
+              <v-btn class="me-4" @click="v$.$touch()">Log in</v-btn>
             </div>
             <div v-else class="sign-in">
-              <v-btn class="me-4" @click="singIn">
-                <router-link
-                  class="link-sign-up"
-                  v-if="state.role_id === '1'" to="/"> Sign up</router-link>
-                <router-link class="link-sign-up" v-else to="/logIn" >Sign up</router-link>
+              <v-btn class="me-4"  @click="logIn">
+                <router-link class="link-log-in" v-if="state.role !== '1'" to="/"> log in</router-link>
+                <router-link class="link-log-in" v-else to="/signUp">log in</router-link>
               </v-btn>
             </div>
           </div>
-          <p>
-            Already have an account?<router-link to="/logIn">Log in</router-link>
+          <p class="log-in">
+            Have not an account?<router-link to="/signUp">Sign up</router-link>
           </p>
         </div>
       </form>
@@ -102,15 +83,19 @@ import { email, required, minLength } from "@vuelidate/validators";
 import axios from "axios";
 import Cookies from "js-cookie";
 
+const userRole =  Cookies.get("userData") ? JSON.parse(Cookies.get("userData")).data : "";
 const initialState = {
-  name: "",
   email: "",
-  role_id: "1",
-  checkbox: null,
   password: "",
   emailTakenError: false,
+  visible: false,
+  incorrectPasswordError: false,
+  role: userRole
+  
 };
+
 const state = reactive(Object.assign({}, initialState));
+
 // Set role for password
 const passwordRule = (value) => {
   const regex =
@@ -119,22 +104,10 @@ const passwordRule = (value) => {
   return result;
 };
 
-// Rule for name email password
+// Rule for email password
 const rules = {
-  name: { required, minLength: minLength(3) },
-  email: {
-    required,
-    email,
-    async unique() {
-      const response = await axios.get(`http://127.0.0.1:8000/api/users`);
-      // compare new data email with data in database
-      const datas = response.data.data;
-      const emailExists = datas.some((data) => data.email === state.email);
-      state.emailTakenError = emailExists;
-    },
-  },
+  email: { required, email },
   password: { required, minLength: minLength(8), custom: passwordRule },
-  checkbox: { required },
 };
 
 // Clear validation when input correct
@@ -146,33 +119,30 @@ function clear() {
   v$.value.$reset();
 }
 // Insert data into dabase
-async function singIn() {
+async function logIn() {
   try {
     const data = {
-      name: state.name,
       email: state.email,
-      role_id: state.role_id,
-      checkbox: state.checkbox,
       password: state.password,
     };
-
     // Make an API call to add data to the database
-    const response = await axios.post("http://127.0.0.1:8000/api/users", data);
-    Cookies.set("userData", JSON.stringify(response.data), { expires: 30 });
-    console.log(response);
+    const response = await axios.post("http://127.0.0.1:8000/api/logIn", data);
 
     // Check the server response and alert the user accordingly
     if (response.status === 200) {
+      Cookies.set("userData", JSON.stringify(response.data), { expires: 30 });
       clear();
-    } else {
-      alert("Failed to singIn the form");
     }
   } catch (error) {
-    console.error(error);
+    state.incorrectPasswordError = true;
   }
 }
+// Add this event handler to the password field to hide the error message
+function resetIncorrectPasswordError() {
+  state.incorrectPasswordError = false;
+}
 </script>
-<!-- style for log in form -->
+<!-- style for sign up form -->
 <style scoped>
 .container {
   display: flex;
@@ -180,30 +150,30 @@ async function singIn() {
 .image {
   flex: 1;
 }
-
+.image img {
+  max-width: 90%;
+  height: auto;
+}
 .btn {
   display: flex;
 }
 h1 {
-  margin-bottom: 5%;
+  margin-bottom: 4%;
   margin-top: 3%;
   text-align: center;
 }
-p {
-  /* margin-bottom: 5%; */
-  margin-left: 33%;
-  margin-top: 3%;
+.log-in {
+  margin-bottom: 2%;
+  margin-left: 40%;
+  margin-top: 8%;
 }
 .err {
   text-align: start;
 }
 .text-error {
-  text-align: start;
-  font-family: sans-serif;
-  font-size: 12px;
-  margin-bottom: 15px;
-  margin-top: -20px;
-  margin-left: 15px;
+  color: red;
+  font-size: 14px;
+  margin-top: -15px;
 }
 label {
   color: #634b7a;
@@ -220,9 +190,10 @@ label {
 .btn > div > div > button {
   background-color: #634b7a;
   color: #f6eeee;
-  margin-left: 6%;
+  margin-left: 4px;
+  margin-top: 20px;
 }
-.link-sign-up {
+.link-log-in {
   color: #fff;
   background-color: #634b7a;
   text-decoration: none;

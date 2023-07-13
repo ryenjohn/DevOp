@@ -1,42 +1,27 @@
+
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    <ListMajorView :listMajor="majors"/>
+    <h1>Our School</h1>
+    <aboutmissionour-school></aboutmissionour-school>
+    <aboutvisionour-school></aboutvisionour-school>
+    <h1>Our Teams</h1>
+    <aboutour-team></aboutour-team>
   </div>
 </template>
 
 
-<script>
-import axios from 'axios';
-import ListMajorView from '../views/ListMajorView.vue';
-
-export default ({
-  components: {
-    ListMajorView
-
-  },
-  data(){
-    return {
-      majors: [],
-      showMajor:{},
-      is_update: false,
-      url: 'http://127.0.0.1:8000/api/majors',
-    }
-  },
-  methods:{
-
-    listMajor(){
-      axios.get(this.url).then((response) =>{
-        this.showMajor = response.data.data
-        this.majors = response.data.data
-        console.log(this.majors)
-      })
-    },
-
-  },
-  mounted() {
-    this.listMajor();
+<style>
+  .about{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 70px;
+    text-align: center;
+    
   }
-})
-</script>
+  h1{
+    color: orange;
+  }
+</style>
+
 

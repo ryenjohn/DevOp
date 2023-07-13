@@ -1,56 +1,34 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import ListMajorView from '../views/ListMajorView.vue'
-// import MajorDetail from '../views/MajorDetail.vue'
-import UniversityDetail from '../views/UniversityDetail.vue'
-import SkillDetail from '../views/SkillDetail.vue'
-import UniversityView from '../views/UniversityView.vue'
-import SkillView from '../views/SkillView.vue'
-import WorkshopView from '../views/WorkshopView.vue'
-import ScholarshipView from '../views/ScholarshipView.vue'
+
 import SignUp from '../components/authentication/SignUp.vue'
+import LogIn from '../components/authentication/LogIn.vue'
 import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
-import AdminPage from '../components/adminpage/AdminPage.vue'
-import AllStudentData from '../components/adminpage/AllStudentData.vue'
-import AllUniversity from '../components/adminpage/AllUniversity.vue'
-import AllUser from '../components/adminpage/AllUser.vue'
+
+import Home from '../views/HomeView.vue'
+import Detail from '../views/DetailView.vue'
+import Admin from '../views/AdminView.vue'
+// import 
+
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: UniversityView
-  },
-  {
-    path: '/skill/',
-    name: 'skill/',
-    component: SkillView
-  },
-  {
-    path: '/workshop/',
-    name: 'workshop/',
-    component: WorkshopView
-  },
-  {
-    path: '/scholarship/',
-    name: 'scholarship/',
-    component: ScholarshipView
-  },
-  {
-    path: '/university/:id',
-    name: 'university/:id',
-    component: UniversityDetail
-  },
-  {
-    path: '/skill/:id',
-    name: 'skill/:id',
-    component: SkillDetail
+    component: Home
   },
   {
     path: '/signUp',
     name: 'signUp',
     component: SignUp
   },
+
+  {
+    path: '/logIn',
+    name: 'logIn',
+    component: LogIn
+  },
+
   {
     path: '/about',
     name: 'about',
@@ -61,28 +39,18 @@ const routes = [
     name: 'contact',
     component: Contact
   },
-
-  // Admin route
+  {
+    path: '/detail/:dataname/:id',
+    name: 'detail',
+    component: Detail
+  },
+  
   {
     path: '/admin',
     name: 'admin',
-    component: AdminPage
-  },
-  {
-    path: '/allstudents',
-    name: 'student',
-    component: AllStudentData
-  },
-  {
-    path: '/alluniversity',
-    name: 'alluniversity',
-    component: AllUniversity
-  },
-  {
-    path: '/allusers',
-    name: 'allusers',
-    component: AllUser
+    component: Admin
   }
+
 ]
 
 const router = createRouter({
