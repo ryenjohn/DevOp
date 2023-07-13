@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import SignUp from '../components/authentication/SignUp.vue'
 import LogIn from '../components/authentication/LogIn.vue'
+import workShop from '../components/widgets/form/workShop.vue'
 import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
 
@@ -49,6 +50,11 @@ const routes = [
     path: '/admin',
     name: 'admin',
     component: Admin
+  },
+  {
+    path: '/workShop',
+    name: 'workShop',
+    component: workShop
   }
 
 ]
