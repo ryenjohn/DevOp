@@ -1,20 +1,17 @@
 <template>
-    <div class="container">
-
-    <div class="form-container">
+      <div class="form-container">
         <div class="image">
-        <img
-            src="../../assets/images/forgotPassword.png"
-            style="width: 100%; height: initial"
-            alt="Image description"
-        />
-        
+          <img
+              src="../../assets/images/forgotPassword.png"
+              style="width: 100%; height: initial"
+              alt="Image description"
+          /> 
         </div>
         <form @submit.prevent='submit'>
-        <h1>Forgot password</h1>
-            <p class="text-reset">
-            Please enter your Email
-            </p>
+        <h1>Did you forget password?</h1>
+        <p class="text-reset">
+        Please input your Email here
+        </p>
         <v-text-field
             class="err"
             v-model="email"
@@ -32,7 +29,6 @@
     
         </div>
         </form>
-    </div>
     </div>
 </template>
 
@@ -52,6 +48,10 @@ export default{
     getMail() {
       axios.post(this.url,{email:this.email}).then((response)=>{
         console.log(response);
+        if(!this.email==""){
+          this.$router.push('/')
+        }
+
       })
     }
   }
@@ -59,13 +59,6 @@ export default{
 </script>
 
 <style scoped>
-.container{
-    display: flex;
-    justify-content: center;
-    width: 70%;
-    align-items: center;
-    align-self: center;
-}
 h1 {
   margin-bottom: 25px;
   margin-top: -5px;
@@ -81,21 +74,18 @@ label {
   max-width: 90%;
   height: auto;
 }
-.text-reset{
-    margin-left: 20%;
-    margin-top: 35px;
-}
+
 .form-container {
+  width: 70%;
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background-color: #e7e9e3;
   flex: 1;
   padding: 35px;
-  margin-top: 40px;
+  margin: 40px 0px;
   border-radius: 10px;
-  justify-content: center;
-  align-self: center;
   display: flex;
-
+  align-items: center;
+  margin-left: 15%;
 }
 .send-email{
     background-color: #634b7a;
@@ -110,7 +100,9 @@ label {
 }
 
 form{
-    padding: 20px;
-    width: 30%;
+  padding: 20px;
+  width: 50%;
+  background-color: #e1e4dba9;
+
 }
 </style>
