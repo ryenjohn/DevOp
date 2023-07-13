@@ -4,26 +4,16 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+</head>
 <body>
-    <form action="/action_page.php">
-        <div class="container">
-            <h1>Register </h1>
-            <p>Please fill in this form to create page account for university.</p>
-            <hr>
-            <label for="name"><b>University Name</b></label><br>
-            <input type="text" placeholder="Enter Page Name" name="name" id="name" required><br><br>
-
-            <label for="email"><b>Email</b></label><br>
-            <input type="email" placeholder="Enter Email" name="email" id="email" required><br><br>
-
-            <label for="psw"><b>Password</b></label><br>
-            <input type="password" placeholder="Enter Password" name="psw" id="psw" required><br><br>
-
-            <button type="submit" class="registerbtn"><a href="http://localhost:8080/">Register</a></button>
-        </div>
-        
-    </form>
-
+    <h1>Welcome to our website! Please click the link to regiter your admin account.</h1>
+    <h3><a href="http://localhost:8080/signUp">Click me</a></h3>
 </body>
 </html>
 

@@ -23,9 +23,9 @@ class RegisterMailcontroller extends Controller
             'link'=>'http://localhost:8080/signUp'
 
         ];
-        
         try
         {
+            
             Mail::to($data['email'])->send(new Register($data));
             return response()->json("great check you mail box");
         }
