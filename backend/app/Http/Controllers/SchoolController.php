@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SchoolResource;
 use App\Http\Resources\ShowSchoolResource;
+use App\Models\Address;
 use App\Models\School;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,10 +31,15 @@ class SchoolController extends Controller
             $query->where('city/province', 'like', "%$name%");
         })->get();
         if(count($result)){
-            return $result;
-        } else {
-            return array('Result', 'No records found');
-        }
+            $result = SchoolResource::collection($result);
+            return response()->json(['success'=>true, 'data'=>$result],200);
+        } 
+        return response()->json(['success'=>true, 'data'=>'No records found'],200);
+    }
+
+    public function getaddresses(){
+        $addresses = Address::all();
+        return response()->json(['Get all address success'=>true, 'data'=>$addresses], 200);
     }
 }
 
