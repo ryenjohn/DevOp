@@ -16,7 +16,7 @@ class RegisterMailcontroller extends Controller
     public function sendEmail(Request $request)
     {
 
-        // dump('http://localhost:8080/signUp');
+       
         $data =[
             'subject' =>"Reset password",
             'email'=>$request->email,
