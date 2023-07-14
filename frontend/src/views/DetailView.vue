@@ -15,14 +15,14 @@
         </template>
         <template #info>    
             <v-card-text>
-                <div> <strong>Name: </strong>{{data.name}}</div>
-                <div><strong>Description: </strong> {{data.description}}</div>
+                <h1 > <strong>Name: </strong>{{data.name}} ({{data.type}})</h1><br>
+                <h3><strong></strong> {{data.description}}</h3>
                 <div  v-if='dataname=="majors"'><strong>Subject that match with this skill: </strong>
                     <ul>
                         <li v-for='subject in data.subjects' :key="subject">{{subject}}</li>
                     </ul>
                 </div>
-                <div v-if='dataname=="schools"'> <strong>Type: </strong>{{data.type}}</div>
+                
             </v-card-text>
         </template>
     </card-item>
@@ -87,6 +87,10 @@ import axios from 'axios';
         flex-direction: column;
         justify-content:end;
     }
+    h1,h3{
+        text-align: center;
+    }
+
     button{
         padding:20px ;
         border-radius:20px;
@@ -96,4 +100,5 @@ import axios from 'axios';
         width: 10%;
         margin:10px;
     }
+    
 </style>

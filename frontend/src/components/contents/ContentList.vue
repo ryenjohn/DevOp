@@ -14,7 +14,7 @@
                   </template>
                   <template #title>
                               <v-card-text>
-                              <strong>{{data.name}}</strong>
+                              <h3>{{data.name}}</h3>
                             </v-card-text>
                   </template>
                 </card-info>
@@ -30,3 +30,8 @@
      
     }
 </script>
+<style>
+  h3{
+    text-align: center;
+  }
+</style>

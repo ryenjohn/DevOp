@@ -64,8 +64,7 @@
             </div>
             <div v-else class="sign-in">
               <v-btn class="me-4"  @click="logIn">
-                <router-link class="link-log-in" v-if="state.role !== '1'" to="/"> log in</router-link>
-                <router-link class="link-log-in" v-else to="/signUp">log in</router-link>
+                <router-link class="link-log-in"  to="/"> log in</router-link>
               </v-btn>
             </div>
           </div>
@@ -85,15 +84,12 @@ import { email, required, minLength } from "@vuelidate/validators";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const userRole =  Cookies.get("userData") ? JSON.parse(Cookies.get("userData")).data : "";
 const initialState = {
   email: "",
   password: "",
   emailTakenError: false,
   visible: false,
   incorrectPasswordError: false,
-  role: userRole
-  
 };
 
 const state = reactive(Object.assign({}, initialState));
