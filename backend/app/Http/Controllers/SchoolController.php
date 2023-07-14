@@ -34,7 +34,7 @@ class SchoolController extends Controller
             $result = SchoolResource::collection($result);
             return response()->json(['success'=>true, 'data'=>$result],200);
         } 
-        return response()->json(['success'=>true, 'data'=>'No records found'],200);
+        return response()->json(['success'=>true, 'data'=>[]],200);
     }
 
     public function getaddresses(){

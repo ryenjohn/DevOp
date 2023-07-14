@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MajorController;
 
 use App\Http\Controllers\RoleController;
@@ -32,21 +34,33 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // User side -----------------------------------------
 Route::post('/users',[UserController::class, 'store']);
-Route::get('/users',[UserController::class, 'index']);
+// Route::get('/users',[UserController::class, 'index']);
 Route::post('/roles',[RoleController::class, 'store']);
 
 
 Route::get('/majors',[SkillController::class,'getmajors']);
+Route::get('/majors/{id}',[SkillController::class,'getmajor']);
 Route::get('/schools/{id}',[SchoolController::class,'getschool']);
 Route::get('/schools',[SchoolController::class,'getschools']);
 Route::get('/schools/address/{name}',[SchoolController::class,'search']);
 Route::get('/address',[SchoolController::class,'getaddresses']);
+Route::get('/scholarships/{id}',[ScholarshipController::class,'getScholarship']);
 Route::get('/scholarships',[ScholarshipController::class,'scholarships']);
 Route::get('/workshops',[WorkShopController::class,'workshops']);
 
 
+// Admin side --------------------------------
+
+Route::get('/users', [AdminController::class, 'index']);
+Route::get('/students', [AdminController::class, 'getStudents']);
+Route::get('/managers', [AdminController::class, 'getUniversityDirectors']);
 
 
 
 
 
+// log in and log out
+Route::middleware(['auth:sanctum'])->group(function(){
+    Route::post('/logOut', [AuthenticationController::class, 'logout']);
+});
+Route::post('/logIn', [AuthenticationController::class,'login']);

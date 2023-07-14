@@ -21,5 +21,5 @@ class AddressSeeder extends Seeder
         foreach($address as $address){
             Address::create($address);
         }
-    }
-}
+
+}}

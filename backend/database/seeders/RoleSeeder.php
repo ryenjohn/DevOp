@@ -22,5 +22,14 @@ class RoleSeeder extends Seeder
         foreach($role as $role){
             Role::create($role);
         }
+
+$roles = ['student', 'university_manager'];
+
+for ($i = 0; $i < 10; $i++) {
+    DB::table('roles')->insert([
+        'name' => $faker->randomElement($roles)
+    ]);
+}
+
     }
 }
