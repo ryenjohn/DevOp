@@ -5,6 +5,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\ResetPasswordController;
 
+use App\Http\Controllers\RegisterMailcontroller;
+
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ScholarshipController;
@@ -63,6 +65,10 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::post('/logOut', [AuthenticationController::class, 'logout']);
 });
 Route::post('/logIn', [AuthenticationController::class,'login']);
+
 Route::patch('/resetPassword',[ResetPasswordController::class,'resetPassword']);
-Route::post('/sendMail',[ResetPasswordController::class,'SendMail']);
+Route::post('/registerMail',[ResetPasswordController::class,'SendMail'])
+
+// university page register 
+Route::post('/sendmail',[UserController::class,'sendEmail']);
 
