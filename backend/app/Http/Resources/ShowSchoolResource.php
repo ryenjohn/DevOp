@@ -20,6 +20,7 @@ class ShowSchoolResource extends JsonResource
             'name'=>$this->name,
             'img'=>$this->img,
             'address'=>$this->address->link,
+            'description'=>$this->description,
             'type'=>$this->type->name,
             'skills'=> SkillResource::collection($this->skills),
             'workshops'=>$this->workshop,

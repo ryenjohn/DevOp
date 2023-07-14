@@ -16,6 +16,7 @@ class School extends Model
         'img',
         'type_education_id',
         'address_id',
+        'description'
 
     ];
     protected $hidden = [
