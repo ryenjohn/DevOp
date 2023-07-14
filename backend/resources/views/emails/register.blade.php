@@ -12,7 +12,7 @@
  
 </head>
 <body>
-    <h1>Welcome to our website! Please click the link to regiter your admin account.</h1>
+    <h1>Welcome to our website!</h1>
     <h3><a href="http://localhost:8080/signUp">Click me</a></h3>
 </body>
 </html>

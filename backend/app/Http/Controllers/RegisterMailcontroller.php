@@ -18,14 +18,13 @@ class RegisterMailcontroller extends Controller
 
        
         $data =[
-            'subject' =>"Reset password",
+            'subject' =>"Register university director",
             'email'=>$request->email,
             'link'=>'http://localhost:8080/signUp'
 
         ];
         try
         {
-            
             Mail::to($data['email'])->send(new Register($data));
             return response()->json("great check you mail box");
         }
