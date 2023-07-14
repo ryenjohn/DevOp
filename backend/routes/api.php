@@ -59,4 +59,4 @@ Route::post('/logIn', [AuthenticationController::class,'login']);
 
 
 // university page register 
-Route::post('/sendmail',[RegisterMailcontroller::class,'sendEmail']);
+Route::post('/sendmail',[UserController::class,'sendEmail']);
