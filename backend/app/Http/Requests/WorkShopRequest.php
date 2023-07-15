@@ -28,7 +28,7 @@ class WorkShopRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'required',
             'address_id' => 'required',
             'school_id' => 'required',
             'description' => 'required',

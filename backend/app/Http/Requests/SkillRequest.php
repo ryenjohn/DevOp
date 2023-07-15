@@ -29,7 +29,7 @@ class SkillRequest extends FormRequest
         return [
             'name'=>'required',
             'description'=> 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'required',
             'subjects' => 'required'
         ];
     }

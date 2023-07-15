@@ -34,12 +34,13 @@ class WorkShop extends Model
             'expired_date',
             'time',
         ]);
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('src/workshops', $filename);
-            $workShop['image'] = $filename;
-  
+        if (filled($request->image)) {
+            $path = $request->file('image')->store('public/images/workshops');
+            // Get the file's public URL
+            $url = Storage::url($path);
+            if($url){
+                $workShop['image']=$url;
+            }
         }
         $workShop = self::updateOrCreate(['id' => $id], $workShop);
         return $workShop;
