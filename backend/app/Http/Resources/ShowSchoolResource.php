@@ -22,8 +22,8 @@ class ShowSchoolResource extends JsonResource
             'address'=>$this->address->link,
             'type'=>$this->type->name,
             'skills'=> SkillResource::collection($this->skills),
-            'workshops'=>$this->workshop,
-            'scholarship'=>ShowScholarshipResource::collection($this->scholarship)
+            // 'workshops'=>$this->workshop,
+            // 'scholarship'=>ShowScholarshipResource::collection($this->scholarship)
         ];
     }
 }

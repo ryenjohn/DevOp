@@ -29,34 +29,18 @@ import axios from 'axios'
     data: () => ({
       items: [],
       searchKey: '',
-      
-      
     }),
     methods: {
       searchName(){
         axios.get(`http://127.0.0.1:8000/api/schools/address/${this.searchKey}`)
         .then((res)=>{
-        console.log(res)
-        // const dataSearchs = res.data.data
-        //   this.items = Array.isArray(dataSearchs) ? dataSearchs : [dataSearchs]
-      // }
+            console.log(res)
       })
-
       },
-
-      // isSearch(){
-      //   this.isSearch=true
-      //   this.$emit("isSearch",this.isSearch)
-      // }
     },
     watch: {
-
       searchKey () {
         this.$emit('searchKey',this.searchKey)
-        // this.isSearch()
-        // this.searchName()
-        
-
       },
     },
 

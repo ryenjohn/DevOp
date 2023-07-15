@@ -43,7 +43,7 @@ Route::get('/majors/{id}',[SkillController::class,'getmajor']);
 Route::get('/schools/{id}',[SchoolController::class,'getschool']);
 Route::get('/schools',[SchoolController::class,'getschools']);
 Route::get('/schools/address/{name}',[SchoolController::class,'search']);
-Route::get('/address',[SchoolController::class,'getaddresses']);
+Route::post('/schools',[SchoolController::class,'createSchool']);
 Route::get('/scholarships/{id}',[ScholarshipController::class,'getScholarship']);
 Route::get('/scholarships',[ScholarshipController::class,'scholarships']);
 Route::get('/workshops',[WorkShopController::class,'workshops']);

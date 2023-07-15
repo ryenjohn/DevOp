@@ -16,7 +16,7 @@ class Skill extends Model
         'image',
         
     ];
-
+    
     protected $hidden = [
         'created_at',
         'updated_at'
@@ -24,10 +24,14 @@ class Skill extends Model
     public function subjects():BelongsToMany{
         return $this->belongsToMany(Subjects::class,'skill_subject','skill_id','subject_id');
     }
-    public function schools():BelongsToMany{
-        return $this->belongsToMany(School::class,'school_skill');
+    // public function schools():BelongsToMany{
+    //     return $this->belongsToMany(School::class,'school_skill');
+    // }
+    public function schools()
+    {
+        return $this->belongsToMany(School::class, 'school_skills')->withTimestamps();
     }
-    
+
     public function scholarship():HasMany{
         return $this->hasMany(ScholarShip::class);
     } 

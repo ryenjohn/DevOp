@@ -11,6 +11,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class School extends Model
 {
     use HasFactory;
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
     protected $fillable=[
         'name',
         'img',
@@ -18,17 +23,24 @@ class School extends Model
         'address_id',
 
     ];
-    protected $hidden = [
-        'created_at',
-        'updated_at'
-    ];
-
+    public static function school($request, $id=null){
+        $school = $request->only(['name','img', 'type_education_id', 'address_id']);
+        $school = self::updateOrCreate(['id'=>$id], $school);
+        $skills = request('skills');
+        $school->skills()->sync($skills);
+        return $school;
+    }
+  
     public function scholarship():HasMany{
         return $this->hasMany(ScholarShip::class);
     }
 
-    public function skills():BelongsToMany{
-        return $this->belongsToMany(Skill::class,'school_skill','skill_id','school_id');
+    // public function skills():BelongsToMany{
+    //     return $this->belongsToMany(Skill::class,'school_skill','skill_id','school_id');
+    // }
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class, 'school_skills')->withTimestamps();
     }
 
     public function schedule():HasMany{
