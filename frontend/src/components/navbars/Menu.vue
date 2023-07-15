@@ -12,7 +12,7 @@
           contain
         ></v-img>
       </template>
-      <v-list class="menu-list" style="width: 120%; margin-right: 10%; background-color: blueviolet">
+      <v-list class="menu-list" style="width: 100%;  background-color: blueviolet">
           <div class="icon-item">
             <v-icon class="logout-icon text-white me-2" size="20">mdi-account</v-icon>
             <div class="username">{{ userName }}</div>
@@ -72,7 +72,6 @@ export default {
 
 .username,
 .icon-log-out {
-  cursor: pointer;
   color: #ffff;
   font-size: 14px;
   font-weight: bold;

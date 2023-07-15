@@ -45,7 +45,18 @@ class SchoolController extends Controller
             $result = SchoolResource::collection($result);
             return response()->json(['success'=>true, 'data'=>$result],200);
         } 
-        return response()->json(['success'=>true, 'data'=>[]],200);
+        return response()->json(['success'=>true],200);
+    }
+    
+    public function searchSkill($name){
+        $result = School::whereHas('skills', function ($query) use ($name) {
+            $query->where('name', 'like', "%$name%");
+        })->get();
+        if(count($result)){
+            $result = SchoolResource::collection($result);
+            return response()->json(['success'=>true, 'data'=>$result],200);
+        } 
+        return response()->json(['success'=>true],200);
     }
 
 }

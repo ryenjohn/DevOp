@@ -7,7 +7,7 @@
                 <card-info class='card-item' :to="{name: 'detail', params: { id: index+1,dataname:dataname}}"   >
                   <template #img >
                           <v-img 
-                          :src="data.img"
+                          :src="data.image"
                           height="150px"
                           cover
                         ></v-img>
@@ -21,7 +21,6 @@
           </v-sheet>
        </v-col>
   </card-container>
-
 </template>
 
 <script>

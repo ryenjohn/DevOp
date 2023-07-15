@@ -15,7 +15,6 @@
         dataname:'schools',
         isSearch:false,
         key:''
-
       }
     },
     methods:{
@@ -37,9 +36,7 @@
         axios.get(`http://127.0.0.1:8000/api/schools/address/${this.key}`)
         .then((res)=>{
           this.datas = res.data.data
-          console.log(this.datas)
-        
-      })
+          })
       },
       searchKey(key){
         this.key=key

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Subject;
 use App\Models\Subjects;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -22,7 +23,7 @@ class SubjectSeeder extends Seeder
             ["name" => "English"],
         ];
         foreach($subjects as $subject){
-            Subjects::create($subject);
+            Subject::create($subject);
         }
     }
 }

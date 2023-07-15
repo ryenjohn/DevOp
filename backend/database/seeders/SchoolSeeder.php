@@ -15,8 +15,8 @@ class SchoolSeeder extends Seeder
     public function run(): void
     {
         $school = [
-            ["name" => "PNC","img" => "https://i.pinimg.com/564x/62/d7/90/62d79024b48bf9d6dc8dc7e2388b7d6e.jpg","type_education_id"=>1,"address_id"=>1],
-            ["name" => "PNV","img" => "https://i.pinimg.com/564x/62/d7/90/62d79024b48bf9d6dc8dc7e2388b7d6e.jpg","type_education_id"=>1,"address_id"=>1],
+            ["name" => "PNC","image" => "https://i.pinimg.com/564x/62/d7/90/62d79024b48bf9d6dc8dc7e2388b7d6e.jpg","type_education_id"=>1,"address_id"=>1],
+            ["name" => "PNV","image" => "https://i.pinimg.com/564x/62/d7/90/62d79024b48bf9d6dc8dc7e2388b7d6e.jpg","type_education_id"=>1,"address_id"=>1],
         ];
         foreach($school as $school){
             School::create($school);

@@ -15,7 +15,7 @@ class ScheduleSeeder extends Seeder
     public function run(): void
     {
         $schedules = [
-            ["name" => "schedule 1", "description" => "Enjoy your schedule", "start_time" => "02:00:00", "end_time"=>"05:00:00", "school_id"=>1],
+            ["name" => "schedule 1", "description" => "Enjoy your schedule", "start_time" => "2023-07-09 14:30:00", "end_time"=>"2023-07-10 14:30:00", "school_id"=>1],
             
         ];
         foreach($schedules as $schedule){

@@ -16,7 +16,7 @@ class WorkshopSeeder extends Seeder
     {
         $workshops = [
             ["name" => "Design",
-            "img" => "https://i.pinimg.com/564x/1b/80/f2/1b80f2d5745bca5f4bc619c4d2a5084f.jpg",
+            "image" => "https://i.pinimg.com/564x/1b/80/f2/1b80f2d5745bca5f4bc619c4d2a5084f.jpg",
              "address_id"=>1,
              "school_id"=>1,
              "description"=>"Join us",

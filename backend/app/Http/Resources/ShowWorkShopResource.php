@@ -2,11 +2,10 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ShowSchoolResource extends JsonResource
+class ShowWorkShopResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,13 +16,12 @@ class ShowSchoolResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'work_shop' => $this->name,
             'image' => $this->image,
-            'address' => $this->address->link,
-            'type' => $this->type->name,
-            'skills' => SkillResource::collection($this->skills),
-            'workshops' => $this->workshop,
-            'scholarship' => ShowScholarshipResource::collection($this->scholarship)
+            'start_date' => $this->start_date,
+            'expired_date' => $this->expired_date,
+            'time' => $this->time,
+            'school_id' => new SchoolResource($this->school)
         ];
     }
 }

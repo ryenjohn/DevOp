@@ -15,7 +15,7 @@ class ScholarshipSeeder extends Seeder
     public function run(): void
     {
         $scholarships = [
-            ["name" => "scholarship 1", "img" => "https://i.pinimg.com/564x/1b/80/f2/1b80f2d5745bca5f4bc619c4d2a5084f.jpg","description"=> "Get 100% scholarship", "post_date" => "2023-07:07", "expired_date"=>"2023:07:08", "school_id"=>1, "skill_id"=>1],
+            ["name" => "scholarship 1", "image" => "https://i.pinimg.com/564x/1b/80/f2/1b80f2d5745bca5f4bc619c4d2a5084f.jpg","description"=> "Get 100% scholarship", "post_date" => "2023-07:07", "expired_date"=>"2023:07:08", "school_id"=>1, "skill_id"=>1],
             
         ];
         foreach($scholarships as $scholarship){

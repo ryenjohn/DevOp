@@ -18,13 +18,13 @@ class School extends Model
 
     protected $fillable=[
         'name',
-        'img',
+        'image',
         'type_education_id',
         'address_id',
 
     ];
     public static function school($request, $id=null){
-        $school = $request->only(['name','img', 'type_education_id', 'address_id']);
+        $school = $request->only(['name','image', 'type_education_id', 'address_id']);
         $school = self::updateOrCreate(['id'=>$id], $school);
         $skills = request('skills');
         $school->skills()->sync($skills);
@@ -34,7 +34,6 @@ class School extends Model
     public function scholarship():HasMany{
         return $this->hasMany(ScholarShip::class);
     }
-
     // public function skills():BelongsToMany{
     //     return $this->belongsToMany(Skill::class,'school_skill','skill_id','school_id');
     // }
@@ -43,24 +42,28 @@ class School extends Model
         return $this->belongsToMany(Skill::class, 'school_skills')->withTimestamps();
     }
 
-    public function schedule():HasMany{
+    public function schedule(): HasMany
+    {
         return $this->hasMany(schedule::class);
     }
-    
-    public function type():BelongsTo{
-        return $this->belongsTo(TypeEducation::class,"type_education_id","id");
+
+    public function type(): BelongsTo
+    {
+        return $this->belongsTo(TypeEducation::class, "type_education_id", "id");
     }
 
-    public function address():BelongsTo{
+    public function address(): BelongsTo
+    {
         return $this->belongsTo(Address::class);
     }
 
-    public function comment():HasMany{
+    public function comment(): HasMany
+    {
         return $this->hasMany(Comment::class);
     }
 
-    public function workshop(): HasMany{
+    public function workshops(): HasMany
+    {
         return $this->hasMany(WorkShop::class);
     }
-    
 }
