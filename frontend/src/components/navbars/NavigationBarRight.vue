@@ -16,8 +16,6 @@
 </template>
 
 <script>
-
-// import axios from "axios";
 import Cookies from "js-cookie";
 import Menu from './Menu.vue';
 export default {

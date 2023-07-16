@@ -28,8 +28,8 @@
   </div>
 </template>
 <script>
-import axios from "axios";
 import Cookies from "js-cookie";
+import axios from 'axios';
 
 export default {
   name: "UserMenu",
@@ -44,7 +44,7 @@ export default {
     submitLogOut() {
       if (confirm("Are you sure you want to log out?")) {
         axios
-          .get("http://127.0.0.1:8000/api/logOut")
+          .get(`${ process.env.VUE_APP_API_URL}logOut`)
           .then(() => {
             Cookies.remove("userData");
             delete axios.defaults.headers.common["Authorization"];

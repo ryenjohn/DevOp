@@ -10,6 +10,7 @@
 </template>
 <script>
 import axios from 'axios'
+// import api_base from '../../router/api.js'
 export default {
   data(){
     return{
@@ -18,7 +19,6 @@ export default {
        scholarship:false, 
        workshop:false,
        datas:[],
-       url:'http://127.0.0.1:8000/api/',
        dataname:'schools'
 
     }
@@ -26,14 +26,14 @@ export default {
   methods:{
     contentData(dataName){
       this.dataname=dataName
-      axios.get(this.url+dataName).then((response)=>{
+      axios.get(`${ process.env.VUE_APP_API_URL}${dataName}`).then((response)=>{
         this.datas = response.data.data
         console.log(this.datas)
       })
     }
   },
   mounted(){
-    axios.get(this.url+'schools').then((response)=>{
+    axios.get(`${ process.env.VUE_APP_API_URL}schools`).then((response)=>{
         this.datas = response.data.data
       })
   }

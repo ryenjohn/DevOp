@@ -38,15 +38,16 @@
 </template>
 
 <script>
-
 import axios from 'axios';
+
+// import api_base from '../router/api.js';
+
     export default {
         
         data(){
             return {
                 data: [],
                 is_update: false,
-                url: 'http://127.0.0.1:8000/api/',
                 id:'',
                 dataname:'',
                 listSchool:'',
@@ -59,7 +60,7 @@ import axios from 'axios';
                 detailData(){
                     this.id = this.$route.params.id;
                     this.dataname = this.$route.params.dataname;
-                    axios.get(this.url+this.dataname+"/"+this.id).then((response) =>{
+                    axios.get(`${process.env.VUE_APP_API_URL}`+this.dataname+"/"+this.id).then((response) =>{
                         this.data = response.data.data
                         this.listScholarship = this.data.scholarship
                         this.listSkill = this.data.skills

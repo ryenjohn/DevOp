@@ -49,6 +49,7 @@
 
 <script>
 import axios from 'axios'
+// import api_base from '../../router/api.js'
 
 export default{
 
@@ -57,7 +58,7 @@ export default{
       email: '',
       password: '',
       errors: null,
-      url:'http://127.0.0.1:8000/api/resetPassword',
+     
 
       show1: false,
       rules: {
@@ -69,7 +70,8 @@ export default{
   },
   methods:{
     resetPassword() {
-      axios.patch(this.url, {email:this.email,password:this.password}).then((response)=>{
+      axios.patch(`${ process.env.VUE_APP_API_URL}resetPassword`, {email:this.email,password:this.password})
+      .then((response)=>{
         console.log(response);
         this.$router.push('/')
       })

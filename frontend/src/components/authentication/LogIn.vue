@@ -81,8 +81,8 @@
 import { reactive } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { email, required, minLength } from "@vuelidate/validators";
-import axios from "axios";
 import Cookies from "js-cookie";
+import axios from "axios";
 
 const initialState = {
   email: "",
@@ -124,7 +124,7 @@ async function logIn() {
       password: state.password,
     };
     // Make an API call to add data to the database
-    const response = await axios.post("http://127.0.0.1:8000/api/logIn", data);
+    const response = await axios.post(`${ process.env.VUE_APP_API_URL}logIn`, data);
 
     // Check the server response and alert the user accordingly
     if (response.status === 200) {
