@@ -1,11 +1,12 @@
 <template>
 <div>
 
-    <h1>All Users List <br>
+    <h1 v-if="datanameEmitted">All {{ pageTitle }}</h1>
+    <h1 v-else>All Users</h1>
     <div v-if="!datanameEmitted">
       <add-form></add-form>
     </div>
-    </h1>
+
     <list-user :datas="datas" @edit='edit' @del='del'></list-user> 
     <side-bar @dataname="changedata"></side-bar>
 
@@ -21,6 +22,7 @@ export default {
     return {
         datanameEmitted: false,
         datas: [],
+        pageTitle: '',
     };
   },
 
@@ -37,6 +39,7 @@ export default {
     },
     changedata(dataname){
       this.datanameEmitted = true;
+      this.pageTitle = dataname;
         
         fetch('http://127.0.0.1:8000/api/'+dataname)
         .then(response => response.json())
@@ -48,6 +51,7 @@ export default {
             console.error('Error fetching student data:', error);
         });
     },
+    
   },
   
   mounted() {

@@ -14,8 +14,6 @@
         <v-list density="compact" nav>
           <v-list-item  @click="changedata('students')" prepend-icon="mdi-account-school"  title="Students" value="Students"></v-list-item>
           <v-list-item  @click="changedata('managers')" prepend-icon="mdi-school" title="University" value="University"></v-list-item>
-  
-         
         </v-list>
       </v-navigation-drawer>
 

@@ -144,7 +144,7 @@
     data (){
       return {
         dialog: false,
-        role_id: ''
+        role_id: '',
       }
     },
   };
