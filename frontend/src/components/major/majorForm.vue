@@ -85,7 +85,7 @@ export default {
           subjects: this.getSubject()
         };
         console.log(newMajor);
-        axios.post("http://127.0.0.1:8000/api/skills",newMajor)
+        axios.post("http://127.0.0.1:8000/api/majors",newMajor)
           .then(() => {
             this.$router.push("/");
           })

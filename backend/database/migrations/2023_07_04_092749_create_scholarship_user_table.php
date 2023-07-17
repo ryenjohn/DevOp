@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('scholarship_user', function (Blueprint $table) {
+        Schema::create('scholarship_users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('scholarship_id')->unsigned();
             $table->foreign('scholarship_id')->references('id')->on('scholar_ships')->onDelete('cascade');
-            $table->boolean("Pass");
+            $table->boolean("pass");
             $table->timestamps();
         });
     }

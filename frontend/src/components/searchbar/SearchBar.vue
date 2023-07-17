@@ -1,32 +1,47 @@
 <template>
-  <v-card>
-    <v-card-title>
-      <h3>Find University</h3>
-      <v-spacer></v-spacer>
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        single-line
-        hide-details
-      ></v-text-field>
-    </v-card-title>
-  </v-card>
+    <div class="search-input">
+      <v-toolbar  color="primary" rounded="" height="74"  flat>
+        <v-text-field class="input"
+          v-model="searchKey"
+          clearable
+          hide-details
+          label="Search skill, city or province"
+          prepend-inner-icon="mdi-magnify"
+          single-line
+        ></v-text-field>
+      </v-toolbar>
+    </div>
+    <v-list >
+      <v-list-item
+        v-for="(item, i) in searching"
+        :key="i" link>
+        <div v-text="item"></div>
+      </v-list-item>
+    </v-list>
 </template>
-
 <script>
-export default {
-  data() {
-    return {
-      search: "",
-    };
-  },
-};
+// import axios from 'axios'
+  export default {
+    data: () => ({
+      items: [],
+      searchKey: '',
+    }),
+    watch: {
+      searchKey () {
+        this.$emit('searchKey',this.searchKey)
+      },
+    },
+
+  }
 </script>
-<style>
-  h3{
-    display: flex;
-    
-    justify-content: flex-start;
+<style scoped>
+  .search-input{
+    margin: 4%;
+    width: 50%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .input{
+    padding: 10px;
   }
 </style>

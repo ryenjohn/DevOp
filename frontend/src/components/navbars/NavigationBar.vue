@@ -1,6 +1,7 @@
 <template>
   <v-card>
     <div class="navbar">
+      
       <v-toolbar-title>
         <navigationbar-link></navigationbar-link>
       </v-toolbar-title>
@@ -16,6 +17,7 @@
   justify-content: start;
   align-items: center;
   background-color: blueviolet;
-  padding: 5px;
+  padding: 10px;
 }
+
 </style>
