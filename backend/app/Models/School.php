@@ -7,30 +7,47 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-
+use Illuminate\Support\Facades\Storage;
 class School extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name',
-        'img',
-        'type_education_id',
-        'address_id',
-
-    ];
     protected $hidden = [
         'created_at',
         'updated_at'
     ];
 
-    public function scholarship(): HasMany
-    {
+    protected $fillable=[
+        'name',
+        'image',
+        'type_education_id',
+        'address_id',
+
+    ];
+    public static function school($request, $id=null){
+        $school = $request->only(['name','image', 'type_education_id', 'address_id']);
+        if (filled($request->image)) {
+            $path = $request->file('image')->store('public/images/schools');
+            // Get the file's public URL
+            $url = Storage::url($path);
+            if($url){
+                $school['image']=$url;
+            }
+        }
+        $school = self::updateOrCreate(['id'=>$id], $school);
+        $skills = request('skills');
+        $school->skills()->sync($skills);
+        return $school;
+    }
+  
+    public function scholarship():HasMany{
         return $this->hasMany(ScholarShip::class);
     }
-
-    public function skills(): BelongsToMany
+    // public function skills():BelongsToMany{
+    //     return $this->belongsToMany(Skill::class,'school_skill','skill_id','school_id');
+    // }
+    public function skills()
     {
-        return $this->belongsToMany(Skill::class, 'school_skill', 'skill_id', 'school_id');
+        return $this->belongsToMany(Skill::class, 'school_skills')->withTimestamps();
     }
 
     public function schedule(): HasMany

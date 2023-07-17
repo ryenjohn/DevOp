@@ -15,10 +15,12 @@ class SchoolResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'img' => $this->img,
-
+            'id'=>$this->id,
+            'name'=>$this->name,
+            'image'=>$this->image,
+            'type'=>$this->type->name,
+            'address'=> new AddressResource($this->address),
+            
         ];
     }
 }
