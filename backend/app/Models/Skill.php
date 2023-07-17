@@ -29,18 +29,33 @@ class Skill extends Model
             'description',
             'image'
         ]);
+        // if (filled($request->image)) {
+        //     $path = $request->file('image')->store('public/images/skills');
+        //     // Get the file's public URL
+        //     $url = Storage::url($path);
+        //     if($url){
+        //         $skill['image']=$url;
+        //     }
+        // }
+        $skill = self::updateOrCreate(['id'=>$id], $skill);
+        $subjects = request('subjects');
+        $skill->subjects()->sync($subjects);
+        return $skill;
+    }
+    public static function image($request)
+    {
+        $skill = $request->only([
+            'image'
+        ]);
         if (filled($request->image)) {
             $path = $request->file('image')->store('public/images/skills');
             // Get the file's public URL
             $url = Storage::url($path);
             if($url){
-                $skill['image']=$url;
+                return $skill['image']=$url;
             }
         }
-        $skill = self::updateOrCreate(['id'=>$id], $skill);
-        $subjects = request('subjects');
-        $skill->subjects()->sync($subjects);
-        return $skill;
+        return "Image cannot not add";
     }
 
     public function subjects()

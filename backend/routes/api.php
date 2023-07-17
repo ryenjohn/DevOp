@@ -47,6 +47,9 @@ Route::post('/skills',[SkillController::class,'createSkill']);
 Route::put('/skills/{id}',[SkillController::class,'editeSkill']);
 Route::delete('/skills/{id}',[SkillController::class,'deleteSkill']);
 
+// Create link image from front-end
+Route::post('/image',[SkillController::class,'createImageLink']);
+
 // subject route
 Route::get('/subjects',[SkillController::class,'getSubjects']);
 
