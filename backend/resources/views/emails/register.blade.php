@@ -13,7 +13,7 @@
 </head>
 <body>
     <h1>Welcome to our website!</h1>
-    <h3><a href="http://localhost:8080/signUp">Click me</a></h3>
+    <h3><a href="http://localhost:8080/registerAdmin">Click me</a></h3>
 </body>
 </html>
 

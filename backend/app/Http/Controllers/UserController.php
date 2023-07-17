@@ -7,6 +7,7 @@ use App\Mail\Register;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
@@ -58,6 +59,11 @@ class UserController extends Controller
 
         }
 
+    }
+
+    public function getUserId( Request $email){
+        $userId = DB::table('users')->where('email', $email)->first()->id;
+        return $userId;
     }
   
     public function update(Request $request, string $id)

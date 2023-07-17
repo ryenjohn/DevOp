@@ -1,4 +1,4 @@
-// copy from vutity
+// copy from vutify
 <template>
   <div class="container">
     <div class="image">

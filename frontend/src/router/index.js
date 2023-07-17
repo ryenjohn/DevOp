@@ -4,6 +4,7 @@ import SignUp from '../components/authentication/SignUp.vue'
 import LogIn from '../components/authentication/LogIn.vue'
 import sendMail from '../components/authentication/sendEmail.vue'
 import resetPassword from '../components/authentication/resetPassword.vue'
+import universityManager from '../components/authentication/registerUniversityManager.vue'
 import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
 
@@ -61,6 +62,11 @@ const routes = [
     path: '/resetPassword',
     name: 'resetPassword',
     component: resetPassword
+  },
+  {
+    path: '/registerAdmin',
+    name: 'registerAdmin',
+    component: universityManager
   }
 
 ]
