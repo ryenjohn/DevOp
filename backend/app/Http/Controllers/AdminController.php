@@ -62,7 +62,7 @@ class AdminController extends Controller
         
         // Update other fields as needed
         $user->save();
-
+    
         return response()->json(['message' => 'User updated successfully']);
     }
 }
