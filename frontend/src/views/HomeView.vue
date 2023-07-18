@@ -33,7 +33,7 @@ export default {
     },
     searchdata() {
       axios
-        .get(`http://127.0.0.1:8000/api/schools/address/${this.key}`)
+        .get(`${ process.env.VUE_APP_API_URL}schools/address/${this.key}`)
         .then((res) => {
           this.datas = res.data.data;
         });

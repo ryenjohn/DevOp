@@ -20,7 +20,6 @@ class SchoolResource extends JsonResource
             'image'=>$this->image,
             'type'=>$this->type->name,
             'address'=> new AddressResource($this->address),
-            
         ];
     }
 }
