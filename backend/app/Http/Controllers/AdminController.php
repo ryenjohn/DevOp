@@ -65,4 +65,13 @@ class AdminController extends Controller
     
         return response()->json(['message' => 'User updated successfully']);
     }
+
+    // Delete User
+    public function destroy(Request $request,$id)
+    {
+        
+        $user = User::find($id);
+        $user->delete();
+        return response()->json(['success' => true, 'message' => `user id:{$id} has been deleted`], 200);
+    }
 }

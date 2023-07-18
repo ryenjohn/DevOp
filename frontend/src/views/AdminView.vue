@@ -2,7 +2,7 @@
     <h1>All Users List <br>
       <span @click="add()" class=" button mdi mdi-plus-circle">ADD</span>
     </h1>
-    <list-user :datas="datas" @edit='edit' @del='del'></list-user> 
+    <list-user :datas="datas" ></list-user> 
     <side-bar @dataname="changedata"></side-bar>
 </template>
 
@@ -21,13 +21,6 @@ export default {
     add(){
         alert("Add new student");
         },
-    edit(){
-        alert("edit student");
-
-        },
-    del(){
-        alert("Do you want to delete student?");
-    },
     changedata(dataname){
         
         fetch('http://127.0.0.1:8000/api/'+dataname)
