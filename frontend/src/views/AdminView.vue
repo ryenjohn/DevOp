@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
 
@@ -30,14 +31,12 @@ export default {
     },
     changedata(dataname){
         
-        fetch('http://127.0.0.1:8000/api/'+dataname)
-        .then(response => response.json())
-        .then(data => {
-            this.datas = data.data;
-            console.log(this.datas)
+        axios.get(`${ process.env.VUE_APP_API_URL}${dataname}`)
+        .then(res => {
+            this.datas = res.data.data;
         })
         .catch(error => {
-            console.error('Error fetching student data:', error);
+            console.error('Error axios student data:', error);
         });
     }
     
@@ -45,15 +44,14 @@ export default {
   
   mounted() {
 
-    fetch('http://127.0.0.1:8000/api/users')
-      .then(response => response.json())
-      .then(data => {
-        this.datas = data.data;
-        console.log(this.datas)
+    axios.get(`${ process.env.VUE_APP_API_URL}users`)
+      .then(res => {
+        this.datas = res.data.data;
       })
       .catch(error => {
-        console.error('Error fetching student data:', error);
-      });
+        console.error('Error axios student data:', error);
+    });
+
   },
 }
 

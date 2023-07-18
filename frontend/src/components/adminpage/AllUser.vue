@@ -40,10 +40,9 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 export default {
 
-  
   data() {
     return {
       students: [],
@@ -65,13 +64,12 @@ export default {
   },
   
   mounted() {
-    fetch('http://127.0.0.1:8000/api/users')
-      .then(response => response.json())
-      .then(data => {
-        this.students = data.data;
+    axios.get(`${ process.env.VUE_APP_API_URL}users`)
+      .then(res => {
+        this.students = res.data.data;
       })
       .catch(error => {
-        console.error('Error fetching student data:', error);
+        console.error('Error axios student data:', error);
       });
   },
 }

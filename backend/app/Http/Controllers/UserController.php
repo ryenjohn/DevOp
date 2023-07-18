@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Mail\Register;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+   
     public function index()
     {
         $users = User::all();
@@ -49,14 +53,37 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
+
+    public function sendEmail(Request $request)
+    {
+
+       
+        $data =[
+            'subject' =>"Reset password",
+            'email'=>$request->email,
+            'link'=>'http://localhost:8080/signUp'
+
+        ];
+        try
+        {
+            Mail::to($data['email'])->send(new Register($data));
+            return response()->json("great check you mail box");
+        }
+        catch(Exception $th)
+        {
+            return response()->json("Sorry something went wrong");
+
+        }
+
+    }
+  
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy(string $id)
     {
         //

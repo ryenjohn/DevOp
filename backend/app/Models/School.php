@@ -42,9 +42,7 @@ class School extends Model
     public function scholarship():HasMany{
         return $this->hasMany(ScholarShip::class);
     }
-    // public function skills():BelongsToMany{
-    //     return $this->belongsToMany(Skill::class,'school_skill','skill_id','school_id');
-    // }
+
     public function skills()
     {
         return $this->belongsToMany(Skill::class, 'school_skills')->withTimestamps();

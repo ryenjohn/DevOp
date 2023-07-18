@@ -1,9 +1,10 @@
 <template>
   <hidede-limiter class="mt-5"></hidede-limiter>
   <!-- <search-bar @searchKey="searchKey"></search-bar> -->
-  <navigationbar-content @searchKey="searchKey"
+  <navigationbar-content
     @contentData="contentData"
     :datas="datas"
+    @searchkey="searchKey"
   ></navigationbar-content>
 </template>
 
@@ -15,7 +16,6 @@ export default {
       datas: [],
       url: "http://127.0.0.1:8000/api/",
       dataname: "schools",
-      isSearch: false,
       key: "",
     };
   },
@@ -40,8 +40,11 @@ export default {
     },
     searchKey(key) {
       this.key = key;
-      this.isSearch = true;
+      if(key==null){
+       this.defaultData()
+      }
       this.searchdata();
+      
     },
   },
   mounted() {

@@ -5,14 +5,21 @@
     <v-tab @click="contentData('workshops')">Workshops</v-tab>
     <v-tab @click="contentData('scholarships')">Scholarships</v-tab>
   </v-tabs>
+  <search-bar @searchKey="searchKey"></search-bar>
   <content-list v-if='dataname!="scholarships" && dataname!="workshops" ' :datas="datas" :dataname='dataname' ></content-list>
  <scholarship-workshop-card v-else  class="mt-10" :datas="datas" :dataname='dataname'></scholarship-workshop-card>
 </template>
 <script>
+// import axios from 'axios'
+// import api_base from '../../router/api.js'
 export default {
   props:['datas'],
   data(){
     return{
+       university:false,
+       skill:false,
+       scholarship:false, 
+       workshop:false,
        dataname:'schools'
 
     }
@@ -21,14 +28,13 @@ export default {
     contentData(dataName){
       this.$emit('contentData',dataName)
     },
-    searchKey(){
-      this.$emit('searchKey')
+    searchKey(key){
+     this.$emit("searchkey",key)
     }
+    
 
   },
-  mounted(){
-    this.contentData('schools')
-  }
+ 
 }
 </script>
 <style scoped>

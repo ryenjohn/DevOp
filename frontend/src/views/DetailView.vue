@@ -15,14 +15,14 @@
         </template>
         <template #info>    
             <v-card-text>
-                <div> <strong>Name: </strong>{{data.name}}</div>
-                <div><strong>Description: </strong> {{data.description}}</div>
+                <h1 > <strong>Name: </strong>{{data.name}} ({{data.type}})</h1><br>
+                <h3><strong></strong> {{data.description}}</h3>
                 <div  v-if='dataname=="majors"'><strong>Subject that match with this skill: </strong>
                     <ul>
                         <li v-for='subject in data.subjects' :key="subject">{{subject}}</li>
                     </ul>
                 </div>
-                <div v-if='dataname=="schools"'> <strong>Type: </strong>{{data.type}}</div>
+                
             </v-card-text>
         </template>
     </card-item>
@@ -36,12 +36,14 @@
 
 <script>
 import axios from 'axios';
+
+// import api_base from '../router/api.js';
+
     export default {
         data(){
             return {
                 data: [],
                 is_update: false,
-                url: 'http://127.0.0.1:8000/api/',
                 id:'',
                 dataname:'',
                 listSchool:'',
@@ -54,7 +56,7 @@ import axios from 'axios';
                 detailData(){
                     this.id = this.$route.params.id;
                     this.dataname = this.$route.params.dataname;
-                    axios.get(this.url+this.dataname+"/"+this.id).then((response) =>{
+                    axios.get(`${process.env.VUE_APP_API_URL}`+this.dataname+"/"+this.id).then((response) =>{
                         this.data = response.data.data
                         this.listScholarship = this.data.scholarship
                         this.listSkill = this.data.skills
@@ -80,6 +82,10 @@ import axios from 'axios';
         flex-direction: column;
         justify-content:end;
     }
+    h1,h3{
+        text-align: center;
+    }
+
     button{
         padding:20px ;
         border-radius:20px;
@@ -89,4 +95,5 @@ import axios from 'axios';
         width: 10%;
         margin:10px;
     }
+    
 </style>

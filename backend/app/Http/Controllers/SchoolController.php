@@ -25,6 +25,7 @@ class SchoolController extends Controller
 
     public function getschools(){
         $school = School::all();
+        $school = ShowSchoolResource::collection($school);
         return response()->json(['Get success'=>true, 'data'=>$school],200);
     }
     
@@ -39,10 +40,10 @@ class SchoolController extends Controller
             $query->where('city/province', 'like', "%$name%");
         })->get();
         if(count($result)){
-            $result = SchoolResource::collection($result);
+            $result = ShowSchoolResource::collection($result);
             return response()->json(['success'=>true, 'data'=>$result],200);
         } 
-        return response()->json(['success'=>true, 'data'=>['']],200);
+        return response()->json(['success'=>true, 'data'=>[]],200);
     }
     
     public function searchSkill($name){

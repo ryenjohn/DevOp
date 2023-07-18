@@ -4,6 +4,10 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MajorController;
 
+use App\Http\Controllers\ResetPasswordController;
+
+use App\Http\Controllers\RegisterMailcontroller;
+
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ScholarshipController;
@@ -78,4 +82,10 @@ Route::get('/workshops/{id}',[WorkShopController::class,'getWorkShopById']);
 Route::post('/workshops',[WorkShopController::class,'createWorkShop']);
 Route::put('/workshops/{id}',[WorkShopController::class,'editeWorkShop']);
 Route::delete('/workshops/{id}',[WorkShopController::class,'deleteWorkShop']);
+Route::patch('/resetPassword',[ResetPasswordController::class,'resetPassword']);
+// Route::post('/sendMail',[ResetPasswordController::class,'SendMail'])
+Route::post('/sendMail',[ResetPasswordController::class,'SendMail']);
+
+// university page register 
+Route::post('/registerMail',[UserController::class,'sendEmail']);
 

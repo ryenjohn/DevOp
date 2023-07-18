@@ -53,7 +53,9 @@
           Incorrect email or password. Please try again.
         </p>
         <p class="forgot-password">
-          <router-link to="/">Forgot password</router-link>
+          <!-- <router-link to="/">Forgot password</router-link> -->
+          <router-link to="/sendMail">Forgot password</router-link>
+
         </p>
         <div class="btn">
           <div>
@@ -80,18 +82,15 @@
 import { reactive } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { email, required, minLength } from "@vuelidate/validators";
-import axios from "axios";
 import Cookies from "js-cookie";
+import axios from "axios";
 
-const userRole =  Cookies.get("userData") ? JSON.parse(Cookies.get("userData")).data : "";
 const initialState = {
   email: "",
   password: "",
   emailTakenError: false,
   visible: false,
   incorrectPasswordError: false,
-  role: userRole
-  
 };
 const state = reactive(Object.assign({}, initialState));
 
@@ -124,7 +123,7 @@ async function logIn() {
       password: state.password,
     };
     // Make an API call to add data to the database
-    const response = await axios.post("http://127.0.0.1:8000/api/logIn", data);
+    const response = await axios.post(`${ process.env.VUE_APP_API_URL}logIn`, data);
 
     // Check the server response and alert the user accordingly
     if (response.status === 200) {
