@@ -34,7 +34,6 @@
         required
         :rules="[passwordRule]"
       ></v-text-field>
-      <!-- <v-btn @click="showPassword = !showPassword" text>{{ showPassword ? 'Hide' : 'Show' }}</v-btn> -->
       <span v-if="showValidationMessage">{{ validationMessage }}</span>
 
       </div>
@@ -78,6 +77,7 @@ export default{
         alert("please input right email this email not found")
       })
     },
+    //​​ source of coode "https://fontawesomeicons.com/tryit/code/vue-js-password-validation-regex/0"
     validatePassword() {
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
         if (!this.password) {
@@ -88,7 +88,7 @@ export default{
             this.showValidationMessage = false;
         } else {
             this.showValidationMessage = true;
-            this.validationMessage = 'Password must contain lowercase letter, uppercase letter,  digit, special character, and be at least 8 characters long.';
+           this.validationMessage = 'Password must contain lowercase letter, uppercase letter,  digit, special character, and be at least 8 characters long.';
         }
     },
 
