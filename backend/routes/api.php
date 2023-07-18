@@ -54,6 +54,8 @@ Route::get('/workshops',[WorkShopController::class,'workshops']);
 // Admin side --------------------------------
 
 Route::get('/users', [AdminController::class, 'index']);
+Route::get('/user/{id}', [AdminController::class, 'getUser']);
+Route::put('/user/{id}', [AdminController::class, 'updateUser']);
 Route::get('/students', [AdminController::class, 'getStudents']);
 Route::get('/managers', [AdminController::class, 'getUniversityDirectors']);
 
