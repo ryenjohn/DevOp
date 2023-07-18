@@ -1,5 +1,5 @@
 <template>
-
+  <search-bar @searchKey="searchKey"></search-bar>
   <title-text v-if='datas!=null && datas!=""' >Choose {{dataname}}</title-text>
   <card-container >
         <v-col cols="12" sm="3" v-for="(data, index) in datas" :key="data">

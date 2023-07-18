@@ -20,8 +20,11 @@ export default {
   methods:{
     contentData(dataName){
       this.$emit('contentData',dataName)
-     
+    },
+    searchKey(){
+      this.$emit('searchKey')
     }
+
   },
   mounted(){
     this.contentData('schools')
