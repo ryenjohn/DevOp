@@ -54,7 +54,7 @@ const routes = [
     component: Admin
   },
   {
-    path: '/sendMail',
+    path: '/sendMail/:title',
     name: 'sendMail',
     component: sendMail
   },

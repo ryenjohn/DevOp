@@ -43,7 +43,7 @@ class UserController extends Controller
 
        
         $data =[
-            'subject' =>"Reset password",
+            'subject' =>"Create university page!",
             'email'=>$request->email,
             'link'=>'http://localhost:8080/signUp'
 

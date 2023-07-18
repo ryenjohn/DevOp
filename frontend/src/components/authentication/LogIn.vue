@@ -54,7 +54,7 @@
         </p>
         <p class="forgot-password">
           <!-- <router-link to="/">Forgot password</router-link> -->
-          <router-link to="/sendMail">Forgot password</router-link>
+          <router-link to="/sendMail/forgetpwd">Forgot password</router-link>
 
         </p>
         <div class="btn">
