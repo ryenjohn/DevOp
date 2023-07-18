@@ -116,9 +116,9 @@ export default {
         this.dialog = false
       })
       axios.put(this.url + `/${$id}`, newData)
-        .then((response) => {
+        .then(() => {
           
-          console.log(response)
+        
           this.dialog = false;
           location.reload();
         })
