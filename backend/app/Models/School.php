@@ -48,7 +48,7 @@ class School extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function workshop(): HasMany{
+    public function workshop():HasMany{
         return $this->hasMany(WorkShop::class);
     }
     
