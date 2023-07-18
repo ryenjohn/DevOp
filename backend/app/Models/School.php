@@ -21,13 +21,12 @@ class School extends Model
         'name',
         'image',
         'description',
-        'user_id',
         'type_education_id',
         'address_id',
 
     ];
     public static function school($request, $id=null){
-        $school = $request->only(['name','image', 'description', 'user_id', 'type_education_id', 'address_id']);
+        $school = $request->only(['name','image', 'description', 'type_education_id', 'address_id']);
         if (filled($request->image)) {
             $path = $request->file('image')->store('public/images/schools');
             // Get the file's public URL

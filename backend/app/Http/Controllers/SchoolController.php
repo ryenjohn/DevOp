@@ -31,7 +31,6 @@ class SchoolController extends Controller
     public function createSchool(SchoolRequest $request)
     {
         $school = School::school($request);
-        // $school = ShowSchoolResource::collection($school);
         return response()->json(['message'=>"Create school successfully", 'data'=>$school], 201);
     }
 
