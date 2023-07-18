@@ -46,7 +46,7 @@ export default{
   methods:{
     
     getMail() {
-      axios.post('sendMail',{email:this.email})
+      axios.post(`${ process.env.VUE_APP_API_URL}sendMail`,{email:this.email})
       .then((response)=>{
         console.log(response)
         if(!this.email==""){
