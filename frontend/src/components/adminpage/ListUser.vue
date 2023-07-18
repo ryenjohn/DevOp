@@ -33,7 +33,6 @@
       </tbody>
     </v-table>
   </div>
-  // dialog for delete
   <v-dialog v-model="dialogDelete" max-width="400px">
     <v-card>
       <v-card-title>Delete Confirmation</v-card-title>
@@ -47,7 +46,6 @@
     </v-card>
   </v-dialog>
 
-  // dialog for delete
   <v-dialog v-model="dialogEdit" width="auto">
     <v-card class="custom-dialog">
       <v-card-title class="custom-dialog-title">

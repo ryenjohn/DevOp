@@ -2,8 +2,8 @@
     <h1>All Users List <br>
       <span @click="add()" class=" button mdi mdi-plus-circle">ADD</span>
     </h1>
+    <side-bar @dataname="changedata" class="side-bar"></side-bar>
     <list-user :datas="datas" ></list-user> 
-    <side-bar @dataname="changedata"></side-bar>
 </template>
 
 <script>
@@ -33,6 +33,7 @@ export default {
             console.error('Error fetching student data:', error);
         });
     }
+    
     
   },
   
@@ -80,5 +81,6 @@ export default {
         text-align: center;
         margin-top: 100px;
     }
+   
 
 </style>
