@@ -28,14 +28,14 @@ class Skill extends Model
             'description',
             'image'
         ]);
-        // if (filled($request->image)) {
-        //     $path = $request->file('image')->store('public/images/skills');
-        //     // Get the file's public URL
-        //     $url = Storage::url($path);
-        //     if($url){
-        //         $skill['image']=$url;
-        //     }
-        // }
+        if (filled($request->image)) {
+            $path = $request->file('image')->store('public/images/skills');
+            // Get the file's public URL
+            $url = Storage::url($path);
+            if($url){
+                $skill['image']=$url;
+            }
+        }
         $skill = self::updateOrCreate(['id'=>$id], $skill);
         $subjects = request('subjects');
         $skill->subjects()->sync($subjects);
