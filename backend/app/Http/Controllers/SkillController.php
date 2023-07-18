@@ -44,7 +44,13 @@ class SkillController extends Controller
         $skills = new ShowSkillResource($skills);
         return response()->json(['message' => "Create skills success", 'data' => $skills], 201);
     }
-
+    // text image
+    public function createImageLink(Request $request)
+    {
+        $skills = Skill::image($request);
+        return response()->json(['message' => "Create skills success", 'data' => $skills], 201);
+    }
+    // create image test.
     public function editeSkill(SkillRequest $request, string $id)
     {
         $skill  = Skill::find($id);

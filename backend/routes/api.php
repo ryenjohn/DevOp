@@ -73,6 +73,9 @@ Route::middleware(['auth:sanctum'])->group(function(){
 });
 Route::post('/logIn', [AuthenticationController::class,'login']);
 
+// Create link image from front-end
+Route::post('/image',[SkillController::class,'createImageLink']);
+
 // subject route
 Route::get('/subjects',[SkillController::class,'getSubjects']);
 
