@@ -17,15 +17,14 @@
 
 <script>
 
-// import axios from "axios";
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 import Menu from './Menu.vue';
 export default {
-  name: "App",
+  name: 'App',
   components: {
     Menu
   },
-  emits: ["submitLogOut"],
+  emits: ['submitLogOut'],
   data() {
     return {
       userName: null,
@@ -37,7 +36,7 @@ export default {
     // copy https://stackoverflow.com/questions/52021405/vue-js-laravel-handle-logout-correctly
     setUser() {
       // Get the value of the "userData" cookie
-      const userData = Cookies.get("userData");
+      const userData = Cookies.get('submitLogOut');
       // If the "userData" cookie exists, parse it and set the user ID in the component data
       if (userData) {
         const userDataObj = JSON.parse(userData);
