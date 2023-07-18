@@ -10,8 +10,8 @@ class Address extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'street',
-        'city'
+        'name',
+        'link'
     ];
     protected $hidden = [
         'created_at',

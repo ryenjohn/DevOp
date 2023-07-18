@@ -58,8 +58,6 @@ export default{
       email: '',
       password: '',
       errors: null,
-     
-
       show1: false,
       rules: {
         required: value => !!value || 'Required.',

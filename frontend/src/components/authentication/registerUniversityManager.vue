@@ -92,8 +92,7 @@
         <option  v-for='address in addresses ' :key="address" value="{{address.id}}">{{address.name}}</option>
       </select>
       
-    
-       <select class="select">
+      <select class="select">
         <option value="none">Choose the school type:</option>
         <option  v-for='type in schoolTypes ' :key="type" value="{{type.id}}">{{type.name}}</option>
       </select>
@@ -103,13 +102,13 @@
     <!-- https://codepen.io/johnjleider/pen/GVoaNe -->
     <v-container fluid class="pt-0">
       <h3>Choose the skills in your university: </h3> <br>
-          <v-row>
-            <v-col class="pt-0" v-for='skill in skills' :key='skill'>
-              <input type="checkbox"  name="{{skill.name}}" value="{{skill.id}}"> <br>
-              <label for="{{skill.name}}"> {{skill.name}}</label><br>
-            </v-col>
-          </v-row>
-        </v-container>
+      <v-row>
+        <v-col class="pt-0" v-for='skill in skills' :key='skill'>
+          <input type="checkbox"  name="{{skill.name}}" value="{{skill.id}}"> <br>
+          <label for="{{skill.name}}"> {{skill.name}}</label><br>
+        </v-col>
+      </v-row>
+    </v-container>
   
 
     <v-file-input
