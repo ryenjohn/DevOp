@@ -9,13 +9,17 @@ use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\RegisterMailcontroller;
 
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\ScholarshipController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SkillController;
+<<<<<<< HEAD
 use App\Http\Controllers\WorkShopController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Resources\SubjectResource;
+=======
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Workshops;
+>>>>>>> 63b309eb7828f9aca2c49ecd6390f3b56a49defb
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +50,12 @@ Route::post('/roles',[RoleController::class, 'store']);
 // Route::get('/majors',[SkillController::class,'getmajors']);
 // Route::get('/majors/{id}',[SkillController::class,'getmajor']);
 Route::get('/schools/{id}',[SchoolController::class,'getschool']);
+
+Route::get('/workshops',[Workshops::class,'getWorkshops']);
+Route::get('/workshop/{id}',[Workshops::class,'getWorkshop']);
+Route::get('/user/{id}',[UserController::class,'getUser']);
+Route::put('/user/{id}',[UserController::class,'saveChange']);
+
 Route::get('/schools',[SchoolController::class,'getschools']);
 Route::get('/schools/address/{name}',[SchoolController::class,'search']);
 Route::get('/schools/skill/{name}',[SchoolController::class,'searchSkill']);
@@ -64,6 +74,9 @@ Route::delete('/majors/{id}',[SkillController::class,'deleteSkill']);
 
 // Admin side --------------------------------
 Route::get('/users', [AdminController::class, 'index']);
+Route::get('/user/{id}', [AdminController::class, 'getUser']);
+Route::put('/user/{id}', [AdminController::class, 'updateUser']);
+Route::delete('/user/{id}', [AdminController::class, 'destroy']);
 Route::get('/students', [AdminController::class, 'getStudents']);
 Route::get('/managers', [AdminController::class, 'getUniversityDirectors']);
 

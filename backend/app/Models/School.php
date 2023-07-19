@@ -70,8 +70,12 @@ class School extends Model
         return $this->hasMany(Comment::class);
     }
 
+<<<<<<< HEAD
     public function workshops(): HasMany
     {
+=======
+    public function workshop():HasMany{
+>>>>>>> 63b309eb7828f9aca2c49ecd6390f3b56a49defb
         return $this->hasMany(WorkShop::class);
     }
 

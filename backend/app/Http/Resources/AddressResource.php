@@ -14,6 +14,7 @@ class AddressResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+<<<<<<< HEAD
         return [
             'id'=>$this->id,
             'city_province' => $this->{'city/province'},
@@ -21,5 +22,8 @@ class AddressResource extends JsonResource
             'location' => $this->location,
             'link' => $this->link
         ];
+=======
+        return parent::toArray($request);
+>>>>>>> 63b309eb7828f9aca2c49ecd6390f3b56a49defb
     }
 }

@@ -20,6 +20,11 @@ class WorkShop extends Model
         'start_date',
         'expired_date',
         'time',
+<<<<<<< HEAD
+=======
+        'school_id',
+        'address_id',
+>>>>>>> 63b309eb7828f9aca2c49ecd6390f3b56a49defb
 
     ];
     public static function workShop($request, $id = null)
@@ -53,5 +58,8 @@ class WorkShop extends Model
     public function school(): BelongsTo
     {
         return $this->belongsTo(School::class);
+    }
+    public function address():BelongsTo{
+        return $this->belongsTo(Address::class);
     }
 }
