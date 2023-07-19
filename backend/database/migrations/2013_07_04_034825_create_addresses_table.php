@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('city/province')->nullable();
             $table->string('street')->nullable();
-            $table->string('location')->nullable();
             $table->string('link')->nullable();
             $table->timestamps();
         });
