@@ -1,8 +1,8 @@
 <?php
 
 namespace Database\Seeders;
-use Faker\Factory as Faker;
 
+use App\Models\Skill;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -14,18 +14,11 @@ class SkillSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
-
-        for ($i = 0; $i < 10; $i++) {
-            $skillName = $faker->jobTitle;
-            $description = $faker->sentence;
-            $img = $faker->imageUrl($width = 640, $height = 480);
-        
-            DB::table('skills')->insert([
-                'name' => $skillName,
-                'description' => $description,
-                'image' => $img,
-            ]);
+        $skills = [
+            ["name" => "IT","description" => "This is about science" ,"image" => "https://img.freepik.com/free-vector/illustration-social-media-concept_53876-18139.jpg"],
+        ];
+        foreach($skills as $skill){
+            Skill::create($skill);
         }
     }
 }

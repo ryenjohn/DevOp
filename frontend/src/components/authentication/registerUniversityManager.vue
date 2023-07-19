@@ -69,7 +69,7 @@
     <v-container fluid class="pt-0"  id="checkbox">
         <v-checkbox
             v-for="skill in skills" :key="skill"
-            v-model="selected"
+            v-model="skillSelect"
             :label=skill.name
             :value="skill.id"
         ></v-checkbox>
@@ -90,13 +90,15 @@
       variant="outlined"
       label="University Description"
     ></v-textarea>
-    <v-btn type="submit" :disabled="!valid">Submit</v-btn>
+    <v-btn type="submit">Submit</v-btn>
+    <!-- <v-btn type="submit" :disabled="!valid">Submit</v-btn> -->
   </v-form>
 </div>
 </template>
 
 <script>
 import axios from 'axios'
+
 export default {
     data() {
         return {
@@ -109,10 +111,14 @@ export default {
             universityName: '',
             schoolTypes:null,
             skills :null,
-            selected: [],
+            skillSelect: [],
             image:'',
             descriptions:'',
             valid: true,
+            newUserID:'',
+            newSchool:[],
+            role_id:2,
+            schoolId:1,
             nameRules: [
                 value => !!value || 'Name is required',
                 value => (value && value.length >= 2) || 'Name needs to be at least 2 characters',
@@ -122,7 +128,7 @@ export default {
             ],
             emailRules: [
                 value => !!value || 'Email is required',
-                value => /^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value) || 'Must be a valid e-mail',
+                value => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) || 'E-mail must be valid',
             ],
             addressRules: [
                 value => !!value || 'Select an item',
@@ -148,36 +154,64 @@ export default {
         }
     },
     methods: {
-
         createUser(){
-        // form is valid, submit it
-            axios.post(`${ process.env.VUE_APP_API_URL}users`,(this.name,this.email, this.password))
-            .then((res)=>{
-                this.addresses = res.data.data
+             // create school
+            axios.post(`${process.env.VUE_APP_API_URL}schools`, {
+                name: this.universityName,
+                image: this.image,
+                description: this.description,
+                type_education_id: this.schoolTypes,
+                address_id: this.addresses,
+                skills: this.skillSelect
             })
-        // console.log(this.name)
-        // console.log(this.email)
-        // console.log(this.phone)
-        // console.log(this.addresses)
-        // console.log(this.password)
-        // console.log(this.universityName)
-        // console.log(this.selected)
-        // console.log(this.image[0].name)
-        // console.log(this.descriptions)
+            .then((res) => {
+                this.addresses = res.data.data
+                console.log(res.data.data)
+                this.getSchoolIdByName()
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            
+            // create user
+            axios.post(`${process.env.VUE_APP_API_URL}users`, {
+            name: this.name,
+            email: this.email,
+            password: this.password,
+            role_id: this.role_id,
+            school_id: this.schoolId
+            })
+            .then((res) => {
+                this.addresses = res.data.data
+                console.log(res.data.data)
+            })
+            .catch((error) => {
+                console.error(error.response.data);
+            })    
+    
         },
+
         getAddress(){
             axios.get(`${ process.env.VUE_APP_API_URL}addresses`).then((res)=>{
             this.addresses = res.data.data
             })
         },
+
         getSchoolTypes(){
             axios.get(`${ process.env.VUE_APP_API_URL}schoolType`).then((res)=>{
             this.schoolTypes = res.data.data
             })
         },
+
         getskills(){
             axios.get(`${ process.env.VUE_APP_API_URL}majors`).then((res)=>{
             this.skills = res.data.data
+            })
+        },
+
+        getSchoolIdByName(){
+            axios.get(`${ pschoolIdrocess.env.VUE_APP_API_URL}getSchoolIdByName`,).then((res)=>{
+            this.schoolId = res.data.data;
             })
         }
     },

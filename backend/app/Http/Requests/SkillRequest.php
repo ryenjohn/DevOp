@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Requests;
+
 use Illuminate\Contracts\Validation\Validator as ValidationValidator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class SchoolRequest extends FormRequest
+class SkillRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,12 +27,10 @@ class SchoolRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            // 'image'=> 'required',
-            'description'=>'required',
-            'type_education_id'=> 'required',
-            'address_id'=> 'required',
-            'skills'=> 'required',
+            'name'=>'required',
+            'description'=> 'required',
+            'image' => 'required',
+            'subjects' => 'required'
         ];
     }
 }

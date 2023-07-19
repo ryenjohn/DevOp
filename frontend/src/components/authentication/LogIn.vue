@@ -63,9 +63,10 @@
               <v-btn class="me-4" @click="v$.$touch()">Log in</v-btn>
             </div>
             <div v-else class="sign-in">
-              <v-btn class="me-4"  @click="logIn">
+              <v-btn class="me-4"  @click="logIn" v-if="state.incorrectPasswordError==true">
                 <router-link class="link-log-in"  to="/"> log in</router-link>
               </v-btn>
+              <v-btn class="me-4"  @click="logIn" v-else>log in</v-btn>
             </div>
           </div>
           <p class="log-in">
@@ -91,13 +92,11 @@ const initialState = {
   visible: false,
   incorrectPasswordError: false,
 };
-
 const state = reactive(Object.assign({}, initialState));
 
 // Set role for password
 const passwordRule = (value) => {
-  const regex =
-    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}|:"<>?~`]).{8,}$/;
+  const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}|:"<>?~`]).{8,}$/;
   const result = regex.test(value);
   return result;
 };

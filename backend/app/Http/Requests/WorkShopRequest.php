@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Requests;
+
 use Illuminate\Contracts\Validation\Validator as ValidationValidator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class SchoolRequest extends FormRequest
+class WorkShopRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,11 +28,13 @@ class SchoolRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            // 'image'=> 'required',
-            'description'=>'required',
-            'type_education_id'=> 'required',
-            'address_id'=> 'required',
-            'skills'=> 'required',
+            'image' => 'required',
+            'address_id' => 'required',
+            'school_id' => 'required',
+            'description' => 'required',
+            'start_date' => 'required|date',
+            'expired_date' => 'required|date|after:start_date',
+            'time' => 'required',
         ];
     }
 }
