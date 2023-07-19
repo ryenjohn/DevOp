@@ -10,6 +10,8 @@ import Contact from '../views/ContactView.vue'
 import Home from '../views/HomeView.vue'
 import Detail from '../views/DetailView.vue'
 import Admin from '../views/AdminView.vue'
+import University from '../views/UniversityView.vue'
+
 
 const routes = [
   {
@@ -50,6 +52,12 @@ const routes = [
     name: 'admin',
     component: Admin
   },
+  {
+    path: '/university',
+    name: 'university',
+    component: University
+  },
+
   {
     path: '/sendMail',
     name: 'sendMail',
