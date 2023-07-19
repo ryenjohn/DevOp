@@ -37,8 +37,8 @@ export default {
       // If the "userData" cookie exists, parse it and set the user ID in the component data
       if (userData) {
         const userDataObj = JSON.parse(userData);
-        this.userName = userDataObj.data.name;
-        this.userId = userDataObj.data.role_id;
+        this.userName = userDataObj.data;
+        this.userId = userDataObj.data;
       }
     },
   },
