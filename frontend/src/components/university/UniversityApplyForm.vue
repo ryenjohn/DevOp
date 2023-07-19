@@ -166,7 +166,7 @@
           <!-- Education level -->
           <v-select
             label="Enter you education level"
-            :items="['High school diploma','Associate degree','Bachelor degree']"
+            :items="['High school diploma','Associate degree']"
             class="err"
             color="#634B7A"
             :type="visible ? 'text' : 'Education levelEducation level'"
@@ -185,6 +185,30 @@
             "
             @input="v$.education_level.$touch"
             @blur="v$.education_level.$touch"
+          ></v-select>
+
+          <!-- select year -->
+          <v-select
+            label="Choose year"
+            :items="['1st Year','2nd year','3rd Year', '4th Year']"
+            class="err"
+            color="#634B7A"
+            :type="visible ? 'text' : 'Choose the year you want to study'"
+            density="compact"
+            placeholder="Choose the year you want to study"
+            prepend-inner-icon="mdi mdi-finance"
+            variant="outlined"
+            @click:append-inner="visible = !visible"
+            v-model="state.year"
+            :error-messages="
+              v$.year.$errors.map((e) =>
+                e.$params.custom
+                  ? e.$params.custom.message
+                  : 'Enter your education level'
+              )
+            "
+            @input="v$.year.$touch"
+            @blur="v$.year.$touch"
           ></v-select>
           
           <!-- check box -->
@@ -251,6 +275,7 @@ const initialState = {
   mydate: "",
   major: "",
   education_level: "",
+  year: "",
   email: "",
   checkbox: null,
   password: "",
@@ -280,6 +305,7 @@ const rules = {
   mydate: {required},
   major: {required},
   education_level: {required},
+  year: {required},
   email: {
     required,
     email,
@@ -313,6 +339,7 @@ async function singIn() {
       mydate: state.mydate,
       major: state.major,
       education_level: state.education_level,
+      year: state.year,
       email: state.email,
       checkbox: state.checkbox,
       password: state.password,
