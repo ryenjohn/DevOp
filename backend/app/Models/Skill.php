@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
+use App\Core\MediaLib;
 
 class Skill extends Model
 {
@@ -19,36 +20,27 @@ class Skill extends Model
     protected $fillable = [
         'name',
         'description',
-        'image'
+        'media_id'
     ];
-    public static function skill($request, $id = null)
+
+    public function media()
     {
-        $skill = $request->only([
-            'name',
-            'description',
-            'image'
-        ]);
-        $skill = self::updateOrCreate(['id'=>$id], $skill);
+        return $this->belongsTo(MediaFile::class, 'media_id', 'media_id');
+    }
+    public static function store($request, $id = null)
+    {
+        $skill = $request->only(['name', 'description']);
+        
+        // $skill['media_id'] = MediaLib::generateImageBase64($request->image);
+        if (filled($request->image)) {
+            $skill['media_id'] = MediaLib::generateImageBase64($request->image);
+        }
+        $skill = self::updateOrCreate(['id' => $id], $skill);
         $subjects = request('subjects');
         $skill->subjects()->sync($subjects);
-        return $skill;
+        return $skill;        
     }
-    public static function image($request)
-    {
-        $skill = $request->only([
-            'image'
-        ]);
-        if (filled($request->image)) {
-            $path = $request->file('image')->store('public/images/skills');
-            // Get the file's public URL
-            $url = Storage::url($path);
-            if($url){
-                return $skill['image']=$url;
-            }
-        }
-        return "Image cannot not add";
-    }
-
+    
     public function subjects()
     {
         return $this->belongsToMany(Subject::class, 'skill_subjects')->withTimestamps();
