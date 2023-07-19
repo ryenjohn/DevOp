@@ -197,6 +197,7 @@ export default {
             })
         },
 
+
         getSchoolTypes(){
             axios.get(`${ process.env.VUE_APP_API_URL}schoolType`).then((res)=>{
             this.schoolTypes = res.data.data
@@ -210,7 +211,7 @@ export default {
         },
 
         getSchoolIdByName(){
-            axios.get(`${ pschoolIdrocess.env.VUE_APP_API_URL}getSchoolIdByName`,).then((res)=>{
+            axios.get(`${ process.env.VUE_APP_API_URL}getSchoolIdByName`,).then((res)=>{
             this.schoolId = res.data.data;
             })
         }
