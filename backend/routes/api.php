@@ -7,7 +7,7 @@ use App\Http\Controllers\MajorController;
 use App\Http\Controllers\ResetPasswordController;
 
 use App\Http\Controllers\RegisterMailcontroller;
-
+use App\Http\Controllers\RegisterWorkShopController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ScholarshipController;
 use App\Http\Controllers\SchoolController;
@@ -83,3 +83,5 @@ Route::post('/sendMail',[ResetPasswordController::class,'SendMail']);
 // university page register 
 Route::post('/registerMail',[UserController::class,'sendEmail']);
 
+// get user that already register in workshop
+Route::post('/registerWorkShop', [RegisterWorkShopController::class, 'registerWorkShop']);
