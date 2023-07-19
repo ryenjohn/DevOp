@@ -2,8 +2,7 @@
 <template>
     <div class="major-container">
       <div>
-        <img src="../../assets/images/register.png" alt="">
-      </div>
+        <img src="https://img.freepik.com/free-vector/employees-cv-candidates-resume-corporate-workers-students-id-isolate-flat-design-element-job-applications-avatars-personal-information-concept-illustration_335657-1661.jpg?size=500&ext=jpg" alt="">      </div>
         <!--  copy right by vuetify https://vuetifyjs.com/en/components/forms/ -->
       <v-sheet width="500" class="form-add">
         <v-form fast-fail @submit.prevent>
@@ -25,18 +24,20 @@
           <!-- copy right vuitfy https://vuetifyjs.com/en/components/checkboxes/ -->
           <h4>Choose subjects</h4>
           <div class="subject" >
-            <div v-for="(subject, id) in listSubject" :key="id">
+            <div v-for="subject in listSubject" :key="subject">
                 <v-checkbox class='text-black'
                     v-model="subjectsId"
                     :label="subject.subject"
-                    :value="id"
+                    :value="subject.id"
+                    :rules="subjectsId"
                 ></v-checkbox>
             </div>
           </div>
+            <p class='text' v-if="isAdd">checkbox required</p>
           <div class="input-image">
             <strong class="form-label">Image</strong>
-            <input type="file" @change="getImage" />
-            <p class='text' v-if="isAdd">image required</p>
+            <input type="file" @change="onFileChange" />
+            <p v-if="isAdd">image required</p>
           </div>
           <div class="btn">
             <button type="buttom" @click='this.$router.push("/")' block class="mt-2 text-white bg-purple" >cancel</button>
@@ -53,9 +54,10 @@ export default {
     return {
       image: null,
       isAdd: false,
-      name: '',
       listSubject:[],
-      subjectsId:[],
+      subjectsId: [],
+
+      name: '',
       nameRules: [
         value => {
           if (value?.length > 0) return true
@@ -63,6 +65,7 @@ export default {
           return 'name reuqired.'
         },
       ],
+
       description: '',
       descriptionRules: [
         value => {
@@ -85,8 +88,9 @@ export default {
           name: this.name,
           description: this.description,
           image: this.image, // Pass the image file to the API
-          subjects:this.subjectsId,
+          subjects:this.getSubjectId(),
         };
+
         axios.post(`${process.env.VUE_APP_API_URL}majors`,newMajor)
           .then(() => {
             this.$router.push("/");
@@ -96,6 +100,7 @@ export default {
           });
       }
     },
+
     fechSubject(){
         axios.get(`${ process.env.VUE_APP_API_URL}subjects`)
         .then(response => {
@@ -105,20 +110,28 @@ export default {
             console.log(error)
         })
     },
-    // get link image from back-end 
-    // copy right by https://www.youtube.com/watch?v=chCtrNGrQhk
-    getImage(event) {
-      var file = event.target.files[0];
-      var form = new FormData();
-      form.append('image', file);
-        axios.post(`${ process.env.VUE_APP_API_URL}image`,form)
-        .then(response => {
-            this.image = response.data.data
-        })
-        .catch(error => {
-            console.log(error)
-        })
+     // copy from https://github.com/yonyen99/project-vue-laravel-example
+    onFileChange(event) {
+      // Retrieve the selected image file
+      const file = event.target.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          // Convert the image to base64 encoding
+          const base64Image = reader.result;
+          this.image = base64Image; // Store the base64 encoded image
+        };
+        reader.readAsDataURL(file);
+    }
     },
+    getSubjectId(){
+      let total = []
+      for(let i=0;i<this.subjectsId.length;i++){
+        total.push(this.subjectsId[i]);
+      }
+      return total
+    }
   },
     mounted(){
         this.fechSubject();
@@ -143,10 +156,11 @@ export default {
     text-align: center;
     color:orange;
   }
-  .text{
-    color:rgb(168, 25, 20);
+  p{
+    color:rgb(184, 20, 14);
     font-size:12px;
     margin-left:20px;
+    margin-bottom: 10px;
   }
   .btn{
     display: flex;
@@ -165,13 +179,11 @@ export default {
         text-align: start;
         margin-bottom:10px;
     }
-    .text{
-    color:rgb(168, 25, 20);
-    font-size:12px;
-    margin-left:20px;
-  }
   img{
     width:600px
+  }
+  .text{
+    margin-top: -30px;
   }
 
 

@@ -57,7 +57,7 @@ Route::get('/scholarships',[ScholarshipController::class,'scholarships']);
 // Skill route
 Route::get('/majors',[SkillController::class,'getSkills']);
 Route::get('/majors/{id}',[SkillController::class,'getSkillById']);
-Route::post('/majors',[SkillController::class,'createSkill']);
+Route::post('/majors',[SkillController::class,'store']);
 Route::put('/majors/{id}',[SkillController::class,'editeSkill']);
 Route::delete('/majors/{id}',[SkillController::class,'deleteSkill']);
 
@@ -82,7 +82,7 @@ Route::get('/subjects',[SkillController::class,'getSubjects']);
 // Major route
 Route::get('/workshops',[WorkShopController::class,'getWorkShops']);
 Route::get('/workshops/{id}',[WorkShopController::class,'getWorkShopById']);
-Route::post('/workshops',[WorkShopController::class,'createWorkShop']);
+Route::post('/workshops',[WorkShopController::class,'createWorkshop']);
 Route::put('/workshops/{id}',[WorkShopController::class,'editeWorkShop']);
 Route::delete('/workshops/{id}',[WorkShopController::class,'deleteWorkShop']);
 Route::patch('/resetPassword',[ResetPasswordController::class,'resetPassword']);
