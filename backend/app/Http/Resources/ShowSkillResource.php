@@ -14,13 +14,6 @@ class ShowSkillResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        // return [
-            // 'id' => $this->id,
-            // 'name' => $this->name,
-            // 'description' => $this->description,
-            // 'media_id' => $this->media_id,
-            // 'subjects' => SubjectResource::collection($this->subjects),
-            // "schools" => SchoolResource::collection($this->schools)
             return $this->only('id',
             'name',
             'description',
