@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Storage;
 class School extends Model
 {
@@ -19,12 +20,13 @@ class School extends Model
     protected $fillable=[
         'name',
         'image',
+        'description',
         'type_education_id',
         'address_id',
 
     ];
     public static function school($request, $id=null){
-        $school = $request->only(['name','image', 'type_education_id', 'address_id']);
+        $school = $request->only(['name','image', 'description', 'type_education_id', 'address_id']);
         if (filled($request->image)) {
             $path = $request->file('image')->store('public/images/schools');
             // Get the file's public URL
@@ -71,5 +73,10 @@ class School extends Model
     public function workshops(): HasMany
     {
         return $this->hasMany(WorkShop::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

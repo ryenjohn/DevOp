@@ -27,7 +27,8 @@ class SchoolRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'image'=> 'required',
+            // 'image'=> 'required',
+            'description'=>'required',
             'type_education_id'=> 'required',
             'address_id'=> 'required',
             'skills'=> 'required',

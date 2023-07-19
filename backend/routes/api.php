@@ -50,9 +50,10 @@ Route::get('/schools',[SchoolController::class,'getschools']);
 Route::get('/schools/address/{name}',[SchoolController::class,'search']);
 Route::get('/schools/skill/{name}',[SchoolController::class,'searchSkill']);
 Route::post('/schools',[SchoolController::class,'createSchool']);
+Route::put('/schools/{id}',[SchoolController::class,'editeSchool']);
+Route::delete('/schools/{id}',[SchoolController::class,'deleteSchool']);
 Route::get('/scholarships/{id}',[ScholarshipController::class,'getScholarship']);
 Route::get('/scholarships',[ScholarshipController::class,'scholarships']);
-// Route::get('/workshops',[WorkShopController::class,'workshops']);
 
 // Skill route
 Route::get('/majors',[SkillController::class,'getSkills']);
