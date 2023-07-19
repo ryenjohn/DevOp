@@ -2,9 +2,6 @@
   <navigation-bar></navigation-bar>
   <router-view></router-view>
   <footer-bar></footer-bar>
-  <h1><a href="/workShop"> Create workshop</a>
-   </h1>
-
 </template>
 <script>
 
