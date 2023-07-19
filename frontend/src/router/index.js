@@ -11,8 +11,6 @@ import Home from '../views/HomeView.vue'
 import Detail from '../views/DetailView.vue'
 import Admin from '../views/AdminView.vue'
 
-
-
 const routes = [
   {
     path: '/',

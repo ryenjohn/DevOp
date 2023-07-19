@@ -1,13 +1,15 @@
 <template>
   <navigation-bar></navigation-bar>
   <router-view></router-view>
-  <footer-bar></footer-bar>
+  <footer-bar v-if="this.$route.name!='admin'"></footer-bar>
 
 </template>
 <script>
-
+  
+ 
+   
+   
 </script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

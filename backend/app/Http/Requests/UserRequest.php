@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Requests;
+
+
 use Illuminate\Contracts\Validation\Validator as ValidationValidator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -30,6 +32,10 @@ class UserRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email'=> 'required|regex:/^[^@]+@[^@]+\.[^@]+$/',
             'password'=> 'required|string|min:8|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/',
+            'role_id'=>'required',
+            // 'address_id'=>'required',
         ];
     }
 }
+
+

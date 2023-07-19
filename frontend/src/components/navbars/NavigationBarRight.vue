@@ -40,7 +40,7 @@ export default {
       if (userData) {
         const userDataObj = JSON.parse(userData);
         this.userName = userDataObj.data.name;
-        this.userId = userDataObj.data.role_id;
+        this.userId = userDataObj.data;
       }
     },
   },

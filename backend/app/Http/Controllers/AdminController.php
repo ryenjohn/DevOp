@@ -40,35 +40,38 @@ class AdminController extends Controller
 
         return response()->json(['message' => "Your get data request is successful", 'data' => $universityDirectors], 200);
     }
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+
+    // get student by id
+    public function getUser($id)
     {
-        //
+        $user = User::find($id);
+        if($user!=''){
+            return response()->json(['success'=>true,'data'=>$user],200);
+        } 
+        return response()->json(['success'=>true,'data'=>'No data !'],200);
+
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    // update user
+    public function updateUser(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        
+        // Update other fields as needed
+        $user->save();
+    
+        return response()->json(['message' => 'User updated successfully']);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    // Delete User
+    public function destroy(Request $request,$id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        
+        $user = User::find($id);
+        $user->delete();
+        return response()->json(['success' => true, 'message' => `user id:{$id} has been deleted`], 200);
     }
 }
