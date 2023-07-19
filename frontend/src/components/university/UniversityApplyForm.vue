@@ -10,8 +10,10 @@
             />
         </div>
       <div class="form-container">
-        <form style="height: 500px;">
+        <form style="height: 800px;">
           <h1>Join Our University</h1>
+
+          <!-- name -->
           <v-text-field
             class="err"
             v-model="state.name"
@@ -27,6 +29,32 @@
             @blur="v$.name.$touch"
           ></v-text-field>
 
+          <!-- gender -->
+          <v-container fluid class="d-flex">
+              <v-checkbox class="selectbox"
+                v-model="state.selected"
+                label="Female"
+                value="Female"
+                @input="v$.selected.$touch"
+                @blur="v$.selected.$touch"
+              ></v-checkbox>
+              <v-checkbox class="selectbox male"
+                v-model="state.selected"
+                label="Male"
+                value="Male"
+                @input="v$.selected.$touch"
+                @blur="v$.selected.$touch"
+              ></v-checkbox>
+          </v-container>
+ 
+          <!-- date -->
+          <!-- https://www.youtube.com/watch?v=q5TP2XygqUw -->
+          <div class="date">
+            <label for="">Enter your birthdate : </label>
+            <input type="date" v-model="mydate">
+          </div>
+       
+          <!-- email -->
           <v-text-field
             class="err"
             v-model="state.email"
@@ -44,6 +72,7 @@
             Email is already taken.
           </p>
 
+          <!-- password -->
           <v-text-field
             class="err"
             :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
@@ -65,6 +94,100 @@
             @input="v$.password.$touch"
             @blur="v$.password.$touch"
           ></v-text-field>
+
+          <!-- phone number -->
+          <v-text-field
+            class="err"
+            color="#634B7A"
+            :type="visible ? 'text' : 'phone_number'"
+            density="compact"
+            placeholder="Enter your phone number"
+            prepend-inner-icon="mdi-phone-outline"
+            variant="outlined"
+            @click:append-inner="visible = !visible"
+            v-model="state.phone_number"
+            :error-messages="
+              v$.phone_number.$errors.map((e) =>
+                e.$params.custom
+                  ? e.$params.custom.message
+                  : 'Value required and should contain only number, between 9 and 10 degit'
+              )
+            "
+            @input="v$.phone_number.$touch"
+            @blur="v$.phone_number.$touch"
+          ></v-text-field>
+
+          <!-- address -->
+          <v-text-field
+            class="err"
+            color="#634B7A"
+            :type="visible ? 'text' : 'address'"
+            density="compact"
+            placeholder="Enter your address"
+            prepend-inner-icon="mdi-home-outline"
+            variant="outlined"
+            @click:append-inner="visible = !visible"
+            v-model="state.address"
+            :error-messages="
+              v$.address.$errors.map((e) =>
+                e.$params.custom
+                  ? e.$params.custom.message
+                  : 'Your address should contain your province'
+              )
+            "
+            @input="v$.address.$touch"
+            @blur="v$.address.$touch"
+          ></v-text-field>
+
+          <!-- choose major -->
+          <v-select
+            label="Select Major"
+            :items="['IT', 'Engineering', 'Architecture ', 'Accounting', 'IFL', 'Food Chemistry']"
+            class="err"
+            color="#634B7A"
+            :type="visible ? 'text' : 'major'"
+            density="compact"
+            placeholder="Choose your major"
+            prepend-inner-icon="mdi-tools"
+            variant="outlined"
+            @click:append-inner="visible = !visible"
+            v-model="state.major"
+            :error-messages="
+              v$.major.$errors.map((e) =>
+                e.$params.custom
+                  ? e.$params.custom.message
+                  : 'Choose your major'
+              )
+            "
+            @input="v$.major.$touch"
+            @blur="v$.major.$touch"
+          ></v-select>
+
+          <!-- Education level -->
+          <v-select
+            label="Enter you education level"
+            :items="['High school diploma','Associate degree','Bachelor degree']"
+            class="err"
+            color="#634B7A"
+            :type="visible ? 'text' : 'Education levelEducation level'"
+            density="compact"
+            placeholder="Enter your education level"
+            prepend-inner-icon="mdi-school-outline"
+            variant="outlined"
+            @click:append-inner="visible = !visible"
+            v-model="state.education_level"
+            :error-messages="
+              v$.education_level.$errors.map((e) =>
+                e.$params.custom
+                  ? e.$params.custom.message
+                  : 'Enter your education level'
+              )
+            "
+            @input="v$.education_level.$touch"
+            @blur="v$.education_level.$touch"
+          ></v-select>
+          
+          <!-- check box -->
           <v-checkbox
             class="err"
             v-model="state.checkbox"
@@ -74,7 +197,7 @@
             @change="v$.checkbox.$touch"
             @blur="v$.checkbox.$touch"
           ></v-checkbox>
-  
+
           <div class="btn d-flex justify-space-between">
             <div class="btn">
                 <v-btn class="btnone"
@@ -103,6 +226,18 @@
 </template>
 
 
+<script>
+  export default {
+    data() {
+      return {
+        selected: '',
+        mydate: null,
+      }
+    }   
+}
+
+
+</script>
 <script setup>
 import { reactive } from "vue";
 import { useVuelidate } from "@vuelidate/core";
@@ -112,9 +247,15 @@ import Cookies from "js-cookie";
 
 const initialState = {
   name: "",
+  selected: "",
+  mydate: "",
+  major: "",
+  education_level: "",
   email: "",
   checkbox: null,
   password: "",
+  phone_number:"",
+  address:"",
   emailTakenError: false,
   visible: false,
 };
@@ -126,9 +267,19 @@ const passwordRule = (value) => {
   const result = regex.test(value);
   return result;
 };
+// https://poe.com/Sage
+const phone_number = (value) => {
+  const regex = /^\d{9,10}$/;
+  const result = regex.test(value);
+  return result;
+};
 // Rule for name email password
 const rules = {
   name: { required, minLength: minLength(3) },
+  selected: {required},
+  mydate: {required},
+  major: {required},
+  education_level: {required},
   email: {
     required,
     email,
@@ -140,7 +291,9 @@ const rules = {
       state.emailTakenError = emailExists;
     },
   },
-  password: { required, minLength: minLength(8), custom: passwordRule },
+  password: { required, minLength: minLength(10), custom: passwordRule },
+  phone_number: {required, custom: phone_number},
+  address: {required},
   checkbox: { required },
 };
 
@@ -157,9 +310,14 @@ async function singIn() {
   try {
     const data = {
       name: state.name,
+      mydate: state.mydate,
+      major: state.major,
+      education_level: state.education_level,
       email: state.email,
       checkbox: state.checkbox,
       password: state.password,
+      phone_number: state.phone_number,
+      address: state.address
     };
     // Make an API call to add data to the database
     const response = await axios.post("http://127.0.0.1:8000/api/users", data);
@@ -180,8 +338,21 @@ async function singIn() {
 </script>
 
 <style scoped>
+.date{
+  border: 1px solid rgba(128, 128, 128, 0.518);
+  padding: 7px;
+  border-radius: 4px;
+  margin-bottom: 6%;
+
+}
+.date label, input {
+  color: rgba(128, 128, 128, 0.518);
+}
+.date input{
+  margin-left: 15%;
+}
 img{
-  margin-top: 10%;
+  margin-top: 22%;
 }
 form{
   margin-top: -25%;
@@ -197,6 +368,7 @@ form{
 .btn {
   display: flex;
   margin-top: 3%;
+  margin-top: -1%;
 }
 h1 {
   margin-bottom: 75px;
@@ -239,5 +411,13 @@ label {
   color: #fff;
   background-color: #634b7a;
   text-decoration: none;
+}
+.selectbox{
+  margin-top: -9%;
+  margin-left: -6%;
+  margin-bottom: -10%;
+}
+.male{
+   margin-left: -45%;
 }
 </style>
