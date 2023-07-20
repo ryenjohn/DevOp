@@ -6,6 +6,8 @@ import sendMail from '../components/authentication/sendEmail.vue'
 import resetPassword from '../components/authentication/resetPassword.vue'
 import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
+import PaymentForm from '../components/payment/PaymentForm.vue'
+import PaymentByCard from '../components/payment/PaymentByCard.vue'
 
 import Home from '../views/HomeView.vue'
 import Detail from '../views/DetailView.vue'
@@ -62,9 +64,20 @@ const routes = [
     component: resetPassword
   },
   {
+
     path: '/registeraccountpopup',
     name: 'registeraccountpopup',
     component: RegisterAccountPopUp
+  },{
+    path: '/payment',
+    name: 'payment',
+    component: PaymentForm
+  },
+  {
+    path: '/paymentbycard',
+    name: 'paymentbycard',
+    component: PaymentByCard
+
   }
 
 ]
