@@ -24,8 +24,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'gender',
         'role_id',
-        'address_id'
+        'address_id',
+        'school_id'
     ];
     
     public static function store($request , $id = null){
@@ -33,8 +36,11 @@ class User extends Authenticatable
             'name',
             'email',
             'password',
+            'phone',
+            'gender',
             'role_id',
             'address_id',
+            'school_id'
         ]);
         $user['password'] = Hash::make($user['password']);
       
