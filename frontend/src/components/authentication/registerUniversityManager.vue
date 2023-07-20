@@ -144,7 +144,6 @@ export default {
             selectedUserAddress:null,
             gender:null,
             imageValidate:null,
-            currentAddressId:null,
             nameRules: [
                 value => !!value || 'Name is required',
                 value => (value && value.length >= 2) || 'Name needs to be at least 2 characters',
@@ -156,12 +155,6 @@ export default {
             emailRules: [
                 value => !!value || 'Email is required',
                 value => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) || 'E-mail must be valid',
-            ],
-            userAddressesRules: [
-                value => !!value || 'Select an item',
-            ],
-            universityAddressesRules: [
-                value => !!value || 'Select an item',
             ],
             checkboxRules: [
                 value => !!value || 'Must be checked',
@@ -181,10 +174,6 @@ export default {
                 value => !!value || 'Descripiton is required',
                 value => (value && value.length >= 10) || 'Name needs to be at least 2 characters',
             ],
-            genderRules: [
-                value => !!value || 'gender is required',
-                value => (value && value.length >= 10) || 'must to select',
-            ],
         }
     },
     methods: {
@@ -200,15 +189,16 @@ export default {
             })
             .then((res) => {
                 console.log(res)
-                // this.currentAddressId = res.data.data.id;
                 this.createUser(res.data.data.id)
+                this.$router.push('/')
+
             })
             .catch((error) => {
                 console.log(error);
             })
 
         },
-         createUser($id){
+        createUser($id){
             console.log($id)
              axios.post(`${ process.env.VUE_APP_API_URL}users`, {
                 name: this.name,
@@ -227,44 +217,14 @@ export default {
             .catch((error) => {
                 console.error(error.response.data);
             }) 
-         },
+        },
 
-        // createUser(value){
-        //     console.log('sdfsadf')
-        //     // create user
-        //     // axios.post(`${process.env.VUE_APP_API_URL}users`, {
-        //     //     name: this.name,
-        //     //     email: this.email,
-        //     //     password: this.password,
-        //     //     phone: this.phone,
-        //     //     gender:this.gender,
-        //     //     role_id: this.role_id,
-        //     //     address_id: this.userAddresses,
-        //     //     school_id: value
-        //     // })
-        //     // .then((res) => {
-        //     //     console.log (res.data.data)
-        //     //     console.log(this.name)
-        //     //     console.log(this.email)
-        //     //     console.log(this.password)
-        //     //     console.log(this.phone)
-        //     //     console.log(this.gender)
-        //     //     console.log(this.role_id)
-        //     //     console.log(this.userAddresses)
-        //     //     console.log(this.$name)
-
-        //     // })
-        //     // .catch((error) => {
-        //     //     console.error(error.response.data);
-        //     // }) 
-        // },
         getAddress(){
             axios.get(`${ process.env.VUE_APP_API_URL}addresses`).then((res)=>{
             this.userAddresses = res.data.data;
             this.universityAddresses = res.data.data;
             })
         },
-
 
         getSchoolTypes(){
             axios.get(`${ process.env.VUE_APP_API_URL}schoolType`).then((res)=>{
@@ -337,8 +297,6 @@ form{
   padding: 20px;
   background: #d8d6d6;
   margin: 20px;
-
-  
 }
 
 .select{
