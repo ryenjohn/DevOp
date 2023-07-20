@@ -14,7 +14,7 @@ class AdminController extends Controller
     public function index()
     {
         //
-        $users = User::all();
+        $users = User::orderBy('id', 'DESC')->get();
         return response()->json(['message' => "Your get user is success", 'data' => $users], 200);
 
     }
@@ -25,7 +25,7 @@ class AdminController extends Controller
     {
         //
         $role = Role::where('name', 'student')->first();
-        $students = User::where('role_id', $role->id)->get();
+        $students = User::where('role_id', $role->id)->orderBy('id', 'DESC')->get();
     
         return response()->json(['message' => "Your get data request is successful", 'data' => $students], 200);
     }
@@ -36,7 +36,7 @@ class AdminController extends Controller
     public function getUniversityDirectors()
     {
         $role = Role::where('name', 'university_manager')->first();
-        $universityDirectors = User::where('role_id', $role->id)->get();
+        $universityDirectors = User::where('role_id', $role->id)->orderBy('id', 'DESC')->get();
 
         return response()->json(['message' => "Your get data request is successful", 'data' => $universityDirectors], 200);
     }

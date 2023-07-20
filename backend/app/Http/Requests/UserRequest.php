@@ -33,7 +33,8 @@ class UserRequest extends FormRequest
             'email'=> 'required|regex:/^[^@]+@[^@]+\.[^@]+$/',
             'password'=> 'required|string|min:8|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/',
             'role_id'=>'required',
-            // 'address_id'=>'required',
+          
+
         ];
     }
 }

@@ -6,6 +6,7 @@
         <v-divider style="height: 300px"></v-divider>
 
         <v-list density="compact" class="mt-10" nav>
+          <v-list-item  @click="changedata('users')" prepend-icon="mdiAccount"  title="All Users" value="Users"></v-list-item>
           <v-list-item  @click="changedata('students')" prepend-icon="mdi-account-school"  title="Students" value="Students"></v-list-item>
           <v-list-item  @click="changedata('managers')" prepend-icon="mdi-school" title="University" value="University"></v-list-item>
   
@@ -30,7 +31,7 @@
 
 <style  scoped>
     .sidebar{
-      margin-top: 3.5%;
+      margin-top: 4.5%;
       background: blueviolet;
       color: white;
     }

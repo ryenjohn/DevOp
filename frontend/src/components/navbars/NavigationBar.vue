@@ -16,11 +16,7 @@
   justify-content: start;
   align-items: center;
   background-color: blueviolet;
-<<<<<<< HEAD
   padding: 10px;
-=======
-  
->>>>>>> 63b309eb7828f9aca2c49ecd6390f3b56a49defb
 }
 
 </style>

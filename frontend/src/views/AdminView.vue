@@ -1,10 +1,8 @@
 <template>
     
 <div>
-    <h1 v-if="!datanameEmitted">All {{ pageTitle }}</h1>
-    <h1 v-else>All Users</h1>
-    <add-form v-if="datanameEmitted" ></add-form>
-    <!-- <button class='add-btn' @click="addUser">Add new user</button> -->
+    <h1 >All {{ pageTitle }}</h1>
+    <add-form v-if="isAllUser" ></add-form>
     <list-user :datas="datas" @edit='edit' @del='del' ></list-user> 
     <side-bar @dataname="changedata"></side-bar>
   
@@ -24,20 +22,24 @@ export default {
     return {
         datanameEmitted: true,
         datas: [],
-        isAdd:false,
-        pageTitle: '',
-        open:false
+        pageTitle: 'Users',
+        isAllUser:true,
     };
   },
 
   methods: {
     changedata(dataname){
-      this.datanameEmitted = false;
       this.pageTitle = dataname;
-        
-        axios.get(`${ process.env.VUE_APP_API_URL}${dataname}`)
+      if(this.pageTitle!='users'){
+        this.isAllUser=false
+      }
+      else{
+        this.isAllUser=true
+      }
+      axios.get(`${ process.env.VUE_APP_API_URL}${dataname}`)
         .then(res => {
             this.datas = res.data.data;
+            console.log(this.datas)
         })
         .catch(error => {
             console.error('Error axios student data:', error);
