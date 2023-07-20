@@ -1,4 +1,5 @@
 <template>
+<register-account-popup></register-account-popup>
  <title-text v-if='datas!=null && datas!=""'>Choose {{dataname}}</title-text>
   <div class="container mt-10 mb-10"  v-for="(data) in datas" :key="data" >
     <div class="card" >
@@ -24,10 +25,38 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie';
     export default{
       props:{datas:Array,dataname:String},
-
+      data() {
+    return {
+      isLoggedIn: false,
+      dialog: false,
+      userName: '',
+      userId: ''
+    };
+  },
+    mounted() {
+    this.setUser();
+  },
+  methods: {
+    setUser() {
+      // Get the value of the "userData" cookie
+      const userData = Cookies.get('userData');
+      // If the "userData" cookie exists, parse it and set the user ID and name in the component data
+      if (userData) {
+        const userDataObj = JSON.parse(userData);
+        this.userName = userDataObj.data;
+        this.userId = userDataObj.data.id;
+      }
+    },
+    checkLoginStatus() {
+      if (this.userId) {
+        this.isLoggedIn = true;
+      } 
     }
+  }
+}
 </script>
 
 <style scoped>
@@ -72,4 +101,20 @@
     color:white;
     background:orange;
   }
+  .text-h5{
+  color: orange;
+}
+.text{
+  color: #634b7a;
+}
+p{
+  color: white;
+  background-color: orange;
+  padding: 5px;
+  width: 4%;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
 </style>

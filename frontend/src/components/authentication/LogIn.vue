@@ -54,7 +54,7 @@
             ],
             passwordRules: [
                 value => !!value || 'Password is required',
-                value => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}|:"<>?~`]).{8,}$/i.test(value)|| 'Value required and should contain uppercase, lowercase, number, sign and more than 8 characters',
+                value => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}|:"<>?~`]).{8,}$/i.test(value) || 'Value required and should contain uppercase, lowercase, number, sign and more than 8 characters',
             ]
           }
       },
@@ -135,4 +135,3 @@
     margin-left: 1%;
   }
   </style>
-

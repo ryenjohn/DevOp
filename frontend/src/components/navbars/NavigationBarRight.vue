@@ -10,6 +10,7 @@
       <router-link class="link-log-in" to="/logIn"
         ><v-tab>SignIn</v-tab></router-link
       >
+ 
     </v-tabs>
     <Menu v-if="userName!=null" :show-menu="showMenu"  @submitLogOut="submitLogOut" :userName="userName.name"/>
   </div>
@@ -36,27 +37,20 @@ export default {
     // copy https://stackoverflow.com/questions/52021405/vue-js-laravel-handle-logout-correctly
     setUser() {
       // Get the value of the "userData" cookie
-
-      const userData = Cookies.get("submitLogOut");
-      // If the "userData" cookie exists, parse it and set the user ID in the component data
-      if (userData) {
-        const userDataObj = JSON.parse(userData);
-        this.userName = userDataObj.data.name;
-
       const userData = Cookies.get('userData');
       // If the "userData" cookie exists, parse it and set the user ID in the component data
       if (userData) {
         const userDataObj = JSON.parse(userData);
         this.userName = userDataObj.data
-
-        // this.userId = userDataObj.data;
+        this.userId = userDataObj.data;
+        // console.log(this.userId.id);
       }
-    }
+    },
   },
   mounted() {
     this.setUser()
   },
-}
+};
 </script>
 
 <style scoped>
@@ -73,6 +67,7 @@ export default {
 .img-icon {
   display: flex;
 }
+
 .link-sign-up,
 .link-log-in {
   color: #fff;
