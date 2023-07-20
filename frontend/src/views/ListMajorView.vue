@@ -12,8 +12,7 @@
 
             <router-link :to="`/majorDetail/${major.id}`">majorDetail</router-link>
         </button>
-    </div>
-</template>
+    </div></template>
 
 <script>
 export default ({

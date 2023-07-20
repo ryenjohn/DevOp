@@ -11,7 +11,7 @@
         ><v-tab>SignIn</v-tab></router-link
       >
     </v-tabs>
-    <Menu v-if="userName!=null" :show-menu="showMenu"  @submitLogOut="submitLogOut" :userName="userName"/>
+    <Menu v-if="userName!=null" :show-menu="showMenu"  @submitLogOut="submitLogOut" :userName="userName.name"/>
   </div>
 </template>
 
@@ -39,7 +39,7 @@ export default {
       // If the "userData" cookie exists, parse it and set the user ID in the component data
       if (userData) {
         const userDataObj = JSON.parse(userData);
-        this.userName = userDataObj.data.name;
+        this.userName = userDataObj.data;
         this.userId = userDataObj.data;
       }
     },
@@ -69,6 +69,6 @@ export default {
 .link-log-in {
   color: #fff;
   text-decoration: none;
-  margin-left: 5%;
+  margin-left: 0%;
 }
 </style>

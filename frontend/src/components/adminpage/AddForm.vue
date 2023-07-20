@@ -98,7 +98,7 @@
             <select class="role" v-model="state.role_id">
               <option color="purple" value="">Choose_Role</option>
               <option value="1">Student</option>
-              <option value="2">Universtiy</option>
+              <option value="2">Universtiy manager</option>
             </select>
             <p>Your role is: {{ state.role_id }}</p>
           </div>

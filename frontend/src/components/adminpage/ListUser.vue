@@ -18,8 +18,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="data in datas" :key="data.id" class="text-center">
-          <td>{{ data.id }}</td>
+        <tr v-for="(data,index) in datas" :key="index" class="text-center">
+          <td>{{ index+1 }}</td>
           <td>{{ data.name }}</td>
           <td>{{ data.email }}</td>
           <td>
@@ -240,5 +240,9 @@ h1 {
   border-radius: 4px;
   padding: 8px;
   width: 100%;
+}
+.role{
+  outline-style: solid;
+  outline-width: 1px;
 }
 </style>

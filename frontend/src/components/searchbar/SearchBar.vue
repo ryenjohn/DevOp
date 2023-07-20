@@ -1,53 +1,47 @@
 <template>
-  <div class="title-menu">
-    <div>
-      <h3>Find University</h3>
+    <div class="search-input mt-10">
+      <v-toolbar  color="primary" rounded="" height="74"  flat>
+        <v-text-field class="input"
+          v-model="searchKey"
+          clearable
+          hide-details
+          label="Search university in your province"
+          prepend-inner-icon="mdi-magnify"
+          single-line
+        ></v-text-field>
+      </v-toolbar>
     </div>
-  </div>
-  <v-card color="#8a2be2" max-width="500" class="search-field">
-    <v-card-text >
-      <v-text-field
-        :loading="loading"
-        density="compact"
-        variant="solo"
-        label="Search templates"
-        append-inner-icon="mdi-magnify"
-        single-line
-        hide-details
-        @click:append-inner="onClick"
-      ></v-text-field>
-    </v-card-text>
-  </v-card>
+    <v-list >
+      <v-list-item
+        v-for="(item, i) in searching"
+        :key="i" link>
+        <div v-text="item"></div>
+      </v-list-item>
+    </v-list>
 </template>
-
 <script>
-export default {
-  data: () => ({
-    loaded: false,
-    loading: false,
-    
-  }),
-  methods: {
-    onClick() {
-      this.loading = true;
-
-      setTimeout(() => {
-        this.loading = false;
-        this.loaded = true;
-      }, 2000);
+// import axios from 'axios'
+  export default {
+    data: () => ({
+      items: [],
+      searchKey: '',
+    }),
+    watch: {
+      searchKey () {
+        this.$emit('searchKey',this.searchKey)
+      },
     },
-  },
-};
+
+  }
 </script>
 <style scoped>
-
-h3 {
-  margin-top: 70px;
-  display: flex;
-  justify-content: flex-start;
-}
-.search-field{
-  margin-bottom: 20px;
-}
-
+  .search-input{
+    margin: 4%;
+    width: 50%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .input{
+    padding: 10px;
+  }
 </style>
