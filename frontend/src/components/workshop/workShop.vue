@@ -8,12 +8,12 @@
       /> 
     </div>
       <v-form @submit.prevent="" ref="form" class="form-item">
-        <h2>Add Workshop</h2>
+        <h2>Add Workshop </h2>
         <div class="side-input">
           <div class="right-input">
               <v-text-field
               v-model="name"
-              label="Name of Workshop"
+              label="Name Workshop"
               :rules="nameRules"
               required
             ></v-text-field>
@@ -25,10 +25,9 @@
               required
           ></v-text-field>
             <v-file-input
-              v-model="image"
+              @change="onFileChange"
               label="Image"
               :rules="imageRules"
-              accept="image/*"
               required
             ></v-file-input>
 
@@ -42,7 +41,7 @@
           <div class="left-input">
               <v-text-field
               v-model="number"
-              label="Number Of Workshop"
+              label="Number Workshop"
               type="number"
               :rules="numberRules"
               required
@@ -86,28 +85,25 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
       name: "",
       description: "",
-      image: null,
+      image: "",
+      todayDate: new Date().toLocaleDateString(),
       number: null,
       startDate: null,
       endDate: null,
       school: null,
+      address: null,
       time: null,
+      getSchools: null,
+      getAddresses: null,
       schools: [
-        "RUPP",
-        "PNC",
-        "PNV",
-        "PNP"
       ],
       addresses: [
-        "Phnom Penh",
-        "Kompong Cham",
-        "Kompong Speu",
-        "Tbong Khom"
       ],
       timeRules: [
         (v) => !!v || "Time is required",
@@ -120,7 +116,7 @@ export default {
       numberRules: [
         (v) => !!v || "Number is required",
         (v) => /^\d+$/.test(v) || "Number must be a whole number",
-        (v) => v >= 0 && v <= 100 || "Number must be between 0 and 100",
+        (v) => v >= 0 && v <= 500 || "Number must be between 0 and 100",
       ],
       descriptionRules: [
         (v) => !!v || "Description is required",
@@ -128,15 +124,13 @@ export default {
       ],
       imageRules: [
         (v) => !!v || "Image is required",
-        (v) => v && v.type.startsWith("image/") || "Please select an image file",
       ],
       startDateRules: [
         (v) => !!v || "Start date is required",
-        (v) => v <= this.endDate || "Start date must be before end date",
       ],
       endDateRules: [
         (v) => !!v || "End date is required",
-        (v) => v >= this.startDate || "End date must be after start date",
+        (v) => v >= this.startDate || "End date must be greater than start date",
       ],
       schoolRules: [
         (v) => !!v || "School is required",
@@ -147,12 +141,103 @@ export default {
     };
   },
   methods: {
-    submitForm() {
-      if (this.$refs.form.validate()) {
-        // Submit form data
+    // get data of school to show in select
+    fetchSchools(){
+      axios.get(`${ process.env.VUE_APP_API_URL}schools`)
+    .then(response => {
+      console.log(response.data.data);
+        this.getSchools = response.data.data
+        this.getSchools.forEach(item => {
+          this.schools.push(item.name);
+        });
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+
+    // get data of address to show in select
+    fetchAddresses(){
+    axios.get(`${ process.env.VUE_APP_API_URL}addresses`)
+    .then(response => {
+        console.log(response.data.data);
+        this.getAddresses = response.data.data
+        this.getAddresses.forEach(item => {
+          this.addresses.push(item.city_province);
+        });
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    },
+
+    onFileChange(event) {
+      // Retrieve the selected image file
+      const file = event.target.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          // Convert the image to base64 encoding
+          const base64Image = reader.result;
+          this.image = base64Image; // Store the base64 encoded image
+        };
+        reader.readAsDataURL(file);
       }
     },
+
+    submitForm() {
+      let newWorkshop = {
+        name:this.name,
+        image: this.image,
+        address_id: this.addressId(),
+        school_id: this.schoolId(),
+        description: this.description,
+        user_number: this.number,
+        start_date: this.startDate,
+        expired_date: this.endDate,
+        time: this.time,
+      };
+      console.log(newWorkshop);
+      if (this.$refs.form.validate()) {
+        // Submit form data
+         axios.post(`${process.env.VUE_APP_API_URL}workshops`,newWorkshop)
+          .then(() => {
+            this.$router.push("/");
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    },
+
+    // covert name school to id from select
+    schoolId(){
+      let id = null;
+      this.getSchools.forEach(item => {
+        if(item.name == this.school){
+          id = item.id;
+        }
+      });
+      return id;
+    },
+
+    // covert name address to id from select
+    addressId(){
+      let id = null;
+      this.getAddresses.forEach(item => {
+        if(item.city_province == this.address){
+          id = item.id;
+        }
+      });
+      return id;
+    },
   },
+
+  mounted(){
+    this.fetchSchools();
+    this.fetchAddresses();
+  }
 };
 </script>
 <style scoped>

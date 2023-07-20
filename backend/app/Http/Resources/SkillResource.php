@@ -12,16 +12,10 @@ class SkillResource extends JsonResource
      *
      * @return array<string, mixed>
      */
-    public function toArray(Request $request): array
+    public function toArray($request)
     {
-        return [
-            'id'=>$this->id,
-            'name'=>$this->name,
-            'description'=>$this->description,
-            'img'=>$this->image,
-            'subjects'=> SubjectResource::collection($this->subjects),
-            "schools"=> SchoolResource::collection($this->schools)
-            
+        return $this->only('id','name','description') + [
+            "image" => $this->media->file_url ?? null,
         ];
     }
 }

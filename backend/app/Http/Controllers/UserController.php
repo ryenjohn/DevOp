@@ -3,14 +3,43 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Mail\Register;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Client;
+
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
+    //
+
+    public function getUser($id)
+    {
+        $user = User::find($id);
+        return response()->json(['success'=>true,'data'=>$user],200);
+
+    }
+
+    public function saveChange(Request $request,$id){
+        $user = User::find($id);
+        $user->update([
+            'name' => request('name'),
+            'email'=> request('email'),
+            'password'=> request('password'),
+            'role_id'=>request('role_id'),
+            'address_id'=>request('address_id'),
+        ]);
+
+        return response()->json(['success'=>true, 'data'=>$user],200);
+    }
+
     /**
      * Display a listing of the resource.
      */
+   
     public function index()
     {
         $users = User::all();
@@ -31,7 +60,6 @@ class UserController extends Controller
         $token = $user->createToken('API Token')->plainTextToken;
         return response()->json(['exists' => true, 'message' => "Your account is created", 'data' => $user, 'token' => $token], 200);
     }
-
     /**
      * Display the specified resource.
      */
@@ -40,19 +68,47 @@ class UserController extends Controller
         //
     }
 
+
+
+
+    
     /**
      * Update the specified resource in storage.
      */
+
+
+    public function sendEmail(Request $request)
+    {
+
+       
+        $data =[
+            'subject' =>"Reset password",
+            'email'=>$request->email,
+            'link'=>'http://localhost:8080/signUp'
+
+        ];
+        try
+        {
+            Mail::to($data['email'])->send(new Register($data));
+            return response()->json("great check you mail box");
+        }
+        catch(Exception $th)
+        {
+            return response()->json("Sorry something went wrong");
+
+        }
+
+    }
+  
     public function update(Request $request, string $id)
     {
         //
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return response()->json(['success' => true, 'message' => `user id:{$id} has been deleted`], 200);
     }
+
 }

@@ -1,5 +1,5 @@
 <template>
-
+  
   <title-text v-if='datas!=null && datas!=""' >Choose {{dataname}}</title-text>
   <card-container >
         <v-col cols="12" sm="3" v-for="(data, index) in datas" :key="data">
@@ -7,21 +7,20 @@
                 <card-info class='card-item' :to="{name: 'detail', params: { id: index+1,dataname:dataname}}"   >
                   <template #img >
                           <v-img 
-                          :src="data.img"
+                          :src="data.image"
                           height="150px"
                           cover
                         ></v-img>
                   </template>
                   <template #title>
                               <v-card-text>
-                              <strong>{{data.name}}</strong>
+                              <h3>{{data.name}}</h3>
                             </v-card-text>
                   </template>
                 </card-info>
           </v-sheet>
        </v-col>
   </card-container>
-
 </template>
 
 <script>
@@ -30,3 +29,8 @@
      
     }
 </script>
+<style>
+  h3{
+    text-align: center;
+  }
+</style>

@@ -9,5 +9,4 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class SchoolSkill extends Model
 {
     use HasFactory;
-   
 }

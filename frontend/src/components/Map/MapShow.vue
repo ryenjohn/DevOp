@@ -18,7 +18,7 @@ export default {
         
     }
    iframe{
-        width:94%; 
+        width:92%; 
         height:400px;
         margin-bottom: 15px;
     }

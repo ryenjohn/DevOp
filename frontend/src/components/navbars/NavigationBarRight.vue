@@ -16,8 +16,6 @@
 </template>
 
 <script>
-
-// import axios from "axios";
 import Cookies from "js-cookie";
 import Menu from './Menu.vue';
 export default {
@@ -42,7 +40,7 @@ export default {
       if (userData) {
         const userDataObj = JSON.parse(userData);
         this.userName = userDataObj.data.name;
-        this.userId = userDataObj.data.role_id;
+        this.userId = userDataObj.data;
       }
     },
   },
@@ -71,6 +69,6 @@ export default {
 .link-log-in {
   color: #fff;
   text-decoration: none;
-  margin-left: 5%;
+  margin-left: 0%;
 }
 </style>

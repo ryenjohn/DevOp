@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('workshop_users', function (Blueprint $table) {
             $table->id();
-            $table->string('content')->nullable();
-            $table->unsignedBigInteger('school_id')->unsigned();
-            $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade');
             $table->unsignedBigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('workshop_id')->unsigned();
+            $table->foreign('workshop_id')->references('id')->on('work_shops')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments'); 
+        Schema::dropIfExists('workshop_users');
     }
 };

@@ -5,12 +5,11 @@ import LogIn from '../components/authentication/LogIn.vue'
 import AddWorkshop from '../components/workshop/workShop.vue'
 import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
+import MajorForm from '../components/major/majorForm.vue'
 
 import Home from '../views/HomeView.vue'
 import Detail from '../views/DetailView.vue'
 import Admin from '../views/AdminView.vue'
-// import 
-
 
 const routes = [
   {
@@ -34,6 +33,11 @@ const routes = [
     path: '/about',
     name: 'about',
     component: About
+  },
+  {
+    path: '/addMajor',
+    name: 'addMajor',
+    component: MajorForm
   },
   {
     path: '/contact',

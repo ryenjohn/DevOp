@@ -63,7 +63,6 @@
           @input="v$.password.$touch"
           @blur="v$.password.$touch"
         ></v-text-field>
-
         <v-checkbox
           class="err"
           v-model="state.checkbox"
@@ -100,8 +99,8 @@
 import { reactive } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { email, required, minLength } from "@vuelidate/validators";
-import axios from "axios";
 import Cookies from "js-cookie";
+import axios from "axios";
 
 const initialState = {
   name: "",
@@ -127,7 +126,7 @@ const rules = {
     required,
     email,
     async unique() {
-      const response = await axios.get(`http://127.0.0.1:8000/api/users`);
+      const response = await axios.get(`${ process.env.VUE_APP_API_URL}users`);
       // compare new data email with data in database
       const datas = response.data.data;
       const emailExists = datas.some((data) => data.email === state.email);
@@ -158,9 +157,8 @@ async function singIn() {
     };
 
     // Make an API call to add data to the database
-    const response = await axios.post("http://127.0.0.1:8000/api/users", data);
+    const response = await axios.post(`${ process.env.VUE_APP_API_URL}users`, data);
     Cookies.set("userData", JSON.stringify(response.data), { expires: 30 });
-    console.log(response);
 
     // Check the server response and alert the user accordingly
     if (response.status === 200) {

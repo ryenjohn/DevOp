@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('workshop_user', function (Blueprint $table) {
+        Schema::create('school_users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('workshop_id')->unsigned();
-            $table->foreign('workshop_id')->references('id')->on('work_shops')->onDelete('cascade');
-            
+            $table->unsignedBigInteger('school_id')->unsigned();
+            $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade');
+            $table->boolean("accept")->default(0);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('workshop_user');
+        Schema::dropIfExists('school_users');
     }
 };

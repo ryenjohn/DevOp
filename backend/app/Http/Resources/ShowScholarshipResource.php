@@ -16,7 +16,7 @@ class ShowScholarshipResource extends JsonResource
     {
         return [
             'name'=>$this->name,
-            'img'=>$this->img,
+            'image'=>$this->image,
             'description'=>$this->description,
             'post_date'=>$this->post_date,
             'expired_date'=>$this->expired_date,

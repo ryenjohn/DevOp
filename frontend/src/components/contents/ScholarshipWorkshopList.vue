@@ -1,9 +1,10 @@
 <template>
+
  <title-text v-if='datas!=null && datas!=""'>Choose {{dataname}}</title-text>
   <div class="container mt-10 mb-10"  v-for="(data) in datas" :key="data" >
     <div class="card" >
-      <div class="image ">
-         <img :src="data.img" alt="">
+      <div class="image">
+         <img :src="data.image" alt="">
       </div>
       <div class="text">
           <div class="detail">
@@ -36,7 +37,7 @@
     justify-content: center;
   }
   .card{
-    width:1400px;
+    width:92%;
     height: 30vh;
     display: flex;
     justify-content: center;

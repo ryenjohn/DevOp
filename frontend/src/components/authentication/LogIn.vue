@@ -53,7 +53,9 @@
           Incorrect email or password. Please try again.
         </p>
         <p class="forgot-password">
-          <router-link to="/">Forgot password</router-link>
+          <!-- <router-link to="/">Forgot password</router-link> -->
+          <router-link to="/sendMail">Forgot password</router-link>
+
         </p>
         <div class="btn">
           <div>
@@ -61,10 +63,10 @@
               <v-btn class="me-4" @click="v$.$touch()">Log in</v-btn>
             </div>
             <div v-else class="sign-in">
-              <v-btn class="me-4"  @click="logIn">
-                <router-link class="link-log-in" v-if="state.role !== '1'" to="/"> log in</router-link>
-                <router-link class="link-log-in" v-else to="/signUp">log in</router-link>
+              <v-btn class="me-4"  @click="logIn" v-if="state.incorrectPasswordError==true">
+                <router-link class="link-log-in"  to="/"> log in</router-link>
               </v-btn>
+              <v-btn class="me-4"  @click="logIn" v-else>log in</v-btn>
             </div>
           </div>
           <p class="log-in">
@@ -80,26 +82,21 @@
 import { reactive } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { email, required, minLength } from "@vuelidate/validators";
-import axios from "axios";
 import Cookies from "js-cookie";
+import axios from "axios";
 
-const userRole =  Cookies.get("userData") ? JSON.parse(Cookies.get("userData")).data : "";
 const initialState = {
   email: "",
   password: "",
   emailTakenError: false,
   visible: false,
   incorrectPasswordError: false,
-  role: userRole
-  
 };
-
 const state = reactive(Object.assign({}, initialState));
 
 // Set role for password
 const passwordRule = (value) => {
-  const regex =
-    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}|:"<>?~`]).{8,}$/;
+  const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}|:"<>?~`]).{8,}$/;
   const result = regex.test(value);
   return result;
 };
@@ -126,7 +123,7 @@ async function logIn() {
       password: state.password,
     };
     // Make an API call to add data to the database
-    const response = await axios.post("http://127.0.0.1:8000/api/logIn", data);
+    const response = await axios.post(`${ process.env.VUE_APP_API_URL}logIn`, data);
 
     // Check the server response and alert the user accordingly
     if (response.status === 200) {

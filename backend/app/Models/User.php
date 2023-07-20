@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
@@ -25,24 +26,26 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
-        'address_id'
+        'address_id',
+        'school_id'
     ];
-    
-    public static function store($request , $id = null){
+
+    public static function store($request, $id = null)
+    {
         $user = $request->only([
             'name',
             'email',
             'password',
             'role_id',
             'address_id',
+            'school_id'
         ]);
         $user['password'] = Hash::make($user['password']);
-      
-            $user = self::create($user);
-            $id = $user->$id;
-     
-            return $user;  
-        
+
+        $user = self::create($user);
+        $id = $user->$id;
+
+        return $user;
     }
 
     /**
@@ -64,19 +67,33 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function role():BelongsTo{
+    public function role(): BelongsTo
+    {
         return $this->belongsTo(Role::class);
     }
-    public function comment():HasMany{
+
+    public function comment(): HasMany
+    {
         return $this->hasMany(Comment::class);
     }
-    public function address():BelongsTo{
+
+    public function address(): BelongsTo
+    {
         return $this->belongsTo(Address::class);
     }
-    public function scholarships():HasMany{
+
+    public function scholarships(): HasMany
+    {
         return $this->hasMany(ScholarShip::class);
     }
-    public function workshops():HasMany{
+
+    public function workshops(): HasMany
+    {
         return $this->hasMany(WorkShop::class);
+    }
+
+    public function school(): HasOne
+    {
+        return $this->hasOne(School::class);
     }
 }
