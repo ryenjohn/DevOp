@@ -117,6 +117,7 @@ export default {
 
       if (file) {
         const reader = new FileReader();
+        console.log(reader);
         reader.onload = () => {
           // Convert the image to base64 encoding
           const base64Image = reader.result;
