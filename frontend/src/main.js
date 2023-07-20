@@ -18,8 +18,10 @@ const vuetify = createVuetify({
 
 const app = createApp(App);
 // Admin page (test)
+import AddForm from './components/adminpage/AddForm.vue'
 import SearchBar from './components/searchbar/SearchBar.vue'
 import listUser from './components/adminpage/ListUser.vue'
+app.component('add-form', AddForm);
 app.component('search-bar', SearchBar);
 app.component('list-user', listUser);
 
@@ -68,10 +70,6 @@ import CardItemDetail  from './components/widgets/card/CardDetail.vue';
 import BaseButton from './components/widgets/button/BaseButton.vue';
 import BaseDialog from './components/widgets/dialog/BaseDialog.vue';
 
-
-
-
-
 // content title
 import TitleView from './components/contents/ContentTitle.vue';
 
@@ -90,6 +88,11 @@ app.component('base-dialog', BaseDialog);
 
 
 app.component('title-text', TitleView);
+
+// app.component('skill-detail', SkillDetail);
+// app.component('university-skill', UniversityInSkill);
+// app.component('card-container', CardContainer);
+
 
 //university
 app.component('footer-bar', FooterBar);
@@ -115,6 +118,7 @@ app.component('ourteam-member', OurTeamMember);
 //Contact page
 import ContactBar from '../src/components/contact/ContactBar.vue'
 app.component('contact-bar', ContactBar);
+
 
 
 

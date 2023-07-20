@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
+            $table->string('name');
+            $table->bigInteger('media_id')->nullable();
             $table->timestamps();
         });
     }

@@ -5,38 +5,36 @@
     <v-tab @click="contentData('workshops')">Workshops</v-tab>
     <v-tab @click="contentData('scholarships')">Scholarships</v-tab>
   </v-tabs>
+  <search-bar @searchKey="searchKey" v-if='dataname=="schools"'></search-bar>
   <content-list v-if='dataname!="scholarships" && dataname!="workshops" ' :datas="datas" :dataname='dataname' ></content-list>
- <scholarship-workshop-card v-else  class="mt-10" :datas="datas" :dataname='dataname'></scholarship-workshop-card>
+  <scholarship-workshop-card v-else  class="mt-10" :datas="datas" :dataname='dataname'></scholarship-workshop-card>
+
 </template>
 <script>
-import axios from 'axios'
 export default {
+  props:['datas'],
   data(){
     return{
        university:false,
        skill:false,
        scholarship:false, 
        workshop:false,
-       datas:[],
-       url:'http://127.0.0.1:8000/api/',
        dataname:'schools'
 
     }
   },
   methods:{
     contentData(dataName){
-      this.dataname=dataName
-      axios.get(this.url+dataName).then((response)=>{
-        this.datas = response.data.data
-        console.log(this.datas)
-      })
+      this.dataname = dataName
+      this.$emit('contentData',dataName)
+    },
+    searchKey(key){
+     this.$emit("searchkey",key)
     }
+    
+
   },
-  mounted(){
-    axios.get(this.url+'schools').then((response)=>{
-        this.datas = response.data.data
-      })
-  }
+ 
 }
 </script>
 <style scoped>

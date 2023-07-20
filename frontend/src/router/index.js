@@ -2,13 +2,15 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import SignUp from '../components/authentication/SignUp.vue'
 import LogIn from '../components/authentication/LogIn.vue'
+import sendMail from '../components/authentication/sendEmail.vue'
+import resetPassword from '../components/authentication/resetPassword.vue'
 import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
+import MajorForm from '../components/major/majorForm.vue'
 
 import Home from '../views/HomeView.vue'
 import Detail from '../views/DetailView.vue'
 import Admin from '../views/AdminView.vue'
-import UniversityApplyForm from '../components/university/UniversityApplyForm.vue'
 // import 
 
 
@@ -36,6 +38,11 @@ const routes = [
     component: About
   },
   {
+    path: '/addMajor',
+    name: 'addMajor',
+    component: MajorForm
+  },
+  {
     path: '/contact',
     name: 'contact',
     component: Contact
@@ -50,12 +57,7 @@ const routes = [
     path: '/admin',
     name: 'admin',
     component: Admin
-  },
-  {
-    path: '/universityapplyform',
-    name: 'universityapplyform',
-    component: UniversityApplyForm
-  },
+  }
 
 ]
 

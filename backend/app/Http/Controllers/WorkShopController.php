@@ -2,49 +2,54 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\WorkShopRequest;
+use App\Http\Resources\ShowWorkShopResource;
 use App\Models\WorkShop;
 use Illuminate\Http\Request;
 
 class WorkShopController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function workshops()
+    public function getworkShops()
     {
-        $workshop = WorkShop::all();
-        return response()->json(['Get success'=>true, 'data'=>$workshop],200);
+        $workShops = workShop::all();
+        $workShops = ShowWorkShopResource::collection($workShops);
+        return response()->json(['success' => true, 'data' => $workShops], 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function getWorkShopById(string $id)
     {
-        //
+        $workShop = workShop::find($id);
+        if (!$workShop) {
+            return response()->json(['message' => 'WorkShop id not found'], 404);
+        }
+        $workShop = new ShowWorkShopResource($workShop);
+        return response()->json(['success' => true, 'data' => $workShop], 200);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function createworkShop(WorkShopRequest $request)
     {
-        //
+        $workShops = WorkShop::WorkShop($request);
+        $workShops = new ShowWorkShopResource($workShops);
+        return response()->json(['message' => "Create workShops success", 'data' => $workShops], 201);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function editeWorkShop(WorkShopRequest $request, string $id)
     {
-        //
+        $workShop  = workShop::find($id);
+        if ($workShop) {
+            $workShop  = workShop::workShop($request, $id);
+            return response()->json(['Update workShop  success' => true, 'data' => $workShop], 200);
+        }
+        return response()->json(['message' => "workShop id not found"], 404);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function deleteWorkShop(string $id)
     {
-        //
+        $workShop = workShop::find($id);
+        if (!$workShop) {
+            return response()->json(['message' => 'WorkShop id not found'], 404);
+        }
+        $workShop->delete();
+        return response()->json(['Delete workShop successfully' => true, 'data' => $workShop], 201);
     }
 }

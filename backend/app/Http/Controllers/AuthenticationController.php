@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-// code when study with with teacher yon
+// code when study with teacher yon
 class AuthenticationController extends Controller
 {
     public function login(Request $request)
