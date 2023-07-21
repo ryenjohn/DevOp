@@ -57,6 +57,7 @@ export default {
   margin-right: 0%;
   margin-top: 4%;
 }
+
 .img-icon {
   display: flex;
 }
