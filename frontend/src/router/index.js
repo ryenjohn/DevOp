@@ -11,7 +11,9 @@ import MajorForm from '../components/major/majorForm.vue'
 import Home from '../views/HomeView.vue'
 import Detail from '../views/DetailView.vue'
 import Admin from '../views/AdminView.vue'
+import UniversityApplyForm from '../components/university/UniversityApplyForm.vue'
 // import 
+
 
 
 const routes = [
@@ -57,6 +59,21 @@ const routes = [
     path: '/admin',
     name: 'admin',
     component: Admin
+  },
+  {
+    path: '/apply',
+    name: 'apply',
+    component: UniversityApplyForm
+  },
+  {
+    path: '/sendMail',
+    name: 'sendMail',
+    component: sendMail
+  },
+  {
+    path: '/resetPassword',
+    name: 'resetPassword',
+    component: resetPassword
   }
 
 ]

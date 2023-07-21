@@ -1,7 +1,7 @@
 // copy from register form
 <template>
         <v-container> 
-        <div class="container">
+        <div class="container"  >
           <div class="image">
             <img 
               src="https://img.freepik.com/premium-vector/happy-graduated-students-illustration_179970-1004.jpg?w=996"
@@ -9,14 +9,14 @@
               alt="Image description"
             />
         </div>
-      <div class="form-container">
+      <div class="form-container" id='myform'>
         <form style="height: 800px;">
           <h1>Join Our University</h1>
 
           <!-- name -->
           <v-text-field
             class="err"
-            v-model="state.name"
+            v-model="name"
             :error-messages="v$.name.$errors.map((e) => e.$message)"
             :counter="10"
             density="compact"
@@ -49,10 +49,8 @@
  
           <!-- date -->
           <!-- https://www.youtube.com/watch?v=q5TP2XygqUw -->
-          <div class="date">
-            <label for="">Enter your birthdate : </label>
-            <input type="date" v-model="mydate">
-          </div>
+          <label for="date">Date of birth*</label>
+          <input type="date" class="date"  v-model="mydate">
        
           <!-- email -->
           <v-text-field
@@ -73,27 +71,7 @@
           </p>
 
           <!-- password -->
-          <v-text-field
-            class="err"
-            :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-            color="#634B7A"
-            :type="visible ? 'text' : 'password'"
-            density="compact"
-            placeholder="Enter your password"
-            prepend-inner-icon="mdi-lock-outline"
-            variant="outlined"
-            @click:append-inner="visible = !visible"
-            v-model="state.password"
-            :error-messages="
-              v$.password.$errors.map((e) =>
-                e.$params.custom
-                  ? e.$params.custom.message
-                  : 'Value required and should contain uppercase, lowercase, number, sign and more than 8 characters'
-              )
-            "
-            @input="v$.password.$touch"
-            @blur="v$.password.$touch"
-          ></v-text-field>
+         
 
           <!-- phone number -->
           <v-text-field
@@ -142,7 +120,7 @@
           <!-- choose major -->
           <v-select
             label="Select Major"
-            :items="['IT', 'Engineering', 'Architecture ', 'Accounting', 'IFL', 'Food Chemistry']"
+            :items="majors"
             class="err"
             color="#634B7A"
             :type="visible ? 'text' : 'major'"
@@ -162,6 +140,8 @@
             @input="v$.major.$touch"
             @blur="v$.major.$touch"
           ></v-select>
+
+       
 
           <!-- Education level -->
           <v-select
@@ -233,7 +213,7 @@
             </div>
             <div class="btn">
               <div class="btn" v-if="v$.$invalid">
-                <v-btn class="me-4" @click="v$.$touch()">Submit</v-btn>
+                <v-btn class="me-4" @click="makePDF">Submit</v-btn>
               </div>
               <div v-else class="sign-in">
                 <v-btn class="me-4" @click="singIn">
@@ -246,18 +226,33 @@
         </form>
       </div>
   </div>
-    </v-container>
+  </v-container>
 </template>
 
 
-<script>
+<script> 
+
   export default {
     data() {
       return {
         selected: '',
-        mydate: null,
+        majors:'',
       }
-    }   
+    },
+    methods:{
+      
+      getMajor(){
+        axios.get('http://127.0.0.1:8000/api/majorname').then((res)=>{
+         console.log(res.data.data)
+        this.majors = res.data.data
+         
+        })
+      },
+      
+    },
+    mounted(){
+      this.getMajor()
+    }  
 }
 
 
@@ -372,12 +367,11 @@ async function singIn() {
   margin-bottom: 6%;
 
 }
-.date label, input {
-  color: rgba(128, 128, 128, 0.518);
+
+.date{
+  width: 500px;
 }
-.date input{
-  margin-left: 15%;
-}
+
 img{
   margin-top: 22%;
 }
@@ -426,7 +420,6 @@ label {
   margin: 60px;
   flex: 1;
   padding: 35px;
-  /* height: 90vh; */
   border-radius: 10px;
 }
 .btn > div > div > button {

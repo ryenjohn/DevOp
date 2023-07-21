@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SkillRequest;
 use App\Http\Resources\SchoolResource;
 use App\Http\Resources\ShowSkillResource;
+use App\Http\Resources\SkillNameResource;
 use App\Http\Resources\SkillResource;
 use App\Http\Resources\SubjectResource;
 use App\Models\School;
@@ -19,6 +20,12 @@ class SkillController extends Controller
         $skills = Skill::all();
         $skills = ShowSkillResource::collection($skills);
         return response()->json(['success' => true, 'data' => $skills], 200);
+    }
+
+    public function majorName(){
+        $skills = Skill::all();
+        $skills = SkillNameResource::collection($skills);
+        return $skills;
     }
 
     public function getSkillById(string $id)
