@@ -22,12 +22,6 @@ class SkillController extends Controller
         return response()->json(['success' => true, 'data' => $skills], 200);
     }
 
-    public function majorName(){
-        $skills = Skill::all();
-        $skills = SkillNameResource::collection($skills);
-        return $skills;
-    }
-
     public function getSkillById(string $id)
     {
         $skills = Skill::find($id);

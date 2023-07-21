@@ -1,6 +1,6 @@
 // copy from register form
 <template>
-        <v-container> 
+    <v-container> 
         <div class="container"  >
           <div class="image">
             <img 
@@ -10,11 +10,11 @@
             />
         </div>
       <div class="form-container" id='myform'>
-        <form style="height: 800px;">
+        <form style="height: 300px;">
           <h1>Join Our University</h1>
 
           <!-- name -->
-          <v-text-field
+          <!-- <v-text-field
             class="err"
             v-model="name"
             :error-messages="v$.name.$errors.map((e) => e.$message)"
@@ -27,10 +27,10 @@
             required
             @input="v$.name.$touch"
             @blur="v$.name.$touch"
-          ></v-text-field>
+          ></v-text-field> -->
 
           <!-- gender -->
-          <v-container fluid class="d-flex">
+          <!-- <v-container fluid class="d-flex">
               <v-checkbox class="selectbox"
                 v-model="state.selected"
                 label="Female"
@@ -45,15 +45,16 @@
                 @input="v$.selected.$touch"
                 @blur="v$.selected.$touch"
               ></v-checkbox>
-          </v-container>
+          </v-container> -->
  
           <!-- date -->
           <!-- https://www.youtube.com/watch?v=q5TP2XygqUw -->
-          <label for="date">Date of birth*</label>
-          <input type="date" class="date"  v-model="mydate">
+
+          <!-- <label for="date">Date of birth*</label>
+          <input type="date" class="date"  v-model="mydate"> -->
        
           <!-- email -->
-          <v-text-field
+          <!-- <v-text-field
             class="err"
             v-model="state.email"
             :error-messages="v$.email.$errors.map((e) => e.$message)"
@@ -68,13 +69,13 @@
           ></v-text-field>
           <p v-if="state.emailTakenError" class="text-error">
             Email is already taken.
-          </p>
+          </p> -->
 
           <!-- password -->
          
 
           <!-- phone number -->
-          <v-text-field
+          <!-- <v-text-field
             class="err"
             color="#634B7A"
             :type="visible ? 'text' : 'phone_number'"
@@ -93,10 +94,10 @@
             "
             @input="v$.phone_number.$touch"
             @blur="v$.phone_number.$touch"
-          ></v-text-field>
+          ></v-text-field> -->
 
           <!-- address -->
-          <v-text-field
+          <!-- <v-text-field
             class="err"
             color="#634B7A"
             :type="visible ? 'text' : 'address'"
@@ -115,10 +116,10 @@
             "
             @input="v$.address.$touch"
             @blur="v$.address.$touch"
-          ></v-text-field>
+          ></v-text-field> -->
 
           <!-- choose major -->
-          <v-select
+          <!-- <v-select
             label="Select Major"
             :items="majors"
             class="err"
@@ -139,8 +140,12 @@
             "
             @input="v$.major.$touch"
             @blur="v$.major.$touch"
-          ></v-select>
+          ></v-select> -->
 
+          <label for="major">Select your major*</label>
+          <select class="select" name='major'>
+            <option value="volvo" v-for="major in majors" :key="major.id">{{major.name}}</option>
+          </select>
        
 
           <!-- Education level -->
@@ -242,9 +247,10 @@
     methods:{
       
       getMajor(){
-        axios.get('http://127.0.0.1:8000/api/majorname').then((res)=>{
+        axios.get('http://127.0.0.1:8000/api/majors').then((res)=>{
          console.log(res.data.data)
         this.majors = res.data.data
+        console.log(this.majors)
          
         })
       },
@@ -367,7 +373,14 @@ async function singIn() {
   margin-bottom: 6%;
 
 }
-
+.select{
+  width: 100%;
+  border: 1px solid rgb(135, 132, 132);
+  /* outline-style: solid; */
+  padding: 13px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
 .date{
   width: 500px;
 }

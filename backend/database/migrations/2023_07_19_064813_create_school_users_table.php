@@ -15,9 +15,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('skill_id')->unsigned();
+            $table->foreign('skill_id')->references('id')->on('skills')->onDelete('cascade');
             $table->unsignedBigInteger('school_id')->unsigned();
             $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade');
             $table->boolean("accept")->default(0);
+            $table->string("year")->nullable();
+            $table->string("studey_lavel")->nullable();
             $table->timestamps();
         });
     }

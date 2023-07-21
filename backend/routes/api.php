@@ -59,7 +59,6 @@ Route::get('/scholarships',[ScholarshipController::class,'scholarships']);
 
 // Skill route
 Route::get('/majors',[SkillController::class,'getSkills']);
-Route::get('/majorname',[SkillController::class,'majorName']);
 Route::get('/majors/{id}',[SkillController::class,'getSkillById']);
 Route::post('/majors',[SkillController::class,'store']);
 Route::put('/majors/{id}',[SkillController::class,'editeSkill']);
