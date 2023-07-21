@@ -7,6 +7,9 @@ use App\Mail\Register;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Client;
+
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
@@ -15,6 +18,7 @@ class UserController extends Controller
 
     public function getUser($id)
     {
+        dd($id);
         $user = User::find($id);
         return response()->json(['success'=>true,'data'=>$user],200);
 
@@ -57,6 +61,21 @@ class UserController extends Controller
         $token = $user->createToken('API Token')->plainTextToken;
         return response()->json(['exists' => true, 'message' => "Your account is created", 'data' => $user, 'token' => $token], 200);
     }
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+
+
+
+    
+    /**
+     * Update the specified resource in storage.
+     */
 
 
     public function sendEmail(Request $request)

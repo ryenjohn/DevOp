@@ -12,8 +12,7 @@
           contain
         ></v-img>
       </template>
-      <v-list class="menu-list" style="width: 120%; margin-right: 10%; background-color: blueviolet">
-        <!-- <div class=""> -->
+      <v-list class="menu-list" style="width: 100%;  background-color: blueviolet">
           <div class="icon-item">
             <v-icon class="logout-icon text-white me-2" size="20">mdi-account</v-icon>
             <div class="username">{{ userName }}</div>
@@ -22,14 +21,13 @@
             <v-icon class="logout-icon text-white me-2" size="20" @click="submitLogOut" >mdi-logout</v-icon>
             <div class="icon-log-out">log out</div>
           </div>
-        <!-- </div> -->
       </v-list>
     </v-menu>
   </div>
 </template>
 <script>
-import axios from "axios";
 import Cookies from "js-cookie";
+import axios from 'axios';
 
 export default {
   name: "UserMenu",
@@ -44,7 +42,7 @@ export default {
     submitLogOut() {
       if (confirm("Are you sure you want to log out?")) {
         axios
-          .get("http://127.0.0.1:8000/api/logOut")
+          .get(`${ process.env.VUE_APP_API_URL}logOut`)
           .then(() => {
             Cookies.remove("userData");
             delete axios.defaults.headers.common["Authorization"];
@@ -74,7 +72,6 @@ export default {
 
 .username,
 .icon-log-out {
-  cursor: pointer;
   color: #ffff;
   font-size: 14px;
   font-weight: bold;

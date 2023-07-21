@@ -1,8 +1,8 @@
 <?php
 
 namespace Database\Seeders;
-use Faker\Factory as Faker;
 
+use App\Models\WorkshopUser;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -14,16 +14,13 @@ class WorkShopUserSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
-
-        for ($i = 0; $i < 10; $i++) {
-            $userId = $faker->numberBetween($min = 1, $max = 10);
-            $workshopId = $faker->numberBetween($min = 1, $max = 10);
-        
-            DB::table('workshop_user')->insert([
-                'user_id' => $userId,
-                'workshop_id' => $workshopId,
-            ]);
+        $workshop_user = [
+            ["user_id" => 1,
+            
+             "workshop_id"=>1]  
+        ];
+        foreach($workshop_user as $theworkshop){
+            WorkshopUser::create($theworkshop);
         }
     }
 }

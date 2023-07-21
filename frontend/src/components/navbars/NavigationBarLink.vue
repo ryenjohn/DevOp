@@ -3,9 +3,12 @@
   <div v-if="this.$route.name!='admin' && this.$route.name!='university'">
     <v-tabs>
       <img to="/" class="img" src="../../assets/images/logo.png" alt="" >
+      <div class="">
       <router-link  to="/"><v-tab>Home</v-tab></router-link>
       <router-link to="/about"><v-tab>About</v-tab></router-link>
       <router-link to="/contact"><v-tab>Contact</v-tab></router-link>
+
+      </div>
     </v-tabs>
   </div>
 

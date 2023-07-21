@@ -34,20 +34,21 @@
 
 <script>
 import axios from 'axios'
+
 export default{
   data(){
     return{
       email: '',
       errors: null,
-      url:'http://127.0.0.1:8000/api/sendMail'
 
     }
   },
   methods:{
     
     getMail() {
-      axios.post(this.url,{email:this.email}).then((response)=>{
-        console.log(response);
+      axios.post(`${ process.env.VUE_APP_API_URL}sendMail`,{email:this.email})
+      .then((response)=>{
+        console.log(response)
         if(!this.email==""){
           this.$router.push('/')
         }

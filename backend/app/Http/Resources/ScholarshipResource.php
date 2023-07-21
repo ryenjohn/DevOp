@@ -17,13 +17,10 @@ class ScholarshipResource extends JsonResource
         return [
             'id'=>$this->id,
             'name'=>$this->name,
-            'img'=>$this->img,
+            'image'=>$this->image,
             'description'=>$this->description,
             'school_id'=>new SchoolResource($this->school),
             'skill_id'=>new ShowSkillResource($this->skill),
-    
-    
-
         ];
     }
 }

@@ -7,13 +7,11 @@
       <router-link class="link-sign-up" to="/signUp"><v-tab>SignUp</v-tab></router-link>
       <router-link class="link-log-in" to="/logIn"><v-tab>SignIn</v-tab></router-link>
     </v-tabs>
-    <Menu v-if="userName!=null" :show-menu="showMenu"  @submitLogOut="submitLogOut" :userName="userName"/>
+    <Menu v-if="userName!=null" :show-menu="showMenu"  @submitLogOut="submitLogOut" :userName="userName.name"/>
   </div>
 </template>
 
 <script>
-
-// import axios from "axios";
 import Cookies from "js-cookie";
 import Menu from './Menu.vue';
 export default {
@@ -67,6 +65,6 @@ export default {
 .link-log-in {
   color: #fff;
   text-decoration: none;
-  margin-left: 5%;
+  margin-left: 0%;
 }
 </style>

@@ -19,6 +19,7 @@ button {
   color: white;
   cursor: pointer;
   border-radius:5px
+
 }
 
 button:hover,

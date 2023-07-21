@@ -11,6 +11,7 @@
             <v-list-item  @click="changedata('students')" prepend-icon="mdi-format-list-bulleted"  title="Majors" value="Students"></v-list-item>
           </div>
           <div v-else>
+            <v-list-item  @click="changedata('users')" prepend-icon="mdiAccount"  title="All Users" value="Users"></v-list-item>
             <v-list-item  @click="changedata('students')" prepend-icon="mdi-account-school"  title="Students" value="Students"></v-list-item>
             <v-list-item  @click="changedata('managers')" prepend-icon="mdi-school" title="University" value="University"></v-list-item>
          </div>
@@ -33,7 +34,7 @@
 
 <style  scoped>
     .sidebar{
-      margin-top: 0%;
+      margin-top: 4.5%;
       background: blueviolet;
       color: white;
     }

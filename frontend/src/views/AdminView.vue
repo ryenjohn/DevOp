@@ -1,10 +1,8 @@
 <template>
     
 <div>
-    <h1 v-if="datanameEmitted">All {{ pageTitle }}</h1>
-    <h1 v-else>All Users</h1>
-    <add-form v-if="datanameEmitted" ></add-form>
-    <!-- <button class='add-btn' @click="addUser">Add new user</button> -->
+    <h1 >All {{ pageTitle }}</h1>
+    <add-form v-if="isAllUser" ></add-form>
     <list-user :datas="datas" @edit='edit' @del='del' ></list-user> 
     <side-bar @dataname="changedata"></side-bar>
   
@@ -15,33 +13,36 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
 
  
   data() {
     return {
-        datanameEmitted: false,
+        datanameEmitted: true,
         datas: [],
-        isAdd:false,
-        pageTitle: '',
-        open:false
+        pageTitle: 'Users',
+        isAllUser:true,
     };
   },
 
   methods: {
     changedata(dataname){
-      this.datanameEmitted = true;
       this.pageTitle = dataname;
-        
-        fetch('http://127.0.0.1:8000/api/'+dataname)
-        .then(response => response.json())
-        .then(data => {
-            this.datas = data.data;
+      if(this.pageTitle!='users'){
+        this.isAllUser=false
+      }
+      else{
+        this.isAllUser=true
+      }
+      axios.get(`${ process.env.VUE_APP_API_URL}${dataname}`)
+        .then(res => {
+            this.datas = res.data.data;
             console.log(this.datas)
         })
         .catch(error => {
-            console.error('Error fetching student data:', error);
+            console.error('Error axios student data:', error);
         });
     },
     
@@ -50,15 +51,14 @@ export default {
   
   mounted() {
 
-    fetch('http://127.0.0.1:8000/api/users')
-      .then(response => response.json())
-      .then(data => {
-        this.datas = data.data;
-        console.log(this.datas)
+    axios.get(`${ process.env.VUE_APP_API_URL}users`)
+      .then(res => {
+        this.datas = res.data.data;
       })
       .catch(error => {
-        console.error('Error fetching student data:', error);
-      });
+        console.error('Error axios student data:', error);
+    });
+
   },
 }
 

@@ -1,8 +1,8 @@
 <?php
 
 namespace Database\Seeders;
-use Faker\Factory as Faker;
 
+use App\Models\ScholarShip;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -14,26 +14,12 @@ class ScholarshipSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
-
-        for ($i = 0; $i < 10; $i++) {
-            $skillName = $faker->jobTitle;
-            $imgUrl = $faker->imageUrl($width = 640, $height = 480);
-            $description = $faker->sentence;
-            $postDate = $faker->dateTimeBetween($startDate = '-1 year', $endDate = 'now')->format('Y-m-d');
-            $expireDate = $faker->dateTimeBetween($postDate, '+1 year')->format('Y-m-d');
-            $schoolId = $faker->numberBetween($min = 1, $max = 10);
-            $skillId = $faker->numberBetween($min = 1, $max = 10);
-        
-            DB::table('scholar_ships')->insert([
-                'name' => $skillName,
-                'img' => $imgUrl,
-                'description' => $description,
-                'post_date' => $postDate,
-                'expired_date' => $expireDate,
-                'school_id' => $schoolId,
-                'skill_id' => $skillId,
-            ]);
+        $scholarships = [
+            ["name" => "scholarship 1", "image" => "https://i.pinimg.com/564x/1b/80/f2/1b80f2d5745bca5f4bc619c4d2a5084f.jpg","description"=> "Get 100% scholarship", "post_date" => "2023-07:07", "expired_date"=>"2023:07:08", "school_id"=>1, "skill_id"=>1],
+            
+        ];
+        foreach($scholarships as $scholarship){
+            ScholarShip::create($scholarship);
         }
     }
 }
