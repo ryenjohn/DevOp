@@ -5,20 +5,21 @@
     <v-tab @click="contentData('workshops')">Workshops</v-tab>
     <v-tab @click="contentData('scholarships')">Scholarships</v-tab>
   </v-tabs>
+  <search-bar @searchKey="searchKey"></search-bar>
   <content-list v-if='dataname!="scholarships" && dataname!="workshops" ' :datas="datas" :dataname='dataname' ></content-list>
- <scholarship-workshop-card v-else  class="mt-10" :datas="datas" :dataname='dataname'></scholarship-workshop-card>
+ <scholarship-workshop-card  v-else class="mt-10" :datas="datas" :dataname='dataname'></scholarship-workshop-card>
 </template>
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 // import api_base from '../../router/api.js'
 export default {
+  props:['datas'],
   data(){
     return{
        university:false,
        skill:false,
        scholarship:false, 
        workshop:false,
-       datas:[],
        dataname:'schools'
 
     }
@@ -26,17 +27,15 @@ export default {
   methods:{
     contentData(dataName){
       this.dataname=dataName
-      axios.get(`${ process.env.VUE_APP_API_URL}${dataName}`).then((response)=>{
-        this.datas = response.data.data
-        console.log(this.datas)
-      })
+      this.$emit('contentData',dataName)
+    },
+    searchKey(key){
+     this.$emit("searchkey",key)
     }
+    
+
   },
-  mounted(){
-    axios.get(`${ process.env.VUE_APP_API_URL}schools`).then((response)=>{
-        this.datas = response.data.data
-      })
-  }
+ 
 }
 </script>
 <style scoped>

@@ -12,7 +12,8 @@ class Address extends Model
     use HasFactory;
     protected $fillable=[
         'street',
-        'city'
+        'city',
+        'link'
     ];
     protected $hidden = [
         'created_at',

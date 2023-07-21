@@ -19,7 +19,7 @@ class WorkshopResource extends JsonResource
             'name'=>$this->name,
             'img'=>$this->img,
             // 'address'=>AddressResource::collection($this->address),
-            'address'=>SchoolResource::collection($this->school),
+            'address'=>AddressResource::collection($this->address),
             'description'=>$this->description,
             'start_date'=>$this->description,
             'expired_date'=>$this->description,

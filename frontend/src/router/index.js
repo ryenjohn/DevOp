@@ -2,13 +2,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import SignUp from '../components/authentication/SignUp.vue'
 import LogIn from '../components/authentication/LogIn.vue'
-import sendMail from '../components/authentication/sendEmail.vue'
-import resetPassword from '../components/authentication/resetPassword.vue'
+import AddWorkshop from '../components/workshop/workShop.vue'
 import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
 import PaymentForm from '../components/payment/PaymentForm.vue'
 import PaymentByCard from '../components/payment/PaymentByCard.vue'
-
+import MajorForm from '../components/major/majorForm.vue'
 import Home from '../views/HomeView.vue'
 import Detail from '../views/DetailView.vue'
 import Admin from '../views/AdminView.vue'
@@ -38,6 +37,11 @@ const routes = [
     component: About
   },
   {
+    path: '/addMajor',
+    name: 'addMajor',
+    component: MajorForm
+  },
+  {
     path: '/contact',
     name: 'contact',
     component: Contact
@@ -53,16 +57,16 @@ const routes = [
     name: 'admin',
     component: Admin
   },
-  {
-    path: '/sendMail',
-    name: 'sendMail',
-    component: sendMail
-  },
-  {
-    path: '/resetPassword',
-    name: 'resetPassword',
-    component: resetPassword
-  },
+  // {
+  //   path: '/sendMail',
+  //   name: 'sendMail',
+  //   component: sendMail
+  // },
+  // {
+  //   path: '/resetPassword',
+  //   name: 'resetPassword',
+  //   component: resetPassword
+  // },
   {
 
     path: '/registeraccountpopup',
@@ -77,7 +81,11 @@ const routes = [
     path: '/paymentbycard',
     name: 'paymentbycard',
     component: PaymentByCard
-
+  },
+  {
+    path: '/addWorkshop',
+    name: 'addWorkshop',
+    component: AddWorkshop
   }
 
 ]

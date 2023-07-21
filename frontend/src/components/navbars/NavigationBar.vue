@@ -16,7 +16,7 @@
   justify-content: start;
   align-items: center;
   background-color: blueviolet;
-  
+  padding: 10px;
 }
 
 </style>

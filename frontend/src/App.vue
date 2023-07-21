@@ -1,8 +1,7 @@
 <template>
   <navigation-bar></navigation-bar>
   <router-view></router-view>
-  <footer-bar v-if="this.$route.name!='admin'"></footer-bar>
-
+  <footer-bar></footer-bar>
 </template>
 <script>
   

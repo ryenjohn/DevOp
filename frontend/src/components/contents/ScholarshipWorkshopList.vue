@@ -1,10 +1,9 @@
 <template>
-<register-account-popup></register-account-popup>
  <title-text v-if='datas!=null && datas!=""'>Choose {{dataname}}</title-text>
   <div class="container mt-10 mb-10"  v-for="(data) in datas" :key="data" >
     <div class="card" >
-      <div class="image ">
-         <img :src="data.img" alt="">
+      <div class="image">
+         <img :src="data.image" alt="">
       </div>
       <div class="text">
           <div class="detail">
@@ -15,7 +14,7 @@
                 <h4>{{data.description}}</h4>
             </div>
             <div class="btn">
-              <button v-if="dataname=='workshops'">Join</button>
+              <button v-if="dataname=='workshops'" @click="checkLoginStatus"><register-account-popup></register-account-popup></button>
               <button v-if="dataname=='scholarships'">Apply</button>
             </div>
           </div>
@@ -31,8 +30,6 @@ import Cookies from 'js-cookie';
       data() {
     return {
       isLoggedIn: false,
-      dialog: false,
-      userName: '',
       userId: ''
     };
   },
@@ -41,12 +38,9 @@ import Cookies from 'js-cookie';
   },
   methods: {
     setUser() {
-      // Get the value of the "userData" cookie
       const userData = Cookies.get('userData');
-      // If the "userData" cookie exists, parse it and set the user ID and name in the component data
       if (userData) {
         const userDataObj = JSON.parse(userData);
-        this.userName = userDataObj.data;
         this.userId = userDataObj.data.id;
       }
     },
@@ -65,7 +59,7 @@ import Cookies from 'js-cookie';
     justify-content: center;
   }
   .card{
-    width:1400px;
+    width:92%;
     height: 30vh;
     display: flex;
     justify-content: center;
@@ -99,22 +93,22 @@ import Cookies from 'js-cookie';
     border-radius:20px;
     border:none;
     color:white;
-    background:orange;
   }
   .text-h5{
   color: orange;
-}
-.text{
+  }
+  .text{
   color: #634b7a;
-}
-p{
+  }
+  p{
   color: white;
-  background-color: orange;
+  background-color: purple;
   padding: 5px;
-  width: 4%;
+  width: 70px;
   text-align: center;
   border-radius: 5px;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  margin-bottom: 25%;
+  margin-right: 15%;
 }
+  
 </style>

@@ -9,7 +9,7 @@
       width="500px"
     >
       <template v-slot:activator="{ props }">
-        <p v-bind="props" @click="checkLoginStatus">Join</p>
+        <p v-bind="props">Join</p>
       </template>
       <v-card>
         <v-card-title class="text-h5">
@@ -48,7 +48,7 @@
       width="500px"
     >
       <template v-slot:activator="{ props }">
-        <p v-bind="props" @click="checkLoginStatus">Join</p>
+        <p v-bind="props">Join</p>
       </template>
       <v-card>
         <v-card-title class="text-h5">
@@ -82,3 +82,46 @@
 </template>
 
 
+<script>
+import Cookies from 'js-cookie';
+export default {
+    data() {
+    return {
+      isLoggedIn: false,
+      dialog: false,
+    };
+  },
+    mounted() {
+    this.setUser();
+  },
+  methods: {
+    setUser() {
+      const userData = Cookies.get('userData');
+      if (userData) {
+        const userDataObj = JSON.parse(userData);
+        this.userId = userDataObj.data.id;
+        this.isLoggedIn = true;
+      }
+    },
+  }
+}
+</script>
+
+<style scoped>
+.text-h5{
+  color: orange;
+}
+.text{
+  color: #634b7a;
+}
+p{
+  color: white;
+  background-color: purple;
+  padding: 5px;
+  width: 70px;
+  text-align: center;
+  border-radius: 5px;
+  margin-bottom: 25%;
+  margin-right: 15%;
+}
+</style>

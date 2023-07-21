@@ -12,9 +12,11 @@ class SubjectResource extends JsonResource
      *
      * @return array<string, mixed>
      */
-    public function toArray(Request $request): string
+    public function toArray(Request $request): array
     {
-        return $this->name;
-        
+        return [
+            'id' => $this->id,
+            'subject' => $this->name,
+        ];
     }
 }

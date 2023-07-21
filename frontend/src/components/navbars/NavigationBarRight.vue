@@ -72,6 +72,6 @@ export default {
 .link-log-in {
   color: #fff;
   text-decoration: none;
-  margin-left: 5%;
+  margin-left: 0%;
 }
 </style>
