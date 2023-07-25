@@ -9,10 +9,10 @@ class AddressController extends Controller
 {
 
     //
-    public function addresses(){
-        $addresses = Address::all()
-        return response()->json(['message' => "Your get user is success", 'data' => $addresses], 200);
-    }
+    // public function addresses(){
+    //     $addresses = Address::all()
+    //     return response()->json(['message' => "Your get user is success", 'data' => $addresses], 200);
+    // }
     /**
      * Display a listing of the resource.
      */

@@ -1,6 +1,7 @@
 <template>
     <div class="groupForm">
         <v-form v-model="valid" @submit="checkForm">
+            <h2 style="margin-top:-12px">User data</h2> 
             <div class="item">
                 <v-text-field 
                     v-model="name" 

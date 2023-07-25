@@ -104,7 +104,7 @@ Route::post('/sendMail',[ResetPasswordController::class,'SendMail']);
 Route::post('/registerMail',[UserController::class,'sendEmail']);
 
 // Address 
-Route::get('/addresses',[AddressController::class,'addresses']);
+// Route::get('/addresses',[AddressController::class,'addresses']);
 // education type
 Route::get("/schoolType",[SchoolTypeController::class,'schoolType']);
 
