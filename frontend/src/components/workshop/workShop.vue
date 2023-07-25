@@ -8,12 +8,13 @@
       /> 
     </div>
       <v-form @submit.prevent="" ref="form" class="form-item">
-        <h2>Add Workshop </h2>
+        <h2>Add Workshop</h2>
+
         <div class="side-input">
           <div class="right-input">
               <v-text-field
               v-model="name"
-              label="Name Workshop"
+              label="Name of workshop"
               :rules="nameRules"
               required
             ></v-text-field>
@@ -24,13 +25,6 @@
               :rules="startDateRules"
               required
           ></v-text-field>
-            <v-file-input
-              @change="onFileChange"
-              label="Image"
-              :rules="imageRules"
-              required
-            ></v-file-input>
-
             <v-textarea
               v-model="description"
               label="Description"
@@ -39,9 +33,9 @@
             ></v-textarea>
           </div>
           <div class="left-input">
-              <v-text-field
+            <v-text-field
               v-model="number"
-              label="Number Workshop"
+              label="Number ticket"
               type="number"
               :rules="numberRules"
               required
@@ -54,12 +48,7 @@
             :rules="endDateRules"
             required
           ></v-text-field>
-        <v-text-field
-          v-model="time"
-          label="Time"
-          :rules="timeRules"
-          required
-        ></v-text-field>
+        
         <v-select
           v-model="school"
           :items="schools"
@@ -76,8 +65,21 @@
         ></v-select>
           </div>
         </div>
+        <v-text-field
+          v-model="time"
+          label="Time"
+          :rules="timeRules"
+          required
+        ></v-text-field>
+        <v-file-input
+            @change="onFileChange"
+            label="Image"
+            :rules="imageRules"
+            required
+        ></v-file-input>
+
         <div class="btn">
-          <v-btn type="button" class="bg-purple text-white">Cancel</v-btn>
+          <v-btn type="button" class="bg-purple text-white" @click="this.$router.push('/')">Cancel</v-btn>
           <v-btn type="submit" @click.prevent="submitForm" class="bg-orange text-white">Submit</v-btn>
         </div>
       </v-form>
@@ -85,6 +87,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 import axios from 'axios';
 export default {
   data() {
@@ -203,12 +206,22 @@ export default {
         // Submit form data
          axios.post(`${process.env.VUE_APP_API_URL}workshops`,newWorkshop)
           .then(() => {
+            this.alertMessage();
             this.$router.push("/");
           })
           .catch((error) => {
             console.error(error);
           });
       }
+    },
+    alertMessage(){
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Your work has been created',
+        showConfirmButton: false,
+        timer: 2000
+      })
     },
 
     // covert name school to id from select
