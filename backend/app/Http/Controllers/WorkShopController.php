@@ -32,7 +32,7 @@ class WorkShopController extends Controller
         if ($workShop) {
             return response()->json(['Workshop have been created' => true, 'data' => $workShop], 200);
         }
-        return response()->json(['message' => "workShop cannot create"], 404);
+        return response()->json(['message' => "workShop cannot create"], 200);
 
     }
     public function editeWorkShop(WorkShopRequest $request, string $id)

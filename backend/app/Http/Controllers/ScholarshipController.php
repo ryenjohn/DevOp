@@ -46,6 +46,11 @@ class ScholarshipController extends Controller
     public function store(Request $request)
     {
         //
+        $scholarShip = ScholarShip::store($request);
+        if($scholarShip){
+            return response()->json(['scholarship have been created' => true, 'data' => $scholarShip], 200);
+        }
+        return response()->json(['message' => "scholarship cannot create"], 200);
     }
 
     /**

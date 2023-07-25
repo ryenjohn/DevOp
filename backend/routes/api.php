@@ -61,6 +61,7 @@ Route::delete('/schools/{id}',[SchoolController::class,'deleteSchool']);
 Route::get('/scholarships',[ScholarshipController::class,'scholarships']);
 Route::get('/scholarship/{id}',[ScholarshipController::class,'scholarship']);
 Route::delete('/scholarship/{id}',[ScholarshipController::class,'destroy']);
+Route::post('/addScholarship',[ScholarshipController::class,'store']);
 
 // Skill route
 Route::get('/majors',[SkillController::class,'getSkills']);
