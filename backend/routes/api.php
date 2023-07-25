@@ -56,6 +56,8 @@ Route::get('/schools/address/{name}',[SchoolController::class,'search']);
 Route::post('/schools',[SchoolController::class,'createSchool']);
 Route::put('/schools/{id}',[SchoolController::class,'editeSchool']);
 Route::delete('/schools/{id}',[SchoolController::class,'deleteSchool']);
+
+// scholarship rounte
 Route::get('/scholarships',[ScholarshipController::class,'scholarships']);
 Route::get('/scholarship/{id}',[ScholarshipController::class,'scholarship']);
 
