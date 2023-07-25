@@ -19,8 +19,10 @@ class ScholarshipResource extends JsonResource
             'name'=>$this->name,
             'image'=>$this->image,
             'description'=>$this->description,
-            'school_id'=>new SchoolResource($this->school),
-            'skill_id'=>new ShowSkillResource($this->skill),
+            'post_date'=>$this->post_date,
+            'expired_date'=>$this->expired_date,
+            'school'=>$this->school->name,
+            'skill'=>$this->skill->name
         ];
     }
 }

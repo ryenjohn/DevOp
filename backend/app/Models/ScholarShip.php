@@ -13,12 +13,12 @@ class ScholarShip extends Model
     use HasFactory;
     protected $fillable=[
         'name',
-        'img',
         'description',
         'post_date',
         'expired_date',
         'school_id',
         'skill_id',
+        'media_id',
 
     ];
     public function media()

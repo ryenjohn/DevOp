@@ -55,7 +55,6 @@ class ScholarshipController extends Controller
 
     public function editScholarship(Request $request, string $id){
         $scholarShip = ScholarShip::find($id);
-      
         if($scholarShip){
             $scholarShip = ScholarShip::store($request,$id);
             return response()->json(['Update scholarShip  success' => true, 'data' => $scholarShip], 200);

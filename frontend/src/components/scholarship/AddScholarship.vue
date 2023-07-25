@@ -63,7 +63,8 @@
             :rules="skillRules"
           ></v-select>
           <v-file-input
-              v-model="image" 
+              @change="onFileChange"
+          
               label="Image"
               :rules="imageRules"
               variant="outlined"
@@ -92,11 +93,11 @@
             valid: false,
               name: '',
               userNumber: '',
-              school: '',
+              school: 3,
               skill:'',
               postDate: '',
               expiredDate: '',
-              image: '',
+              image: null,
               description: '',
               skills: [],
               getSkills: null,
@@ -128,10 +129,43 @@
       },
       methods:{
         submitScholarship(){
-              if(this.valid){
-                console.log(1)
-              }
+          if(this.valid){
+            const newSchoolaship = {
+                 name:this.name,
+                 user_number: this.userNumber,
+                 skill_id: this.skillId(),
+                 school_id: this.school,
+                 image: this.image,
+                 post_date: this.postDate,
+                 expired_date: this.expiredDate,
+                 description: this.description,
+             };
+             console.log(newSchoolaship)
+            
+            axios.post(`${process.env.VUE_APP_API_URL}addScholarship`, newSchoolaship)
+            .then(() => {
+              this.$router.push("/");
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+            }
         },
+        onFileChange(event) {
+          // Retrieve the selected image file
+          const file = event.target.files[0];
+          
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+              // Convert the image to base64 encoding
+              const base64Image = reader.result;
+              this.image = base64Image; // Store the base64 encoded image
+            };
+            reader.readAsDataURL(file);
+          }
+        },
+
         fetchSkills(){
           axios.get(`${ process.env.VUE_APP_API_URL}majors`)
         .then(response => {
@@ -143,6 +177,16 @@
             .catch(error => {
               console.log(error)
             })
+        },
+        // covert name school to id from select
+        skillId(){
+            let id = null;
+            this.getSkills.forEach(item => {
+              if(item.name == this.skill){
+                id = item.id;
+              }
+            });
+            return id;
         },
 
           
