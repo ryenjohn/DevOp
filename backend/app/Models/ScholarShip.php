@@ -31,8 +31,8 @@ class ScholarShip extends Model
         if (filled($request->image)) {
             $scholarship['media_id'] = MediaLib::generateImageBase64($request->image);
         }
-        $workshop = self::updateOrCreate(['id' => $id], $scholarship);
-        return $workshop;        
+        $scholarship = self::updateOrCreate(['id' => $id], $scholarship);
+        return $scholarship;        
     }
     protected $hidden = [
         'created_at',

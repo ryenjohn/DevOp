@@ -42,7 +42,7 @@ class WorkShopController extends Controller
             $workShop  = workShop::workShop($request, $id);
             return response()->json(['Update workShop  success' => true, 'data' => $workShop], 200);
         }
-        return response()->json(['message' => "workShop id not found"], 404);
+        return response()->json(['message' => "workShop id not found"], 200);
     }
 
     public function deleteWorkShop(string $id)

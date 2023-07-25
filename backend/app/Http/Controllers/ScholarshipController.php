@@ -53,12 +53,14 @@ class ScholarshipController extends Controller
         return response()->json(['message' => "scholarship cannot create"], 200);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+    public function editScholarship(Request $request, string $id){
+        $scholarShip = ScholarShip::find($id);
+      
+        if($scholarShip){
+            $scholarShip = ScholarShip::store($request,$id);
+            return response()->json(['Update scholarShip  success' => true, 'data' => $scholarShip], 200);
+        }
+        return response()->json(['message' => "scholarShip id not found"], 200);
     }
 
     /**
