@@ -8,31 +8,25 @@
                 </div>
                 <div class="card-container">
                     <div>
-                        <h4>Unversity name:</h4>
-                        <h4>Student name:</h4>
-                        <h4>Student ID:</h4>
-                        <h4>Student email:</h4>
-                        <h4>Phone number:</h4>
-                        <h4>Course:</h4>
-                        <h4>Year of study</h4>
-                        <h4>Type of payment:</h4>
-                        <h4>Date of payment:</h4>
+                        <h4>Unversity_name </h4>
+                        <h4>Student_name </h4>
+                        <h4>Phone_number </h4>
+                        <h4>Student_ID </h4>
+                        <h4>Year_of_study </h4>
+                        <h4>Course </h4>
                     </div>
                     <div>
-                        <p>: {{student.universtiy}}</p>
-                        <p>: {{student.name}}</p>
-                        <p>: {{student.id}}</p>
-                        <p>: {{student.email}}</p>
-                        <p>: {{student.phone_number}}</p>
-                        <p>: {{student.course}}</p>
-                        <p>: {{student.year}}</p>
-                        <p>: {{student.type_payment}}</p>
-                        <p>: {{student.date}}</p>
+                        <p>: {{universityName}}</p>
+                        <p>: {{name}}</p>
+                        <p>: {{phone}}</p>
+                        <p>: {{studentId}}</p>
+                        <p>: {{yearOfStudy}}</p>
+                        <p>: {{courseProgramName}}</p>
                     </div>
                 </div>
             </div>
             <div class="btn">
-                 <v-btn class="bg-purple">Cancel</v-btn>
+                 <v-btn class="bg-purple" @click="this.$router.push('/')">Cancel</v-btn>
                  <v-btn color="warning" @click="makePDF">Download!</v-btn>
             </div>
         </div>
@@ -42,25 +36,36 @@
 <script>
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import Cookies from "js-cookie";
 export default {
-  data() {
+    data() {
     return {
-        student:{
-            universtiy: "RUPP",
-            name:"vibol phoung",
-            id: 1111,
-            email: 'vibol@gmail.com',
-            phone_number: "0979273421",
-            course: 'IT',
-            year: 'Second year',
-            type_payment: "Exam fee",
-            date: "7/20/2023",
-        }   
+            name: null,
+            phone: null,
+            studentId: null,
+            yearOfStudy: null,
+            courseProgramName: null,
+            universityName: null
     }
   },
   methods:{
+    getInfo() {
+      // Get the value of the "userData" cookie
+      const userData = Cookies.get('paymentInfo');
+      // If the "userData" cookie exists, parse it and set the user ID in the component data
+      if (userData) {
+        const userDataObj = JSON.parse(userData);
+        this.name= userDataObj.name;
+        this.phone= userDataObj.phone;
+        this.studentId= userDataObj.studentId
+        this.yearOfStudy= userDataObj.yearOfStudy
+        this.courseProgramName= userDataObj.courseProgramName
+        this.universityName= userDataObj.universityName
+
+      }
+    },
+
     makePDF(){
-        console.log("hello");
         window.html2canvas = html2canvas;
           var doc = new jsPDF("p",'pt','a4');
           doc.html(document.querySelector("#form-data"),{
@@ -69,6 +74,9 @@ export default {
           }
           });
     }
+  },
+  mounted(){
+    this.getInfo()
   }
 }
 </script>

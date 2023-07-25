@@ -88,6 +88,7 @@
 </template>
 
 <script>
+import Cookies from "js-cookie";
 export default {
     data() {
         return {
@@ -141,6 +142,7 @@ export default {
               courseProgramName: this.courseProgramName,
               universityName: this.universityName,
             }
+            Cookies.set("paymentInfo", JSON.stringify(newPay), { expires: 1 });
             this.dataPay = newPay;            
             this.$router.push('/paymentbycard');
           }  else {
