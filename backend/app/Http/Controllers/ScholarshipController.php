@@ -7,6 +7,8 @@ use App\Http\Resources\ShowScholarshipResource;
 use App\Models\ScholarShip;
 use Illuminate\Http\Request;
 
+use function GuzzleHttp\describe_type;
+
 class ScholarshipController extends Controller
 {
     /**
@@ -19,7 +21,7 @@ class ScholarshipController extends Controller
             $scholarship = ShowScholarshipResource::collection($scholarship);
             return  response()->json(['success'=>true,'data'=>$scholarship],200);
         }
-        return response()->json(['success'=>true,'data'=>"No data !"],500);
+        return response()->json(['success'=>true,'data'=>"No data !"],200);
         
     }
    
@@ -31,7 +33,7 @@ class ScholarshipController extends Controller
                 $scholarship = new ScholarshipResource($scholarship);
                 return  response()->json(['message'=>'Request success','data'=>$scholarship],200);
             }
-            return response()->json(["message"=>"No data !"],500);
+            return response()->json(["message"=>"No data !"],200);
             
         }
     
@@ -68,5 +70,11 @@ class ScholarshipController extends Controller
     public function destroy(string $id)
     {
         //
+        $scholarsip = ScholarShip::find($id);
+        if($scholarsip){
+            $scholarsip->delete();
+            return  response()->json(["message"=>"Deleted!"],200);
+        }
+        return response()->json(["message"=>"No data !"],200);
     }
 }

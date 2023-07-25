@@ -60,6 +60,7 @@ Route::delete('/schools/{id}',[SchoolController::class,'deleteSchool']);
 // scholarship rounte
 Route::get('/scholarships',[ScholarshipController::class,'scholarships']);
 Route::get('/scholarship/{id}',[ScholarshipController::class,'scholarship']);
+Route::delete('/scholarship/{id}',[ScholarshipController::class,'destroy']);
 
 // Skill route
 Route::get('/majors',[SkillController::class,'getSkills']);
