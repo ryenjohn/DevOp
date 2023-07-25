@@ -8,6 +8,7 @@ import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
 import PaymentForm from '../components/payment/PaymentForm.vue'
 import PaymentByCard from '../components/payment/PaymentByCard.vue'
+import InvoiceTicket from '../components/payment/InvoiceTicket.vue'
 
 import Home from '../views/HomeView.vue'
 import Detail from '../views/DetailView.vue'
@@ -73,6 +74,11 @@ const routes = [
     path: '/paymentbycard',
     name: 'paymentbycard',
     component: PaymentByCard
+  },
+  {
+    path: '/invoice',
+    name: 'invoice',
+    component: InvoiceTicket
   }
 
 ]
