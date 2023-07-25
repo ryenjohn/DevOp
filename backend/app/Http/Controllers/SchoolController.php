@@ -55,13 +55,24 @@ class SchoolController extends Controller
 
     public function search($name){
         $result = School::whereHas('address', function ($query) use ($name) {
-            $query->where('city/province', 'like', "%$name%");
+            $query->where('name', 'like', "%$name%");
         })->get();
         if(count($result)){
             $result = ShowSchoolResource::collection($result);
             return response()->json(['success'=>true, 'data'=>$result],200);
         } 
         return response()->json(['success'=>true, 'data'=>[]],200);
+    }
+
+    
+    public function getSchoolIdByName($name){
+
+        $schoolId = DB::table('schools')->where('name', $name)->first()->id;
+        if ($schoolId){
+            return response()->json([ 'message' => "Request successfull", 'data' => $schoolId], 200);
+        }else{
+            return response()->json([ 'message' => "Request fail"], 400);
+        }
     }
 
 }

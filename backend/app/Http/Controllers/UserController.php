@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 
 use Illuminate\Support\Facades\Mail;
+use Psy\Readline\Hoa\Console;
 
 class UserController extends Controller
 {
@@ -83,7 +84,7 @@ class UserController extends Controller
 
        
         $data =[
-            'subject' =>"Reset password",
+            'subject' =>"Create university page!",
             'email'=>$request->email,
             'link'=>'http://localhost:8080/signUp'
 
@@ -100,7 +101,18 @@ class UserController extends Controller
         }
 
     }
-  
+
+    public function getUserId($email){
+
+        $userId = DB::table('users')->where('email', $email)->first()->id;
+        return $userId;
+        // if ($userId){
+        //     return response()->json([ 'message' => "Request successfull", 'data' => $userId], 200);
+        // }else{
+        //     return response()->json([ 'message' => "Request fail"], 400);
+        // }
+    }
+    
     public function update(Request $request, string $id)
     {
         //

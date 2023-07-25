@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\AdminController;
 // use App\Http\Controllers\MajorController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\ResetPasswordController;
 // use App\Http\Controllers\RegisterMailcontroller;
 use App\Http\Controllers\ScholarshipController;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\SchoolTypeController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\WorkShopController;
 // use App\Http\Controllers\SubjectController;
@@ -97,3 +99,14 @@ Route::post('/sendMail',[ResetPasswordController::class,'SendMail']);
 // university page register 
 Route::post('/registerMail',[UserController::class,'sendEmail']);
 
+// Address 
+Route::get('/addresses',[AddressController::class,'addresses']);
+// education type
+Route::get("/schoolType",[SchoolTypeController::class,'schoolType']);
+
+// get user Id
+Route::get('/getUserId/{email}',[UserController::class,'getUserId']);
+
+// create university
+Route::post('/school',[SchoolController::class,'store']);
+Route::get('/getSchoolIdByName/{name}',[SchoolController::class,'getSchoolIdByName']);

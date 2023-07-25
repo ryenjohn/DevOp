@@ -30,7 +30,6 @@ class User extends Authenticatable
         'school_id',
         'phone',
         'gender'
-       
     ];
 
     public static function store($request, $id = null)
