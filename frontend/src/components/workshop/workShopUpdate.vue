@@ -4,7 +4,7 @@
       <img src="../../assets/images/workshop.png" style="width: 100%; height: initial" alt="Image description" />
     </div>
     <v-form @submit.prevent="" ref="form" class="form-item">
-      <h2>Add Workshop </h2>
+      <h2>Add Workshop</h2>
       <div class="side-input">
         <div class="right-input">
           <v-text-field v-model="name" label="Name Workshop" :rules="nameRules" required></v-text-field>
@@ -12,7 +12,7 @@
             required></v-text-field>
           <v-file-input @change="onFileChange" label="Image" :rules="imageRules" required></v-file-input>
 
-          <v-textarea v-model="description" label="Description" :rules="descriptionRules" required></v-textarea>
+          <v-textarea v-model="description" label="Description" required></v-textarea>
         </div>
         <div class="left-input">
           <v-text-field v-model="number" label="Number Workshop" type="number" :rules="numberRules"
@@ -26,7 +26,7 @@
       </div>
       <div class="btn">
         <v-btn type="button" class="bg-purple text-white">Cancel</v-btn>
-        <v-btn type="submit" @click.prevent="submitForm" class="bg-orange text-white">Submit</v-btn>
+        <v-btn type="submit" @click.prevent="editeForm" class="bg-orange text-white">Save</v-btn>
       </div>
     </v-form>
   </div>
@@ -37,6 +37,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
+      workshopId: 2,
       name: "",
       description: "",
       image: "",
@@ -55,7 +56,6 @@ export default {
       ],
       timeRules: [
         (v) => !!v || "Time is required",
-        (v) => /^([01]\d|2[0-3]):([0-5]\d)$/.test(v) || "Time must be in the format 'HH:mm'",
       ],
       nameRules: [
         (v) => !!v || "Name is required",
@@ -69,9 +69,6 @@ export default {
       descriptionRules: [
         (v) => !!v || "Description is required",
         (v) => v.length <= 500 || "Description must be less than 500 characters",
-      ],
-      imageRules: [
-        (v) => !!v || "Image is required",
       ],
       startDateRules: [
         (v) => !!v || "Start date is required",
@@ -128,14 +125,37 @@ export default {
         reader.onload = () => {
           // Convert the image to base64 encoding
           const base64Image = reader.result;
-          this.image = base64Image; // Store the base64 encoded image
+          this.image = base64Image;
         };
         reader.readAsDataURL(file);
       }
     },
 
-    submitForm() {
-      let newWorkshop = {
+    fetchWorkshopData(workshopId) {
+      axios.get(`${process.env.VUE_APP_API_URL}workshops/${workshopId}`)
+        .then(response => {
+          const workshop = response.data.data;
+          this.name = workshop.work_shop;
+          this.time = workshop.time;
+          this.startDate = workshop.start_date;
+          this.endDate = workshop.expired_date;
+          this.description = workshop.description;
+          this.number = workshop.user_number;
+          this.school = workshop.school.name;
+          this.address = workshop.address.city_province;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+
+    // Add a new method to handle cancel button
+    cancelEdit() {
+      this.$router.push("/"); // Redirect to the main page if the user cancels the edit
+    },
+
+    editeForm() {
+      let editedWorkshop = {
         name: this.name,
         image: this.image,
         address_id: this.addressId(),
@@ -146,10 +166,9 @@ export default {
         expired_date: this.endDate,
         time: this.time,
       };
-      console.log(newWorkshop);
       if (this.$refs.form.validate()) {
         // Submit form data
-        axios.post(`${process.env.VUE_APP_API_URL}workshops`, newWorkshop)
+        axios.put(`${process.env.VUE_APP_API_URL}workshops/${this.workshopId}`, editedWorkshop)
           .then(() => {
             this.$router.push("/");
           })
@@ -185,9 +204,12 @@ export default {
   mounted() {
     this.fetchSchools();
     this.fetchAddresses();
+    // this.workshopId = this.$route.params.workshopId;
+    this.fetchWorkshopData(this.workshopId);
   }
 };
 </script>
+
 <style scoped>
 h2 {
   color: orange;

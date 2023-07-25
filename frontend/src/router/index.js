@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import SignUp from '../components/authentication/SignUp.vue'
 import LogIn from '../components/authentication/LogIn.vue'
 import AddWorkshop from '../components/workshop/workShop.vue'
+import UpdateWorkshop from '../components/workshop/workShopUpdate.vue'
 import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
 import MajorForm from '../components/major/majorForm.vue'
@@ -59,6 +60,11 @@ const routes = [
     path: '/addWorkshop',
     name: 'addWorkshop',
     component: AddWorkshop
+  },
+  {
+    path: '/updateWorkshop',
+    name: 'updateWorkshop',
+    component: UpdateWorkshop
   }
 
 ]

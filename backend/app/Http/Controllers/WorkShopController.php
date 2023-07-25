@@ -39,7 +39,7 @@ class WorkShopController extends Controller
     {
         $workShop  = workShop::find($id);
         if ($workShop) {
-            $workShop  = workShop::workShop($request, $id);
+            $workShop  = workShop::store($request, $id);
             return response()->json(['Update workShop  success' => true, 'data' => $workShop], 200);
         }
         return response()->json(['message' => "workShop id not found"], 404);
