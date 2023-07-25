@@ -6,13 +6,11 @@ use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\ResetPasswordController;
 
-// use App\Http\Controllers\RegisterMailcontroller;
 use App\Http\Controllers\ScholarshipController;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\SchoolUserController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\WorkShopController;
-// use App\Http\Controllers\SubjectController;
-// use App\Http\Resources\SubjectResource;
 
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -96,4 +94,8 @@ Route::post('/sendMail',[ResetPasswordController::class,'SendMail']);
 
 // university page register 
 Route::post('/registerMail',[UserController::class,'sendEmail']);
+
+// applay for study
+Route::post('/apply',[SchoolUserController::class,'store']);
+
 

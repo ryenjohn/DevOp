@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade');
             $table->boolean("accept")->default(0);
             $table->string("year")->nullable();
-            $table->string("studey_lavel")->nullable();
+            $table->string("study_lavel")->nullable();
             $table->timestamps();
         });
     }
