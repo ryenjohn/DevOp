@@ -13,138 +13,9 @@
         <form style="height: 300px;">
           <h1>Join Our University</h1>
 
-          <!-- name -->
-          <!-- <v-text-field
-            class="err"
-            v-model="name"
-            :error-messages="v$.name.$errors.map((e) => e.$message)"
-            :counter="10"
-            density="compact"
-            placeholder="Enter your name"
-            prepend-inner-icon="mdi-account"
-            variant="outlined"
-            color="#634B7A"
-            required
-            @input="v$.name.$touch"
-            @blur="v$.name.$touch"
-          ></v-text-field> -->
-
-          <!-- gender -->
-          <!-- <v-container fluid class="d-flex">
-              <v-checkbox class="selectbox"
-                v-model="state.selected"
-                label="Female"
-                value="Female"
-                @input="v$.selected.$touch"
-                @blur="v$.selected.$touch"
-              ></v-checkbox>
-              <v-checkbox class="selectbox male"
-                v-model="state.selected"
-                label="Male"
-                value="Male"
-                @input="v$.selected.$touch"
-                @blur="v$.selected.$touch"
-              ></v-checkbox>
-          </v-container> -->
- 
-          <!-- date -->
-          <!-- https://www.youtube.com/watch?v=q5TP2XygqUw -->
-
-          <!-- <label for="date">Date of birth*</label>
-          <input type="date" class="date"  v-model="mydate"> -->
-       
-          <!-- email -->
-          <!-- <v-text-field
-            class="err"
-            v-model="state.email"
-            :error-messages="v$.email.$errors.map((e) => e.$message)"
-            required
-            density="compact"
-            placeholder="Enter your email"
-            prepend-inner-icon="mdi-email"
-            variant="outlined"
-            color="#634B7A"
-            @input="v$.email.$touch"
-            @blur="v$.email.$touch"
-          ></v-text-field>
-          <p v-if="state.emailTakenError" class="text-error">
-            Email is already taken.
-          </p> -->
-
-          <!-- password -->
-         
-
-          <!-- phone number -->
-          <!-- <v-text-field
-            class="err"
-            color="#634B7A"
-            :type="visible ? 'text' : 'phone_number'"
-            density="compact"
-            placeholder="Enter your phone number"
-            prepend-inner-icon="mdi-phone-outline"
-            variant="outlined"
-            @click:append-inner="visible = !visible"
-            v-model="state.phone_number"
-            :error-messages="
-              v$.phone_number.$errors.map((e) =>
-                e.$params.custom
-                  ? e.$params.custom.message
-                  : 'Value required and should contain only number, between 9 and 10 degit'
-              )
-            "
-            @input="v$.phone_number.$touch"
-            @blur="v$.phone_number.$touch"
-          ></v-text-field> -->
-
-          <!-- address -->
-          <!-- <v-text-field
-            class="err"
-            color="#634B7A"
-            :type="visible ? 'text' : 'address'"
-            density="compact"
-            placeholder="Enter your address"
-            prepend-inner-icon="mdi-home-outline"
-            variant="outlined"
-            @click:append-inner="visible = !visible"
-            v-model="state.address"
-            :error-messages="
-              v$.address.$errors.map((e) =>
-                e.$params.custom
-                  ? e.$params.custom.message
-                  : 'Your address should contain your province'
-              )
-            "
-            @input="v$.address.$touch"
-            @blur="v$.address.$touch"
-          ></v-text-field> -->
-
-          <!-- choose major -->
-          <!-- <v-select
-            label="Select Major"
-            :items="majors"
-            class="err"
-            color="#634B7A"
-            :type="visible ? 'text' : 'major'"
-            density="compact"
-            placeholder="Choose your major"
-            prepend-inner-icon="mdi-tools"
-            variant="outlined"
-            @click:append-inner="visible = !visible"
-            v-model="state.major"
-            :error-messages="
-              v$.major.$errors.map((e) =>
-                e.$params.custom
-                  ? e.$params.custom.message
-                  : 'Choose your major'
-              )
-            "
-            @input="v$.major.$touch"
-            @blur="v$.major.$touch"
-          ></v-select> -->
-
           <label for="major">Select your major*</label>
-          <select class="select" name='major'>
-            <option value="volvo" v-for="major in majors" :key="major.id">{{major.name}}</option>
+          <select class="select" name='major' v-model="major_id">
+            <option  v-for="major in majors" :key="major.id" :value="major.id">{{major.name}}</option>
           </select>
        
 
@@ -160,7 +31,7 @@
             prepend-inner-icon="mdi-school-outline"
             variant="outlined"
             @click:append-inner="visible = !visible"
-            v-model="state.education_level"
+            v-model="education_level"
             :error-messages="
               v$.education_level.$errors.map((e) =>
                 e.$params.custom
@@ -184,7 +55,7 @@
             prepend-inner-icon="mdi mdi-finance"
             variant="outlined"
             @click:append-inner="visible = !visible"
-            v-model="state.year"
+            v-model="year"
             :error-messages="
               v$.year.$errors.map((e) =>
                 e.$params.custom
@@ -218,14 +89,9 @@
             </div>
             <div class="btn">
               <div class="btn" v-if="v$.$invalid">
-                <v-btn class="me-4" @click="makePDF">Submit</v-btn>
+                <v-btn class="me-4" @click="apply">Apply</v-btn>
               </div>
-              <div v-else class="sign-in">
-                <v-btn class="me-4" @click="singIn">
-                  <router-link class="link-sign-up" to="/"
-                    >Create</router-link>
-                  </v-btn>
-              </div>
+        
             </div>
           </div>
         </form>
@@ -242,6 +108,10 @@
       return {
         selected: '',
         majors:'',
+        major_id:'',
+        user_id:'',
+        year:'',
+        education_level:'',
       }
     },
     methods:{
@@ -250,10 +120,25 @@
         axios.get('http://127.0.0.1:8000/api/majors').then((res)=>{
          console.log(res.data.data)
         this.majors = res.data.data
-        console.log(this.majors)
          
         })
       },
+      apply(){
+        const userData = Cookies.get('userData');
+        if (userData) {
+          const userDataObj = JSON.parse(userData);
+          this.user_id = userDataObj.data.id;
+         
+         axios.post("http://127.0.0.1:8000/api/apply",{
+          "user_id":this.user_id,
+          "major_id":this.major_id,
+          "year":this.year,
+          "education_level":this.education_level
+         }).then(()=>{
+          this.$router.push("/")
+         })
+        }
+      }
       
     },
     mounted(){
@@ -266,61 +151,28 @@
 <script setup>
 import { reactive } from "vue";
 import { useVuelidate } from "@vuelidate/core";
-import { email, required, minLength } from "@vuelidate/validators";
+import { required} from "@vuelidate/validators";
+import Cookies from 'js-cookie';
 import axios from "axios";
-import Cookies from "js-cookie";
 
 const initialState = {
-  name: "",
-  selected: "",
-  mydate: "",
   major: "",
+  selected:'',
   education_level: "",
   year: "",
-  email: "",
   checkbox: null,
-  password: "",
-  phone_number:"",
-  address:"",
   emailTakenError: false,
   visible: false,
 };
 const state = reactive(Object.assign({}, initialState));
-// Set role for password
-const passwordRule = (value) => {
-  const regex =
-    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}|:"<>?~`]).{8,}$/;
-  const result = regex.test(value);
-  return result;
-};
-// https://poe.com/Sage
-const phone_number = (value) => {
-  const regex = /^\d{9,10}$/;
-  const result = regex.test(value);
-  return result;
-};
+
+
 // Rule for name email password
 const rules = {
-  name: { required, minLength: minLength(3) },
   selected: {required},
-  mydate: {required},
   major: {required},
   education_level: {required},
   year: {required},
-  email: {
-    required,
-    email,
-    async unique() {
-      const response = await axios.get('http://127.0.0.1:8000/api/users');
-      // compare new data email with data in database
-      const datas = response.data.data;
-      const emailExists = datas.some((data) => data.email === state.email);
-      state.emailTakenError = emailExists;
-    },
-  },
-  password: { required, minLength: minLength(10), custom: passwordRule },
-  phone_number: {required, custom: phone_number},
-  address: {required},
   checkbox: { required },
 };
 
@@ -332,37 +184,7 @@ function clear() {
   }
   v$.value.$reset();
 }
-// Insert data into dabase
-async function singIn() {
-  try {
-    const data = {
-      name: state.name,
-      mydate: state.mydate,
-      major: state.major,
-      education_level: state.education_level,
-      year: state.year,
-      email: state.email,
-      checkbox: state.checkbox,
-      password: state.password,
-      phone_number: state.phone_number,
-      address: state.address
-    };
-    // Make an API call to add data to the database
-    const response = await axios.post("http://127.0.0.1:8000/api/users", data);
-    Cookies.set("userData", JSON.stringify(response.data.token), {
-      expires: 10,
-    });
 
-    // Check the server response and alert the user accordingly
-    if (response.status === 200) {
-      clear();
-    } else {
-      alert("Failed to singIn the form");
-    }
-  } catch (error) {
-    console.error(error);
-  }
-}
 </script>
 
 <style scoped>
