@@ -122,8 +122,6 @@ export default{
     mounted(){
         this.getUser();
     }
-
-
 }
 </script>
 
