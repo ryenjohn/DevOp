@@ -21,5 +21,6 @@ class AddressResource extends JsonResource
             'location' => $this->location,
             'link' => $this->link
         ];
+
     }
 }

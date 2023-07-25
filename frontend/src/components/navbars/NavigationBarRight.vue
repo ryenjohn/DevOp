@@ -11,7 +11,7 @@
         ><v-tab>SignIn</v-tab></router-link
       >
     </v-tabs>
-    <Menu v-if="userName!=null" :show-menu="showMenu"  @submitLogOut="submitLogOut" :userName="userName"/>
+    <Menu v-if="userName!=null" :show-menu="showMenu"  @submitLogOut="submitLogOut" :userName="userName.name"/>
   </div>
 </template>
 

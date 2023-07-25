@@ -63,10 +63,11 @@
               <v-btn class="me-4" @click="v$.$touch()">Log in</v-btn>
             </div>
             <div v-else class="sign-in">
-              <v-btn class="me-4"  @click="logIn" v-if="state.incorrectPasswordError==true">
-                <router-link class="link-log-in"  to="/"> log in</router-link>
+              <v-btn class="me-4"  @click="logIn" v-if="state.incorrectPasswordError==false">
+                <router-link class="link-log-in" to='/' > log in</router-link>
+              
               </v-btn>
-              <v-btn class="me-4"  @click="logIn" v-else>log in</v-btn>
+              <v-btn class="me-4" v-else @click="logIn" >log in</v-btn>
             </div>
           </div>
           <p class="log-in">
@@ -77,7 +78,16 @@
     </div>
   </div>
 </template>
-
+<script>
+export default {
+  methods:{
+    backhome(){
+      console.log('yes')
+      return this.router.push('/');
+    }
+  }
+}
+</script>
 <script setup>
 import { reactive } from "vue";
 import { useVuelidate } from "@vuelidate/core";
@@ -124,7 +134,7 @@ async function logIn() {
     };
     // Make an API call to add data to the database
     const response = await axios.post(`${ process.env.VUE_APP_API_URL}logIn`, data);
-
+    console.log(response)
     // Check the server response and alert the user accordingly
     if (response.status === 200) {
       Cookies.set("userData", JSON.stringify(response.data), { expires: 30 });
@@ -133,6 +143,7 @@ async function logIn() {
   } catch (error) {
     state.incorrectPasswordError = true;
   }
+  
 }
 // Add this event handler to the password field to hide the error message
 function resetIncorrectPasswordError() {

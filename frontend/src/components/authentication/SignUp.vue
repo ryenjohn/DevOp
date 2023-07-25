@@ -62,7 +62,6 @@
           @input="v$.password.$touch"
           @blur="v$.password.$touch"
         ></v-text-field>
-
         <v-checkbox
           class="err"
           v-model="state.checkbox"

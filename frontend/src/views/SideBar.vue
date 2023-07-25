@@ -1,16 +1,19 @@
 <template>
-  <v-card class="card"  >
+  <v-card>
     <v-layout>
-      <v-navigation-drawer style="height: 700px" class="sidebar" >
+      <v-navigation-drawer style="height: 300px" class="sidebar" color="purple">
+        <v-list>
+          <v-list-item
+            prepend-avatar="https://i.pinimg.com/564x/4a/61/d8/4a61d8c53b8a1219b0bd7319c5eb8b69.jpg"
+            subtitle="sandra_a88@gmailcom">
+          </v-list-item>
+        </v-list>
 
         <v-divider style="height: 300px"></v-divider>
 
-        <v-list density="compact" class="mt-10" nav>
-          <v-list-item  @click="changedata('users')" prepend-icon="mdiAccount"  title="All Users" value="Users"></v-list-item>
+        <v-list density="compact" nav>
           <v-list-item  @click="changedata('students')" prepend-icon="mdi-account-school"  title="Students" value="Students"></v-list-item>
           <v-list-item  @click="changedata('managers')" prepend-icon="mdi-school" title="University" value="University"></v-list-item>
-  
-         
         </v-list>
       </v-navigation-drawer>
 
@@ -30,9 +33,8 @@
 </script>
 
 <style  scoped>
+
     .sidebar{
-      margin-top: 4.5%;
-      background: blueviolet;
-      color: white;
+      margin-top: 5%;
     }
 </style>

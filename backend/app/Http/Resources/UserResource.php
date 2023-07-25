@@ -2,12 +2,13 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Address;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
 {
-    /**
+    /*
      * Transform the resource into an array.
      *
      * @return array<string, mixed>
@@ -19,6 +20,8 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'role_id' => $this-> role_id,
+            'address'=>new AddressResource($this->address)
         ];
+
     }
 }

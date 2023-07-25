@@ -41,8 +41,8 @@ class User extends Authenticatable
             'role_id',
             'address_id',
             'school_id',
-            'gender',
-            'phone'
+            'phone',
+            'gender'
         ]);
         $user['password'] = Hash::make($user['password']);
 

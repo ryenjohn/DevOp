@@ -22,12 +22,12 @@ export default {
   methods: {
     contentData(dataName) {
       this.dataname = dataName;
-      axios.get(this.url + dataName).then((response) => {
+      axios.get(`${ process.env.VUE_APP_API_URL}${dataName}`).then((response) => {
         this.datas = response.data.data;
       });
     },
     defaultData() {
-      axios.get(this.url + "schools").then((response) => {
+      axios.get(`${ process.env.VUE_APP_API_URL}schools`).then((response) => {
         this.datas = response.data.data;
       });
     },
@@ -42,8 +42,9 @@ export default {
       this.key = key;
       if(key==null){
        this.defaultData()
+      }else{
+        this.searchdata();
       }
-      this.searchdata();
       
     },
   },

@@ -22,21 +22,22 @@
         variant="outlined"
         color="#634B7A"
       ></v-text-field>
+      <div class="password">
       <v-text-field
+        :type="showPassword ? 'text' : 'password'"
+        id="password"
         v-model="password"
-        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-        :rules="[rules.required, rules.min]"
-        :type="show1 ? 'text' : 'password'"
-        name="input-10-1"
-        label="Normal with number, sign, text"
-        hint="At least 8 characters"
-        variant="outlined"
-        color="#634B7A"
-        counter
-        density="compact"
-
-        @click:append="show1 = !show1"
+        @input="validatePassword"
+        :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
+        @click:append="showPassword = !showPassword"
+        label="Password"
+        required
+        :rules="[passwordRule]"
       ></v-text-field>
+      <span v-if="showValidationMessage">{{ validationMessage }}</span>
+
+      </div>
+
       <div class="btn">
         <div class="reset">
           <v-btn to="/changePassword" class="me-4 send-email" @click="resetPassword()" type="submit">Send</v-btn>
@@ -58,24 +59,41 @@ export default{
       email: '',
       password: '',
       errors: null,
-      show1: false,
-      rules: {
-        required: value => !!value || 'Required.',
-        min: v => v.length >= 8 || 'Min 8 characters',
-        emailMatch: () => ('The email and password you entered don\'t match'),
-      },
+      // show1: false,
+      showValidationMessage: false,
+      validationMessage: '',
+      showPassword: false
     }
   },
   methods:{
     resetPassword() {
-      axios.patch(`${ process.env.VUE_APP_API_URL}resetPassword`, {email:this.email,password:this.password})
+      axios.patch(`${process.env.VUE_APP_API_URL}resetPassword`, {email:this.email,password:this.password})
       .then((response)=>{
-        console.log(response);
+        console.log(response.data.data);
         this.$router.push('/')
+      }).catch((error)=>{
+        console.log(error);
+        this.$router.push('/resetPassword')
+        alert("please input right email this email not found")
       })
+    },
+    /* "https://fontawesomeicons.com/tryit/code/vue-js-password-validation-regex/0" */ 
+    validatePassword() {
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!this.password) {
+            this.showValidationMessage = false;
+            return;
+        }
+        if (passwordRegex.test(this.password)) {
+            this.showValidationMessage = false;
+        } else {
+            this.showValidationMessage = true;
+           this.validationMessage = 'Password must contain lowercase letter, uppercase letter,  digit, special character, and be at least 8 characters long.';
+        }
+    },
 
-      return "BAD"
-    }
+
+
   }
 }
 
@@ -92,6 +110,9 @@ label {
 }
 .image {
   flex: 1;
+}
+span{
+  color: red;
 }
 .image img {
   max-width: 90%;

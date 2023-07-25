@@ -1,7 +1,6 @@
 <template>
   <v-card>
     <div class="navbar">
-      
       <v-toolbar-title>
         <navigationbar-link></navigationbar-link>
       </v-toolbar-title>
