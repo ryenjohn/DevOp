@@ -11,6 +11,7 @@ use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\ScholarshipController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoolTypeController;
+use App\Http\Controllers\SchoolUserController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\WorkShopController;
 
@@ -49,6 +50,13 @@ Route::get('/workshops',[WorkShopController::class,'getworkShops']);
 Route::get('/workshop/{id}',[WorkShopController::class,'getWorkShopById']);
 Route::get('/user/{id}',[UserController::class,'getUser']);
 Route::put('/user/{id}',[UserController::class,'saveChange']);
+
+// school_user
+Route::get('/getSchoolUser',[SchoolUserController::class,'getSchoolUser']);
+Route::put('/acceptStudent/{id}',[SchoolUserController::class,'studentAccept']);
+// Route::get('/acceptStudent/{id}',[SchoolUserController::class,'studentAccept']);
+Route::delete('/studentReject/{id}',[SchoolUserController::class,'studentReject']);
+
 
 Route::get('/schools',[SchoolController::class,'getschools']);
 Route::get('/schools/address/{name}',[SchoolController::class,'search']);

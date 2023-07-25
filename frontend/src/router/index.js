@@ -17,6 +17,8 @@ import MajorForm from '../components/major/majorForm.vue'
 import Home from '../views/HomeView.vue'
 import Detail from '../views/DetailView.vue'
 import Admin from '../views/AdminView.vue'
+import University from '../views/UniversityView.vue'
+
 
 const routes = [
   {
@@ -63,8 +65,13 @@ const routes = [
     component: Admin
   },
   {
+    path: '/university',
+    name: 'university',
+    component: University
+  },
 
-    path: '/sendMail/:title',
+  {
+    path: '/sendMail',
     name: 'sendMail',
     component: sendMail
   },

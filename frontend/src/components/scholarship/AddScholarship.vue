@@ -140,8 +140,6 @@
                  expired_date: this.expiredDate,
                  description: this.description,
              };
-             console.log(newSchoolaship)
-            
             axios.post(`${process.env.VUE_APP_API_URL}addScholarship`, newSchoolaship)
             .then(() => {
               this.$router.push("/");
@@ -154,7 +152,6 @@
         onFileChange(event) {
           // Retrieve the selected image file
           const file = event.target.files[0];
-          
           if (file) {
             const reader = new FileReader();
             reader.onload = () => {
@@ -187,9 +184,7 @@
               }
             });
             return id;
-        },
-
-          
+        },  
       },
       mounted(){
       this.fetchSkills();

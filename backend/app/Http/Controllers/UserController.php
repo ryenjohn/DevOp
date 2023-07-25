@@ -45,6 +45,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+        
         return response()->json(['message' => "Your get data use is success", 'data' => $users], 200);
     }
 
@@ -123,5 +124,6 @@ class UserController extends Controller
         $user->delete();
         return response()->json(['success' => true, 'message' => `user id:{$id} has been deleted`], 200);
     }
+
 
 }
