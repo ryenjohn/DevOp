@@ -8,8 +8,6 @@
     <aboutour-team></aboutour-team>
   </div>
 </template>
-
-
 <style>
   .about{
     display: flex;
