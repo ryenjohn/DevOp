@@ -54,6 +54,7 @@ Route::put('/user/{id}',[UserController::class,'saveChange']);
 // school_user
 Route::get('/getSchoolUser',[SchoolUserController::class,'getSchoolUser']);
 Route::put('/acceptStudent/{id}',[SchoolUserController::class,'studentAccept']);
+// Route::get('/acceptStudent/{id}',[SchoolUserController::class,'studentAccept']);
 Route::delete('/studentReject/{id}',[SchoolUserController::class,'studentReject']);
 
 

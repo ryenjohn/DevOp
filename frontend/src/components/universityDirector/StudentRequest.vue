@@ -55,7 +55,7 @@
                         </v-card>
                         </v-dialog>
                     </v-row>
-
+                    
                     <v-btn 
                         color="#634B7A" 
                         v-bind="props" 
