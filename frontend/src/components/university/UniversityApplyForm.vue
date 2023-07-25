@@ -14,7 +14,7 @@
           <h1>Join Our University</h1>
 
           <label for="major">Select your major*</label>
-          <select class="select" name='major' v-model="major_id">
+          <select class="select" name='major' v-model="skill_id">
             <option  v-for="major in majors" :key="major.id" :value="major.id">{{major.name}}</option>
           </select>
        
@@ -31,7 +31,7 @@
             prepend-inner-icon="mdi-school-outline"
             variant="outlined"
             @click:append-inner="visible = !visible"
-            v-model="education_level"
+            v-model="study_level"
             :error-messages="
               v$.education_level.$errors.map((e) =>
                 e.$params.custom
@@ -99,28 +99,23 @@
   </div>
   </v-container>
 </template>
-
-
 <script> 
-
   export default {
     data() {
       return {
         selected: '',
         majors:'',
-        major_id:'',
+        skill_id:'',
+        school_id: 3,
         user_id:'',
         year:'',
-        education_level:'',
+        study_level:'',
       }
     },
     methods:{
-      
       getMajor(){
         axios.get('http://127.0.0.1:8000/api/majors').then((res)=>{
-         console.log(res.data.data)
         this.majors = res.data.data
-         
         })
       },
       apply(){
@@ -128,18 +123,20 @@
         if (userData) {
           const userDataObj = JSON.parse(userData);
           this.user_id = userDataObj.data.id;
-         
-         axios.post("http://127.0.0.1:8000/api/apply",{
-          "user_id":this.user_id,
-          "major_id":this.major_id,
-          "year":this.year,
-          "education_level":this.education_level
-         }).then(()=>{
+          const newApply = {
+            user_id: this.user_id,
+            skill_id: this.skill_id,
+            school_id: this.school_id,
+            year: this.year,
+            study_level:this.study_level
+          }
+          console.log(newApply)
+         axios.post(`${process.env.VUE_APP_API_URL}apply`, newApply)
+         .then(()=>{
           this.$router.push("/")
          })
         }
       }
-      
     },
     mounted(){
       this.getMajor()
