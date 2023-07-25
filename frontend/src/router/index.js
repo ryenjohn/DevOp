@@ -2,9 +2,13 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import SignUp from '../components/authentication/SignUp.vue'
 import LogIn from '../components/authentication/LogIn.vue'
+
 import sendMail from '../components/authentication/sendEmail.vue'
 import resetPassword from '../components/authentication/resetPassword.vue'
 import universityManager from '../components/authentication/registerUniversityManager.vue'
+
+import AddWorkshop from '../components/workshop/workShop.vue'
+
 import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
 import MajorForm from '../components/major/majorForm.vue'
@@ -58,6 +62,7 @@ const routes = [
     component: Admin
   },
   {
+
     path: '/sendMail/:title',
     name: 'sendMail',
     component: sendMail
@@ -72,6 +77,11 @@ const routes = [
     name: 'registerAdmin',
     component: universityManager
   },
+  {
+    path: '/addWorkshop',
+    name: 'addWorkshop',
+    component: AddWorkshop
+  }
 
 ]
 

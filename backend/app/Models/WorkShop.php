@@ -7,45 +7,37 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
+use App\Core\MediaLib;
 
 class WorkShop extends Model
 {
     use HasFactory;
     protected $fillable = [
         'name',
-        'image',
+        'media_id',
         'address_id',
         'school_id',
         'description',
+        'user_number',
+        'full',
         'start_date',
         'expired_date',
         'time',
-        'school_id',
-        'address_id',
 
     ];
-    public static function workShop($request, $id = null)
+    
+    public function media()
     {
-        $workShop = $request->only([
-            'name',
-            'image',
-            'address_id',
-            'school_id',
-            'description',
-            'start_date',
-            'expired_date',
-            'time',
-        ]);
+        return $this->belongsTo(MediaFile::class, 'media_id', 'media_id');
+    }
+    public static function store($request, $id = null)
+    {
+        $workshop = $request->only(['name','description','address_id','school_id','description','user_number','start_date','expired_date','time']);
         if (filled($request->image)) {
-            $path = $request->file('image')->store('public/images/workshops');
-            // Get the file's public URL
-            $url = Storage::url($path);
-            if($url){
-                $workShop['image']=$url;
-            }
+            $workshop['media_id'] = MediaLib::generateImageBase64($request->image);
         }
-        $workShop = self::updateOrCreate(['id' => $id], $workShop);
-        return $workShop;
+        $workshop = self::updateOrCreate(['id' => $id], $workshop);
+        return $workshop;        
     }
     public function user(): HasMany
     {

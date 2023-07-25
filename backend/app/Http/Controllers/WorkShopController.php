@@ -26,13 +26,15 @@ class WorkShopController extends Controller
         return response()->json(['success' => true, 'data' => $workShop], 200);
     }
 
-    public function createworkShop(WorkShopRequest $request)
+    public function createworkShop(Request $request)
     {
-        $workShops = WorkShop::WorkShop($request);
-        $workShops = new ShowWorkShopResource($workShops);
-        return response()->json(['message' => "Create workShops success", 'data' => $workShops], 201);
-    }
+        $workShop = workShop::store($request);
+        if ($workShop) {
+            return response()->json(['Workshop have been created' => true, 'data' => $workShop], 200);
+        }
+        return response()->json(['message' => "workShop cannot create"], 404);
 
+    }
     public function editeWorkShop(WorkShopRequest $request, string $id)
     {
         $workShop  = workShop::find($id);

@@ -17,10 +17,13 @@ class ShowWorkShopResource extends JsonResource
         return [
             'id' => $this->id,
             'work_shop' => $this->name,
-            'image' => $this->image,
+            'image' => $this->media->file_url ?? null,
             'start_date' => $this->start_date,
             'expired_date' => $this->expired_date,
+            'description' => $this->description,
             'time' => $this->time,
+            'user_number' => $this->user_number,
+            'full' => $this->full,
             'school_id' => new SchoolResource($this->school)
         ];
     }

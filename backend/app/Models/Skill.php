@@ -30,8 +30,6 @@ class Skill extends Model
     public static function store($request, $id = null)
     {
         $skill = $request->only(['name', 'description']);
-        
-        // $skill['media_id'] = MediaLib::generateImageBase64($request->image);
         if (filled($request->image)) {
             $skill['media_id'] = MediaLib::generateImageBase64($request->image);
         }

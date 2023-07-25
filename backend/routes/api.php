@@ -13,10 +13,10 @@ use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoolTypeController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\WorkShopController;
-// use App\Http\Controllers\SubjectController;
-// use App\Http\Resources\SubjectResource;
+
 
 use App\Http\Controllers\UserController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -86,6 +86,10 @@ Route::post('/image',[SkillController::class,'createImageLink']);
 
 // subject route
 Route::get('/subjects',[SkillController::class,'getSubjects']);
+
+//Address route
+Route::get('/addresses', [AddressController::class, 'index']);
+
 
 // Major route
 Route::get('/workshops',[WorkShopController::class,'getWorkShops']);

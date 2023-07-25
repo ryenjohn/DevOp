@@ -47,8 +47,12 @@ class SkillController extends Controller
     }
     public function store(Request $request)
     {
-        $book = Skill::store($request);
-        return response()->json(['success' =>true, 'data' => $book],201);
+        $skill = Skill::store($request);
+        if ($skill) {
+            return response()->json(['skill have been created' => true, 'data' => $skill], 200);
+        }
+        return response()->json(['message' => "skill cannot create"], 404);
+
     }
 
     public function editeSkill(SkillRequest $request, string $id)
