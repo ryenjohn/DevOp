@@ -8,6 +8,7 @@ import resetPassword from '../components/authentication/resetPassword.vue'
 import universityManager from '../components/authentication/registerUniversityManager.vue'
 
 import AddWorkshop from '../components/workshop/workShop.vue'
+import AddScholarship from '../components/scholarship/AddScholarship.vue'
 
 import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
@@ -81,6 +82,11 @@ const routes = [
     path: '/addWorkshop',
     name: 'addWorkshop',
     component: AddWorkshop
+  },
+  {
+    path: '/addScholarship',
+    name: 'addScholarship',
+    component: AddScholarship
   }
 
 ]
