@@ -42,8 +42,9 @@ export default {
       this.key = key;
       if(key==null){
        this.defaultData()
+      }else{
+        this.searchdata();
       }
-      this.searchdata();
       
     },
   },

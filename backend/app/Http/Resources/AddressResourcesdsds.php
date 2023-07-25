@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SchoolResource extends JsonResource
+class AddressResourcesdsds extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,11 +15,7 @@ class SchoolResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'=>$this->id,
-            'name'=>$this->name,
-            'image' => $this->media->file_url ?? null,
-            'type'=>$this->type->name,
-            'address'=> new AddressResource($this->address),
+            "name"=>$this->name
         ];
     }
 }

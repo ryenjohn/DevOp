@@ -1,20 +1,21 @@
 <template>
     <div class="container">
         <h1>Student Request </h1>
-        <div class="student-card">
-            <div class="card" v-for="user in users" :key="user">
+        <div class="student-card" >
+            <div class="card" v-for="(user,index) in users" :key="index"  :user="user">
                 <div class="card-left">
                     <span class="material-icons"> person </span>
-                    <!-- <img src="https://o.remove.bg/downloads/73a87ac7-bf34-4516-afdb-19f67939951a/image-removebg-preview.png" alt="" style="width:50px"> -->
-                    <h3>{{user.name}}</h3>
+                    <h3>{{user.user_id.name}}</h3>
                 </div>
                 <div class="card-right">
-                    <!-- https://vuetifyjs.com/en/components/dialogs/ -->
+                    <!--code from https://vuetifyjs.com/en/components/dialogs/ -->
                     <v-row justify="center">
                         <v-dialog
+                        class="dialog"
                         v-model="dialog"
                         persistent
-                        width="1024"
+                        width="400"
+                    
                         >
                         <template v-slot:activator="{ props }">
                             <v-btn
@@ -25,64 +26,48 @@
                             Student Info
                             </v-btn>
                         </template>
-                        <v-card>
-                            <v-card-title>
-                                <span class="text-h5">User Profile</span>
-                            </v-card-title>
-                            <v-card-text>
-                                <v-container>
-                                    <h4>{{user.name}}</h4>
-                                    <p>{{user.email}}</p>
-                                    <p>{{user.phone}}</p>
-                                    <p>{{user.gender}}</p>
-                                    <!-- <v-row>4
-                                        <v-col
-                                            cols="12"
-                                            sm="6"
-                                            md="4"
-                                        >
-                                            <v-text-field
-                                            label="Legal first name*"
-                                            required
-                                            ></v-text-field>
-                                        </v-col>
-                                        <v-col
-                                            cols="12"
-                                            sm="6"
-                                            md="4"
-                                        >
-                                            <v-text-field
-                                            label="Legal middle name"
-                                            hint="example of helper text only on focus"
-                                            ></v-text-field>
-                                        </v-col>
-                                    </v-row> -->
+                        <v-card style="border-radius: 20px; border:2px solid orange" >
+                            <v-card-text class="contenter-card">
+                                <v-container style="padding: 25px; display: flex; flex-direction: column; gap:10px; ">
+                                    <div class="profile" style="display:flex; gap:20px; align-items:center">
+                                        <span class="material-icons" style="font-size: 100px; margin-bottom:20px; ">person</span>
+                                        <div class="name" >
+                                            <h2>{{user.user_id.name}}</h2>
+                                            <span>({{user.user_id.gender}})</span> 
+                                        </div>   
+                                    </div>
+                                    <h4>{{user.user_id.email}}</h4>
+                                    <p>{{user.user_id.phone}}</p>
+                                    <p>Address: {{user.user_id.address.name}} </p>
+                                    <p>street: {{user.user_id.address.street}}</p>
                                 </v-container>
-                                <small>*indicates required field</small>
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
                                 <v-btn
-                                    color="blue-darken-1"
+                                    color="#EFAA1D"
                                     variant="text"
                                     @click="dialog = false"
                                 >
                                     Close
-                                </v-btn>
-                                <v-btn
-                                    color="blue-darken-1"
-                                    variant="text"
-                                    @click="dialog = false"
-                                >
-                                    Save
                                 </v-btn>
                             </v-card-actions>
                         </v-card>
                         </v-dialog>
                     </v-row>
 
-                    <v-btn color="#634B7A" v-bind="props" style="color:white" >Accept</v-btn>
-                    <v-btn color="#EFAA1D" v-bind="props" style="color:white">Reject</v-btn>
+                    <v-btn 
+                        color="#634B7A" 
+                        v-bind="props" 
+                        style="color:white" 
+                        @click="isAccept(user.id)"
+                    >Accept</v-btn>
+                    <v-btn 
+                        color="#EFAA1D" 
+                        v-bind="props" 
+                        style="color:white" 
+                        @click="isReject(user.id)"
+                    >Reject</v-btn>
                 </div>
             </div>
         </div>
@@ -102,19 +87,38 @@ export default{
             errors: null,
             users:[],
             dialog: false,
-
         }
     },
     methods:{
         
         getUser() {
-        axios.get(`${ process.env.VUE_APP_API_URL}users`)
-        .then((response)=>{
-            this.users = response.data.data
+            axios.get(`${ process.env.VUE_APP_API_URL}getSchoolUser`)
+            .then((response)=>{
+                this.users = response.data.data
+                console.log(response.data.data)
 
-        })
+            })
+        },
+        isAccept(id) {
+            console.log(id)
+            axios.put(`${process.env.VUE_APP_API_URL}acceptStudent/`+id)
+            .then((response)=>{
+                console.log(response.data.data);
+                location.reload();
+
+            })
+        },
+
+        isReject(id) {
+            console.log(id)
+            axios.delete(`${process.env.VUE_APP_API_URL}studentReject/`+id)
+            .then((response)=>{
+                console.log(response.data.data);
+                location.reload();
+            })
         }
     },
+
     mounted(){
         this.getUser();
     }
@@ -133,6 +137,16 @@ export default{
     width: 100%;
     padding: 3% 0%;
 }
+.dialog{
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    display:flex; 
+    border:1px solid grey;
+
+}
+.material-icons{
+    border-radius: 50px;
+    border: 1px solid grey;
+}
 .student-card{
     display: flex;
     flex-direction: column;
@@ -140,8 +154,7 @@ export default{
 }
 h1{
     margin-left: 20%;
-    margin-bottom: 3%
-    ;
+    margin-bottom: 3%;
 }
 .card{
     width: 75%;
@@ -165,25 +178,4 @@ h1{
     display: flex;
     gap: 20px;
 }
-/* .btn{
-    width: 120px;
-    padding: 0px 15px;
-    border-radius: 15px;
-    color: white;
-    box-shadow: rgba(24, 24, 24, 0.25) 0px 14px 28px, rgba(49, 49, 49, 0.22) 0px 10px 10px;
-}
-.one{
-    background-color: white;
-    color: black;
-
-}
-.two{
-    background-color: #634B7A;
-
-}
-.three{
-    background-color:#EFAA1D;
-
-} */
-
 </style>

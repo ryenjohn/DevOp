@@ -24,7 +24,6 @@
           @input="v$.name.$touch"
           @blur="v$.name.$touch"
         ></v-text-field>
-
         <v-text-field
           class="err"
           v-model="state.email"
@@ -87,7 +86,8 @@
             </div>
           </div>
           <p>
-            Already have an account?<router-link to="/logIn">Log in</router-link>
+            Already have an account?<router-link to="/logIn">Log in</router-link><br>
+            Create university page<router-link to="/sendMail/register">click me</router-link>
           </p>
         </div>
       </form>
