@@ -122,8 +122,6 @@ app.component('register-account-popup', RegisterAccountPopUp)
 
 
 
-
-
 app.use(router);
 app.use(vuetify);
 app.mount('#app');

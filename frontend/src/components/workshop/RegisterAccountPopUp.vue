@@ -1,5 +1,6 @@
 // https://vuetifyjs.com/en/components/dialogs/
 <template>
+
   <v-row justify="center">
     <!-- first diolog -->
     <template v-if="!isLoggedIn">
@@ -9,7 +10,7 @@
       width="500px"
     >
       <template v-slot:activator="{ props }">
-        <p v-bind="props">Join</p>
+        <p v-bind="props"  @click="getId">Join</p>
       </template>
       <v-card>
         <v-card-title class="text-h5">
@@ -52,12 +53,12 @@
       </template>
       <v-card>
         <v-card-title class="text-h5">
-          Do you want to join the workshop?
+          Do you want to join the workshop? {{workshop_id}}
         </v-card-title>
         <div style="text-align:center;">
           <img src="../../assets/images/workshop.jpg" alt="" width="300" height="250"/>
         </div>
-        <v-card-text class="text" style="text-align:center;">Join our workshop.</v-card-text>
+        <v-card-text class="text" style="text-align:center;">Join our workshop. {{workshop_id}} </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
@@ -69,9 +70,10 @@
           </v-btn>
           <v-btn
             variant="text"
-            @click="dialog = false"
+            @click="closeDialogAndJoinWorkshop" 
+            
           >
-            <router-link to="/signUp" style="color: purple; text-decoration: none;"
+            <router-link to="/" style="color: purple; text-decoration: none;"
               >YES</router-link>
           </v-btn>
         </v-card-actions>
@@ -81,21 +83,47 @@
   </v-row>
 </template>
 
-
 <script>
 import Cookies from 'js-cookie';
+import axios from 'axios';
 export default {
+  props:["workshop_id"],
     data() {
     return {
       isLoggedIn: false,
       dialog: false,
+      userId: ''
     };
   },
     mounted() {
     this.setUser();
   },
   methods: {
-    setUser() {
+    closeDialogAndJoinWorkshop() {
+    this.dialog = false;
+    this.joinWorkshop();
+  },
+  joinWorkshop() {
+      // Get user_id and workshop_id from cookie
+        const userData = Cookies.get('userData');
+        if (userData) {
+          const userDataObj = JSON.parse(userData);
+        this.userId = userDataObj.data.id;
+        console.log(this.userId);
+        axios.post('http://127.0.0.1:8000/api/registerWorkShop', {
+          workshop_id: this.workshop_id,
+          user_id: this.userId,
+        }).then(response => {
+          console.log(response.data);
+        }).catch(error => {
+          console.log(error(error));
+        })
+      }
+  },
+  getId(){
+    this.$emit('get_id')
+  },
+  setUser() {
       const userData = Cookies.get('userData');
       if (userData) {
         const userDataObj = JSON.parse(userData);

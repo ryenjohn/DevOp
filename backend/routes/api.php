@@ -108,3 +108,4 @@ Route::post('/registerMail',[UserController::class,'sendEmail']);
 
 // get user that already register in workshop
 Route::post('/registerWorkShop', [RegisterWorkShopController::class, 'registerWorkShop']);
+Route::get('/getregisterWorkShop', [RegisterWorkShopController::class, 'index']);
