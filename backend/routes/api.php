@@ -70,8 +70,9 @@ Route::put('/schools/{id}',[SchoolController::class,'editeSchool']);
 Route::delete('/schools/{id}',[SchoolController::class,'deleteSchool']);
 
 // scholarship rounte
-Route::get('/scholarships',[ScholarshipController::class,'scholarships']);
-Route::get('/scholarships/{id}',[ScholarshipController::class,'scholarship']);
+Route::get('/scholarships',[ScholarshipController::class,'getAllscholarships']);
+Route::get('/scholarships/{school_id}',[ScholarshipController::class,'scholarships']);
+Route::get('/scholarships/edit/{id}',[ScholarshipController::class,'scholarship']);
 Route::delete('/scholarships/{id}',[ScholarshipController::class,'destroy']);
 Route::post('/addScholarships',[ScholarshipController::class,'store']);
 Route::put('/editScholarships/{id}',[ScholarshipController::class,'editScholarship']);

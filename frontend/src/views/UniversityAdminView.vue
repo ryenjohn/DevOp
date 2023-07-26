@@ -26,6 +26,7 @@ export default {
             this.content = contentName
         },
         edit(id){
+
             this.editScholarship=true
             this.content=''
             this.editID = id 

@@ -7,7 +7,7 @@
       <router-link class="link-sign-up" to="/signUp"><v-tab>SignUp</v-tab></router-link>
       <router-link class="link-log-in" to="/logIn"><v-tab>SignIn</v-tab></router-link>
     </v-tabs>
-    <Menu v-if="userName!=null" :show-menu="showMenu"  @submitLogOut="submitLogOut" :userName="userName.name"/>
+    <Menu v-if="userName!=null" :show-menu="showMenu"  @submitLogOut="submitLogOut" :userName="userName.name " :role_id="userName.role_id"/>
   </div>
 </template>
 
@@ -25,7 +25,8 @@ export default {
       userName: null,
       userId: "",
       showMenu: false,
-      myCookie: ''
+      myCookie: '',
+     
     };
   },
   methods: {
@@ -38,6 +39,8 @@ export default {
         const userDataObj = JSON.parse(userData);
         this.userName = userDataObj.data
         this.userId = userDataObj.data;
+      
+       
         // console.log(this.userId.id);
       }
     },

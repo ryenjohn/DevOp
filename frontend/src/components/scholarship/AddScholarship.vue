@@ -74,6 +74,7 @@
         <v-btn type="submit" class="cancel" @click="cancel()">Cancel</v-btn>
         <v-btn type="submit" class="add">Create</v-btn>
       </div>
+      
     </v-form>
   </div>
 </template>
@@ -82,14 +83,15 @@
 
 <script>
 import axios from "axios";
+import Cookies from 'js-cookie';
 export default {
   data() {
     return {
       valid: false,
       name: "",
       user_number: "",
-      school_id: 3,
       skill_id: "",
+      school_id:'',
       postDate: "",
       expiredDate: "",
       image: null,
@@ -126,7 +128,7 @@ export default {
           name: this.name,
           user_number: this.user_number,
           skill_id: this.skillId(),
-          school_id: this.school_id,
+          school_id: this.shoolId(),
           image: this.image,
           post_date: this.postDate,
           expired_date: this.expiredDate,
@@ -134,7 +136,9 @@ export default {
         };
         axios
           .post(`${process.env.VUE_APP_API_URL}addScholarships`, new_idaship)
-          .then(() => {
+          .then((res) => {
+            console.log(res.data)
+            console.log(this.school_id)
             this.$router.push("/university");
             return this.$emit("show", "scholarship");
           })
@@ -184,7 +188,19 @@ export default {
       });
       return id;
     },
+    shoolId(){
+      const userData = Cookies.get('userData');
+      let school_id = ''
+          // If the "userData" cookie exists, parse it and set the user ID in the component data
+        if (userData) {
+            const userDataObj = JSON.parse(userData);
+            school_id= userDataObj.data.school_id
+
+        }
+        return school_id;
+    },
   },
+  
   mounted() {
     this.fetchSkills();
   },

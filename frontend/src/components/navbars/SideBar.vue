@@ -4,10 +4,10 @@
       <v-navigation-drawer style="height: 700px; width:14%" class="sidebar" >
         <v-divider style="height: 300px"></v-divider>
         <v-list density="compact" class="" nav>
+          <v-list-item  prepend-icon="mdi-home" class="mt-10" title="Home" value="Home" to="/"></v-list-item>
           <div v-if="this.$route.name!='admin'">
             <v-list-item  prepend-icon="mdi-account-school"  title="Students" value="Students"></v-list-item>
             <v-list-item  prepend-icon="mdi-hammer-wrench"  title="Workshop" value="Workshop"></v-list-item>
-            <!-- <router-link to="/listScholarship">scholarship</router-link> -->
             <v-list-item   @click="show('scholarship')" prepend-icon="mdi-school-outline"  title="Scholarship" value="Scholarship"></v-list-item>
             <v-list-item   prepend-icon="mdi-format-list-bulleted"  title="Majors" value="Majors"></v-list-item>
           </div>

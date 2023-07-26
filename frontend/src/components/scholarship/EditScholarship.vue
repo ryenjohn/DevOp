@@ -120,10 +120,12 @@ export default {
   },
   methods: {
     showData() {
+    
       axios
-        .get(`${process.env.VUE_APP_API_URL}scholarships/${this.editID}`)
+        .get(`${process.env.VUE_APP_API_URL}scholarships/edit/${this.editID}`)
         .then((response) => {
           this.scholarships = response.data.data;
+          console.log(this.scholarships )
         })
         .catch((error) => {
           console.error(error);
@@ -189,6 +191,7 @@ export default {
     },
   },
   mounted() {
+    
     this.showData();
     this.fetchSkills();
   },
