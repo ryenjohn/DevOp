@@ -27,7 +27,7 @@ import Admin from '../views/AdminView.vue'
 import UniversityApplyForm from '../components/university/UniversityApplyForm.vue'
 
 import University from '../views/UniversityAdminView.vue'
-
+import NotFound from '../views/NotFound.vue'
 
 
 const routes = [
@@ -124,11 +124,17 @@ const routes = [
     path: '/invoice',
     name: 'invoice',
     component: InvoiceTicket
+  },
+  {
+    path: '/404notfound',
+    name: 'notfound',
+    component: NotFound
   }
 
 ]
 
 const router = createRouter({
+  mode: 'history',
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
