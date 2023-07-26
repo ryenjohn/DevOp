@@ -120,9 +120,12 @@ app.component('ourteam-member', OurTeamMember);
 import ContactBar from '../src/components/contact/ContactBar.vue'
 app.component('contact-bar', ContactBar);
 
-
-
-
+// https://stackoverflow.com/questions/66269837/vue-router-how-to-dynamically-generate-page-titles-for-dynamic-routes
+router.beforeEach((to, from, next) => {
+  const DEFAULT_TITLE = 'My Website'; // Set a default title for the website
+  document.title = to.name ? to.name + ' - ' + DEFAULT_TITLE : DEFAULT_TITLE;
+  next();
+});
 
 app.use(router);
 app.use(vuetify);

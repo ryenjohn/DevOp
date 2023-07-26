@@ -7,7 +7,8 @@
           <div v-if="this.$route.name!='admin'">
             <v-list-item  @click="changedata('students')" prepend-icon="mdi-account-school"  title="Students" value="Students"></v-list-item>
             <v-list-item  @click="changedata('workshops')" prepend-icon="mdi-hammer-wrench"  title="Workshop" value="Workshop"></v-list-item>
-            <v-list-item  @click="changedata('scholaship')" prepend-icon="mdi-school-outline"  title="Scholarship" value="Scholarship"></v-list-item>
+            <router-link to="/listScholarship">scholarship</router-link>
+            <v-list-item  @click="changedata('scholarship')" prepend-icon="mdi-school-outline"  title="Scholarship" value="Scholarship"></v-list-item>
             <v-list-item  @click="changedata('students')" prepend-icon="mdi-format-list-bulleted"  title="Majors" value="Majors"></v-list-item>
           </div>
           <div v-else>

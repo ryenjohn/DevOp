@@ -15,8 +15,11 @@ class ShowScholarshipResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id'=>$this->id,
             'name'=>$this->name,
             'image' => $this->media->file_url ?? null,
+            'full' => $this-> full,
+            'user_number' => $this->user_number,
             'description'=>$this->description,
             'post_date'=>$this->post_date,
             'expired_date'=>$this->expired_date,

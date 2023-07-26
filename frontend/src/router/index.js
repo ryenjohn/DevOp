@@ -9,6 +9,8 @@ import universityManager from '../components/authentication/registerUniversityMa
 
 import AddWorkshop from '../components/workshop/workShop.vue'
 import AddScholarship from '../components/scholarship/AddScholarship.vue'
+import ListScholarship from '../components/scholarship/ListScholarship.vue'
+import EditScholarship from '../components/scholarship/EditScholarship.vue'
 
 import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
@@ -94,7 +96,17 @@ const routes = [
     path: '/addScholarship',
     name: 'addScholarship',
     component: AddScholarship
-  }
+  },
+  {
+    path: '/listScholarship',
+    name: 'listScholarship',
+    component: ListScholarship
+  },
+  {
+    path: '/scholarships/:id',
+    name: 'scholarships',
+    component: EditScholarship
+  },
 
 ]
 
