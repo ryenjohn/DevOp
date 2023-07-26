@@ -119,12 +119,19 @@ app.component('ourteam-member', OurTeamMember);
 import ContactBar from '../src/components/contact/ContactBar.vue'
 app.component('contact-bar', ContactBar);
 
-//RegisterAccountPopUp
-import RegisterAccountPopUp from './components/workshop/RegisterAccountPopUp.vue'
-app.component('register-account-popup', RegisterAccountPopUp)
+// university admin page 
+import ListScholarship from './components/scholarship/ListScholarship.vue'
+import EditScholarship from './components/scholarship/EditScholarship.vue'
+import AddScholarship from './components/scholarship/AddScholarship.vue'
+app.component('list-scholarship', ListScholarship);
+app.component('edit-scholarship', EditScholarship);
+app.component('add-scholarship', AddScholarship);
 
-
-
+router.beforeEach((to, from, next) => {
+  const DEFAULT_TITLE = 'Find University';
+  document.title = to.name ? to.name + ' - ' + DEFAULT_TITLE : DEFAULT_TITLE;
+  next();
+});
 
 app.use(router);
 app.use(vuetify);

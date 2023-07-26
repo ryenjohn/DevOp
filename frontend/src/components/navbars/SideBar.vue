@@ -30,6 +30,7 @@
         return this.$emit("dataname",dataname);
       },
       show(contentName){
+       
         return this.$emit('show',contentName)
       }
     }

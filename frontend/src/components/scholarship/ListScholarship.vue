@@ -71,8 +71,10 @@ export default {
   },
   methods: {
     fetchScholarship() {
+     
       axios.get(`${process.env.VUE_APP_API_URL}scholarships`).then((res) => {
         this.dataScholarships = res.data.data;
+        
       });
     },
     showEdit(id) {
@@ -105,6 +107,7 @@ export default {
     },
   },
   mounted() {
+   
     this.fetchScholarship();
   },
 };
