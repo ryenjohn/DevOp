@@ -69,6 +69,8 @@ import CardContainer from './components/widgets/card/CardContainer.vue';
 import CardItemDetail  from './components/widgets/card/CardDetail.vue';
 import BaseButton from './components/widgets/button/BaseButton.vue';
 import BaseDialog from './components/widgets/dialog/BaseDialog.vue';
+import StudentRequestContainer from './components/universityDirector/StudentRequest.vue';
+
 
 // content title
 import TitleView from './components/contents/ContentTitle.vue';
@@ -95,6 +97,8 @@ app.component('footer-bar', FooterBar);
 app.component('footer-icon', FooterIcon);
 app.component('footer-avatar', FooterAvatar);
 app.component('footer-details', FooterDetails);
+
+app.component('student-request-container', StudentRequestContainer);
 
 
 

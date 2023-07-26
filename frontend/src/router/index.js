@@ -22,7 +22,8 @@ import Home from '../views/HomeView.vue'
 import Detail from '../views/DetailView.vue'
 import Admin from '../views/AdminView.vue'
 import UniversityApplyForm from '../components/university/UniversityApplyForm.vue'
-// import 
+
+import University from '../views/UniversityAdminView.vue'
 
 
 
@@ -76,7 +77,12 @@ const routes = [
   component: UniversityApplyForm
   },
   {
+    path: '/university',
+    name: 'university',
+    component: University
+  },
 
+  {
     path: '/sendMail/:title',
     name: 'sendMail',
     component: sendMail

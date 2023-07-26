@@ -51,6 +51,13 @@ Route::get('/workshop/{id}',[WorkShopController::class,'getWorkShopById']);
 Route::get('/user/{id}',[UserController::class,'getUser']);
 Route::put('/user/{id}',[UserController::class,'saveChange']);
 
+// school_user
+Route::get('/getSchoolUser',[SchoolUserController::class,'getSchoolUser']);
+Route::put('/acceptStudent/{id}',[SchoolUserController::class,'studentAccept']);
+// Route::get('/acceptStudent/{id}',[SchoolUserController::class,'studentAccept']);
+Route::delete('/studentReject/{id}',[SchoolUserController::class,'studentReject']);
+
+
 Route::get('/schools',[SchoolController::class,'getschools']);
 Route::get('/schools/address/{name}',[SchoolController::class,'search']);
 

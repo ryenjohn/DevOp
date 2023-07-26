@@ -76,4 +76,8 @@ class School extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function schoolUser(): HasMany
+    {
+        return $this->hasMany(SchoolUser::class);
+    }
 }

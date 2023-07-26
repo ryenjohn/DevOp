@@ -95,6 +95,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(WorkShop::class);
     }
+    
+    public function schoolUser(): HasMany
+    {
+        return $this->hasMany(SchoolUser::class);
+    }
 
     public function school(): HasOne
     {
