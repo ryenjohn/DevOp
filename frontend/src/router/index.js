@@ -18,6 +18,7 @@ import MajorForm from '../components/major/majorForm.vue'
 
 import PaymentForm from '../components/payment/PaymentForm.vue'
 import PaymentByCard from '../components/payment/PaymentByCard.vue'
+import InvoiceTicket from '../components/payment/InvoiceTicket.vue'
 
 
 import Home from '../views/HomeView.vue'
@@ -118,6 +119,11 @@ const routes = [
     path: '/paymentbycard',
     name: 'paymentbycard',
     component: PaymentByCard
+  },
+  {
+    path: '/invoice',
+    name: 'invoice',
+    component: InvoiceTicket
   }
 
 ]

@@ -20,7 +20,7 @@
               label="Payment amount $ (USD)" 
               :rules="paymentRules"
               density="compact"
-              placeholder="Enter your card name"
+              placeholder="Enter amount of your payment"
               variant="outlined"
               color="#634B7A"
           ></v-text-field>
@@ -163,7 +163,7 @@
                 numberCard: this.numberCard
             }
             this.dataPay = newPay;
-            this.$router.push('/payment');
+            this.$router.push('/invoice');
             Swal.fire({
             position: 'top-center',
             icon: 'success',
