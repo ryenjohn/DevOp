@@ -106,7 +106,7 @@
           <v-btn type="submit" @click.prevent="submitForm" class="bg-orange text-white">Submit</v-btn>
         </div>
       </v-form>
-    </div>
+    <!-- </div> -->
 </template>
 
 <script>
