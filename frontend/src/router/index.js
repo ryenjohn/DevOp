@@ -32,7 +32,7 @@ import RegisterAccountPopUp from '../components/workshop/RegisterAccountPopUp.vu
 import UniversityApplyForm from '../components/university/UniversityApplyForm.vue'
 
 import University from '../views/UniversityAdminView.vue'
-
+import NotFound from '../views/NotFound.vue'
 
 const routes = [
   {
@@ -139,11 +139,17 @@ const routes = [
     path: '/addWorkshop',
     name: 'addWorkshop',
     component: AddWorkshop
+  },
+  {
+    path: '/404notfound',
+    name: 'notfound',
+    component: NotFound
   }
 
 ]
 
 const router = createRouter({
+  mode: 'history',
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
