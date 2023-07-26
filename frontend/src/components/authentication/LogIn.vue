@@ -1,6 +1,5 @@
 
 // copy from vutify
-
 <template>
   <div class="image-form">
     <div class="image">
@@ -39,9 +38,7 @@
         </v-text-field>
         <p v-if="!valid" class="error-message">Incorrect password or email</p>
         <p class="forgot-password">
-          <!-- <router-link to="/">Forgot password</router-link> -->
           <router-link to="/sendMail/forgetpwd">Forgot password</router-link>
-
 
         </p>
         <div class="btn">

@@ -10,6 +10,7 @@ use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\ScholarshipController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoolTypeController;
+use App\Http\Controllers\SchoolUserController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\WorkShopController;
 
