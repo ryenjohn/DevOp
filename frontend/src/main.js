@@ -119,6 +119,11 @@ app.component('ourteam-member', OurTeamMember);
 import ContactBar from '../src/components/contact/ContactBar.vue'
 app.component('contact-bar', ContactBar);
 
+//University Apply Form
+import UniversityApplyForm from '../src/components/university/UniversityApplyForm.vue'
+app.component('university-apply-form', UniversityApplyForm);
+
+
 
 
 router.beforeEach((to, from, next) => {
