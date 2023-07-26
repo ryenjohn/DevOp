@@ -5,11 +5,11 @@
         <v-divider style="height: 300px"></v-divider>
         <v-list density="compact" class="" nav>
           <div v-if="this.$route.name!='admin'">
-            <v-list-item  @click="changedata('students')" prepend-icon="mdi-account-school"  title="Students" value="Students"></v-list-item>
-            <v-list-item  @click="changedata('workshops')" prepend-icon="mdi-hammer-wrench"  title="Workshop" value="Workshop"></v-list-item>
-            <router-link to="/listScholarship">scholarship</router-link>
-            <v-list-item  @click="changedata('scholarship')" prepend-icon="mdi-school-outline"  title="Scholarship" value="Scholarship"></v-list-item>
-            <v-list-item  @click="changedata('students')" prepend-icon="mdi-format-list-bulleted"  title="Majors" value="Majors"></v-list-item>
+            <v-list-item  prepend-icon="mdi-account-school"  title="Students" value="Students"></v-list-item>
+            <v-list-item  prepend-icon="mdi-hammer-wrench"  title="Workshop" value="Workshop"></v-list-item>
+            <!-- <router-link to="/listScholarship">scholarship</router-link> -->
+            <v-list-item   @click="show('scholarship')" prepend-icon="mdi-school-outline"  title="Scholarship" value="Scholarship"></v-list-item>
+            <v-list-item   prepend-icon="mdi-format-list-bulleted"  title="Majors" value="Majors"></v-list-item>
           </div>
           <div v-else>
             <v-list-item  @click="changedata('users')" prepend-icon="mdiAccount"  title="All Users" value="Users"></v-list-item>
@@ -28,6 +28,9 @@
     methods:{
       changedata(dataname){
         return this.$emit("dataname",dataname);
+      },
+      show(contentName){
+        return this.$emit('show',contentName)
       }
     }
   }
@@ -35,7 +38,7 @@
 
 <style  scoped>
     .sidebar{
-      margin-top: 4.5%;
+      /* margin-top: 4.5%; */
       background: blueviolet;
       color: white;
     }

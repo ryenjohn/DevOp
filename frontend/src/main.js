@@ -88,10 +88,6 @@ app.component('base-dialog', BaseDialog);
 
 app.component('title-text', TitleView);
 
-// app.component('skill-detail', SkillDetail);
-// app.component('university-skill', UniversityInSkill);
-// app.component('card-container', CardContainer);
-
 
 //university
 app.component('footer-bar', FooterBar);
@@ -119,6 +115,15 @@ app.component('ourteam-member', OurTeamMember);
 //Contact page
 import ContactBar from '../src/components/contact/ContactBar.vue'
 app.component('contact-bar', ContactBar);
+
+
+// university admin page 
+import ListScholarship from './components/scholarship/ListScholarship.vue'
+import EditScholarship from './components/scholarship/EditScholarship.vue'
+import AddScholarship from './components/scholarship/AddScholarship.vue'
+app.component('list-scholarship', ListScholarship);
+app.component('edit-scholarship', EditScholarship);
+app.component('add-scholarship', AddScholarship);
 
 // https://stackoverflow.com/questions/66269837/vue-router-how-to-dynamically-generate-page-titles-for-dynamic-routes
 router.beforeEach((to, from, next) => {
