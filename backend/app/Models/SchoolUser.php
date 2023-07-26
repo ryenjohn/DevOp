@@ -14,10 +14,10 @@ class SchoolUser extends Model
         'school_id',
         'accept',
         'year',
-        'study_lavel'
+        'study_level'
     ];
     public static function schoolUser($request, $id=null){
-        $schoolUser = $request->only(['user_id','skill_id', 'school_id', 'accept', 'year', 'study_lavel']);
+        $schoolUser = $request->only(['user_id','skill_id', 'school_id', 'accept', 'year', 'study_level']);
         $schoolUser = self::updateOrCreate(['id'=>$id], $schoolUser);
         return $schoolUser;
     }

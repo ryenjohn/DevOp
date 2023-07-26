@@ -89,10 +89,6 @@ app.component('base-dialog', BaseDialog);
 
 app.component('title-text', TitleView);
 
-// app.component('skill-detail', SkillDetail);
-// app.component('university-skill', UniversityInSkill);
-// app.component('card-container', CardContainer);
-
 
 //university
 app.component('footer-bar', FooterBar);

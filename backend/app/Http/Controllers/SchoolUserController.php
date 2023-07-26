@@ -21,7 +21,7 @@ class SchoolUserController extends Controller
     public function store(Request $request)
     {
         $schoolUser = SchoolUser::schoolUser($request);
-        return response()->json(['success' =>true, 'data' => $schoolUser],201);
+        return response()->json(['success' =>true, 'data' => $schoolUser],200);
     }
 
     /**

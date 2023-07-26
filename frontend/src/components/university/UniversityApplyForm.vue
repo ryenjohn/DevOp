@@ -130,10 +130,11 @@
             year: this.year,
             study_level:this.study_level
           }
-          console.log(newApply)
+          
          axios.post(`${process.env.VUE_APP_API_URL}apply`, newApply)
          .then(()=>{
           this.$router.push("/")
+          console.log(newApply)
          })
         }
       }
