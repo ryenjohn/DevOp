@@ -120,7 +120,7 @@
 
 <script>
 import axios from 'axios'
-
+import Cookies from "js-cookie";
 export default {
     data() {
         return {
@@ -191,8 +191,7 @@ export default {
             .then((res) => {
                 console.log(res)
                 this.createUser(res.data.data.id)
-                this.$router.push('/')
-
+               
             })
             .catch((error) => {
                 console.log(error);
@@ -202,6 +201,7 @@ export default {
         createUser($id){
             console.log($id)
              axios.post(`${ process.env.VUE_APP_API_URL}users`, {
+
                 name: this.name,
                 email: this.email,
                 password: this.password,
@@ -212,7 +212,9 @@ export default {
                 school_id: $id
             })
             .then((res) => {
-               console.log(res)
+                Cookies.set("userData", JSON.stringify(res.data), { expires: 30 });
+                this.$router.push('/')
+            
 
             })
             .catch((error) => {
