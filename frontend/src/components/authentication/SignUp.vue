@@ -189,7 +189,6 @@ h1 {
   text-align: center;
 }
 p {
-  /* margin-bottom: 5%; */
   margin-left: 33%;
   margin-top: 3%;
 }

@@ -2,11 +2,14 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import 'vuetify/dist/vuetify.min.css'
+
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
+
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-import '@mdi/font/css/materialdesignicons.css'
+
+
 const vuetify = createVuetify({
   components,
   directives,
@@ -85,10 +88,6 @@ app.component('base-dialog', BaseDialog);
 
 
 app.component('title-text', TitleView);
-
-// app.component('skill-detail', SkillDetail);
-// app.component('university-skill', UniversityInSkill);
-// app.component('card-container', CardContainer);
 
 
 //university

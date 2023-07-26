@@ -11,11 +11,20 @@ import AddWorkshop from '../components/workshop/workShop.vue'
 
 import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
+
 import MajorForm from '../components/major/majorForm.vue'
+
+import PaymentForm from '../components/payment/PaymentForm.vue'
+import PaymentByCard from '../components/payment/PaymentByCard.vue'
+
 
 import Home from '../views/HomeView.vue'
 import Detail from '../views/DetailView.vue'
 import Admin from '../views/AdminView.vue'
+import UniversityApplyForm from '../components/university/UniversityApplyForm.vue'
+// import 
+
+
 
 const routes = [
   {
@@ -62,6 +71,11 @@ const routes = [
     component: Admin
   },
   {
+  path: '/apply',
+  name: 'apply',
+  component: UniversityApplyForm
+  },
+  {
 
     path: '/sendMail/:title',
     name: 'sendMail',
@@ -81,6 +95,16 @@ const routes = [
     path: '/addWorkshop',
     name: 'addWorkshop',
     component: AddWorkshop
+  },
+  {
+    path: '/payment',
+    name: 'payment',
+    component: PaymentForm
+  },
+  {
+    path: '/paymentbycard',
+    name: 'paymentbycard',
+    component: PaymentByCard
   }
 
 ]

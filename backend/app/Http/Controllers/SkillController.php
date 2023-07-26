@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SkillRequest;
 use App\Http\Resources\SchoolResource;
 use App\Http\Resources\ShowSkillResource;
+use App\Http\Resources\SkillNameResource;
 use App\Http\Resources\SkillResource;
 use App\Http\Resources\SubjectResource;
 use App\Models\School;

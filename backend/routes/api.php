@@ -7,12 +7,12 @@ use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\ResetPasswordController;
 
-// use App\Http\Controllers\RegisterMailcontroller;
 use App\Http\Controllers\ScholarshipController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoolTypeController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\WorkShopController;
+
 
 
 use App\Http\Controllers\UserController;
@@ -114,3 +114,9 @@ Route::get('/getUserId/{email}',[UserController::class,'getUserId']);
 // create university
 Route::post('/school',[SchoolController::class,'store']);
 Route::get('/getSchoolIdByName/{name}',[SchoolController::class,'getSchoolIdByName']);
+
+// applay for study
+Route::post('/apply',[SchoolUserController::class,'store']);
+
+
+
