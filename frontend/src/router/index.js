@@ -22,15 +22,7 @@ import Admin from '../views/AdminView.vue'
 import RegisterAccountPopUp from '../components/workshop/RegisterAccountPopUp.vue'
 
 
-import MajorForm from '../components/major/majorForm.vue'
 
-import PaymentForm from '../components/payment/PaymentForm.vue'
-import PaymentByCard from '../components/payment/PaymentByCard.vue'
-
-
-import Home from '../views/HomeView.vue'
-import Detail from '../views/DetailView.vue'
-import Admin from '../views/AdminView.vue'
 import UniversityApplyForm from '../components/university/UniversityApplyForm.vue'
 
 import University from '../views/UniversityAdminView.vue'
