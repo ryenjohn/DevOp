@@ -1,6 +1,13 @@
 <template>
 <div class="groupForm" @submit.prevent="submit">
-  <v-form  v-model="valid">
+  <div class="image">
+      <img
+        src="../../assets/payment/payment.png"
+        style="width: 90%; height: initial"
+        alt="Image description"
+      />
+    </div>
+  <v-form @submit.prevent="submit">
     <h1>Payment</h1>
     <div class="item" > 
         <v-text-field 
@@ -38,7 +45,7 @@
             label="Course/Program name" 
             :rules="courselRules"
             density="compact"
-            placeholder="Enter your email"
+            placeholder="Enter your Course/Program name"
             variant="outlined"
             color="#634B7A"
         ></v-text-field>
@@ -64,25 +71,23 @@
             color="#634B7A"
         ></v-text-field>
     </div>
-    
-    <p class="select-fee">Select what fee/s you want to pay</p>
-    <v-container fluid class="pt-0"  id="radio">
-        <v-radio
-            v-for="(typePayment, index) in typePayments" :key="index" 
-            v-model="typePaymentSelect"
-            :label=typePayments.name
-            :rules="radioRules"
-            :value="typePayment.id"
-        ></v-radio>
-    </v-container>
-    <v-btn type="submit" v-if="!valid" @click="goToPayment()">Submit</v-btn>
+    <div class="item">
+      <v-text-field 
+              v-model="universityName" 
+              label="University name" 
+              :rules="universityNameRules"
+              density="compact"
+              placeholder="Enter your university name"
+              variant="outlined"
+              color="#634B7A"
+        ></v-text-field>
+    </div>
+    <v-btn type="submit"  class="next">Next</v-btn>
   </v-form>
 </div>
 </template>
 
 <script>
-// import axios from 'axios'
-
 export default {
     data() {
         return {
@@ -90,18 +95,20 @@ export default {
             phone: '',
             email: '',
             studentId: '',
-            radio: '',
             yearOfStudy: '',
-            typePaymentSelect: [],
             valid: true,
             courseProgramName:'',
+            universityName: '',
+            dataPay: [],
+            currentDate: '',
+            date: new Date().toISOString(),
             nameRules: [
                 value => !!value || 'Name is required',
                 value => (value && value.length >= 2) || 'Name needs to be at least 2 characters',
             ],
             phoneRules: [
                 value => !!value || 'Phone number is required',
-                value => !value || (value && value.length > 8 && /[0-9-]+/.test(value)) || 'Phone number needs to be at least 9 digits',
+                value => !value || (value && value.length > 8 && value.length < 15 && /[0-15-]+/.test(value)) || 'Phone number must be between 9 and 15 digits',
             ],
             emailRules: [
                 value => !!value || 'Email is required',
@@ -110,26 +117,37 @@ export default {
             courselRules: [
                 value => !!value || 'Course/Program name required',
             ],
-            radioRules: [
-                value => !!value || 'Must be selected',
-            ],
             studentIdRules: [
                 value => !!value || 'Student id is required',
             ],
             yearOfStudyRules: [
                 value => !!value || 'Name year of study is required',
+                value => /^\d+$/.test(value) || "Value must be an integer",
+                value => value  <= 8 || "Year of study can not more than 8"
             ],
-            typePayments:[
-               'Admission fee',
-               'Exam fee',
-               'Tuition fee'
-            ] 
+            universityNameRules: [
+                value => !!value || 'University name is required',
+            ], 
         }
     },
     methods:{
-      goToPayment(){
-          this.$router.push('/')
-      }
+      submit(){
+          if (this.name != '' && this.phone != '' && this.studentId != '' && this.yearOfStudy != '' && this.courseProgramName != '' && this.universityName != '')  {
+            const newPay = {
+              name: this.name,
+              phone: this.phone,
+              studentId: this.studentId,
+              yearOfStudy: this.yearOfStudy,
+              courseProgramName: this.courseProgramName,
+              universityName: this.universityName,
+            }
+            this.dataPay = newPay;            
+            this.$router.push('/paymentbycard');
+          }  else {
+            this.valid = false;
+          }
+        },
+        
     }
 }
 </script>
@@ -142,48 +160,33 @@ form{
   padding: 20px;
   background: #ffffff;
   margin: auto ;
-
-  
-}
-
-.select{
-    width: 50%;
-    height: 44px;
-    color: rgb(141, 137, 137);
-    border: 1px solid rgb(124, 123, 123);
-    outline-style:solid 1px ;
-    border-radius: 5px;
+  flex:1;
+  margin-right: 15px;
 }
 .groupForm{
   margin: 20px; 
-
-  /* margin-left: 13%; */
+  display: flex;
+}
+.image{
+  flex:1;
 }
 .item{
   display: flex;
   gap: 20px;
   margin: 10px;
 }
-.select-fee {
-  margin-left: 10px;
-}
-#radio{
-    display: flex;
-    flex-wrap: wrap;
-    align-self: center;
-}
+
 h1{
   text-align: center;
   color: orange;
   margin-top: 20px;
   margin-bottom: 20px;
 }
-h3{
-  margin-top: 10px;
-}
-.btn-payment{
-  margin-left: 84%;
 
+.next{
+  margin-left: 85%;
+  background-color: #634b7a;
+  color: #f6eeee;
 }
 
 </style>

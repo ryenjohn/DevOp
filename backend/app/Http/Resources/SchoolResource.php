@@ -17,7 +17,7 @@ class SchoolResource extends JsonResource
         return [
             'id'=>$this->id,
             'name'=>$this->name,
-            'image'=>$this->image,
+            'image' => $this->media->file_url ?? null,
             'type'=>$this->type->name,
             'address'=> new AddressResource($this->address),
         ];

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Core\MediaLib;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -19,21 +20,20 @@ class School extends Model
 
     protected $fillable=[
         'name',
-        'image',
+        'media_id',
         'description',
         'type_education_id',
         'address_id',
 
     ];
+    public function media()
+    {
+        return $this->belongsTo(MediaFile::class, 'media_id', 'media_id');
+    }
     public static function school($request, $id=null){
-        $school = $request->only(['name','image', 'description', 'type_education_id', 'address_id']);
+        $school = $request->only(['name', 'description', 'type_education_id', 'address_id']);
         if (filled($request->image)) {
-            $path = $request->file('image')->store('public/images/schools');
-            // Get the file's public URL
-            $url = Storage::url($path);
-            if($url){
-                $school['image']=$url;
-            }
+            $school['media_id'] = MediaLib::generateImageBase64($request->image);
         }
         $school = self::updateOrCreate(['id'=>$id], $school);
         $skills = request('skills');
@@ -50,10 +50,6 @@ class School extends Model
         return $this->belongsToMany(Skill::class, 'school_skills')->withTimestamps();
     }
 
-    public function schedule(): HasMany
-    {
-        return $this->hasMany(schedule::class);
-    }
 
     public function type(): BelongsTo
     {
@@ -72,11 +68,16 @@ class School extends Model
 
     public function workshops(): HasMany
     {
+
         return $this->hasMany(WorkShop::class);
     }
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+    public function schoolUser(): HasMany
+    {
+        return $this->hasMany(SchoolUser::class);
     }
 }

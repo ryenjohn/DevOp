@@ -1,3 +1,5 @@
+
+// copy from vutify
 <template>
   <div class="image-form">
     <div class="image">
@@ -36,7 +38,8 @@
         </v-text-field>
         <p v-if="!valid" class="error-message">Incorrect password or email</p>
         <p class="forgot-password">
-          <router-link to="/sendMail">Forgot password</router-link>
+          <router-link to="/sendMail/forgetpwd">Forgot password</router-link>
+
         </p>
         <div class="btn">
           <v-btn @click="logIn" class="btn-log-in">submit</v-btn>
@@ -74,7 +77,7 @@
           email: this.email,
           password: this.password,
           };
-          axios.post(`${ process.env.VUE_APP_API_URL}logIn`, data)
+          axios.post(`${process.env.VUE_APP_API_URL}logIn`, data)
           .then((res) => {
             if (res.status === 200) {
               Cookies.set("userData", JSON.stringify(res.data), { expires: 30 });
@@ -154,4 +157,6 @@
   transform: translateY(-50%);
   cursor: pointer;
 }
+
 </style>
+

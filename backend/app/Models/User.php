@@ -29,7 +29,9 @@ class User extends Authenticatable
         'gender',
         'role_id',
         'address_id',
-        'school_id'
+        'school_id',
+        'phone',
+        'gender'
     ];
 
     public static function store($request, $id = null)
@@ -42,7 +44,9 @@ class User extends Authenticatable
             'gender',
             'role_id',
             'address_id',
-            'school_id'
+            'school_id',
+            'phone',
+            'gender'
         ]);
         $user['password'] = Hash::make($user['password']);
 
@@ -94,6 +98,11 @@ class User extends Authenticatable
     public function workshops(): HasMany
     {
         return $this->hasMany(WorkShop::class);
+    }
+    
+    public function schoolUser(): HasMany
+    {
+        return $this->hasMany(SchoolUser::class);
     }
 
     public function school(): HasOne

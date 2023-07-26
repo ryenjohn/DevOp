@@ -18,8 +18,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="data in datas" :key="data.id" class="text-center">
-          <td>{{ data.id }}</td>
+        <tr v-for="(data,index) in datas" :key="index" class="text-center">
+          <td>{{ index+1 }}</td>
           <td>{{ data.name }}</td>
           <td>{{ data.email }}</td>
           <td>
@@ -133,7 +133,7 @@ export default {
         email: this.email,
       }
 
-      axios.put("http://127.0.0.1:8000/api/user/" + $id, newData).then((res) => {
+      axios.put(`${ process.env.VUE_APP_API_URL}user/` + $id, newData).then((res) => {
         console.log(res.data.data)
         this.dialog = false
       })
@@ -165,7 +165,7 @@ export default {
         })
     },
     deleteUser() {
-      axios.delete("http://127.0.0.1:8000/api/user/"+this.deleteId ).then(() => {
+      axios.delete(`${ process.env.VUE_APP_API_URL}user/`+this.deleteId ).then(() => {
         this.dialogDelete = false
         location.reload()
       })
@@ -240,5 +240,9 @@ h1 {
   border-radius: 4px;
   padding: 8px;
   width: 100%;
+}
+.role{
+  outline-style: solid;
+  outline-width: 1px;
 }
 </style>

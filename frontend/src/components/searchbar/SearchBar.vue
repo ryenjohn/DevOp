@@ -1,11 +1,11 @@
 <template>
-    <div class="search-input">
+    <div class="search-input mt-10">
       <v-toolbar  color="primary" rounded="" height="74"  flat>
         <v-text-field class="input"
           v-model="searchKey"
           clearable
           hide-details
-          label="Search skill, city or province"
+          label="Search university in your province"
           prepend-inner-icon="mdi-magnify"
           single-line
         ></v-text-field>
