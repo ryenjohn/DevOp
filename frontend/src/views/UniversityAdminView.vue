@@ -6,6 +6,8 @@
     <add-scholarship v-if="addScholarship" @show="show"> </add-scholarship>
 </template>
 
+
+
 <script>
 export default {
     data(){
