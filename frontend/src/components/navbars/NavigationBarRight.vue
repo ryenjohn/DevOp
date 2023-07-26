@@ -38,6 +38,7 @@ export default {
         const userDataObj = JSON.parse(userData);
         this.userName = userDataObj.data
         this.userId = userDataObj.data;
+        // console.log(this.userId.id);
       }
     },
   },

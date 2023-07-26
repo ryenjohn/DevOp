@@ -119,7 +119,9 @@ app.component('ourteam-member', OurTeamMember);
 import ContactBar from '../src/components/contact/ContactBar.vue'
 app.component('contact-bar', ContactBar);
 
-
+//RegisterAccountPopUp
+import RegisterAccountPopUp from './components/workshop/RegisterAccountPopUp.vue'
+app.component('register-account-popup', RegisterAccountPopUp)
 
 router.beforeEach((to, from, next) => {
   const DEFAULT_TITLE = 'Find University';

@@ -13,21 +13,25 @@ import UpdateWorkshop from '../components/workshop/workShopUpdate.vue'
 
 import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
-
-import MajorForm from '../components/major/majorForm.vue'
-
 import PaymentForm from '../components/payment/PaymentForm.vue'
 import PaymentByCard from '../components/payment/PaymentByCard.vue'
+
 import InvoiceTicket from '../components/payment/InvoiceTicket.vue'
 
+
+
+import MajorForm from '../components/major/majorForm.vue'
 
 import Home from '../views/HomeView.vue'
 import Detail from '../views/DetailView.vue'
 import Admin from '../views/AdminView.vue'
+import RegisterAccountPopUp from '../components/workshop/RegisterAccountPopUp.vue'
+
+
+
 import UniversityApplyForm from '../components/university/UniversityApplyForm.vue'
 
 import University from '../views/UniversityAdminView.vue'
-
 
 
 const routes = [
@@ -75,6 +79,12 @@ const routes = [
     component: Admin
   },
   {
+    path: '/registeraccountpopup',
+    name: 'registeraccountpopup',
+    component: RegisterAccountPopUp
+  },
+  {
+
   path: '/apply',
   name: 'apply',
   component: UniversityApplyForm
@@ -124,6 +134,11 @@ const routes = [
     path: '/invoice',
     name: 'invoice',
     component: InvoiceTicket
+  },
+  {
+    path: '/addWorkshop',
+    name: 'addWorkshop',
+    component: AddWorkshop
   }
 
 ]

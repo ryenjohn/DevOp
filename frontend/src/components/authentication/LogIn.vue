@@ -50,7 +50,7 @@
     </v-form>
   </div>
   </template>
-  
+
   <script>
   import axios from 'axios'
   import Cookies from "js-cookie";
@@ -67,7 +67,7 @@
             ],
             passwordRules: [
                 value => !!value || 'Password is required',
-                value => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}|:"<>?~`]).{8,}$/i.test(value)|| 'Value required and should contain uppercase, lowercase, number, sign and more than 8 characters',
+                value => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}|:"<>?~`]).{8,}$/i.test(value) || 'Value required and should contain uppercase, lowercase, number, sign and more than 8 characters',
             ]
           }
       },
@@ -93,7 +93,7 @@
       }
   }
   </script>
-  
+
   <style scoped>
   form{
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
@@ -157,5 +157,6 @@
   transform: translateY(-50%);
   cursor: pointer;
 }
+
 </style>
 
