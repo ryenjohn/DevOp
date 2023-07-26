@@ -7,7 +7,7 @@
   </v-tabs>
   <search-bar @searchKey="searchKey" v-if='dataname=="schools"'></search-bar>
   <content-list v-if='dataname!="scholarships" && dataname!="workshops" ' :datas="datas" :dataname='dataname' ></content-list>
-  <scholarship-workshop-card v-else  class="mt-10" :datas="datas" :dataname='dataname'></scholarship-workshop-card>
+ <scholarship-workshop-card  v-else class="mt-10" :datas="datas" :dataname='dataname'></scholarship-workshop-card>
 
 </template>
 <script>
@@ -25,7 +25,7 @@ export default {
   },
   methods:{
     contentData(dataName){
-      this.dataname = dataName
+      this.dataname=dataName
       this.$emit('contentData',dataName)
     },
     searchKey(key){

@@ -27,17 +27,20 @@
                         <v-card style="border-radius: 20px; border:2px solid orange" >
                             <v-card-text class="contenter-card">
                                 <v-container style="padding: 25px; display: flex; flex-direction: column; gap:10px; ">
+                                  
                                     <div class="profile" style="display:flex; gap:20px; align-items:center">
                                         <span class="material-icons" style="font-size: 100px; margin-bottom:20px; ">person</span>
-                                        <div class="name" >
+                                        <div  >
+                                            
                                             <h2>{{user.user_id.name}}</h2>
                                             <span>({{user.user_id.gender}})</span> 
                                         </div>   
                                     </div>
                                     <h4>{{user.user_id.email}}</h4>
                                     <p>{{user.user_id.phone}}</p>
-                                    <p>Address: {{user.user_id.address.name}} </p>
-                                    <p>street: {{user.user_id.address.street}}</p>
+                                    
+                                    <!-- <p>Address: {{user.user_id.address.name}} </p>
+                                    <p>street: {{user.user_id.address.street}}</p> -->
                                 </v-container>
                             </v-card-text>
                             <v-card-actions>

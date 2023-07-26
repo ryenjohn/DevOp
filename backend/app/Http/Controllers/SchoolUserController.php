@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Resources\SchoolUserResource;
 use App\Mail\AcceptMail;
 use App\Mail\RejectMail;
@@ -23,14 +24,13 @@ class SchoolUserController extends Controller
         return response()->json(['success'=>"request successfully", 'data'=>$schoolUsers],200);
     }
 
-    // public function studentReject($id){
-    //     $student = SchoolUser::find($id);
-    //     $student->delete();
-    // return response()->json(['success' => 'Record deleted successfully'], 200);
-    // }
+    
 
-
-
+    public function store(Request $request)
+    {
+        $schoolUser = SchoolUser::schoolUser($request);
+        return response()->json(['success' =>true, 'data' => $schoolUser],200);
+    }
 
 
 

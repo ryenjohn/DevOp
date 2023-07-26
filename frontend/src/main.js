@@ -2,11 +2,14 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import 'vuetify/dist/vuetify.min.css'
+
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
+
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-import '@mdi/font/css/materialdesignicons.css'
+
+
 const vuetify = createVuetify({
   components,
   directives,
@@ -116,21 +119,12 @@ app.component('ourteam-member', OurTeamMember);
 import ContactBar from '../src/components/contact/ContactBar.vue'
 app.component('contact-bar', ContactBar);
 
+//RegisterAccountPopUp
+import RegisterAccountPopUp from './components/workshop/RegisterAccountPopUp.vue'
+app.component('register-account-popup', RegisterAccountPopUp)
 
-// university admin page 
-import ListScholarship from './components/scholarship/ListScholarship.vue'
-import EditScholarship from './components/scholarship/EditScholarship.vue'
-import AddScholarship from './components/scholarship/AddScholarship.vue'
-app.component('list-scholarship', ListScholarship);
-app.component('edit-scholarship', EditScholarship);
-app.component('add-scholarship', AddScholarship);
 
-// https://stackoverflow.com/questions/66269837/vue-router-how-to-dynamically-generate-page-titles-for-dynamic-routes
-router.beforeEach((to, from, next) => {
-  const DEFAULT_TITLE = 'My Website'; // Set a default title for the website
-  document.title = to.name ? to.name + ' - ' + DEFAULT_TITLE : DEFAULT_TITLE;
-  next();
-});
+
 
 app.use(router);
 app.use(vuetify);

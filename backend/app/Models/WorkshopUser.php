@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class WorkshopUser extends Model
 {
     use HasFactory;
-   
+    protected $fillable = ['user_id', 'workshop_id'];
 }

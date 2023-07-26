@@ -2,8 +2,8 @@
   
   <title-text v-if='datas!=null && datas!=""' >Choose {{dataname}}</title-text>
   <card-container >
-        <v-col cols="12" sm="3" v-for="(data, index) in datas" :key="data">
-        
+        <v-col cols="12" sm="3" v-for="(data, index) in datas" :key="data.id">
+
           <v-sheet class=" ma-8">
                 <card-info class='card-item' :to="{name: 'detail', params: { id: index+1,dataname:dataname}}"   >
                   <template #img >
@@ -15,7 +15,7 @@
                   </template>
                   <template #title>
                               <v-card-text>
-                              <h3>{{data.name}}</h3>
+                              <h3>{{data.work_shop}}</h3>
                             </v-card-text>
                   </template>
                 </card-info>

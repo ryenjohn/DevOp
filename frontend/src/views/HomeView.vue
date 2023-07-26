@@ -1,6 +1,5 @@
 <template>
   <hidede-limiter class="mt-5"></hidede-limiter>
-  <!-- <search-bar @searchKey="searchKey"></search-bar> -->
   <navigationbar-content
     @contentData="contentData"
     :datas="datas"
@@ -14,7 +13,6 @@ export default {
   data() {
     return {
       datas: [],
-      url: "http://127.0.0.1:8000/api/",
       dataname: "schools",
       key: "",
     };
@@ -40,7 +38,7 @@ export default {
     },
     searchKey(key) {
       this.key = key;
-      if(key==null){
+      if(key==null || key==''){
        this.defaultData()
       }else{
         this.searchdata();
