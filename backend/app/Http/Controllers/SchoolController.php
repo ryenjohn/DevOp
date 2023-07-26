@@ -23,8 +23,12 @@ class SchoolController extends Controller
 
     public function getschools(){
         $school = School::all();
-        // $school = ShowSchoolResource::collection($school);
-        return response()->json(['Get success'=>true, 'data'=>$school],200);
+        if($school!='' && $school!=null){
+            $school = ShowSchoolResource::collection($school);
+            return response()->json(['Get success'=>true, 'data'=>$school],200);
+        }
+        return response()->json(['Get success'=>false, 'data'=>'No data !'],200);
+
     }
     
     public function createSchool(SchoolRequest $request)

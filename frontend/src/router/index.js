@@ -88,7 +88,7 @@ const routes = [
   },
   {
 
-  path: '/apply',
+  path: '/apply/:school_id',
   name: 'apply',
   component: UniversityApplyForm
   },

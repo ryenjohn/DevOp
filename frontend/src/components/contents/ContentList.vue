@@ -3,25 +3,39 @@
   <title-text v-if='datas!=null && datas!=""' >Choose {{dataname}}</title-text>
   <card-container >
         <v-col cols="12" sm="3" v-for="(data, index) in datas" :key="data.id">
-
           <v-sheet class=" ma-8">
-                <card-info class='card-item' :to="{name: 'detail', params: { id: index+1,dataname:dataname}}"   >
-                  <template #img >
-                          <v-img 
-                          :src="data.image"
-                          height="150px"
-                          cover
-                        ></v-img>
-                  </template>
-                  <template #title>
-                              <v-card-text>
-                              <h3>{{data.work_shop}}</h3>
-                            </v-card-text>
-                  </template>
-                </card-info>
+            <!-- https://vuetifyjs.com/en/components/cards/ -->
+              <v-card
+                    class="mx-auto mt-10"
+                    max-width="300"
+                  >
+                    <v-img
+                      class="align-end text-white"
+                      height="200"
+                      :src="data.img"
+                      cover
+                    >
+                      <v-card-title>{{data.name}}</v-card-title>
+                    </v-img>
+
+                    <v-card-subtitle class="pt-4">
+                     {{data.type}}
+                    </v-card-subtitle>
+
+                    <v-card-actions>
+                      <v-btn  v-if='dataname=="schools"' color="orange" :to="{name: 'apply', params: { school_id: data.id}}">
+                        Apply
+                      </v-btn>
+
+                      <v-btn color="orange"  :to="{name: 'detail', params: { id: data.id,dataname:dataname}}"  >
+                        Detail
+                      </v-btn>
+                    </v-card-actions>
+                </v-card>
           </v-sheet>
        </v-col>
   </card-container>
+  
 </template>
 
 <script>

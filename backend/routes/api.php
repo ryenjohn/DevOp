@@ -48,7 +48,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/users',[UserController::class, 'store']);
 
 
-Route::get('/schools/{id}',[SchoolController::class,'getschool']);
+
 
 Route::get('/workshops',[WorkShopController::class,'getworkShops']);
 Route::get('/workshop/{id}',[WorkShopController::class,'getWorkShopById']);
@@ -63,8 +63,8 @@ Route::delete('/studentReject/{id}',[SchoolUserController::class,'studentReject'
 
 
 Route::get('/schools',[SchoolController::class,'getschools']);
+Route::get('/schools/{id}',[SchoolController::class,'getschool']);
 Route::get('/schools/address/{name}',[SchoolController::class,'search']);
-
 Route::post('/schools',[SchoolController::class,'createSchool']);
 Route::put('/schools/{id}',[SchoolController::class,'editeSchool']);
 Route::delete('/schools/{id}',[SchoolController::class,'deleteSchool']);

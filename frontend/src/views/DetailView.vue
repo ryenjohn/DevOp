@@ -8,18 +8,18 @@
             class="align-end text-white"
             height="400"
             width="100%"
-            :src="data.image"
+            :src="data.img"
             cover
             >
             </v-img>
         </template>
         <template #info>    
             <v-card-text>
-                <h1 > <strong>Name: </strong>{{data.name}} ({{data.type}})</h1><br>
-                <h3><strong></strong> {{data.description}}</h3>
+                <h1  v-if='dataname=="schools"'> <strong >Name: </strong>{{data.name}} ({{data.type}})</h1><br>
+                <h3>  {{data.description}}</h3>
                 <div  v-if='dataname=="majors"'><strong>Subject that match with this skill: </strong>
                     <ul>
-                        <li v-for='subject in data.subjects' :key="subject">{{subject}}</li>
+                        <li v-for='subject in data.subjects' :key="subject">{{subject.name}}</li>
                     </ul>
                 </div>
                 
@@ -36,8 +36,6 @@
 
 <script>
 import axios from 'axios';
-
-// import api_base from '../router/api.js';
 
     export default {
         data(){

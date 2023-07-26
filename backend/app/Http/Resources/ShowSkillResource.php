@@ -14,14 +14,14 @@ class ShowSkillResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-            return $this->only('id',
-            'name',
-            'description',
-            'subjects',
-            )
-             + [
-                "image" => $this->media->file_url ?? null,
+            return[
+            'id'=> $this->id,
+            'name' =>$this->name,
+            'description'=>$this->description,
+            'subjects'=>$this->subjects,
+            'img' => $this->media->file_url ?? null,
             ];
-        // ];
+             
+       
     }
 }
