@@ -64,6 +64,17 @@ class SchoolController extends Controller
         return response()->json(['success'=>true, 'data'=>[]],200);
     }
 
+    
+    public function getSchoolIdByName($name){
+
+        $schoolId = DB::table('schools')->where('name', $name)->first()->id;
+        if ($schoolId){
+            return response()->json([ 'message' => "Request successfull", 'data' => $schoolId], 200);
+        }else{
+            return response()->json([ 'message' => "Request fail"], 400);
+        }
+    }
+
 }
 
 

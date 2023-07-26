@@ -30,7 +30,6 @@ class User extends Authenticatable
         'school_id',
         'phone',
         'gender'
-       
     ];
 
     public static function store($request, $id = null)
@@ -95,6 +94,11 @@ class User extends Authenticatable
     public function workshops(): HasMany
     {
         return $this->hasMany(WorkShop::class);
+    }
+    
+    public function schoolUser(): HasMany
+    {
+        return $this->hasMany(SchoolUser::class);
     }
 
     public function school(): HasOne

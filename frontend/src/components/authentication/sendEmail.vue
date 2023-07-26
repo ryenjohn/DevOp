@@ -8,7 +8,8 @@
           /> 
         </div>
         <form @submit.prevent='submit'>
-        <h1>Did you forget password?</h1>
+        <h1 v-if="title=='forgetpwd'">Did you forget password?</h1>
+        <h1 v-if="title=='register'">Request to admin!</h1>
         <p class="text-reset">
         Please input your Email here
         </p>
@@ -24,7 +25,10 @@
         ></v-text-field>
         <div class="btn">
             <div class="reset">
-            <v-btn class="me-4 send-email" @click="getMail()"  type="submit">Send</v-btn>
+            <v-btn class="me-4 send-email" v-if="title=='forgetpwd'" @click="forgetPwdMail()"  type="submit">Send</v-btn>
+            </div>
+            <div class="reset">
+            <v-btn class="me-4 send-email" v-if="title=='register'" @click="registerMail()"  type="submit">Send</v-btn>
             </div>
     
         </div>
@@ -40,12 +44,14 @@ export default{
     return{
       email: '',
       errors: null,
+      title:''
 
     }
   },
+
   methods:{
-    
-    getMail() {
+    forgetPwdMail() {
+
       axios.post(`${ process.env.VUE_APP_API_URL}sendMail`,{email:this.email})
       .then((response)=>{
         console.log(response)
@@ -54,7 +60,23 @@ export default{
         }
 
       })
+    },
+    registerMail(){
+      axios.post(`${ process.env.VUE_APP_API_URL}registerMail`,{email:this.email})
+      .then((response)=>{
+        console.log(response)
+        if(!this.email==""){
+          this.$router.push('/')
+        }
+
+      })
+    },
+    pageTitle(){
+       this.title = this.$route.params.title
     }
+  },
+  mounted(){
+    this.pageTitle()
   }
 }
 </script>

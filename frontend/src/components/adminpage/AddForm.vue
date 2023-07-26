@@ -180,7 +180,7 @@ const rules = {
     required,
     email,
     async unique() {
-      const response = await axios.get('http://127.0.0.1:8000/api/users');
+      const response = await axios.get(`${ process.env.VUE_APP_API_URL}users`);
       // compare new data email with data in database
       const datas = response.data.data;
       const emailExists = datas.some((data) => data.email === state.email);
@@ -211,7 +211,7 @@ async function singIn() {
       password: state.password,
     };
     // Make an API call to add data to the database
-    const response = await axios.post("http://127.0.0.1:8000/api/users", data);
+    const response = await axios.post(`${ process.env.VUE_APP_API_URL}users`, data);
     Cookies.set("userData", JSON.stringify(response.data.token), {
       expires: 10,
     });

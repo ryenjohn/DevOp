@@ -2,11 +2,14 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import 'vuetify/dist/vuetify.min.css'
+
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
+
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-import '@mdi/font/css/materialdesignicons.css'
+
+
 const vuetify = createVuetify({
   components,
   directives,
@@ -66,6 +69,8 @@ import CardContainer from './components/widgets/card/CardContainer.vue';
 import CardItemDetail  from './components/widgets/card/CardDetail.vue';
 import BaseButton from './components/widgets/button/BaseButton.vue';
 import BaseDialog from './components/widgets/dialog/BaseDialog.vue';
+import StudentRequestContainer from './components/universityDirector/StudentRequest.vue';
+
 
 // content title
 import TitleView from './components/contents/ContentTitle.vue';
@@ -86,16 +91,14 @@ app.component('base-dialog', BaseDialog);
 
 app.component('title-text', TitleView);
 
-// app.component('skill-detail', SkillDetail);
-// app.component('university-skill', UniversityInSkill);
-// app.component('card-container', CardContainer);
-
 
 //university
 app.component('footer-bar', FooterBar);
 app.component('footer-icon', FooterIcon);
 app.component('footer-avatar', FooterAvatar);
 app.component('footer-details', FooterDetails);
+
+app.component('student-request-container', StudentRequestContainer);
 
 
 
@@ -118,7 +121,11 @@ app.component('contact-bar', ContactBar);
 
 
 
-
+router.beforeEach((to, from, next) => {
+  const DEFAULT_TITLE = 'Find University';
+  document.title = to.name ? to.name + ' - ' + DEFAULT_TITLE : DEFAULT_TITLE;
+  next();
+});
 
 app.use(router);
 app.use(vuetify);

@@ -7,11 +7,13 @@ use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\ResetPasswordController;
 
-// use App\Http\Controllers\RegisterMailcontroller;
 use App\Http\Controllers\ScholarshipController;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\SchoolTypeController;
+use App\Http\Controllers\SchoolUserController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\WorkShopController;
+
 
 
 use App\Http\Controllers\UserController;
@@ -48,6 +50,13 @@ Route::get('/workshops',[WorkShopController::class,'getworkShops']);
 Route::get('/workshop/{id}',[WorkShopController::class,'getWorkShopById']);
 Route::get('/user/{id}',[UserController::class,'getUser']);
 Route::put('/user/{id}',[UserController::class,'saveChange']);
+
+// school_user
+Route::get('/getSchoolUser',[SchoolUserController::class,'getSchoolUser']);
+Route::put('/acceptStudent/{id}',[SchoolUserController::class,'studentAccept']);
+// Route::get('/acceptStudent/{id}',[SchoolUserController::class,'studentAccept']);
+Route::delete('/studentReject/{id}',[SchoolUserController::class,'studentReject']);
+
 
 Route::get('/schools',[SchoolController::class,'getschools']);
 Route::get('/schools/address/{name}',[SchoolController::class,'search']);
@@ -101,4 +110,21 @@ Route::post('/sendMail',[ResetPasswordController::class,'SendMail']);
 
 // university page register 
 Route::post('/registerMail',[UserController::class,'sendEmail']);
+
+// Address 
+// Route::get('/addresses',[AddressController::class,'addresses']);
+// education type
+Route::get("/schoolType",[SchoolTypeController::class,'schoolType']);
+
+// get user Id
+Route::get('/getUserId/{email}',[UserController::class,'getUserId']);
+
+// create university
+Route::post('/school',[SchoolController::class,'store']);
+Route::get('/getSchoolIdByName/{name}',[SchoolController::class,'getSchoolIdByName']);
+
+// applay for study
+Route::post('/apply',[SchoolUserController::class,'store']);
+
+
 
