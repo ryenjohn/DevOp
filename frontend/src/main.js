@@ -121,7 +121,11 @@ app.component('contact-bar', ContactBar);
 
 
 
-
+router.beforeEach((to, from, next) => {
+  const DEFAULT_TITLE = 'Find University';
+  document.title = to.name ? to.name + ' - ' + DEFAULT_TITLE : DEFAULT_TITLE;
+  next();
+});
 
 app.use(router);
 app.use(vuetify);

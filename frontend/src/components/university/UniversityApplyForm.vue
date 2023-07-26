@@ -114,7 +114,7 @@
     },
     methods:{
       getMajor(){
-        axios.get('http://127.0.0.1:8000/api/majors').then((res)=>{
+        axios.get(`${ process.env.VUE_APP_API_URL}majors`).then((res)=>{
         this.majors = res.data.data
         })
       },

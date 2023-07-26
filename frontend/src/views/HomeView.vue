@@ -13,7 +13,6 @@ export default {
   data() {
     return {
       datas: [],
-      url: "http://127.0.0.1:8000/api/",
       dataname: "schools",
       key: "",
     };

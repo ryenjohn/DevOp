@@ -77,7 +77,7 @@
           email: this.email,
           password: this.password,
           };
-          axios.post(`${ process.env.VUE_APP_API_URL}logIn`, data)
+          axios.post(`${process.env.VUE_APP_API_URL}logIn`, data)
           .then((res) => {
             if (res.status === 200) {
               Cookies.set("userData", JSON.stringify(res.data), { expires: 30 });

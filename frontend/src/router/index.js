@@ -30,7 +30,7 @@ import University from '../views/UniversityAdminView.vue'
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'Home',
     component: Home
   },
   {

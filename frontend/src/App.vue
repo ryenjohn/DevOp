@@ -1,8 +1,6 @@
 <template>
   <navigation-bar></navigation-bar>
   <router-view></router-view>
-  <footer-bar></footer-bar>
-
   <footer-bar v-if="this.$route.name!='admin'  && this.$route.name!='university'"></footer-bar>
 
 </template>
