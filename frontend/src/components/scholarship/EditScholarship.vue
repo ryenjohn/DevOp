@@ -7,8 +7,8 @@
             alt="Image description"
           /> -->
         </div>
-      <v-form ref="form" v-model="valid" @submit.prevent="submit">
-        <h1>Add scholarship</h1>
+      <v-form ref="form" v-model="valid" @submit.prevent="updateScholarship">
+        <h1>Update scholarship</h1>
         <div class="item" > 
             <v-text-field 
               v-model="scholarships.name" 
@@ -20,7 +20,7 @@
               color="#634B7A"
           ></v-text-field>
             <v-text-field 
-                v-model="scholarships.userNumber" 
+                v-model="scholarships.user_number" 
                 label="User number" 
                 :rules="userNumberRules"
                 density="compact"
@@ -60,7 +60,7 @@
               :rules="skillRules"
             ></v-select>
             <v-file-input
-                @change="scholarships.image"
+                @change="onFileChange"
                 label="Image"
                 :rules="imageRules"
                 variant="outlined"
@@ -76,10 +76,9 @@
                 placeholder="Enter your description"
             ></v-textarea>
         </div>
-        <v-btn type="submit" class="next">Next</v-btn>
+        <v-btn type="submit" class="edit">Update</v-btn>
       </v-form>
     </div>
-    {{ scholarships }}
     </template>
     
     <script>
@@ -87,17 +86,18 @@
     export default {
         data() {
             return {
-                url: 'http://127.0.0.1:8000/api/scholarships',
                 valid: false,
                 scholarships: {
                     name: '',
-                    userNumber: '',
+                    user_number: '',
                     skill:'',
                     post_date: '',
                     expired_date: '',
                     image: null,
                     description: '',
                 },
+                skills: [],
+                getSkills: null,
                 nameRules: [
                     value => !!value || 'Name is required',
                     value => (value && value.length >= 2) || 'Name needs to be at least 2 characters',
@@ -127,8 +127,7 @@
         methods:{
             showData(){
                 const id = this.$route.params.id;
-                console.log(id)
-                axios.get(this.url + '/' + id)
+                axios.get(`${process.env.VUE_APP_API_URL}scholarships/${id}`)
                 .then((response) => {
                     this.scholarships = response.data.data;
                 })
@@ -137,33 +136,59 @@
                 })
             },
             
-        //   submitScholarship(){
-            // if(this.valid){
-            //   const newSchoolaship = {
-            //        name:this.name,
-            //        user_number: this.userNumber,
-            //        skill_id: this.skillId(),
-            //        school_id: this.school,
-            //        image: this.image,
-            //        post_date: this.postDate,
-            //        expired_date: this.expiredDate,
-            //        description: this.description,
-            //    };
-            //   axios.post(`${process.env.VUE_APP_API_URL}addScholarship`, newSchoolaship)
-            //   .then(() => {
-            //     this.$router.push("/");
-            //   })
-            //   .catch((error) => {
-            //     console.error(error);
-            //   });
-            //   }
-        //   },
-        //   getScholarshipById(){
-
-        //   }
+          updateScholarship(){
+            const id = this.$route.params.id;
+            if(this.valid){
+              this.scholarships.image = this.image;
+              axios.put(`${process.env.VUE_APP_API_URL}editScholarships/${id}`, this.scholarships)
+              .then((res) => {
+                console.log(res)
+                this.$router.push("/listScholarship");
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+              }
+          },
+          onFileChange(event) {
+            // Retrieve the selected image file
+            const file = event.target.files[0];
+            if (file) {
+              const reader = new FileReader();
+              reader.onload = () => {
+                // Convert the image to base64 encoding
+                const base64Image = reader.result;
+                this.image = base64Image; // Store the base64 encoded image
+              };
+              reader.readAsDataURL(file);
+            }
+          },
+          fetchSkills(){
+            axios.get(`${ process.env.VUE_APP_API_URL}majors`)
+            .then(response => {
+                this.getSkills = response.data.data
+                this.getSkills.forEach(item => {
+                this.skills.push(item.name);
+              });
+              })
+              .catch(error => {
+                  console.log(error)
+              })
+          },
+           // covert name school to id from select
+          skillId(){
+              let id = null;
+              this.getSkills.forEach(item => {
+                if(item.name == this.scholarships.skill){
+                  id = item.id;
+                }
+              });
+              return id;
+          },
         },
         mounted(){
             this.showData();
+            this.fetchSkills();
         }
     }
     </script>
@@ -199,8 +224,8 @@
       margin-bottom: 20px;
     }
     
-    .next{
-      margin-left: 91%;
+    .edit{
+      margin-left: 89%;
       background-color: #634b7a;
       color: #f6eeee;
     }

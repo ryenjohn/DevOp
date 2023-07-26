@@ -20,7 +20,7 @@
             color="#634B7A"
         ></v-text-field>
           <v-text-field 
-              v-model="userNumber" 
+              v-model="user_number" 
               label="User number" 
               :rules="userNumberRules"
               density="compact"
@@ -56,7 +56,7 @@
       </div>
       <div class="item">
         <v-select
-            v-model="skill"
+            v-model="skill_id"
             :items="skills"
             label="Skill"
             variant="outlined"
@@ -64,7 +64,6 @@
           ></v-select>
           <v-file-input
               @change="onFileChange"
-          
               label="Image"
               :rules="imageRules"
               variant="outlined"
@@ -80,7 +79,7 @@
               placeholder="Enter your description"
           ></v-textarea>
       </div>
-      <v-btn type="submit" class="next">Next</v-btn>
+      <v-btn type="submit" class="add">Create</v-btn>
     </v-form>
   </div>
   </template>
@@ -92,9 +91,9 @@
           return {
             valid: false,
               name: '',
-              userNumber: '',
-              school: 3,
-              skill:'',
+              user_number: '',
+              school_id: 3,
+              skill_id:'',
               postDate: '',
               expiredDate: '',
               image: null,
@@ -130,19 +129,19 @@
       methods:{
         submitScholarship(){
           if(this.valid){
-            const newSchoolaship = {
+            const new_idaship = {
                  name:this.name,
-                 user_number: this.userNumber,
+                 user_number: this.user_number,
                  skill_id: this.skillId(),
-                 school_id: this.school,
+                 school_id: this.school_id,
                  image: this.image,
                  post_date: this.postDate,
                  expired_date: this.expiredDate,
                  description: this.description,
              };
-            axios.post(`${process.env.VUE_APP_API_URL}addScholarship`, newSchoolaship)
+            axios.post(`${process.env.VUE_APP_API_URL}addScholarships`, new_idaship)
             .then(() => {
-              this.$router.push("/");
+              this.$router.push("/listScholarship");
             })
             .catch((error) => {
               console.error(error);
@@ -175,11 +174,11 @@
               console.log(error)
             })
         },
-        // covert name school to id from select
+        // covert name _id to id from select
         skillId(){
             let id = null;
             this.getSkills.forEach(item => {
-              if(item.name == this.skill){
+              if(item.name == this.skill_id){
                 id = item.id;
               }
             });
@@ -223,8 +222,8 @@
     margin-bottom: 20px;
   }
   
-  .next{
-    margin-left: 91%;
+  .add{
+    margin-left: 89%;
     background-color: #634b7a;
     color: #f6eeee;
   }

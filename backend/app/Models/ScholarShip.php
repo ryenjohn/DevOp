@@ -19,6 +19,7 @@ class ScholarShip extends Model
         'school_id',
         'skill_id',
         'media_id',
+        'user_number'
 
     ];
     public function media()
