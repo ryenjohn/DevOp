@@ -8,6 +8,9 @@ import resetPassword from '../components/authentication/resetPassword.vue'
 import universityManager from '../components/authentication/registerUniversityManager.vue'
 
 import AddWorkshop from '../components/workshop/workShop.vue'
+import AddScholarship from '../components/scholarship/AddScholarship.vue'
+import ListScholarship from '../components/scholarship/ListScholarship.vue'
+import EditScholarship from '../components/scholarship/EditScholarship.vue'
 
 import UpdateWorkshop from '../components/workshop/workShopUpdate.vue'
 
@@ -114,6 +117,21 @@ const routes = [
     path: '/addWorkshop',
     name: 'addWorkshop',
     component: AddWorkshop
+  },
+  {
+    path: '/addScholarship',
+    name: 'addScholarship',
+    component: AddScholarship
+  },
+  {
+    path: '/listScholarship',
+    name: 'listScholarship',
+    component: ListScholarship
+  },
+  {
+    path: '/scholarships/:id',
+    name: 'scholarships',
+    component: EditScholarship
   },
   {
     path: '/updateWorkshop',
