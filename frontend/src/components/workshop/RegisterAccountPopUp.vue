@@ -53,12 +53,12 @@
       </template>
       <v-card>
         <v-card-title class="text-h5">
-          Do you want to join the workshop? {{workshop_id}}
+          Do you want to join the workshop?
         </v-card-title>
         <div style="text-align:center;">
           <img src="../../assets/images/workshop.jpg" alt="" width="300" height="250"/>
         </div>
-        <v-card-text class="text" style="text-align:center;">Join our workshop. {{workshop_id}} </v-card-text>
+        <v-card-text class="text" style="text-align:center;">Join our workshop. </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn

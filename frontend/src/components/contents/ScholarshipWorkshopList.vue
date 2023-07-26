@@ -1,26 +1,28 @@
 <template>
+
  <title-text v-if='datas!=null && datas!=""'>Choose {{dataname}}</title-text>
-  <div class="container mt-10 mb-10"  v-for="(data) in datas" :key="data.id" >
-    <div class="card" >
-      <div class="image">
-         <img :src="data.image" alt="">
-      </div>
-      <div class="text">
-          <div class="detail">
-            <div>
-                <v-card-text>
-                    <strong>{{data.name}}</strong>
-                </v-card-text>
-                <h4>{{data.description}}</h4>
-            </div>
-            <div class="btn">
-              <button v-if="dataname=='workshops'" @click="checkLoginStatus; "><register-account-popup  :workshop_id="data.id"></register-account-popup></button>
-              <button v-if="dataname=='scholarships'">Apply</button>
-            </div>
+      <div class="container mt-10 mb-10" v-for="(data) in datas" :key="data.id">
+        <div v-if="isNotExpired(data)" class="card" >
+          <div class="image">
+            <img :src="data.image" alt="">
           </div>
+          <div class="text">
+              <div class="detail">
+                <div>
+                    <v-card-text>
+                        <strong>{{data.name}}</strong>
+                    </v-card-text>
+                    <h4>{{data.description}}</h4>
+                </div>
+                <div class="btn">
+                  <button v-if="dataname=='workshops'" @click="checkLoginStatus; "><register-account-popup  :workshop_id="data.id"></register-account-popup></button>
+                  <button v-if="dataname=='scholarships'">Apply</button>
+                </div>
+              </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+ 
 </template>
 
 <script>
@@ -45,20 +47,19 @@ import Cookies from 'js-cookie';
       }
     },
     checkLoginStatus() {
-      // console.log('Card clicked with ID:', id);
       if (this.userId) {
         this.isLoggedIn = true;
-        // console.log()
       } 
     },
     joinWorkshop(id){
       console.log(id);
     },
-    showMe(id){
-      console.log(id)
-    }
-    
-  }
+    isNotExpired(data) {
+      const endDate = new Date(data.expired_date);
+      const today = new Date();
+      return endDate >= today;
+    },
+  },
 }
 </script>
 
