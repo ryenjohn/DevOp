@@ -131,6 +131,7 @@
                     class="input-field"
                 ></v-select>
             </div>
+            
             <div class="item">
                 <v-text-field 
                     v-model="universityAddressesStreet" 
