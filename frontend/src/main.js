@@ -120,6 +120,7 @@ import ContactBar from '../src/components/contact/ContactBar.vue'
 app.component('contact-bar', ContactBar);
 
 // university admin page 
+
 import ListScholarship from './components/scholarship/ListScholarship.vue'
 import EditScholarship from './components/scholarship/EditScholarship.vue'
 import AddScholarship from './components/scholarship/AddScholarship.vue'
