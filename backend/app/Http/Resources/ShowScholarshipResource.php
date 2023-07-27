@@ -25,7 +25,7 @@ class ShowScholarshipResource extends JsonResource
             'expired_date'=>$this->expired_date,
             'description'=>$this->description,
             'school_id'=>new SchoolResource($this->school),
-            'skill_id'=>new ShowSkillResource($this->skill),
+            'skill_id'=>new SkillResource($this->skill),
         ];
     }
 }

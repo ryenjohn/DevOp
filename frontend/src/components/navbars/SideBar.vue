@@ -12,9 +12,9 @@
             <v-list-item   @click="show('major')" prepend-icon="mdi-format-list-bulleted"  title="Major" value="Majors"></v-list-item>
           </div>
           <div v-else>
-            <v-list-item  @click="changedata('users')" prepend-icon="mdiAccount"  title="All Users" value="Users"></v-list-item>
+            <v-list-item  @click="changedata('users')" prepend-icon="mdi-account"  title="All Users" value="Users"></v-list-item>
             <v-list-item  @click="changedata('students')" prepend-icon="mdi-account-school"  title="Students" value="Students"></v-list-item>
-            <v-list-item  @click="changedata('managers')" prepend-icon="mdi-school" title="University" value="University"></v-list-item>
+            <v-list-item  @click="changedata('managers')" prepend-icon="mdi-school" title="Universities" value="University"></v-list-item>
          </div>
         </v-list>
       </v-navigation-drawer>

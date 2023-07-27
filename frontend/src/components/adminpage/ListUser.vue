@@ -23,10 +23,9 @@
           <td>{{ data.name }}</td>
           <td>{{ data.email }}</td>
           <td>
-            <v-btn color="primary">
-              <span class="mdi mdi-pencil" @click="openDialogEdit(data.id)" style=" font-size: 24px; "></span>
-            </v-btn>
-            <span class="mdi mdi-delete" @click="openDialogDelete(data.id)" style="color: red; font-size: 24px;"></span>
+            
+            <span class="mdi mdi-pencil" @click="openDialogEdit(data.id)" style="color: rgb(11, 7, 249); font-size: 20px; cursor: pointer"></span>
+            <span class="mdi mdi-delete" @click="openDialogDelete(data.id)" style="color: rgb(249, 7, 7); font-size: 20px; margin-left:10px; cursor: pointer"></span>
 
           </td>
         </tr>

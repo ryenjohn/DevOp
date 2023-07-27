@@ -90,15 +90,14 @@
 <script>
 import Swal from 'sweetalert2'
 import axios from "axios";
-import Cookies from 'js-cookie';
 export default {
+  props:["school_id"],
   data() {
     return {
       valid: false,
       name: "",
       user_number: "",
       skill_id: "",
-      school_id:'',
       postDate: "",
       expiredDate: "",
       image: null,
@@ -136,7 +135,7 @@ export default {
           name: this.name,
           user_number: this.user_number,
           skill_id: this.skillId(),
-          school_id: this.shoolId(),
+          school_id: this.school_id,
           image: this.image,
           post_date: this.postDate,
           expired_date: this.expiredDate,
@@ -203,17 +202,6 @@ export default {
         showConfirmButton: false,
         timer: 2000
       })
-    },
-    shoolId(){
-      const userData = Cookies.get('userData');
-      let school_id = ''
-          // If the "userData" cookie exists, parse it and set the user ID in the component data
-        if (userData) {
-            const userDataObj = JSON.parse(userData);
-            school_id= userDataObj.data.school_id
-
-        }
-        return school_id;
     },
   },
   

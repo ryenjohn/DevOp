@@ -7,10 +7,13 @@ use App\Http\Resources\SchoolResource;
 use App\Http\Resources\ShowSkillResource;
 use App\Http\Resources\SkillNameResource;
 use App\Http\Resources\SkillResource;
+use App\Http\Resources\SkillSchoolResource;
 use App\Http\Resources\SubjectResource;
 use App\Models\School;
+use App\Models\SchoolSkill;
 use App\Models\Skill;
 use App\Models\Subject;
+use Database\Seeders\SchoolSkillSeeder;
 use Illuminate\Http\Request;
 
 class SkillController extends Controller
@@ -19,6 +22,14 @@ class SkillController extends Controller
     {
         $skills = Skill::all();
         $skills = ShowSkillResource::collection($skills);
+        return response()->json(['success' => true, 'data' => $skills], 200);
+    }
+    public function SkillsInSchool(string $id)
+    {
+        // where('school_id','=',$id)->get()
+        // with('school')->where('school_id', $id)
+        $skills = Skill::all();
+        $skills =  ShowSkillResource::collection($skills);
         return response()->json(['success' => true, 'data' => $skills], 200);
     }
 

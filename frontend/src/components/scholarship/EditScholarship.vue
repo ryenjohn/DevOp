@@ -11,7 +11,6 @@
           placeholder="Enter your Name"
           variant="outlined"
           color="#634B7A"
-          class="input-field"
         ></v-text-field>
         <v-text-field
           v-model="scholarships.user_number"
@@ -21,7 +20,6 @@
           placeholder="Enter your user number"
           variant="outlined"
           color="#634B7A"
-          class="input-field"
         ></v-text-field>
       </div>
       <div class="item">
@@ -34,7 +32,6 @@
           placeholder="Enter your post date"
           variant="outlined"
           color="#634B7A"
-          class="input-field"
         ></v-text-field>
         <v-text-field
           v-model="scholarships.expired_date"
@@ -45,7 +42,6 @@
           placeholder="Enter your expired date"
           color="#634B7A"
           variant="outlined"
-          class="input-field"
         ></v-text-field>
       </div>
       <div class="item">
@@ -55,14 +51,12 @@
           label="Skill"
           variant="outlined"
           :rules="skillRules"
-          class="input-field"
         ></v-select>
         <v-file-input
           @change="onFileChange"
           label="Image"
           :rules="imageRules"
           variant="outlined"
-          class="input-field"
         ></v-file-input>
       </div>
       <div class="item">
@@ -73,19 +67,17 @@
           color="#634B7A"
           variant="outlined"
           placeholder="Enter your description"
-          
         ></v-textarea>
       </div>
-      <div class="btn">
-        <v-btn type="submit" class="text-white cancel-btn">Cancel</v-btn>
-        <v-btn type="submit" class="bg-orange text-white edit">Update</v-btn>
+      <div class="edit-concel">
+        <v-btn type="submit" class="concel">Cancel</v-btn>
+        <v-btn type="submit" class="edit">Update</v-btn>
       </div>
     </v-form>
   </div>
 </template>
 
 <script>
-import Swal from 'sweetalert2'
 import axios from "axios";
 export default {
   props: ["editID"],
@@ -128,10 +120,12 @@ export default {
   },
   methods: {
     showData() {
+    
       axios
         .get(`${process.env.VUE_APP_API_URL}scholarships/edit/${this.editID}`)
         .then((response) => {
           this.scholarships = response.data.data;
+          console.log(this.scholarships )
         })
         .catch((error) => {
           console.error(error);
@@ -143,9 +137,10 @@ export default {
         this.scholarships.image = this.image;
         axios
           .put(
-            `${process.env.VUE_APP_API_URL}editScholarships/${this.editID}`, this.scholarships)
+            `${process.env.VUE_APP_API_URL}editScholarships/${this.editID}`,
+            this.scholarships
+          )
           .then(() => {
-            this.alertMessage();
             this.$router.push("/university");
             return this.$emit("show", "scholarship");
           })
@@ -194,31 +189,24 @@ export default {
       this.$router.push("/university");
       return this.$emit("show", "scholarship");
     },
-    alertMessage(){
-      Swal.fire({
-        position: 'top-center',
-        icon: 'success',
-        title: 'Your work has been updated',
-        showConfirmButton: false,
-        timer: 2000
-      })
-    },
   },
   mounted() {
+    
     this.showData();
     this.fetchSkills();
   },
 };
 </script>
+
 <style scoped>
 form {
-  width: 85%;
+  width: 80%;
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 3px;
+  border-radius: 10px;
   padding: 20px;
   background: #ffffff;
   margin: auto;
-  margin-right: 5px;
+  margin-right: 15px;
 }
 .groupForm {
   margin: 20px;
@@ -235,17 +223,14 @@ h1 {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.btn {
-  display: flex;  
-  justify-content: end;
-  margin-right:1%;
+.edit,
+.concel {
+  margin-left: 5px;
+  color: #f6eeee;
+  background-color: #634b7a;
 }
-.cancel-btn{
-  margin-right:10px;
-  background:#634b7a;
-}
-
-.input-field {
-  width: 50%;
+.edit-concel {
+  display: flex;
+  margin-left: 77%;
 }
 </style>

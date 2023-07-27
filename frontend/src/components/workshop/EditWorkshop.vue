@@ -64,15 +64,6 @@
             color="#634B7A"
             placeholder="Enter your time"
           ></v-text-field>
-          <!-- <v-select
-            v-model="school"
-            :items="schools"
-            label="School"
-            color="#634B7A"
-            :rules="schoolRules"
-            variant="outlined"
-            placeholder="Enter your school"
-          ></v-select> -->
           <v-select
             v-model="address"
             :items="addresses"
@@ -102,7 +93,7 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 export default {
-  props: ["workshopId"],
+  props: ["workshopId","school_id"],
   data() {
     return {
       name: "",
@@ -205,7 +196,7 @@ export default {
         name: this.name,
         image: this.image,
         address_id: this.addressId(),
-        school_id: 3,
+        school_id: this.school_id,
         description: this.description,
         user_number: this.number,
         start_date: this.startDate,

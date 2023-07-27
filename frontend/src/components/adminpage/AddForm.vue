@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center">
     <v-dialog
-      v-model="dialog"
+      v-model="state.open"
       persistent
       width="1024"
     >
@@ -10,6 +10,7 @@
           color="primary"
           v-bind="props"
         >
+      
           Add New User
         </p>
       </template>
@@ -108,7 +109,7 @@
                 <v-btn class="btnone"
                   color="purple-darken-1"
                   variant="text"
-                  @click="dialog = false; clear()">
+                  @click="state.open = false; clear()">
                   Cancel
                   </v-btn>
             </div>
@@ -117,7 +118,7 @@
                 <v-btn class="me-4" @click="v$.$touch()">Create</v-btn>
               </div>
               <div v-else class="sign-in">
-                  <v-btn class="me-4" @click="singIn">Create</v-btn>
+                  <v-btn class="me-4" @click="singIn"  >Create</v-btn>
               </div>
             </div>
           </div>
@@ -144,6 +145,9 @@
         role_id: '',
       }
     },
+    methods:{
+      
+    }
   };
 </script>
 <script setup>
@@ -153,6 +157,7 @@ import { email, required, minLength } from "@vuelidate/validators";
 import axios from "axios";
 
 const initialState = {
+  open:false,
   name: "",
   email: "",
   role_id: "",
@@ -160,6 +165,7 @@ const initialState = {
   password: "",
   emailTakenError: false,
   visible: false,
+  opend:true,
 };
 const state = reactive(Object.assign({}, initialState));
 // Set role for password
@@ -202,17 +208,18 @@ async function singIn() {
       name: state.name,
       email: state.email,
       role_id: state.role_id,
-      checkbox: state.checkbox,
       password: state.password,
     };
     console.log(data)
     // Make an API call to add data to the database
     const response = await axios.post(`${ process.env.VUE_APP_API_URL}users`, data);
-    this.dialog = false
+
 
     // Check the server response and alert the user accordingly
     if (response.status === 200) {
-      clear();
+      clear()
+      state.open=false
+      location.reload();
     } else {
       alert("Failed to singIn the form");
     }

@@ -90,6 +90,7 @@ export default {
 
     h1{
         text-align: center;
+        margin-left: 200px;
         margin-top: 100px;
     }
     .add-btn{

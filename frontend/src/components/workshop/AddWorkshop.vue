@@ -88,7 +88,9 @@
 <script>
 import Swal from 'sweetalert2'
 import axios from 'axios';
+// import Cookies from 'js-cookie';
 export default {
+  props:['school_id'],
   data() {
     return {
       name: "",
@@ -187,11 +189,12 @@ export default {
     },
 
     submitForm() {
+
       let newWorkshop = {
         name: this.name,
         image: this.image,
         address_id: this.addressId(),
-        school_id: 3,
+        school_id: this.school_id,
         description: this.description,
         user_number: this.number,
         start_date: this.startDate,

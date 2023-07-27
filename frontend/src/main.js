@@ -143,6 +143,7 @@ import RegisterWorkshop from './components/workshop/RegisterAccountPopUp.vue'
 app.component("register-account-popup",RegisterWorkshop)
 
 
+
 app.use(router);
 app.use(vuetify);
 app.mount('#app');

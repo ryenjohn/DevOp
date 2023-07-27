@@ -66,6 +66,7 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 export default {
+  props:["school_id"],
   data() {
     return {
       dataWorkshop: [],
@@ -73,7 +74,8 @@ export default {
   },
   methods: {
     fetchScholarship() {
-      axios.get(`${process.env.VUE_APP_API_URL}workshops`).then((res) => {
+     
+      axios.get(`${process.env.VUE_APP_API_URL}workshops/school/${this.school_id}`).then((res) => {
         this.dataWorkshop = res.data.data;
       });
     },

@@ -79,6 +79,7 @@ Route::put('/editScholarships/{id}',[ScholarshipController::class,'editScholarsh
 
 // Skill route
 Route::get('/majors',[SkillController::class,'getSkills']);
+Route::get('/majors/school/{id}',[SkillController::class,'SkillsInSchool']);
 Route::get('/majors/{id}',[SkillController::class,'getSkillById']);
 Route::post('/majors',[SkillController::class,'store']);
 Route::put('/majors/{id}',[SkillController::class,'editeSkill']);
@@ -111,6 +112,7 @@ Route::get('/addresses', [AddressController::class, 'index']);
 
 // Major route
 Route::get('/workshops',[WorkShopController::class,'getWorkShops']);
+Route::get('workshops/school/{id}',[WorkShopController::class,'getworkShopsInSchool']);
 Route::get('/workshops/{id}',[WorkShopController::class,'getWorkShopById']);
 Route::post('/workshops',[WorkShopController::class,'createWorkshop']);
 Route::put('/workshops/{id}',[WorkShopController::class,'editeWorkShop']);

@@ -62,22 +62,16 @@
 <script>
 import axios from "axios";
 import Swal from "sweetalert2";
-import Cookies from 'js-cookie';
 export default {
+  props:["school_id"],
   data() {
     return {
       dataScholarships: [],
-      school_id:''
     };
   },
   methods: {
     fetchScholarship() {
-      const userData = Cookies.get('userData');
-        // If the "userData" cookie exists, parse it and set the user ID in the component data
-      if (userData) {
-          const userDataObj = JSON.parse(userData);
-          this.school_id= userDataObj.data.school_id
-      }
+     
       axios.get(`${process.env.VUE_APP_API_URL}scholarships/${this.school_id}`).then((res) => {
         this.dataScholarships = res.data.data;
       });
