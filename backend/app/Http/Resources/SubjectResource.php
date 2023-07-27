@@ -16,7 +16,7 @@ class SubjectResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'subject' => $this->name,
+            'name' => $this->name,
         ];
     }
 }

@@ -7,12 +7,9 @@ import sendMail from '../components/authentication/sendEmail.vue'
 import resetPassword from '../components/authentication/resetPassword.vue'
 import universityManager from '../components/authentication/registerUniversityManager.vue'
 
-import AddWorkshop from '../components/workshop/workShop.vue'
+
 import AddScholarship from '../components/scholarship/AddScholarship.vue'
 import ListScholarship from '../components/scholarship/ListScholarship.vue'
-import EditScholarship from '../components/scholarship/EditScholarship.vue'
-
-import UpdateWorkshop from '../components/workshop/workShopUpdate.vue'
 
 import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
@@ -23,7 +20,7 @@ import InvoiceTicket from '../components/payment/InvoiceTicket.vue'
 
 
 
-import MajorForm from '../components/major/majorForm.vue'
+// import MajorForm from '../components/major/majorForm.vue'
 
 import Home from '../views/HomeView.vue'
 import Detail from '../views/DetailView.vue'
@@ -60,11 +57,11 @@ const routes = [
     name: 'about',
     component: About
   },
-  {
-    path: '/addMajor',
-    name: 'addMajor',
-    component: MajorForm
-  },
+  // {
+  //   path: '/addMajor',
+  //   name: 'addMajor',
+  //   component: MajorForm
+  // },
   {
     path: '/contact',
     name: 'contact',
@@ -113,11 +110,11 @@ const routes = [
     name: 'registerAdmin',
     component: universityManager
   },
-  {
-    path: '/addWorkshop',
-    name: 'addWorkshop',
-    component: AddWorkshop
-  },
+  // {
+  //   path: '/addWorkshop',
+  //   name: 'addWorkshop',
+  //   component: AddWorkshop
+  // },
   {
     path: '/addScholarship',
     name: 'addScholarship',
@@ -128,16 +125,16 @@ const routes = [
     name: 'listScholarship',
     component: ListScholarship
   },
-  {
-    path: '/scholarships/:id',
-    name: 'scholarships',
-    component: EditScholarship
-  },
-  {
-    path: '/updateWorkshop',
-    name: 'updateWorkshop',
-    component: UpdateWorkshop
-  },
+  // {
+  //   path: '/scholarships/:id',
+  //   name: 'scholarships',
+  //   component: EditScholarship
+  // },
+  // {
+  //   path: '/updateWorkshop',
+  //   name: 'updateWorkshop',
+  //   component: UpdateWorkshop
+  // },
   {
     path: '/payment',
     name: 'payment',
@@ -153,11 +150,11 @@ const routes = [
     name: 'invoice',
     component: InvoiceTicket
   },
-  {
-    path: '/addWorkshop',
-    name: 'addWorkshop',
-    component: AddWorkshop
-  },
+  // {
+  //   path: '/addWorkshop',
+  //   name: 'addWorkshop',
+  //   component: Addworkshop
+  // },
   {
     path: '/404notfound',
     name: 'notfound',

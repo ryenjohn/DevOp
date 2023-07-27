@@ -38,9 +38,6 @@
                                     </div>
                                     <h4>{{user.user_id.email}}</h4>
                                     <p>{{user.user_id.phone}}</p>
-                                    
-                                    <!-- <p>Address: {{user.user_id.address.name}} </p>
-                                    <p>street: {{user.user_id.address.street}}</p> -->
                                 </v-container>
                             </v-card-text>
                             <v-card-actions>
@@ -76,8 +73,6 @@
   
 </template>
 
-
-
 <script>
 import axios from 'axios'
 
@@ -91,27 +86,22 @@ export default{
         }
     },
     methods:{
-        
         getUser() {
             axios.get(`${ process.env.VUE_APP_API_URL}getSchoolUser`)
             .then((response)=>{
                 this.users = response.data.data
                 console.log(response.data.data)
-
             })
         },
         isAccept(id) {
-            console.log(id)
             axios.put(`${process.env.VUE_APP_API_URL}acceptStudent/`+id)
-            .then((response)=>{
-                console.log(response.data.data);
+            .then(()=>{
                 location.reload();
-
+                this.$router.push("/university");
             })
         },
 
         isReject(id) {
-            console.log(id)
             axios.delete(`${process.env.VUE_APP_API_URL}studentReject/`+id)
             .then((response)=>{
                 console.log(response.data.data);
@@ -119,16 +109,11 @@ export default{
             })
         }
     },
-
     mounted(){
         this.getUser();
     }
 }
 </script>
-
-
-
-
 <style scoped>
 .container{
     display: flex;
@@ -157,14 +142,13 @@ h1{
 }
 .card{
     width: 75%;
-    background:#ebeaea;
+    /* background:#ebeaea; */
     margin-left: 20%;
     display: flex;
     justify-content: space-between;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
-
+    border-radius: 5px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
 }
 .card-left{
     display: flex;

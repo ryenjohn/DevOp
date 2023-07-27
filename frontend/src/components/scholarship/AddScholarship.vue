@@ -11,6 +11,7 @@
           placeholder="Enter your Name"
           variant="outlined"
           color="#634B7A"
+          class="input-field"
         ></v-text-field>
         <v-text-field
           v-model="user_number"
@@ -20,6 +21,7 @@
           placeholder="Enter your user number"
           variant="outlined"
           color="#634B7A"
+          class="input-field"
         ></v-text-field>
       </div>
       <div class="item"></div>
@@ -33,16 +35,18 @@
           placeholder="Enter your post date"
           variant="outlined"
           color="#634B7A"
+          class="input-field"
         ></v-text-field>
         <v-text-field
           v-model="expiredDate"
           label="Expired date"
+          placeholder="Enter your expired date"
           type="date"
           :rules="expiredDateRules"
           density="compact"
-          placeholder="Enter your expired date"
           color="#634B7A"
           variant="outlined"
+          class="input-field"
         ></v-text-field>
       </div>
       <div class="item">
@@ -50,14 +54,16 @@
           v-model="skill_id"
           :items="skills"
           label="Skill"
-          variant="outlined"
           :rules="skillRules"
+          variant="outlined"
+          class="input-field"
         ></v-select>
         <v-file-input
           @change="onFileChange"
           label="Image"
           :rules="imageRules"
           variant="outlined"
+          class="input-field"
         ></v-file-input>
       </div>
       <div class="item">
@@ -70,9 +76,9 @@
           placeholder="Enter your description"
         ></v-textarea>
       </div>
-      <div class="add-cancel">
-        <v-btn type="submit" class="cancel" @click="cancel()">Cancel</v-btn>
-        <v-btn type="submit" class="add">Create</v-btn>
+      <div class="btn">
+        <v-btn type="submit" class="text-white cancel-btn" @click="cancel()">Cancel</v-btn>
+        <v-btn type="submit" class="bg-orange text-white add">Create</v-btn>
       </div>
       
     </v-form>
@@ -82,6 +88,7 @@
 
 
 <script>
+import Swal from 'sweetalert2'
 import axios from "axios";
 import Cookies from 'js-cookie';
 export default {
@@ -125,7 +132,7 @@ export default {
     submitScholarship() {
      
       if (this.valid) {
-        const new_idaship = {
+        const newScholarship = {
           name: this.name,
           user_number: this.user_number,
           skill_id: this.skillId(),
@@ -136,10 +143,9 @@ export default {
           description: this.description,
         };
         axios
-          .post(`${process.env.VUE_APP_API_URL}addScholarships`, new_idaship)
-          .then((res) => {
-            console.log(res.data)
-            console.log(this.school_id)
+          .post(`${process.env.VUE_APP_API_URL}addScholarships`, newScholarship)
+          .then(() => {
+            this.alertMessage();
             this.$router.push("/university");
             return this.$emit("show", "scholarship");
           })
@@ -189,6 +195,15 @@ export default {
       });
       return id;
     },
+    alertMessage(){
+      Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: 'Your work has been created',
+        showConfirmButton: false,
+        timer: 2000
+      })
+    },
     shoolId(){
       const userData = Cookies.get('userData');
       let school_id = ''
@@ -210,18 +225,15 @@ export default {
 
 <style scoped>
 form {
-  width: 80%;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  padding: 20px;
-  background: #ffffff;
-  margin: auto;
-  margin-right: 15px;
+  width: 85%;
+  margin-left: auto;
+  margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  padding: 15px;
 }
 .groupForm {
   margin: 20px;
 }
-
 .item {
   display: flex;
   gap: 20px;
@@ -235,14 +247,17 @@ h1 {
   margin-bottom: 20px;
 }
 
-.add,
-.cancel {
-  margin-left: 5px;
-  background-color: #634b7a;
-  color: #f6eeee;
+.btn {
+  display: flex;  
+  justify-content: end;
+  margin-right:1%;
 }
-.add-cancel {
-  display: flex;
-  margin-left: 77%;
+.cancel-btn{
+  margin-right:10px;
+  background:#634b7a;
+}
+
+.input-field {
+  width: 50%;
 }
 </style>

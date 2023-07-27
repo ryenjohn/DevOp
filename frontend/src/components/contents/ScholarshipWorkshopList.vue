@@ -14,9 +14,8 @@
                     </v-card-text>
                     <h4>{{data.description}}</h4>
                 </div>
-                <div class="btn">
-                  
-                  <button v-if="dataname=='workshops'" @click="checkLoginStatus; "><register-account-popup  :workshop_id="data.id"></register-account-popup></button>
+                <div class="btn">      
+                  <button v-if="dataname=='workshops'" @click="checkLoginStatus "><register-account-popup  :workshop_id="data.id"></register-account-popup></button>
                   <button v-if="dataname=='scholarships'">Apply</button>
                 </div>
               </div>

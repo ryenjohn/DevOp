@@ -39,13 +39,10 @@
 </template>
 
 <script>
-    export default{
-      props:{datas:Array,dataname:String},
-     
-    }
+export default {
+  props: { datas: Array, dataname: String },
+};
 </script>
 <style>
-  h3{
-    text-align: center;
-  }
+
 </style>

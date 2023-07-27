@@ -1,21 +1,12 @@
 <template>
   <div class="tablecontainer">
-    <v-btn class="add" @click="add"> Add scholarship </v-btn>
+    <v-btn class="add" @click="createMajor"> Add major </v-btn>
     <v-table class="my-table">
       <thead>
         <tr>
           <th class="text-center" style="width: 8%; color: #ffffff">Id</th>
           <th class="text-center" style="width: 8%; color: #ffffff">Name</th>
-          <th class="text-center" style="width: 15%; color: #ffffff">
-            Post Date
-          </th>
-          <th class="text-center" style="width: 15%; color: #ffffff">
-            Expired Date
-          </th>
-          <th class="text-center" style="width: 10%; color: #ffffff">Full</th>
-          <th class="text-center" style="width: 10%; color: #ffffff">
-            User Number
-          </th>
+          <th class="text-center" style="width: 8%; color: #ffffff">Subject</th>
           <th class="text-center" style="width: 10%; color: #ffffff">
             Description
           </th>
@@ -27,30 +18,28 @@
       </thead>
       <tbody>
         <tr
-          v-for="(data, index) in dataScholarships"
+          v-for="(data, index) in dataMajors"
           :key="index"
-          class="text-center" >
+          class="text-center"
+        >
           <td>{{ index + 1 }}</td>
           <td>{{ data.name }}</td>
-          <td>{{ data.post_date }}</td>
-          <td>{{ data.expired_date }}</td>
-          <td>{{ data.full }}</td>
-          <td>{{ data.user_number }}</td>
+          <td>
+            <ul>
+              <li v-for="subject in data.subjects" :key="subject.id">
+                {{ subject.name }}
+              </li>
+            </ul>
+          </td>
           <td>{{ data.description }}</td>
           <td>
-            <img :src="data.image" alt="" style="width: 60%" />
+            <img :src="data.image" alt="" style="width: 28%" />
           </td>
           <td class="btn-action">
             <span
-              class="mdi mdi-pencil"
-              style="color: rgb(11, 7, 249); font-size: 20px; cursor: pointer"
-              @click="showEdit(data.id)"
-            >
-            </span>
-            <span
               class="mdi mdi-delete"
               @click="deleteScholarship(data.id)"
-              style="color: rgb(249, 7, 7); font-size: 20px; margin-left:10px; cursor: pointer"
+              style="color: rgb(249, 7, 7); font-size: 25px;  cursor: pointer"
             ></span>
           </td>
         </tr>
@@ -62,31 +51,20 @@
 <script>
 import axios from "axios";
 import Swal from "sweetalert2";
-import Cookies from 'js-cookie';
 export default {
   data() {
     return {
-      dataScholarships: [],
-      school_id:''
+      dataMajors: [],
     };
   },
   methods: {
     fetchScholarship() {
-      const userData = Cookies.get('userData');
-        // If the "userData" cookie exists, parse it and set the user ID in the component data
-      if (userData) {
-          const userDataObj = JSON.parse(userData);
-          this.school_id= userDataObj.data.school_id
-      }
-      axios.get(`${process.env.VUE_APP_API_URL}scholarships/${this.school_id}`).then((res) => {
-        this.dataScholarships = res.data.data;
+      axios.get(`${process.env.VUE_APP_API_URL}majors`).then((res) => {
+        this.dataMajors = res.data.data;
       });
     },
-    showEdit(id) {
-      return this.$emit("edit", id);
-    },
-    add() {
-      return this.$emit("add");
+    createMajor() {
+      return this.$emit("createMajor");
     },
     deleteScholarship(id) {
       // https://sweetalert2.github.io/#download
@@ -100,10 +78,9 @@ export default {
         confirmButtonText: "Yes, delete it!",
         reverseButtons: true, // add this option
       }).then((result) => {
-        
         if (result.isConfirmed) {
           axios
-            .delete(`${process.env.VUE_APP_API_URL}scholarships/${id}`)
+            .delete(`${process.env.VUE_APP_API_URL}majors/${id}`)
             .then(() => {
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
               this.fetchScholarship();
@@ -112,7 +89,7 @@ export default {
       });
     },
   },
-  mounted() { 
+  mounted() {
     this.fetchScholarship();
   },
 };
@@ -170,5 +147,8 @@ td {
   color: white;
   text-decoration: none;
   background: blueviolet;
+}
+ul li {
+  list-style: none;
 }
 </style>

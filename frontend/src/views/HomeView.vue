@@ -5,6 +5,7 @@
     :datas="datas"
     @searchkey="searchKey"
   ></navigationbar-content>
+  <university-apply-form></university-apply-form>
 </template>
 
 <script>

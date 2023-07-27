@@ -111,13 +111,31 @@ import ContactBar from '../src/components/contact/ContactBar.vue'
 app.component('contact-bar', ContactBar);
 
 
-// university admin page 
+// university admin scholarship page 
 import ListScholarship from './components/scholarship/ListScholarship.vue'
 import EditScholarship from './components/scholarship/EditScholarship.vue'
 import AddScholarship from './components/scholarship/AddScholarship.vue'
 app.component('list-scholarship', ListScholarship);
 app.component('edit-scholarship', EditScholarship);
 app.component('add-scholarship', AddScholarship);
+
+// university admin workshop page 
+import ListWorkshop from './components/workshop/ListWorkshop.vue'
+import AddWorkshop from './components/workshop/AddWorkshop.vue'
+import EditWorkshop from './components/workshop/EditWorkshop.vue'
+app.component('list-workshop', ListWorkshop);
+app.component('add-workshop', AddWorkshop);
+app.component('edit-workshop', EditWorkshop);
+
+// university admin major page 
+import ListMajor from './components/major/ListMajor.vue'
+import AddMajor from './components/major/AddMajor.vue'
+app.component('list-major', ListMajor);
+app.component('add-major', AddMajor);
+
+// university admin view
+import StudentRequest from './components/universitydirector/StudentRequest.vue'
+app.component('student-request', StudentRequest);
 
 
 // Register Workshop PopUP

@@ -1,6 +1,6 @@
 <template>
   <div class="tablecontainer">
-    <v-btn class="add" @click="add"> Add scholarship </v-btn>
+    <v-btn class="add" @click="createWorkshop"> Add workshop </v-btn>
     <v-table class="my-table">
       <thead>
         <tr>
@@ -12,6 +12,7 @@
           <th class="text-center" style="width: 15%; color: #ffffff">
             Expired Date
           </th>
+          <th class="text-center" style="width: 10%; color: #ffffff">Time</th>
           <th class="text-center" style="width: 10%; color: #ffffff">Full</th>
           <th class="text-center" style="width: 10%; color: #ffffff">
             User Number
@@ -27,13 +28,15 @@
       </thead>
       <tbody>
         <tr
-          v-for="(data, index) in dataScholarships"
+          v-for="(data, index) in dataWorkshop"
           :key="index"
-          class="text-center" >
+          class="text-center"
+        >
           <td>{{ index + 1 }}</td>
           <td>{{ data.name }}</td>
-          <td>{{ data.post_date }}</td>
+          <td>{{ data.start_date }}</td>
           <td>{{ data.expired_date }}</td>
+          <td>{{ data.time }}</td>
           <td>{{ data.full }}</td>
           <td>{{ data.user_number }}</td>
           <td>{{ data.description }}</td>
@@ -50,7 +53,7 @@
             <span
               class="mdi mdi-delete"
               @click="deleteScholarship(data.id)"
-              style="color: rgb(249, 7, 7); font-size: 20px; margin-left:10px; cursor: pointer"
+              style="color: rgb(249, 7, 7); font-size: 20px;margin-left:10px;  cursor: pointer"
             ></span>
           </td>
         </tr>
@@ -62,31 +65,23 @@
 <script>
 import axios from "axios";
 import Swal from "sweetalert2";
-import Cookies from 'js-cookie';
 export default {
   data() {
     return {
-      dataScholarships: [],
-      school_id:''
+      dataWorkshop: [],
     };
   },
   methods: {
     fetchScholarship() {
-      const userData = Cookies.get('userData');
-        // If the "userData" cookie exists, parse it and set the user ID in the component data
-      if (userData) {
-          const userDataObj = JSON.parse(userData);
-          this.school_id= userDataObj.data.school_id
-      }
-      axios.get(`${process.env.VUE_APP_API_URL}scholarships/${this.school_id}`).then((res) => {
-        this.dataScholarships = res.data.data;
+      axios.get(`${process.env.VUE_APP_API_URL}workshops`).then((res) => {
+        this.dataWorkshop = res.data.data;
       });
     },
     showEdit(id) {
-      return this.$emit("edit", id);
+      return this.$emit("updateWorkshop", id);
     },
-    add() {
-      return this.$emit("add");
+    createWorkshop() {
+      return this.$emit("createWorkshop");
     },
     deleteScholarship(id) {
       // https://sweetalert2.github.io/#download
@@ -100,10 +95,9 @@ export default {
         confirmButtonText: "Yes, delete it!",
         reverseButtons: true, // add this option
       }).then((result) => {
-        
         if (result.isConfirmed) {
           axios
-            .delete(`${process.env.VUE_APP_API_URL}scholarships/${id}`)
+            .delete(`${process.env.VUE_APP_API_URL}workshops/${id}`)
             .then(() => {
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
               this.fetchScholarship();
@@ -112,7 +106,7 @@ export default {
       });
     },
   },
-  mounted() { 
+  mounted() {
     this.fetchScholarship();
   },
 };
