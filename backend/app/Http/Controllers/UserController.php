@@ -19,7 +19,6 @@ class UserController extends Controller
 
     public function getUser($id)
     {
-        dd($id);
         $user = User::find($id);
         return response()->json(['success'=>true,'data'=>$user],200);
 
@@ -45,7 +44,6 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        
         return response()->json(['message' => "Your get data use is success", 'data' => $users], 200);
     }
 
@@ -63,27 +61,9 @@ class UserController extends Controller
         $token = $user->createToken('API Token')->plainTextToken;
         return response()->json(['exists' => true, 'message' => "Your account is created", 'data' => $user, 'token' => $token], 200);
     }
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-
-
-
-    
-    /**
-     * Update the specified resource in storage.
-     */
-
 
     public function sendEmail(Request $request)
     {
-
-       
         $data =[
             'subject' =>"Create university page!",
             'email'=>$request->email,
@@ -107,11 +87,6 @@ class UserController extends Controller
 
         $userId = DB::table('users')->where('email', $email)->first()->id;
         return $userId;
-        // if ($userId){
-        //     return response()->json([ 'message' => "Request successfull", 'data' => $userId], 200);
-        // }else{
-        //     return response()->json([ 'message' => "Request fail"], 400);
-        // }
     }
     
     public function update(Request $request, string $id)

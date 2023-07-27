@@ -180,6 +180,7 @@ export default {
         .get(`${process.env.VUE_APP_API_URL}workshops/${workshopId}`)
         .then((response) => {
           const workshop = response.data.data;
+          console.log(workshop.image)
           this.name = workshop.name;
           this.time = workshop.time;
           this.startDate = workshop.start_date;
@@ -212,7 +213,6 @@ export default {
         expired_date: this.endDate,
         time: this.time,
       };
-
       if (this.$refs.form.validate()) {
         // Submit form data
         axios

@@ -20,7 +20,7 @@ class ShowSkillResource extends JsonResource
                 'description' => $this->description,
                 'subjects' => SubjectResource::collection($this->subjects),
                 'image' => $this->media->file_url ?? null,
-
+                'school_id' => SchoolResource::collection($this->schools) 
             ];
     }
 }

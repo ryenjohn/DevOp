@@ -10,7 +10,7 @@
     <edit-workshop v-if="editWorkshop" :workshopId="workshopId"  @show="show"></edit-workshop>
 
     <list-major v-if="content=='major'" @createMajor="createMajor"></list-major>
-    <add-major v-if="addMajor"></add-major>
+    <add-major v-if="addMajor" @show="show"></add-major>
 </template>
 
 <script>

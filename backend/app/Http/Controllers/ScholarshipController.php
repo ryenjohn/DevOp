@@ -26,7 +26,7 @@ class ScholarshipController extends Controller
     }
     public function getAllscholarships()
     {
-        $scholarship = ScholarShip::all();
+        $scholarship = ScholarShip::orderBy('id', 'DESC')->get();
         if($scholarship!=''){
             $scholarship = ShowScholarshipResource::collection($scholarship);
             return  response()->json(['success'=>true,'data'=>$scholarship],200);

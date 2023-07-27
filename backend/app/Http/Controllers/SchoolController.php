@@ -6,6 +6,8 @@ use App\Http\Requests\SchoolRequest;
 use App\Http\Resources\ShowSchoolResource;
 // use App\Models\Address;
 use App\Models\School;
+use Illuminate\Support\Facades\DB;
+
 // use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\DB;
 

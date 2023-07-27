@@ -34,7 +34,7 @@ class SkillController extends Controller
 
     public function getSubjects()
     {
-        $skills = Subject::all();
+        $skills = Subject::orderBy('id', 'DESC')->get();
         $skills = SubjectResource::collection($skills);
         return response()->json(['success' => true, 'data' => $skills], 200);
     }
