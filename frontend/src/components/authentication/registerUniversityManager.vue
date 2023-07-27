@@ -65,7 +65,7 @@
                 v-model="universityName"
                 required
                 density="compact"
-                placeholder="Enter your Name"
+                placeholder="Enter your school name"
                 variant="outlined"
                 color="#634B7A"
                 :rules="universityRules"
