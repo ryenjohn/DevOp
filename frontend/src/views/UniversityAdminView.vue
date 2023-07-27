@@ -1,6 +1,6 @@
 <template>
     <side-bar class="side-bar" @show="show"></side-bar>
-    <student-request-container class="student-request-container" v-if="content=='student'"></student-request-container>
+    <student-request v-if="content=='student'" @show="show"></student-request>
     <list-scholarship v-if="content=='scholarship'" @edit="edit" @add="add"></list-scholarship>
     <add-scholarship v-if="addScholarship" @show="show"> </add-scholarship>
     <edit-scholarship v-if="editScholarship" :editID="editID" @show="show"></edit-scholarship>
@@ -10,7 +10,7 @@
     <edit-workshop v-if="editWorkshop" :workshopId="workshopId"  @show="show"></edit-workshop>
 
     <list-major v-if="content=='major'" @createMajor="createMajor"></list-major>
-    <add-major v-if="addMajor" @show="show"></add-major>
+    <add-major v-if="addMajor"></add-major>
 </template>
 
 <script>
@@ -22,6 +22,7 @@ export default {
             addWorkshop:false,
             editWorkshop: false,
             addMajor: false,
+            studentRequest: false,
             content:'',
             editID:'',
             workshopId: ''
@@ -59,7 +60,6 @@ export default {
             this.workshopId = id 
         },
         createMajor(){
-            console.log(3)
            this.addScholarship = false;
            this.addWorkshop = false;
            this.addMajor = true;

@@ -213,7 +213,7 @@ export default {
             })
             .then((res) => {
                 Cookies.set("userData", JSON.stringify(res.data), { expires: 30 });
-                this.$router.push('/')
+                this.$router.push('/university')
             
 
             })

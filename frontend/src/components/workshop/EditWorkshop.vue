@@ -64,7 +64,7 @@
             color="#634B7A"
             placeholder="Enter your time"
           ></v-text-field>
-          <v-select
+          <!-- <v-select
             v-model="school"
             :items="schools"
             label="School"
@@ -72,7 +72,7 @@
             :rules="schoolRules"
             variant="outlined"
             placeholder="Enter your school"
-          ></v-select>
+          ></v-select> -->
           <v-select
             v-model="address"
             :items="addresses"
@@ -112,7 +112,6 @@ export default {
       number: null,
       startDate: null,
       endDate: null,
-      school: null,
       address: null,
       time: null,
       getSchools: null,
@@ -145,28 +144,12 @@ export default {
     };
   },
   methods: {
-    // get data of school to show in select
-    fetchSchools() {
-      axios
-        .get(`${process.env.VUE_APP_API_URL}schools`)
-        .then((response) => {
-          console.log(response.data.data);
-          this.getSchools = response.data.data;
-          this.getSchools.forEach((item) => {
-            this.schools.push(item.name);
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
 
     // get data of address to show in select
     fetchAddresses() {
       axios
         .get(`${process.env.VUE_APP_API_URL}addresses`)
         .then((response) => {
-          console.log(response.data.data);
           this.getAddresses = response.data.data;
           this.getAddresses.forEach((item) => {
             this.addresses.push(item.name);
@@ -203,8 +186,8 @@ export default {
           this.endDate = workshop.expired_date;
           this.description = workshop.description;
           this.number = workshop.user_number;
-          this.school = workshop.school.name;
           this.address = workshop.address.name;
+          this.image = workshop.image;
         })
         .catch((error) => {
           console.log(error);
@@ -222,7 +205,7 @@ export default {
         name: this.name,
         image: this.image,
         address_id: this.addressId(),
-        school_id: this.schoolId(),
+        school_id: 3,
         description: this.description,
         user_number: this.number,
         start_date: this.startDate,
@@ -248,17 +231,6 @@ export default {
       }
     },
 
-    // covert name school to id from select
-    schoolId() {
-      let id = null;
-      this.getSchools.forEach((item) => {
-        if (item.name == this.school) {
-          id = item.id;
-        }
-      });
-      return id;
-    },
-
     // covert name address to id from select
     addressId() {
       let id = null;
@@ -281,9 +253,7 @@ export default {
   },
 
   mounted() {
-    this.fetchSchools();
     this.fetchAddresses();
-    // this.workshopId = this.$route.params.workshopId;
     this.fetchWorkshopData(this.workshopId);
   },
 };
@@ -328,10 +298,12 @@ h2 {
 
 .right-input {
   width: 50%;
+
 }
 
 .left-input {
   width: 50%;
+  margin-top:-10%;
 }
 .cancel-btn {
   margin-right: 10px;

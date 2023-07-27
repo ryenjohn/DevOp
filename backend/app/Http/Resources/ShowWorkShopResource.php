@@ -18,6 +18,7 @@ class ShowWorkShopResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'image' => $this->media->file_url ?? null,
+            'address'=> new AddressResource($this->address),
             'start_date' => $this->start_date,
             'expired_date' => $this->expired_date,
             'description' => $this->description,

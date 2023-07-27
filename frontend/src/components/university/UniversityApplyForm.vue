@@ -106,8 +106,6 @@
         selected: '',
         majors:'',
         skill_id:'',
-        school_id: 3,
-        user_id:'',
         year:'',
         study_level:'',
       }
@@ -122,19 +120,16 @@
         const userData = Cookies.get('userData');
         if (userData) {
           const userDataObj = JSON.parse(userData);
-          this.user_id = userDataObj.data.id;
-          const newApply = {
-            user_id: this.user_id,
+         axios.post(`${process.env.VUE_APP_API_URL}apply`, {
+            user_id:  userDataObj.data.id,
             skill_id: this.skill_id,
-            school_id: this.school_id,
+            school_id: this.$route.params.school_id,
             year: this.year,
             study_level:this.study_level
-          }
-          
-         axios.post(`${process.env.VUE_APP_API_URL}apply`, newApply)
+         })
          .then(()=>{
           this.$router.push("/")
-          console.log(newApply)
+          
          })
         }
       }

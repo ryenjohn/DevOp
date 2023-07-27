@@ -19,11 +19,11 @@
           </div>
           <div class="icon-item">
             <v-icon class="logout-icon text-white me-2" size="20" @click="submitLogOut" >mdi-logout</v-icon>
-            <div class="icon-log-out">log out</div>
+            <div class="icon-log-out" @click="submitLogOut">log out</div>
           </div>
           <div class="icon-item" v-if="role_id===2">
-            <v-icon class="logout-icon text-white me-2" size="20" >mdi-domain</v-icon>
-            <div class="icon-log-out">University Page</div>
+            <v-icon class="logout-icon text-white me-2" size="20"  @click="university">mdi-domain</v-icon>
+            <div class="icon-log-out" @click="university">University Page</div>
           </div>
       </v-list>
     </v-menu>
@@ -36,10 +36,10 @@ import Cookies from 'js-cookie';
 export default {
   name: "UserMenu",
   emits: ["submitLogOut"],
-  props: ["showMenu", "userName"],
+  props: ["showMenu", "userName",'role_id'],
   data() {
     return {
-      role_id:1,
+     
     };
   },
   methods: {
@@ -59,18 +59,12 @@ export default {
           });
       }
     },
-    getCookie(){
-      const userData = Cookies.get('userData');
-        // If the "userData" cookie exists, parse it and set the user ID in the component data
-        if (userData) {
-          const userDataObj = JSON.parse(userData);
-          this.role_id = userDataObj.data.role_id
-        }
+    university(){
+       this.$router.push("/university");
     }
+    
   },
-  mounted(){
-    this.getCookie()
-  }
+
 };
 </script>
 

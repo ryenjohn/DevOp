@@ -97,7 +97,7 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .delete(`${process.env.VUE_APP_API_URL}workshop/${id}`)
+            .delete(`${process.env.VUE_APP_API_URL}workshops/${id}`)
             .then(() => {
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
               this.fetchScholarship();

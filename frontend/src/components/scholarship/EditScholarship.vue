@@ -129,7 +129,7 @@ export default {
   methods: {
     showData() {
       axios
-        .get(`${process.env.VUE_APP_API_URL}scholarships/${this.editID}`)
+        .get(`${process.env.VUE_APP_API_URL}scholarships/edit/${this.editID}`)
         .then((response) => {
           this.scholarships = response.data.data;
         })
@@ -143,9 +143,7 @@ export default {
         this.scholarships.image = this.image;
         axios
           .put(
-            `${process.env.VUE_APP_API_URL}editScholarships/${this.editID}`,
-            this.scholarships
-          )
+            `${process.env.VUE_APP_API_URL}editScholarships/${this.editID}`, this.scholarships)
           .then(() => {
             this.alertMessage();
             this.$router.push("/university");
