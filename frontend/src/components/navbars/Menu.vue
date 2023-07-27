@@ -25,6 +25,10 @@
             <v-icon class="logout-icon text-white me-2" size="20"  @click="university">mdi-domain</v-icon>
             <div class="icon-log-out" @click="university">University Page</div>
           </div>
+          <div class="icon-item" v-if="role_id===3">
+            <v-icon class="logout-icon text-white me-2" size="20"  @click="admin">mdi-domain</v-icon>
+            <div class="icon-log-out" @click="admin">Admin Page</div>
+          </div>
       </v-list>
     </v-menu>
   </div>
@@ -61,6 +65,9 @@ export default {
     },
     university(){
        this.$router.push("/university");
+    },
+    admin(){
+       this.$router.push("/admin");
     }
     
   },

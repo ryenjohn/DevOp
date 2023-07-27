@@ -117,10 +117,7 @@
                 <v-btn class="me-4" @click="v$.$touch()">Create</v-btn>
               </div>
               <div v-else class="sign-in">
-                <v-btn class="me-4" @click="singIn">
-                  <router-link class="link-sign-up" to="/"
-                    >Create</router-link>
-                  </v-btn>
+                  <v-btn class="me-4" @click="singIn">Create</v-btn>
               </div>
             </div>
           </div>
@@ -154,7 +151,6 @@ import { reactive } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { email, required, minLength } from "@vuelidate/validators";
 import axios from "axios";
-import Cookies from "js-cookie";
 
 const initialState = {
   name: "",
@@ -205,16 +201,14 @@ async function singIn() {
     const data = {
       name: state.name,
       email: state.email,
-      // role_id: "1",
       role_id: state.role_id,
       checkbox: state.checkbox,
       password: state.password,
     };
+    console.log(data)
     // Make an API call to add data to the database
     const response = await axios.post(`${ process.env.VUE_APP_API_URL}users`, data);
-    Cookies.set("userData", JSON.stringify(response.data.token), {
-      expires: 10,
-    });
+    this.dialog = false
 
     // Check the server response and alert the user accordingly
     if (response.status === 200) {

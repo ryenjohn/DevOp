@@ -123,6 +123,7 @@ export default {
   },
   methods: {
     submitScholarship() {
+     
       if (this.valid) {
         const new_idaship = {
           name: this.name,
