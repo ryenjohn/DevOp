@@ -14,9 +14,7 @@
                         class="dialog"
                         v-model="dialog"
                         persistent
-                        width="400"
-                    
-                        >
+                        width="400">
                         <template v-slot:activator="{ props }">
                             <v-btn
                             color="#ffffff"

@@ -15,13 +15,17 @@ class ShowScholarshipResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id'=>$this->id,
             'name'=>$this->name,
-            'image'=>$this->image,
+            'image' => $this->media->file_url ?? null,
+            'full' => $this-> full,
+            'user_number' => $this->user_number,
             'description'=>$this->description,
             'post_date'=>$this->post_date,
             'expired_date'=>$this->expired_date,
-            'school'=>$this->school->name,
-            'skill'=>$this->skill->name
+            'description'=>$this->description,
+            'school_id'=>new SchoolResource($this->school),
+            'skill_id'=>new ShowSkillResource($this->skill),
         ];
     }
 }

@@ -1,67 +1,45 @@
 <template>
   <div class="form-container">
-    <div class="image">
-      <img src="../../assets/images/workshop.png" style="width: 100%; height: initial" alt="Image description" />
-    </div>
-    <v-form @submit.prevent="" ref="form" class="form-item">
-      <h2>Add Workshop </h2>
-      <div class="side-input">
-        <div class="right-input">
-          <v-text-field v-model="name" label="Name Workshop" :rules="nameRules" required></v-text-field>
-          <v-text-field v-model="startDate" label="Start Date" type="date" :rules="startDateRules"
-            required></v-text-field>
-          <v-file-input @change="onFileChange" label="Image" :rules="imageRules" required></v-file-input>
-
-          <v-textarea v-model="description" label="Description" :rules="descriptionRules" required></v-textarea>
-        </div>
-        <div class="left-input">
-          <v-text-field v-model="number" label="Number Workshop" type="number" :rules="numberRules"
-            required></v-text-field>
-
-          <v-text-field v-model="endDate" label="End Date" type="date" :rules="endDateRules" required></v-text-field>
-          <v-text-field v-model="time" label="Time" :rules="timeRules" required></v-text-field>
-          <v-select v-model="school" :items="schools" label="School" :rules="schoolRules" required></v-select>
-          <v-select v-model="address" :items="addresses" label="Address" :rules="addressRules" required></v-select>
-        </div>
-      </div>
-      <div class="btn">
-        <v-btn type="button" class="bg-purple text-white">Cancel</v-btn>
-        <v-btn type="submit" @click.prevent="submitForm" class="bg-orange text-white">Submit</v-btn>
-      </div>
-    </v-form>
   </div>
       <v-form @submit.prevent="" ref="form" class="form-item">
         <h2>Add Workshop</h2>
-
         <div class="side-input">
           <div class="right-input">
               <v-text-field
               v-model="name"
               label="Name of workshop"
               :rules="nameRules"
-              required
+              color="#634B7A"
+              variant="outlined"
+              placeholder="Enter your name of workshop"
             ></v-text-field>
               <v-text-field
               v-model="startDate"
               label="Start Date"
               type="date"
               :rules="startDateRules"
-              required
+              variant="outlined"
+              color="#634B7A"
+              placeholder="Enter your start date"
           ></v-text-field>
             <v-textarea
               v-model="description"
               label="Description"
               :rules="descriptionRules"
-              required
+              variant="outlined"
+              color="#634B7A"
+              placeholder="Enter your description"
             ></v-textarea>
           </div>
           <div class="left-input">
             <v-text-field
               v-model="number"
-              label="Number ticket"
+              label="Number user"
               type="number"
               :rules="numberRules"
-              required
+              variant="outlined"
+              color="#634B7A"
+              placeholder="Enter your number user"
             ></v-text-field>
 
           <v-text-field
@@ -69,44 +47,42 @@
             label="End Date"
             type="date"
             :rules="endDateRules"
-            required
+            variant="outlined"
+            color="#634B7A"
+            placeholder="Enter your end date"
           ></v-text-field>
-        
-        <v-select
-          v-model="school"
-          :items="schools"
-          label="School"
-          :rules="schoolRules"
-          required
-        ></v-select>
+ 
         <v-select
           v-model="address"
           :items="addresses"
           label="Address"
           :rules="addressRules"
-          required
+          variant="outlined"
+          color="#634B7A"
+          placeholder="Enter your address"
         ></v-select>
-          </div>
-        </div>
         <v-text-field
           v-model="time"
           label="Time"
           :rules="timeRules"
-          required
+          variant="outlined"
+          color="#634B7A"
+          placeholder="Enter your time"
         ></v-text-field>
+          </div>
+        </div>
+        
         <v-file-input
             @change="onFileChange"
             label="Image"
             :rules="imageRules"
-            required
+            variant="outlined"
         ></v-file-input>
-
         <div class="btn">
-          <v-btn type="button" class="bg-purple text-white" @click="this.$router.push('/')">Cancel</v-btn>
-          <v-btn type="submit" @click.prevent="submitForm" class="bg-orange text-white">Submit</v-btn>
+          <v-btn type="button" class=" text-white cancel-btn" @click="cancelAdd">Cancel</v-btn>
+          <v-btn type="submit" @click.prevent="submitForm" class="bg-orange text-white">Create</v-btn>
         </div>
       </v-form>
-    <!-- </div> -->
 </template>
 
 <script>
@@ -171,7 +147,6 @@ export default {
     fetchSchools() {
       axios.get(`${process.env.VUE_APP_API_URL}schools`)
         .then(response => {
-          console.log(response.data.data);
           this.getSchools = response.data.data
           this.getSchools.forEach(item => {
             this.schools.push(item.name);
@@ -186,10 +161,9 @@ export default {
     fetchAddresses() {
       axios.get(`${process.env.VUE_APP_API_URL}addresses`)
         .then(response => {
-          console.log(response.data.data);
           this.getAddresses = response.data.data
           this.getAddresses.forEach(item => {
-            this.addresses.push(item.city_province);
+            this.addresses.push(item.name);
           });
         })
         .catch(error => {
@@ -217,20 +191,20 @@ export default {
         name: this.name,
         image: this.image,
         address_id: this.addressId(),
-        school_id: this.schoolId(),
+        school_id: 3,
         description: this.description,
         user_number: this.number,
         start_date: this.startDate,
         expired_date: this.endDate,
         time: this.time,
       };
-      console.log(newWorkshop);
       if (this.$refs.form.validate()) {
         // Submit form data
         axios.post(`${process.env.VUE_APP_API_URL}workshops`, newWorkshop)
           .then(() => {
             this.alertMessage();
-            this.$router.push("/");
+            this.$router.push("/university");
+            return this.$emit("show", "workshop");
           })
           .catch((error) => {
             console.error(error);
@@ -239,7 +213,7 @@ export default {
     },
     alertMessage(){
       Swal.fire({
-        position: 'top-end',
+        position: 'top-center',
         icon: 'success',
         title: 'Your work has been created',
         showConfirmButton: false,
@@ -247,31 +221,23 @@ export default {
       })
     },
 
-    // covert name school to id from select
-    schoolId() {
-      let id = null;
-      this.getSchools.forEach(item => {
-        if (item.name == this.school) {
-          id = item.id;
-        }
-      });
-      return id;
-    },
-
     // covert name address to id from select
     addressId() {
       let id = null;
       this.getAddresses.forEach(item => {
-        if (item.city_province == this.address) {
+        if (item.name == this.address) {
           id = item.id;
         }
       });
       return id;
     },
+    cancelAdd(){
+      this.$router.push("/university");
+      return this.$emit("show", "workshop");
+    }
   },
 
   mounted() {
-    this.fetchSchools();
     this.fetchAddresses();
   }
 };
@@ -280,29 +246,30 @@ export default {
 h2 {
   color: orange;
   text-align: center;
+  margin-bottom: 25px;
 }
 
 .form-item {
-  width: 800px;
+  width: 83%;
+  margin-left: auto;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  margin-top: -10%;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-  padding: 20px;
+  padding: 25px;
 }
 
 .form-container {
-  width: 70%;
-  flex: 1;
   padding: 35px;
   margin: 40px 0px;
   border-radius: 10px;
   display: flex;
   align-items: center;
-  margin-left: 15%;
 }
 
 .btn {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: flex;  
+  justify-content: end;
 }
 
 .side-input {
@@ -318,6 +285,16 @@ h2 {
 
 .left-input {
   width: 50%;
-  margin-top: -15px;
+}
+.cancel-btn{
+  margin-right:10px;
+  background:#634b7a;
+}
+
+.v-text-field,
+.v-textarea,
+.v-select,
+.v-file-input {
+  margin-bottom: 15px;
 }
 </style>

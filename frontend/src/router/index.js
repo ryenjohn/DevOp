@@ -7,28 +7,32 @@ import sendMail from '../components/authentication/sendEmail.vue'
 import resetPassword from '../components/authentication/resetPassword.vue'
 import universityManager from '../components/authentication/registerUniversityManager.vue'
 
-import AddWorkshop from '../components/workshop/workShop.vue'
 
-import UpdateWorkshop from '../components/workshop/workShopUpdate.vue'
+import AddScholarship from '../components/scholarship/AddScholarship.vue'
+import ListScholarship from '../components/scholarship/ListScholarship.vue'
 
 import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
-
-import MajorForm from '../components/major/majorForm.vue'
-
 import PaymentForm from '../components/payment/PaymentForm.vue'
 import PaymentByCard from '../components/payment/PaymentByCard.vue'
+
 import InvoiceTicket from '../components/payment/InvoiceTicket.vue'
 
+
+
+// import MajorForm from '../components/major/majorForm.vue'
 
 import Home from '../views/HomeView.vue'
 import Detail from '../views/DetailView.vue'
 import Admin from '../views/AdminView.vue'
+import RegisterAccountPopUp from '../components/workshop/RegisterAccountPopUp.vue'
+
+
+
 import UniversityApplyForm from '../components/university/UniversityApplyForm.vue'
 
 import University from '../views/UniversityAdminView.vue'
 import NotFound from '../views/NotFound.vue'
-
 
 const routes = [
   {
@@ -53,11 +57,11 @@ const routes = [
     name: 'about',
     component: About
   },
-  {
-    path: '/addMajor',
-    name: 'addMajor',
-    component: MajorForm
-  },
+  // {
+  //   path: '/addMajor',
+  //   name: 'addMajor',
+  //   component: MajorForm
+  // },
   {
     path: '/contact',
     name: 'contact',
@@ -75,6 +79,12 @@ const routes = [
     component: Admin
   },
   {
+    path: '/registeraccountpopup',
+    name: 'registeraccountpopup',
+    component: RegisterAccountPopUp
+  },
+  {
+
   path: '/apply',
   name: 'apply',
   component: UniversityApplyForm
@@ -100,16 +110,31 @@ const routes = [
     name: 'registerAdmin',
     component: universityManager
   },
+  // {
+  //   path: '/addWorkshop',
+  //   name: 'addWorkshop',
+  //   component: AddWorkshop
+  // },
   {
-    path: '/addWorkshop',
-    name: 'addWorkshop',
-    component: AddWorkshop
+    path: '/addScholarship',
+    name: 'addScholarship',
+    component: AddScholarship
   },
   {
-    path: '/updateWorkshop',
-    name: 'updateWorkshop',
-    component: UpdateWorkshop
+    path: '/listScholarship',
+    name: 'listScholarship',
+    component: ListScholarship
   },
+  // {
+  //   path: '/scholarships/:id',
+  //   name: 'scholarships',
+  //   component: EditScholarship
+  // },
+  // {
+  //   path: '/updateWorkshop',
+  //   name: 'updateWorkshop',
+  //   component: UpdateWorkshop
+  // },
   {
     path: '/payment',
     name: 'payment',
@@ -125,6 +150,11 @@ const routes = [
     name: 'invoice',
     component: InvoiceTicket
   },
+  // {
+  //   path: '/addWorkshop',
+  //   name: 'addWorkshop',
+  //   component: Addworkshop
+  // },
   {
     path: '/404notfound',
     name: 'notfound',

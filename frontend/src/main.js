@@ -69,8 +69,6 @@ import CardContainer from './components/widgets/card/CardContainer.vue';
 import CardItemDetail  from './components/widgets/card/CardDetail.vue';
 import BaseButton from './components/widgets/button/BaseButton.vue';
 import BaseDialog from './components/widgets/dialog/BaseDialog.vue';
-import StudentRequestContainer from './components/universityDirector/StudentRequest.vue';
-
 
 // content title
 import TitleView from './components/contents/ContentTitle.vue';
@@ -91,14 +89,16 @@ app.component('base-dialog', BaseDialog);
 
 app.component('title-text', TitleView);
 
+// app.component('skill-detail', SkillDetail);
+// app.component('university-skill', UniversityInSkill);
+// app.component('card-container', CardContainer);
+
 
 //university
 app.component('footer-bar', FooterBar);
 app.component('footer-icon', FooterIcon);
 app.component('footer-avatar', FooterAvatar);
 app.component('footer-details', FooterDetails);
-
-app.component('student-request-container', StudentRequestContainer);
 
 
 
@@ -119,18 +119,35 @@ app.component('ourteam-member', OurTeamMember);
 import ContactBar from '../src/components/contact/ContactBar.vue'
 app.component('contact-bar', ContactBar);
 
-//University Apply Form
-import UniversityApplyForm from '../src/components/university/UniversityApplyForm.vue'
-app.component('university-apply-form', UniversityApplyForm);
+
+
+
+// university admin scholarship page 
+import ListScholarship from './components/scholarship/ListScholarship.vue'
+import EditScholarship from './components/scholarship/EditScholarship.vue'
+import AddScholarship from './components/scholarship/AddScholarship.vue'
+app.component('list-scholarship', ListScholarship);
+app.component('edit-scholarship', EditScholarship);
+app.component('add-scholarship', AddScholarship);
+
+// university admin workshop page 
+import ListWorkshop from './components/workshop/ListWorkshop.vue'
+import AddWorkshop from './components/workshop/AddWorkshop.vue'
+import EditWorkshop from './components/workshop/EditWorkshop.vue'
+app.component('list-workshop', ListWorkshop);
+app.component('add-workshop', AddWorkshop);
+app.component('edit-workshop', EditWorkshop);
+
+// university admin major page 
+import ListMajor from './components/major/ListMajor.vue'
+import AddMajor from './components/major/AddMajor.vue'
+app.component('list-major', ListMajor);
+app.component('add-major', AddMajor);
 
 
 
 
-router.beforeEach((to, from, next) => {
-  const DEFAULT_TITLE = 'Find University';
-  document.title = to.name ? to.name + ' - ' + DEFAULT_TITLE : DEFAULT_TITLE;
-  next();
-});
+
 
 app.use(router);
 app.use(vuetify);

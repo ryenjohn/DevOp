@@ -77,7 +77,9 @@ export default{
         alert("please input right email this email not found")
       })
     },
-    /* "https://fontawesomeicons.com/tryit/code/vue-js-password-validation-regex/0" */ 
+
+    /* //"https://fontawesomeicons.com/tryit/code/vue-js-password-validation-regex/0" */
+
     validatePassword() {
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
         if (!this.password) {

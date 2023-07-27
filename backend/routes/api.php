@@ -7,6 +7,10 @@ use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\ResetPasswordController;
 
+use App\Http\Controllers\RegisterMailcontroller;
+use App\Http\Controllers\RegisterWorkShopController;
+use App\Http\Controllers\RoleController;
+
 use App\Http\Controllers\ScholarshipController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoolTypeController;
@@ -64,8 +68,13 @@ Route::get('/schools/address/{name}',[SchoolController::class,'search']);
 Route::post('/schools',[SchoolController::class,'createSchool']);
 Route::put('/schools/{id}',[SchoolController::class,'editeSchool']);
 Route::delete('/schools/{id}',[SchoolController::class,'deleteSchool']);
-Route::get('/scholarships/{id}',[ScholarshipController::class,'getScholarship']);
+
+// scholarship rounte
 Route::get('/scholarships',[ScholarshipController::class,'scholarships']);
+Route::get('/scholarships/{id}',[ScholarshipController::class,'scholarship']);
+Route::delete('/scholarships/{id}',[ScholarshipController::class,'destroy']);
+Route::post('/addScholarships',[ScholarshipController::class,'store']);
+Route::put('/editScholarships/{id}',[ScholarshipController::class,'editScholarship']);
 
 // Skill route
 Route::get('/majors',[SkillController::class,'getSkills']);
@@ -111,6 +120,9 @@ Route::post('/sendMail',[ResetPasswordController::class,'SendMail']);
 // university page register 
 Route::post('/registerMail',[UserController::class,'sendEmail']);
 
+// get user that already register in workshop
+Route::post('/registerWorkShop', [RegisterWorkShopController::class, 'registerWorkShop']);
+Route::get('/getregisterWorkShop', [RegisterWorkShopController::class, 'index']);
 // Address 
 // Route::get('/addresses',[AddressController::class,'addresses']);
 // education type

@@ -13,12 +13,10 @@
             <v-img :src="data.image" height="150px" cover></v-img>
           </template>
           <template #title>
-            <div class="d-flex align-center">
               <v-card-text>
                 <h3>{{ data.name }}</h3>
               </v-card-text>
-              <v-icon class="mr-2" @click="show">mdi-book-open-variant</v-icon>
-            </div>
+         
           </template>
         </card-info>
       </v-sheet>

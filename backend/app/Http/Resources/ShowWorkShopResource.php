@@ -16,7 +16,7 @@ class ShowWorkShopResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'work_shop' => $this->name,
+            'name' => $this->name,
             'image' => $this->media->file_url ?? null,
             'start_date' => $this->start_date,
             'expired_date' => $this->expired_date,
