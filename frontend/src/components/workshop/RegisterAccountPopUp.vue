@@ -1,6 +1,5 @@
 // https://vuetifyjs.com/en/components/dialogs/
 <template>
-
   <v-row justify="center">
     <!-- first diolog -->
     <template v-if="!isLoggedIn">
@@ -48,6 +47,7 @@
       persistent
       width="500px"
     >
+    
       <template v-slot:activator="{ props }">
         <p v-bind="props">Join</p>
       </template>
@@ -109,7 +109,6 @@ export default {
         if (userData) {
           const userDataObj = JSON.parse(userData);
         this.userId = userDataObj.data.id;
-        console.log(this.userId);
         axios.post('http://127.0.0.1:8000/api/registerWorkShop', {
           workshop_id: this.workshop_id,
           user_id: this.userId,

@@ -58,12 +58,14 @@ import mapShow from './components/Map/MapShow.vue'
 app.component('map-show', mapShow);
 
 
-// // Include globaly all widgets
-// import BaseCard from './components/widgets/card/BaseCard.vue';
-// import CardInfo from './components/widgets/card/CardInfo.vue';
+
+
+// Include globaly all widgets
+import BaseCard from './components/widgets/card/BaseCard.vue';
+import CardInfo from './components/widgets/card/CardInfo.vue';
 import CardContainer from './components/widgets/card/CardContainer.vue';
 import CardItemDetail  from './components/widgets/card/CardDetail.vue';
-// import BaseButton from './components/widgets/button/BaseButton.vue';
+import BaseButton from './components/widgets/button/BaseButton.vue';
 import BaseDialog from './components/widgets/dialog/BaseDialog.vue';
 
 // content title
@@ -73,14 +75,11 @@ app.component('title-text', TitleView);
 app.component('hidede-limiter', HidedeLimiter);
 
 app.component('card-item', CardItemDetail);
-// app.component('base-card', BaseCard);
-// app.component('card-info', CardInfo);
+app.component('base-card', BaseCard);
+app.component('card-info', CardInfo);
 app.component('card-container', CardContainer);
-// app.component('base-button', BaseButton);
+app.component('base-button', BaseButton);
 app.component('base-dialog', BaseDialog);
-
-
-
 
 
 
@@ -139,7 +138,9 @@ import StudentRequest from './components/universitydirector/StudentRequest.vue'
 app.component('student-request', StudentRequest);
 
 
-
+// Register Workshop PopUP
+import RegisterWorkshop from './components/workshop/RegisterAccountPopUp.vue'
+app.component("register-account-popup",RegisterWorkshop)
 
 
 app.use(router);
