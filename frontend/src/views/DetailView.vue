@@ -15,11 +15,11 @@
         </template>
         <template #info>    
             <v-card-text>
-                <h1 > <strong>Name: </strong>{{data.name}} ({{data.type}})</h1><br>
-                <h3><strong></strong> {{data.description}}</h3>
+                <h1  v-if='dataname=="schools"'> <strong >Name: </strong>{{data.name}} ({{data.type}})</h1><br>
+                <h3>  {{data.description}}</h3>
                 <div  v-if='dataname=="majors"'><strong>Subject that match with this skill: </strong>
                     <ul>
-                        <li v-for='subject in data.subjects' :key="subject">{{subject}}</li>
+                        <li v-for='subject in data.subjects' :key="subject">{{subject.name}}</li>
                     </ul>
                 </div>
                 
@@ -31,13 +31,10 @@
     <content-list   :datas="listSchool" :dataname='"schools"'></content-list>
     <scholarship-workshop-card  :datas="listWorkshop" :dataname='"workshops"'></scholarship-workshop-card>
     <scholarship-workshop-card  :datas="listScholarship" :dataname='"scholarships"'></scholarship-workshop-card>
-    <map-show v-if="dataname=='schools'" :address='data.address' ></map-show>
 </template>
 
 <script>
 import axios from 'axios';
-
-// import api_base from '../router/api.js';
 
     export default {
         data(){

@@ -6,6 +6,8 @@ use App\Http\Requests\SchoolRequest;
 use App\Http\Resources\ShowSchoolResource;
 // use App\Models\Address;
 use App\Models\School;
+use Illuminate\Support\Facades\DB;
+
 // use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\DB;
 
@@ -23,8 +25,12 @@ class SchoolController extends Controller
 
     public function getschools(){
         $school = School::all();
-        // $school = ShowSchoolResource::collection($school);
-        return response()->json(['Get success'=>true, 'data'=>$school],200);
+        if($school!='' && $school!=null){
+            $school = ShowSchoolResource::collection($school);
+            return response()->json(['Get success'=>true, 'data'=>$school],200);
+        }
+        return response()->json(['Get success'=>false, 'data'=>'No data !'],200);
+
     }
     
     public function createSchool(SchoolRequest $request)

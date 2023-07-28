@@ -14,9 +14,19 @@ class ScholarshipController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function scholarships()
+    public function scholarships($id)
     {
-        $scholarship = ScholarShip::all();
+        $scholarship = ScholarShip::where('school_id','=',$id)->orderBy('id', 'DESC')->get();
+        if($scholarship!=''){
+            $scholarship = ShowScholarshipResource::collection($scholarship);
+            return  response()->json(['success'=>true,'data'=>$scholarship],200);
+        }
+        return response()->json(['success'=>true,'data'=>"No data !"],200);
+        
+    }
+    public function getAllscholarships()
+    {
+        $scholarship = ScholarShip::orderBy('id', 'DESC')->get();
         if($scholarship!=''){
             $scholarship = ShowScholarshipResource::collection($scholarship);
             return  response()->json(['success'=>true,'data'=>$scholarship],200);

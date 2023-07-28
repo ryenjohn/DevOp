@@ -1,67 +1,55 @@
 <template>
-    
-<div>
-    <h1 >All {{ pageTitle }}</h1>
-    <add-form v-if="isAllUser" ></add-form>
-    <list-user :datas="datas" @edit='edit' @del='del' ></list-user> 
+  <div>
+    <h1>All {{ pageTitle }}</h1>
+    <add-form v-if="isAllUser"></add-form>
+    <list-user :datas="datas" @edit="edit" @del="del"></list-user>
     <side-bar @dataname="changedata"></side-bar>
-  
-   
-    
-
-</div>
+  </div>
 </template>
 
 <script>
-import axios from 'axios';
-
+import axios from "axios";
 export default {
-
- 
   data() {
     return {
-        datanameEmitted: true,
-        datas: [],
-        pageTitle: 'Users',
-        isAllUser:true,
+      datanameEmitted: true,
+      datas: [],
+      pageTitle: "Users",
+      isAllUser: true,
     };
   },
 
   methods: {
-    changedata(dataname){
+    changedata(dataname) {
       this.pageTitle = dataname;
-      if(this.pageTitle!='users'){
-        this.isAllUser=false
+      if (this.pageTitle != "users") {
+        this.isAllUser = false;
+      } else {
+        this.isAllUser = true;
       }
-      else{
-        this.isAllUser=true
-      }
-      axios.get(`${ process.env.VUE_APP_API_URL}${dataname}`)
-        .then(res => {
-            this.datas = res.data.data;
-            console.log(this.datas)
+      axios
+        .get(`${process.env.VUE_APP_API_URL}${dataname}`)
+        .then((res) => {
+          this.datas = res.data.data;
+          console.log(this.datas);
         })
-        .catch(error => {
-            console.error('Error axios student data:', error);
+        .catch((error) => {
+          console.error("Error axios student data:", error);
         });
     },
-    
-    
   },
-  
-  mounted() {
 
-    axios.get(`${ process.env.VUE_APP_API_URL}users`)
-      .then(res => {
+  mounted() {
+    axios
+      .get(`${process.env.VUE_APP_API_URL}users`)
+      .then((res) => {
         this.datas = res.data.data;
       })
-      .catch(error => {
-        console.error('Error axios student data:', error);
-    });
-
+      .catch((error) => {
+        console.error("Error axios student data:", error);
+      });
   },
-}
-
+};
 </script>
 
 <style  scoped>
@@ -90,7 +78,8 @@ export default {
 
     h1{
         text-align: center;
-        margin-top: 100px;
+        margin-left: 200px;
+        margin-top: 60px;
     }
     .add-btn{
       background-color: rgb(124, 49, 196);

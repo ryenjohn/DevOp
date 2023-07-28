@@ -1,28 +1,33 @@
 <template>
+<section>
 
  <title-text v-if='datas!=null && datas!=""'>Choose {{dataname}}</title-text>
-      <div class="container mt-10 mb-10" v-for="(data) in datas" :key="data.id">
+      <div class="container " v-for="(data) in datas" :key="data.id">
         <div v-if="isNotExpired(data)" class="card" >
           <div class="image">
             <img :src="data.image" alt="">
           </div>
           <div class="text">
               <div class="detail">
-                <div>
-                    <v-card-text>
-                        <strong>{{data.name}}</strong>
-                    </v-card-text>
-                    <h4>{{data.description}}</h4>
+                <div class="text-item">
+                    <div class="title">
+                        <h2>{{data.name}}</h2>
+                        <h5>Expired date: {{data.expired_date}}</h5>
+                        <h5>Available numbers: {{data.user_number}}</h5>
+                    </div>
+                    <p>{{data.description}}</p>
                 </div>
                 <div class="btn">
                 
                   <button v-if="dataname=='workshops'" @click="checkLoginStatus; "><register-account-popup  :workshop_id="data.id"></register-account-popup></button>
                   <button v-if="dataname=='scholarships'">Apply</button>
+
                 </div>
               </div>
           </div>
         </div>
       </div>
+</section>
  
 </template>
 
@@ -69,57 +74,80 @@ import Cookies from 'js-cookie';
     display: flex;
     justify-content: center;
   }
+
   .card{
+    margin-top: 20px;
+    margin-bottom: 20px;
     width:92%;
-    height: 30vh;
+    height:50vh;
     display: flex;
     justify-content: center;
-    background:rgb(194, 194, 194);
+    background:white;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius:10px;
   }
+
   .text{
     display: flex;
     justify-content: center;
-    width:40%;
-    padding: 10px;
+    width:60%;
+    margin-left:20px;
   }
+
   img{
-    width:80%;
+    width:100%;
     height: 100%;
   }
+
   .image{
-    width:60%;
+    width:40%;
   }
+
   .detail{
     display: flex;
     width:100%;
     justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    padding: 10px;
   }
+
   .btn{
     display: flex;
     flex-direction: column;
     justify-content:end;
   }
-  button{
-    padding:10px 20px 10px 20px;
-    border-radius:20px;
+
+  .btn-apply{
+    padding:5px 10px;
+    border-radius:5px;
     border:none;
     color:white;
+    background:purple;
+    margin-bottom: 5px;
   }
-  .text-h5{
+
+  h2,i{
   color: orange;
+  margin-bottom: 10px;
   }
-  .text{
-  color: #634b7a;
+
+  i{
+    font-size: 15px;
   }
+
+  /* .icon-item{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #000;
+  } */
+
+  .text-item{
+    width: 100%;
+  }
+
   p{
-  color: white;
-  background-color: purple;
-  padding: 5px;
-  width: 70px;
-  text-align: center;
-  border-radius: 5px;
-  margin-bottom: 25%;
-  margin-right: 15%;
-}
-  
+    font-size: 13px;
+  }
 </style>

@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->bigInteger('media_id')->nullable();
             $table->string('description')->nullable();
-            $table->bigInteger('media_id')->nullable();
             $table->foreign('type_education_id')->references('id')->on('type_education')->onDelete('cascade');
             $table->unsignedBigInteger('type_education_id')->unsigned();
             $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');

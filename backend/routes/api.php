@@ -13,6 +13,7 @@ use App\Http\Controllers\RoleController;
 
 use App\Http\Controllers\ScholarshipController;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\SchoolSkillController;
 use App\Http\Controllers\SchoolTypeController;
 use App\Http\Controllers\SchoolUserController;
 use App\Http\Controllers\SkillController;
@@ -40,15 +41,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-// Route::get('/majors/{id}',[SkillController::class,'MajorDetail']);
-
-
 // User side -----------------------------------------
 Route::post('/users',[UserController::class, 'store']);
-
-
-Route::get('/schools/{id}',[SchoolController::class,'getschool']);
 
 Route::get('/workshops',[WorkShopController::class,'getworkShops']);
 Route::get('/workshop/{id}',[WorkShopController::class,'getWorkShopById']);
@@ -56,32 +50,38 @@ Route::get('/user/{id}',[UserController::class,'getUser']);
 Route::put('/user/{id}',[UserController::class,'saveChange']);
 
 // school_user
-Route::get('/getSchoolUser',[SchoolUserController::class,'getSchoolUser']);
+Route::get('/getSchoolUser/{id}',[SchoolUserController::class,'getSchoolUser']);
 Route::put('/acceptStudent/{id}',[SchoolUserController::class,'studentAccept']);
 // Route::get('/acceptStudent/{id}',[SchoolUserController::class,'studentAccept']);
 Route::delete('/studentReject/{id}',[SchoolUserController::class,'studentReject']);
 
 
 Route::get('/schools',[SchoolController::class,'getschools']);
+Route::get('/schools/{id}',[SchoolController::class,'getschool']);
 Route::get('/schools/address/{name}',[SchoolController::class,'search']);
-
 Route::post('/schools',[SchoolController::class,'createSchool']);
 Route::put('/schools/{id}',[SchoolController::class,'editeSchool']);
 Route::delete('/schools/{id}',[SchoolController::class,'deleteSchool']);
 
 // scholarship rounte
-Route::get('/scholarships',[ScholarshipController::class,'scholarships']);
-Route::get('/scholarships/{id}',[ScholarshipController::class,'scholarship']);
+Route::get('/scholarships',[ScholarshipController::class,'getAllscholarships']);
+Route::get('/scholarships/{school_id}',[ScholarshipController::class,'scholarships']);
+Route::get('/scholarships/edit/{id}',[ScholarshipController::class,'scholarship']);
 Route::delete('/scholarships/{id}',[ScholarshipController::class,'destroy']);
 Route::post('/addScholarships',[ScholarshipController::class,'store']);
 Route::put('/editScholarships/{id}',[ScholarshipController::class,'editScholarship']);
 
-// Skill route
+// major route
 Route::get('/majors',[SkillController::class,'getSkills']);
+Route::get('/majors/school/{id}',[SkillController::class,'SkillsInSchool']);
 Route::get('/majors/{id}',[SkillController::class,'getSkillById']);
 Route::post('/majors',[SkillController::class,'store']);
 Route::put('/majors/{id}',[SkillController::class,'editeSkill']);
 Route::delete('/majors/{id}',[SkillController::class,'deleteSkill']);
+
+
+// major with school
+Route::post("/schoolMajor",[SchoolSkillController::class,'store']);
 
 // Admin side --------------------------------
 Route::get('/users', [AdminController::class, 'index']);
@@ -110,6 +110,7 @@ Route::get('/addresses', [AddressController::class, 'index']);
 
 // Major route
 Route::get('/workshops',[WorkShopController::class,'getWorkShops']);
+Route::get('workshops/school/{id}',[WorkShopController::class,'getworkShopsInSchool']);
 Route::get('/workshops/{id}',[WorkShopController::class,'getWorkShopById']);
 Route::post('/workshops',[WorkShopController::class,'createWorkshop']);
 Route::put('/workshops/{id}',[WorkShopController::class,'editeWorkShop']);
@@ -139,4 +140,6 @@ Route::get('/getSchoolIdByName/{name}',[SchoolController::class,'getSchoolIdByNa
 Route::post('/apply',[SchoolUserController::class,'store']);
 
 
-
+// create address
+Route::post('/address',[AddressController::class,'store']);
+Route::get('/getTypeId/{name}',[SchoolTypeController::class,'getIdTypeOfSchool']);

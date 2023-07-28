@@ -20,10 +20,11 @@ class ShowSchoolResource extends JsonResource
             'name' => $this->name,
             'image' => $this->media->file_url ?? null,
             'address' => $this->address->link,
+            'description'=>$this->description,
             'type' => $this->type->name,
             'skills' => SkillResource::collection($this->skills),
             'workshops' => $this->workshops,
-            'scholarship' => ShowScholarshipResource::collection($this->scholarship)
+            'scholarship' => ScholarshipResource::collection($this->scholarship)
         ];
     }
 }

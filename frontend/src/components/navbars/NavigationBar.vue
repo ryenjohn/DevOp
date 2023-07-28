@@ -15,7 +15,7 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  background-color: blueviolet;
+  background-color: #634b7a;
   padding: 10px;
 }
 

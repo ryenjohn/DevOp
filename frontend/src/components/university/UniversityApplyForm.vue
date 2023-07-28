@@ -32,17 +32,10 @@
             variant="outlined"
             @click:append-inner="visible = !visible"
             v-model="study_level"
-            :error-messages="
-              v$.education_level.$errors.map((e) =>
-                e.$params.custom
-                  ? e.$params.custom.message
-                  : 'Enter your education level'
-              )
-            "
+            required
             @input="v$.education_level.$touch"
             @blur="v$.education_level.$touch"
           ></v-select>
-
           <!-- select year -->
           <v-select
             label="Choose year"
@@ -56,13 +49,7 @@
             variant="outlined"
             @click:append-inner="visible = !visible"
             v-model="year"
-            :error-messages="
-              v$.year.$errors.map((e) =>
-                e.$params.custom
-                  ? e.$params.custom.message
-                  : 'Enter your education level'
-              )
-            "
+            required
             @input="v$.year.$touch"
             @blur="v$.year.$touch"
           ></v-select>
@@ -83,13 +70,16 @@
                 <v-btn class="btnone"
                   color="purple-darken-1"
                   variant="text"
-                  @click="dialog = false; clear()">
+                  @click=" cancel" >
                   Cancel
                   </v-btn>
             </div>
             <div class="btn">
-              <div class="btn" v-if="v$.$invalid">
+              <div class="btn" v-if="skill_id!='' && year!='' && study_level!=''">
                 <v-btn class="me-4" @click="apply">Apply</v-btn>
+              </div>
+              <div class="btn" v-else>
+                <v-btn class="me-4" >Apply</v-btn>
               </div>
         
             </div>
@@ -106,7 +96,7 @@
         selected: '',
         majors:'',
         skill_id:'',
-        school_id: 3,
+        school_id: '',
         user_id:'',
         year:'',
         study_level:'',
@@ -114,9 +104,15 @@
     },
     methods:{
       getMajor(){
-        axios.get(`${ process.env.VUE_APP_API_URL}majors`).then((res)=>{
+        axios.get(`${process.env.VUE_APP_API_URL}majors`).then((res)=>{
         this.majors = res.data.data
         })
+      },
+      cancel(){
+        this.skill_id='',
+        this.study_level="",
+        this.year=''
+        this.$router.push("/")
       },
       apply(){
         const userData = Cookies.get('userData');
@@ -126,15 +122,14 @@
           const newApply = {
             user_id: this.user_id,
             skill_id: this.skill_id,
-            school_id: this.school_id,
+            school_id:this.$route.params.school_id,
             year: this.year,
-            study_level:this.study_level
+            study_level:this.study_level,
           }
-          
+          console.log(newApply)
          axios.post(`${process.env.VUE_APP_API_URL}apply`, newApply)
          .then(()=>{
           this.$router.push("/")
-          console.log(newApply)
          })
         }
       }
@@ -176,12 +171,7 @@ const rules = {
 
 // Clear validation when input correct
 const v$ = useVuelidate(rules, state);
-function clear() {
-  for (const [key, value] of Object.entries(initialState)) {
-    state[key] = value;
-  }
-  v$.value.$reset();
-}
+
 
 </script>
 

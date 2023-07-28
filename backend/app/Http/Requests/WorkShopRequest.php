@@ -29,7 +29,6 @@ class WorkShopRequest extends FormRequest
         return [
             'name' => 'required',
             'image' => 'required',
-            'address_id' => 'required',
             'school_id' => 'required',
             'description' => 'required',
             'start_date' => 'required|date',

@@ -7,24 +7,18 @@ import sendMail from '../components/authentication/sendEmail.vue'
 import resetPassword from '../components/authentication/resetPassword.vue'
 import universityManager from '../components/authentication/registerUniversityManager.vue'
 
-import AddWorkshop from '../components/workshop/workShop.vue'
+
 import AddScholarship from '../components/scholarship/AddScholarship.vue'
 import ListScholarship from '../components/scholarship/ListScholarship.vue'
-import EditScholarship from '../components/scholarship/EditScholarship.vue'
-
-import UpdateWorkshop from '../components/workshop/workShopUpdate.vue'
 
 import About from '../views/AboutView.vue'
 import Contact from '../views/ContactView.vue'
 import PaymentForm from '../components/payment/PaymentForm.vue'
 import PaymentByCard from '../components/payment/PaymentByCard.vue'
-
 import InvoiceTicket from '../components/payment/InvoiceTicket.vue'
 
 
-
-import MajorForm from '../components/major/majorForm.vue'
-
+// import MajorForm from '../components/major/majorForm.vue'
 import Home from '../views/HomeView.vue'
 import Detail from '../views/DetailView.vue'
 import Admin from '../views/AdminView.vue'
@@ -35,7 +29,7 @@ import RegisterAccountPopUp from '../components/workshop/RegisterAccountPopUp.vu
 import UniversityApplyForm from '../components/university/UniversityApplyForm.vue'
 
 import University from '../views/UniversityAdminView.vue'
-
+import NotFound from '../views/NotFound.vue'
 
 const routes = [
   {
@@ -60,11 +54,11 @@ const routes = [
     name: 'about',
     component: About
   },
-  {
-    path: '/addMajor',
-    name: 'addMajor',
-    component: MajorForm
-  },
+  // {
+  //   path: '/addMajor',
+  //   name: 'addMajor',
+  //   component: MajorForm
+  // },
   {
     path: '/contact',
     name: 'contact',
@@ -88,7 +82,7 @@ const routes = [
   },
   {
 
-  path: '/apply',
+  path: '/apply/:school_id',
   name: 'apply',
   component: UniversityApplyForm
   },
@@ -114,11 +108,6 @@ const routes = [
     component: universityManager
   },
   {
-    path: '/addWorkshop',
-    name: 'addWorkshop',
-    component: AddWorkshop
-  },
-  {
     path: '/addScholarship',
     name: 'addScholarship',
     component: AddScholarship
@@ -127,16 +116,6 @@ const routes = [
     path: '/listScholarship',
     name: 'listScholarship',
     component: ListScholarship
-  },
-  {
-    path: '/scholarships/:id',
-    name: 'scholarships',
-    component: EditScholarship
-  },
-  {
-    path: '/updateWorkshop',
-    name: 'updateWorkshop',
-    component: UpdateWorkshop
   },
   {
     path: '/payment',
@@ -154,14 +133,15 @@ const routes = [
     component: InvoiceTicket
   },
   {
-    path: '/addWorkshop',
-    name: 'addWorkshop',
-    component: AddWorkshop
+    path: '/404notfound',
+    name: 'notfound',
+    component: NotFound
   }
 
 ]
 
 const router = createRouter({
+  mode: 'history',
   history: createWebHistory(process.env.BASE_URL),
   routes
 })

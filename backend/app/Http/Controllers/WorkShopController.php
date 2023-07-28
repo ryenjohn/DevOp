@@ -11,9 +11,19 @@ class WorkShopController extends Controller
 {
     public function getworkShops()
     {
-        $workShops = workShop::all();
+        $workShops = workShop::orderBy('id', 'DESC')->get();
+
         $workShops = ShowWorkShopResource::collection($workShops);
         return response()->json(['success' => true, 'data' => $workShops], 200);
+    }
+    public function getworkShopsInSchool($id)
+    {
+        $workShops = workShop::where('school_id','=',$id)->orderBy('id', 'DESC')->get();
+        if($workShops!=null){
+            $workShops = ShowWorkShopResource::collection($workShops);
+            return response()->json(['success' => true, 'data' => $workShops], 200);
+        }
+        return response()->json(['success' => true, 'message' => "No data!"], 200);
     }
 
     public function getWorkShopById(string $id)

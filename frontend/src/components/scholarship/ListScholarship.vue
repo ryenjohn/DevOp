@@ -29,8 +29,7 @@
         <tr
           v-for="(data, index) in dataScholarships"
           :key="index"
-          class="text-center"
-        >
+          class="text-center" >
           <td>{{ index + 1 }}</td>
           <td>{{ data.name }}</td>
           <td>{{ data.post_date }}</td>
@@ -51,7 +50,7 @@
             <span
               class="mdi mdi-delete"
               @click="deleteScholarship(data.id)"
-              style="color: rgb(249, 7, 7); font-size: 20px; cursor: pointer"
+              style="color: rgb(249, 7, 7); font-size: 20px; margin-left:10px; cursor: pointer"
             ></span>
           </td>
         </tr>
@@ -64,6 +63,7 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 export default {
+  props:["school_id"],
   data() {
     return {
       dataScholarships: [],
@@ -72,9 +72,8 @@ export default {
   methods: {
     fetchScholarship() {
      
-      axios.get(`${process.env.VUE_APP_API_URL}scholarships`).then((res) => {
+      axios.get(`${process.env.VUE_APP_API_URL}scholarships/${this.school_id}`).then((res) => {
         this.dataScholarships = res.data.data;
-        
       });
     },
     showEdit(id) {
@@ -95,6 +94,7 @@ export default {
         confirmButtonText: "Yes, delete it!",
         reverseButtons: true, // add this option
       }).then((result) => {
+        
         if (result.isConfirmed) {
           axios
             .delete(`${process.env.VUE_APP_API_URL}scholarships/${id}`)
@@ -106,8 +106,7 @@ export default {
       });
     },
   },
-  mounted() {
-   
+  mounted() { 
     this.fetchScholarship();
   },
 };
@@ -134,7 +133,7 @@ body {
 th {
   font-size: 12px;
   font-weight: 600;
-  background-color: blueviolet;
+  background-color: #634b7a;
   border-bottom: 2px solid #e0e0e0;
   padding: 12px;
   text-align: center;
@@ -164,6 +163,6 @@ td {
   margin-bottom: 10px;
   color: white;
   text-decoration: none;
-  background: blueviolet;
+  background: #634b7a;
 }
 </style>

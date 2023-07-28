@@ -30,7 +30,9 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $address = Address::address($request);
+        // dd($address);
+        return response()->json(['success' =>"create address successfully", 'data' => $address],200);
     }
 
     /**

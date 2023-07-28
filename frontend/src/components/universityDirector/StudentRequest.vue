@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <h1>Student Request </h1>
+        <h3 v-if="users==null || users==''">Does't have student request for study yet !</h3>
         <div class="student-card" >
             <div class="card" v-for="(user,index) in users" :key="index"  :user="user">
                 <div class="card-left">
@@ -38,9 +39,6 @@
                                     </div>
                                     <h4>{{user.user_id.email}}</h4>
                                     <p>{{user.user_id.phone}}</p>
-                                    
-                                    <!-- <p>Address: {{user.user_id.address.name}} </p>
-                                    <p>street: {{user.user_id.address.street}}</p> -->
                                 </v-container>
                             </v-card-text>
                             <v-card-actions>
@@ -76,47 +74,75 @@
   
 </template>
 
-
-
 <script>
 import axios from 'axios'
+import Swal from "sweetalert2";
 
 export default{
+    props:["school_id"],
     data(){
         return{
             email: '',
             errors: null,
             users:[],
             dialog: false,
+            // universityDirectorName: null,
+            universityDirectorId: '',
+
         }
     },
     methods:{
-        
+
+
         getUser() {
-            axios.get(`${ process.env.VUE_APP_API_URL}getSchoolUser`)
+            axios.get(`${ process.env.VUE_APP_API_URL}getSchoolUser/${this.school_id}`)
             .then((response)=>{
                 this.users = response.data.data
                 console.log(response.data.data)
-
             })
         },
+        
         isAccept(id) {
-            console.log(id)
-            axios.put(`${process.env.VUE_APP_API_URL}acceptStudent/`+id)
-            .then((response)=>{
-                console.log(response.data.data);
-                location.reload();
-
-            })
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#634b7a",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Accept!",
+                reverseButtons: true, // add this option
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.put(`${process.env.VUE_APP_API_URL}acceptStudent/`+id)
+                    .then(()=>{
+                        this.$router.push("/university");
+                        location.reload();
+                    })
+                }
+            });
         },
 
         isReject(id) {
-            console.log(id)
-            axios.delete(`${process.env.VUE_APP_API_URL}studentReject/`+id)
-            .then((response)=>{
-                console.log(response.data.data);
-                location.reload();
-            })
+             Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#634b7a",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Reject!",
+                reverseButtons: true, // add this option
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete(`${process.env.VUE_APP_API_URL}studentReject/`+id)
+                    .then((response)=>{
+                        console.log(response.data.data);
+                        this.$router.push("/university");
+                        location.reload();
+                    })
+                }
+            });
         }
     },
 
@@ -125,10 +151,6 @@ export default{
     }
 }
 </script>
-
-
-
-
 <style scoped>
 .container{
     display: flex;
@@ -152,19 +174,21 @@ export default{
     gap: 20px;
 }
 h1{
-    margin-left: 20%;
+    margin-left: 15%;
     margin-bottom: 3%;
 }
+h3{
+    margin: auto;
+}
 .card{
-    width: 75%;
-    background:#ebeaea;
-    margin-left: 20%;
+    width: 84%;
+    background:#dbdbdb;
+    box-shadow: rgb(38, 57, 77)0px 20px 20px -20px;
+    margin-left: 15%;
     display: flex;
     justify-content: space-between;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
-
+    padding: 5px 20px;
+    border-radius: 5px;
 }
 .card-left{
     display: flex;

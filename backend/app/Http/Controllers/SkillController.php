@@ -7,10 +7,13 @@ use App\Http\Resources\SchoolResource;
 use App\Http\Resources\ShowSkillResource;
 use App\Http\Resources\SkillNameResource;
 use App\Http\Resources\SkillResource;
+use App\Http\Resources\SkillSchoolResource;
 use App\Http\Resources\SubjectResource;
 use App\Models\School;
+use App\Models\SchoolSkill;
 use App\Models\Skill;
 use App\Models\Subject;
+use Database\Seeders\SchoolSkillSeeder;
 use Illuminate\Http\Request;
 
 class SkillController extends Controller
@@ -20,6 +23,16 @@ class SkillController extends Controller
         $skills = Skill::all();
         $skills = ShowSkillResource::collection($skills);
         return response()->json(['success' => true, 'data' => $skills], 200);
+    }
+    public function SkillsInSchool(string $id)
+    {
+        $schoolSkills = Skill::whereHas('schools', function ($query) use ($id) {
+            $query->where('school_id', $id);})->orderBy('id', 'DESC')->get();
+            if ($schoolSkills->count() === 0) {
+                return response()->json(['message' => 'Skill id not found'], 404);
+            }
+        $schoolSkills = SkillResource::collection($schoolSkills);
+        return response()->json(['success' => true, 'data' => $schoolSkills], 200);
     }
 
     public function getSkillById(string $id)
@@ -34,7 +47,7 @@ class SkillController extends Controller
 
     public function getSubjects()
     {
-        $skills = Subject::all();
+        $skills = Subject::orderBy('id', 'DESC')->get();
         $skills = SubjectResource::collection($skills);
         return response()->json(['success' => true, 'data' => $skills], 200);
     }

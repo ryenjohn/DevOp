@@ -17,8 +17,7 @@ class WorkshopResource extends JsonResource
         return [
             'id'=>$this->id,
             'name'=>$this->name,
-            'img'=>$this->img,
-            // 'address'=>AddressResource::collection($this->address),
+            'image' => $this->media->file_url ?? null,
             'address'=>AddressResource::collection($this->address),
             'description'=>$this->description,
             'start_date'=>$this->description,

@@ -12,14 +12,22 @@
           contain
         ></v-img>
       </template>
-      <v-list class="menu-list" style="width: 100%;  background-color: blueviolet">
+      <v-list class="menu-list" style="width: 100%;  background-color: #634b7a">
           <div class="icon-item">
             <v-icon class="logout-icon text-white me-2" size="20">mdi-account</v-icon>
             <div class="username">{{ userName }}</div>
           </div>
           <div class="icon-item">
             <v-icon class="logout-icon text-white me-2" size="20" @click="submitLogOut" >mdi-logout</v-icon>
-            <div class="icon-log-out">log out</div>
+            <div class="icon-log-out" @click="submitLogOut">log out</div>
+          </div>
+          <div class="icon-item" v-if="role_id===2">
+            <v-icon class="logout-icon text-white me-2" size="20"  @click="university">mdi-domain</v-icon>
+            <div class="icon-log-out" @click="university">University Page</div>
+          </div>
+          <div class="icon-item" v-if="role_id===3">
+            <v-icon class="logout-icon text-white me-2" size="20"  @click="admin">mdi-domain</v-icon>
+            <div class="icon-log-out" @click="admin">Admin Page</div>
           </div>
       </v-list>
     </v-menu>
@@ -32,7 +40,7 @@ import Cookies from 'js-cookie';
 export default {
   name: "UserMenu",
   emits: ["submitLogOut"],
-  props: ["showMenu", "userName"],
+  props: ["showMenu", "userName",'role_id'],
   data() {
     return {
      
@@ -51,11 +59,19 @@ export default {
           .catch(() => {
             Cookies.remove("userData");
             delete axios.defaults.headers.common["Authorization"];
-            this.$router.push("/logIn");
+             location.reload();
           });
       }
     },
+    university(){
+       this.$router.push("/university");
+    },
+    admin(){
+       this.$router.push("/admin");
+    }
+    
   },
+
 };
 </script>
 
