@@ -27,7 +27,7 @@
                         Apply
                       </v-btn>
 
-                      <v-btn color="orange"  :to="{name: 'detail', params: { id: data.id,dataname:dataname}}"  >
+                      <v-btn color="orange" @click="showDetail(data.id)" >
                         Detail
                       </v-btn>
                       <v-btn color="orange"  v-if='dataname=="schools"' to="/payment"  >
@@ -44,6 +44,12 @@
 <script>
 export default {
   props: { datas: Array, dataname: String },
+  methods:{
+    showDetail($id){
+      this.$router.push('/detail/'+this.dataname+'/'+$id)
+      location.reload()
+    }
+  }
 };
 </script>
 <style>
