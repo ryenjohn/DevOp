@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <h1>Student Request </h1>
+        <h3 v-if="users==null || users==''">Does't have student request for study yet !</h3>
         <div class="student-card" >
             <div class="card" v-for="(user,index) in users" :key="index"  :user="user">
                 <div class="card-left">
@@ -77,6 +78,7 @@
 import axios from 'axios'
 
 export default{
+    props:["school_id"],
     data(){
         return{
             email: '',
@@ -87,7 +89,7 @@ export default{
     },
     methods:{
         getUser() {
-            axios.get(`${ process.env.VUE_APP_API_URL}getSchoolUser`)
+            axios.get(`${ process.env.VUE_APP_API_URL}getSchoolUser/${this.school_id}`)
             .then((response)=>{
                 this.users = response.data.data
                 console.log(response.data.data)
@@ -139,6 +141,9 @@ export default{
 h1{
     margin-left: 20%;
     margin-bottom: 3%;
+}
+h3{
+    margin: auto;
 }
 .card{
     width: 75%;

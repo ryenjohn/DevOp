@@ -1,6 +1,6 @@
 <template>
     <side-bar class="side-bar" @show="show"></side-bar>
-    <student-request v-if="content=='student'" @show="show"></student-request>
+    <student-request v-if="content=='student'" :school_id="school_id" @show="show"></student-request>
     <list-scholarship v-if="content=='scholarship'" @edit="edit" :school_id="school_id" @add="add"></list-scholarship>
     <add-scholarship v-if="addScholarship" @show="show" :school_id="school_id"> </add-scholarship>
     <edit-scholarship v-if="editScholarship" :editID="editID" :school_id="school_id" @show="show"></edit-scholarship>
@@ -9,12 +9,13 @@
     <add-workshop v-if="addWorkshop" @show="show" :school_id="school_id"></add-workshop>
     <edit-workshop v-if="editWorkshop" :workshopId="workshopId" :school_id="school_id"  @show="show"></edit-workshop>
 
-    <list-major v-if="content=='major'" :school_id="school_id" @createMajor="createMajor"></list-major>
-    <add-major v-if="addMajor" @show="show" :school_id="school_id"></add-major>
+    <list-major v-if="content=='major'" :dataMajors="dataMajors"  @show="show"></list-major>
+    <add-major v-if="content=='addMajor'" @show="show" :school_id="school_id" ></add-major>
 </template>
 
 <script>
 import Cookies from 'js-cookie';
+import axios from "axios";
 export default {
     data(){
         return{
@@ -22,12 +23,12 @@ export default {
             addScholarship:false,
             addWorkshop:false,
             editWorkshop: false,
-            addMajor: false,
             studentRequest: false,
             content:'',
             editID:'',
             workshopId: '',
-            school_id:''
+            school_id:'',
+            dataMajors:''
         }
     },
     methods:{
@@ -36,8 +37,8 @@ export default {
             this.addScholarship = false
             this.addWorkshop = false
             this.editWorkshop = false
-            this.addMajor = false
             this.content = contentName
+            this.universityData(contentName)
         },
         edit(id){
             this.editScholarship=true
@@ -61,12 +62,6 @@ export default {
             this.content='';
             this.workshopId = id 
         },
-        createMajor(){
-           this.addScholarship = false;
-           this.addWorkshop = false;
-           this.addMajor = true;
-           this.content='';
-        },
         schoolID(){
            
             const userData = Cookies.get('userData');
@@ -74,6 +69,14 @@ export default {
                 const userDataObj = JSON.parse(userData);
                 this.school_id= userDataObj.data.school_id
              }
+        },
+        universityData(contentName){
+            if(contentName=="major"){
+                 axios.get(`${process.env.VUE_APP_API_URL}majors/school/${this.school_id}`)
+                 .then((res) => {
+                    this.dataMajors = res.data.data;
+                });
+            }
         }
        
     },

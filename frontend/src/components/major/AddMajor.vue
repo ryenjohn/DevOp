@@ -50,6 +50,7 @@
 import Swal from 'sweetalert2'
 import axios from "axios";
 export default {
+  props:["school_id"],
   data() {
     return {
       image: null,
@@ -89,15 +90,32 @@ export default {
 
         axios
           .post(`${process.env.VUE_APP_API_URL}majors`, newMajor)
-          .then(() => {
+          .then((res) => {
+            this.addSchoolSkill(res.data.data.id)
             this.alertMessage();
-            this.$router.push("/university");
-            return this.$emit("show", "major");
+           
           })
           .catch((error) => {
             console.error(error);
           });
       }
+
+    },
+
+    addSchoolSkill($skill_id){
+       axios
+          .post(`${process.env.VUE_APP_API_URL}schoolMajor`, {
+            "school_id":this.school_id,
+            "skill_id":$skill_id,
+          })
+          .then((res) => {
+            console.log(res)
+             return this.$emit("show", "major");
+          
+          })
+          .catch((error) => {
+            console.error(error);
+          });
     },
 
     fechSubject() {
@@ -117,7 +135,7 @@ export default {
 
       if (file) {
         const reader = new FileReader();
-        console.log(reader);
+        // console.log(reader);
         reader.onload = () => {
           // Convert the image to base64 encoding
           const base64Image = reader.result;
@@ -138,6 +156,7 @@ export default {
       return this.$emit("show", "major");
     },
     alertMessage(){
+     
       Swal.fire({
         position: 'top-center',
         icon: 'success',

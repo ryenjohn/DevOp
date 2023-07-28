@@ -1,6 +1,6 @@
 <template>
   <div class="tablecontainer">
-    <v-btn class="add" @click="createMajor"> Add major </v-btn>
+    <v-btn class="add" @click="actoin('add')" > Add major </v-btn>
     <v-table class="my-table">
       <thead>
         <tr>
@@ -52,19 +52,19 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 export default {
-  data() {
-    return {
-      dataMajors: [],
-    };
+  props:["dataMajors"],
+  data(){
+      return{
+       
+      }
   },
   methods: {
-    fetchScholarship() {
-      axios.get(`${process.env.VUE_APP_API_URL}majors`).then((res) => {
-        this.dataMajors = res.data.data;
-      });
-    },
-    createMajor() {
-      return this.$emit("createMajor");
+    actoin(name) {
+      if(name=='add'){
+        return this.$emit("show", "addMajor");
+      }else if(name=='delete'){
+        return  this.$emit("show", "major");
+      }
     },
     deleteScholarship(id) {
       // https://sweetalert2.github.io/#download
@@ -82,15 +82,12 @@ export default {
           axios
             .delete(`${process.env.VUE_APP_API_URL}majors/${id}`)
             .then(() => {
+              this.actoin('delete')
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
-              this.fetchScholarship();
             });
         }
       });
     },
-  },
-  mounted() {
-    this.fetchScholarship();
   },
 };
 </script>

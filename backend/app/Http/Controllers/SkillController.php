@@ -26,11 +26,13 @@ class SkillController extends Controller
     }
     public function SkillsInSchool(string $id)
     {
-        // where('school_id','=',$id)->get()
-        // with('school')->where('school_id', $id)
-        $skills = Skill::all();
-        $skills =  ShowSkillResource::collection($skills);
-        return response()->json(['success' => true, 'data' => $skills], 200);
+        $schoolSkills = Skill::whereHas('schools', function ($query) use ($id) {
+            $query->where('school_id', $id);})->orderBy('id', 'DESC')->get();
+            if ($schoolSkills->count() === 0) {
+                return response()->json(['message' => 'Skill id not found'], 404);
+            }
+        $schoolSkills = SkillResource::collection($schoolSkills);
+        return response()->json(['success' => true, 'data' => $schoolSkills], 200);
     }
 
     public function getSkillById(string $id)
