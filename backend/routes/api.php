@@ -40,15 +40,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-// Route::get('/majors/{id}',[SkillController::class,'MajorDetail']);
-
-
 // User side -----------------------------------------
 Route::post('/users',[UserController::class, 'store']);
-
-
-
 
 Route::get('/workshops',[WorkShopController::class,'getworkShops']);
 Route::get('/workshop/{id}',[WorkShopController::class,'getWorkShopById']);
@@ -83,6 +76,7 @@ Route::get('/majors/{id}',[SkillController::class,'getSkillById']);
 Route::post('/majors',[SkillController::class,'store']);
 Route::put('/majors/{id}',[SkillController::class,'editeSkill']);
 Route::delete('/majors/{id}',[SkillController::class,'deleteSkill']);
+
 
 // Admin side --------------------------------
 Route::get('/users', [AdminController::class, 'index']);

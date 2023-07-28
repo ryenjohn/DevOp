@@ -10,7 +10,7 @@
       return {
         items: [
           {
-            src: require ('@/assets/images/banner.jpg'),
+            src: require ('@/assets/images/banner5.jpg'),
           },
           {
             src: require ('@/assets/images/banner2.jpg')
