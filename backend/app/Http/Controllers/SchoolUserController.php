@@ -19,7 +19,7 @@ class SchoolUserController extends Controller
 
 
     public function getSchoolUser(Request $request,$id){
-        $schoolUsers = SchoolUser::where('accept', false)->where('school_id',$id)->get();
+        $schoolUsers = SchoolUser::where('accept', false)->where('school_id',$id)->orderBy('id', 'DESC')->get();
         $schoolUsers = SchoolUserResource::collection($schoolUsers);
         return response()->json(['success'=>"request successfully", 'data'=>$schoolUsers],200);
     }

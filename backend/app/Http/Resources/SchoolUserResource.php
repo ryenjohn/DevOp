@@ -19,6 +19,10 @@ class SchoolUserResource extends JsonResource
         return [
             'id'=>$this->id,
             'user_id'=> new UserResource($this->user),
+            // 'skill_id'=>new SkillSchoolResource($this->skill_id),
+            'skill_id'=> $this->skill_id,
+            'study_level'=> $this->study_level,
+            'year'=>$this->year,
             'school_id'=>$this->school_id,
             'accept'=>$this->accept,
         ];
