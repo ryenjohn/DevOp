@@ -8,7 +8,7 @@
             class="align-end text-white"
             height="400"
             width="100%"
-            :src="data.img"
+            :src="data.image"
             cover
             >
             </v-img>
@@ -31,7 +31,6 @@
     <content-list   :datas="listSchool" :dataname='"schools"'></content-list>
     <scholarship-workshop-card  :datas="listWorkshop" :dataname='"workshops"'></scholarship-workshop-card>
     <scholarship-workshop-card  :datas="listScholarship" :dataname='"scholarships"'></scholarship-workshop-card>
-    <map-show v-if="dataname=='schools'" :address='data.address' ></map-show>
 </template>
 
 <script>

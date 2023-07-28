@@ -29,13 +29,7 @@
             variant="outlined"
           ></v-file-input>
 
-          <v-textarea
-            v-model="description"
-            label="Description"
-            variant="outlined"
-            color="#634B7A"
-            placeholder="Enter your description"
-          ></v-textarea>
+        
         </div>
         <div class="left-input">
           <v-text-field
@@ -64,17 +58,15 @@
             color="#634B7A"
             placeholder="Enter your time"
           ></v-text-field>
-          <v-select
-            v-model="address"
-            :items="addresses"
-            label="Address"
-            :rules="addressRules"
-            variant="outlined"
-            color="#634B7A"
-            placeholder="Enter your address"
-          ></v-select>
         </div>
       </div>
+        <v-textarea
+            v-model="description"
+            label="Description"
+            variant="outlined"
+            color="#634B7A"
+            placeholder="Enter your description"
+          ></v-textarea>
       <div class="btn">
         <v-btn type="button" @click="cancelEdit" class="text-white cancel-btn"
           >Cancel</v-btn
@@ -103,12 +95,9 @@ export default {
       number: null,
       startDate: null,
       endDate: null,
-      address: null,
       time: null,
       getSchools: null,
-      getAddresses: null,
       schools: [],
-      addresses: [],
       timeRules: [(v) => !!v || "Time is required"],
       nameRules: [
         (v) => !!v || "Name is required",
@@ -131,25 +120,9 @@ export default {
           v >= this.startDate || "End date must be greater than start date",
       ],
       schoolRules: [(v) => !!v || "School is required"],
-      addressRules: [(v) => !!v || "Address is required"],
     };
   },
   methods: {
-
-    // get data of address to show in select
-    fetchAddresses() {
-      axios
-        .get(`${process.env.VUE_APP_API_URL}addresses`)
-        .then((response) => {
-          this.getAddresses = response.data.data;
-          this.getAddresses.forEach((item) => {
-            this.addresses.push(item.name);
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
 
     onFileChange(event) {
       // Retrieve the selected image file
@@ -171,14 +144,12 @@ export default {
         .get(`${process.env.VUE_APP_API_URL}workshops/${workshopId}`)
         .then((response) => {
           const workshop = response.data.data;
-          console.log(workshop.image)
           this.name = workshop.name;
           this.time = workshop.time;
           this.startDate = workshop.start_date;
           this.endDate = workshop.expired_date;
           this.description = workshop.description;
           this.number = workshop.user_number;
-          this.address = workshop.address.name;
           this.image = workshop.image;
         })
         .catch((error) => {
@@ -196,7 +167,6 @@ export default {
       let editedWorkshop = {
         name: this.name,
         image: this.image,
-        address_id: this.addressId(),
         school_id: this.school_id,
         description: this.description,
         user_number: this.number,
@@ -222,16 +192,6 @@ export default {
       }
     },
 
-    // covert name address to id from select
-    addressId() {
-      let id = null;
-      this.getAddresses.forEach((item) => {
-        if (item.name == this.address) {
-          id = item.id;
-        }
-      });
-      return id;
-    },
     alertMessage() {
       Swal.fire({
         position: "top-center",
@@ -244,7 +204,6 @@ export default {
   },
 
   mounted() {
-    this.fetchAddresses();
     this.fetchWorkshopData(this.workshopId);
   },
 };
@@ -294,7 +253,7 @@ h2 {
 
 .left-input {
   width: 50%;
-  margin-top:-10%;
+  /* margin-top:-18%; */
 }
 .cancel-btn {
   margin-right: 10px;

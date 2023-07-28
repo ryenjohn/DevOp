@@ -86,7 +86,10 @@
           color="#634B7A"
         ></v-text-field>
       </div>
+      <div class="btn">
+      <v-btn type="submit" class="back"  to="/">back</v-btn>
       <v-btn type="submit" class="next">Next</v-btn>
+      </div>
     </v-form>
   </div>
 </template>
@@ -202,11 +205,18 @@ h1 {
 }
 
 .next {
-  margin-left: 85%;
+  margin-left: 73%;
   background-color: #634b7a;
   color: #f6eeee;
 }
-
+.back {
+  background-color: orange;
+  color: #f6eeee;
+}
+.btn{
+  display: flex;
+    margin-left: 1.5%;
+}
 .input-field {
   width: 50%;
 }

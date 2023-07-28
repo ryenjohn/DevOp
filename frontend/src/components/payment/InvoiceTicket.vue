@@ -52,6 +52,7 @@ export default {
     getInfo() {
       // Get the value of the "userData" cookie
       const userData = Cookies.get('paymentInfo');
+      console.log(userData)
       // If the "userData" cookie exists, parse it and set the user ID in the component data
       if (userData) {
         const userDataObj = JSON.parse(userData);

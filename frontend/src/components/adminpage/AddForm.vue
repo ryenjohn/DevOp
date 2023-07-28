@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="state.open" persistent width="1024">
+    <v-dialog v-model="state.open" persistent width="800" height=" 580" >
       <template v-slot:activator="{ props }">
         <p class="addbtn" color="primary" v-bind="props">Add New User</p>
       </template>
@@ -8,15 +8,7 @@
         <v-card-title> </v-card-title>
         <v-card-text>
           <v-container>
-            <div class="container">
-              <div class="image">
-                <img
-                  src="../../assets/images/register.png"
-                  style="width: 400px; height: inherit"
-                  alt="Image description"
-                />
-              </div>
-            </div>
+          
             <div class="form-container">
               <form style="height: 500px">
                 <h1>Add Student</h1>
@@ -74,15 +66,7 @@
                   @blur="v$.password.$touch"
                 ></v-text-field>
 
-                <v-checkbox
-                  class="err"
-                  v-model="state.checkbox"
-                  :error-messages="v$.checkbox.$errors.map((e) => e.$message)"
-                  label="Do you agree?"
-                  required
-                  @change="v$.checkbox.$touch"
-                  @blur="v$.checkbox.$touch"
-                ></v-checkbox>
+               
 
                 <div class="select">
                   <select class="role" v-model="state.role_id">
@@ -92,7 +76,15 @@
                   </select>
                   <p>Your role is: {{ state.role_id }}</p>
                 </div>
-
+                 <v-checkbox
+                  class="err"
+                  v-model="state.checkbox"
+                  :error-messages="v$.checkbox.$errors.map((e) => e.$message)"
+                  label="Do you agree?"
+                  required
+                  @change="v$.checkbox.$touch"
+                  @blur="v$.checkbox.$touch"
+                ></v-checkbox>
                 <div class="btn d-flex justify-space-between">
                   <div class="btn">
                     <v-btn
@@ -219,35 +211,25 @@ async function singIn() {
 }
 </script>
 <style scoped>
-img {
-  margin-top: 10%;
-}
-form {
-  margin-top: -25%;
-}
+
 .container {
   display: flex;
-  margin-top: -5%;
-}
-.image {
-  flex: 1;
 }
 
 .btn {
   display: flex;
-  margin-top: 7%;
+  margin-top: 4%;
 }
 .role {
-  border: 5px solid #634b7a;
+  border: 2px solid #634b7a;
   padding: 5px;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 .role option {
   color: #634b7a;
 }
 .select p {
   color: #634b7a;
-  margin-left: -0%;
 }
 .addbtn {
   background-color: #6a4c93;
@@ -285,11 +267,6 @@ label {
 .form-container {
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  margin-right: 60px;
-  margin-top: 40px;
-  margin-bottom: 10px;
-  margin: 60px;
-  flex: 1;
   padding: 35px;
   border-radius: 10px;
 }

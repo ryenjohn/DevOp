@@ -50,16 +50,13 @@
             color="#634B7A"
             placeholder="Enter your end date"
           ></v-text-field>
- 
-        <v-select
-          v-model="address"
-          :items="addresses"
-          label="Address"
-          :rules="addressRules"
-          variant="outlined"
-          color="#634B7A"
-          placeholder="Enter your address"
-        ></v-select>
+
+        <v-file-input
+            @change="onFileChange"
+            label="Image"
+            :rules="imageRules"
+            variant="outlined"
+        ></v-file-input>
         <v-text-field
           v-model="time"
           label="Time"
@@ -71,12 +68,6 @@
           </div>
         </div>
         
-        <v-file-input
-            @change="onFileChange"
-            label="Image"
-            :rules="imageRules"
-            variant="outlined"
-        ></v-file-input>
         <div class="btn">
           <v-btn type="button" class=" text-white cancel-btn" @click="cancelAdd">Cancel</v-btn>
           <v-btn type="submit" @click.prevent="submitForm" class="bg-orange text-white">Create</v-btn>
@@ -100,10 +91,8 @@ export default {
       startDate: null,
       endDate: null,
       school: null,
-      address: null,
       time: null,
       getSchools: null,
-      getAddresses: null,
       schools: [
       ],
       addresses: [
@@ -138,9 +127,6 @@ export default {
       schoolRules: [
         (v) => !!v || "School is required",
       ],
-      addressRules: [
-        (v) => !!v || "Address is required",
-      ],
     };
   },
   methods: {
@@ -151,20 +137,6 @@ export default {
           this.getSchools = response.data.data
           this.getSchools.forEach(item => {
             this.schools.push(item.name);
-          });
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
-
-    // get data of address to show in select
-    fetchAddresses() {
-      axios.get(`${process.env.VUE_APP_API_URL}addresses`)
-        .then(response => {
-          this.getAddresses = response.data.data
-          this.getAddresses.forEach(item => {
-            this.addresses.push(item.name);
           });
         })
         .catch(error => {
@@ -188,11 +160,9 @@ export default {
     },
 
     submitForm() {
-
       let newWorkshop = {
         name: this.name,
         image: this.image,
-        address_id: this.addressId(),
         school_id: this.school_id,
         description: this.description,
         user_number: this.number,
@@ -222,26 +192,11 @@ export default {
         timer: 2000
       })
     },
-
-    // covert name address to id from select
-    addressId() {
-      let id = null;
-      this.getAddresses.forEach(item => {
-        if (item.name == this.address) {
-          id = item.id;
-        }
-      });
-      return id;
-    },
     cancelAdd(){
       this.$router.push("/university");
       return this.$emit("show", "workshop");
     }
   },
-
-  mounted() {
-    this.fetchAddresses();
-  }
 };
 </script>
 <style scoped>
@@ -256,7 +211,7 @@ h2 {
   margin-left: auto;
   margin-right: 10px;
   margin-bottom: 10px;
-  margin-top: -10%;
+  margin-top: 3%;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
   padding: 25px;
 }

@@ -229,6 +229,9 @@ h1 {
   color: #f6eeee;
   background-color: #634b7a;
 }
+.concel {
+    background-color: orange;
+}
 .edit-concel {
   display: flex;
   margin-left: 77%;

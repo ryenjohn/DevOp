@@ -79,7 +79,7 @@ export default {
     h1{
         text-align: center;
         margin-left: 200px;
-        margin-top: 100px;
+        margin-top: 60px;
     }
     .add-btn{
       background-color: rgb(124, 49, 196);
