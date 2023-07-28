@@ -12,7 +12,7 @@
                     <v-img
                       class="align-end text-white"
                       height="200"
-                      :src="data.img"
+                      :src="data.image"
                       cover
                     >
                       <v-card-title>{{data.name}}</v-card-title>

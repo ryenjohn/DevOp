@@ -68,7 +68,8 @@ export default {
             const userData = Cookies.get('userData');
             if (userData) {
                 const userDataObj = JSON.parse(userData);
-                this.school_id= userDataObj.data.school_id
+                this.school_id= userDataObj.data.school_id;
+              
              }
         },
         universityData(contentName){

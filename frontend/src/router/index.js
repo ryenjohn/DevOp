@@ -107,11 +107,6 @@ const routes = [
     name: 'registerAdmin',
     component: universityManager
   },
-  // {
-  //   path: '/addWorkshop',
-  //   name: 'addWorkshop',
-  //   component: AddWorkshop
-  // },
   {
     path: '/addScholarship',
     name: 'addScholarship',
@@ -122,16 +117,6 @@ const routes = [
     name: 'listScholarship',
     component: ListScholarship
   },
-  // {
-  //   path: '/scholarships/:id',
-  //   name: 'scholarships',
-  //   component: EditScholarship
-  // },
-  // {
-  //   path: '/updateWorkshop',
-  //   name: 'updateWorkshop',
-  //   component: UpdateWorkshop
-  // },
   {
     path: '/payment',
     name: 'payment',
@@ -147,11 +132,6 @@ const routes = [
     name: 'invoice',
     component: InvoiceTicket
   },
-  // {
-  //   path: '/addWorkshop',
-  //   name: 'addWorkshop',
-  //   component: Addworkshop
-  // },
   {
     path: '/404notfound',
     name: 'notfound',

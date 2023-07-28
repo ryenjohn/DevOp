@@ -134,7 +134,7 @@ app.component('list-major', ListMajor);
 app.component('add-major', AddMajor);
 
 // university admin view
-import StudentRequest from './components/universityDirector/StudentRequest.vue'
+import StudentRequest from './components/universitydirector/StudentRequest.vue'
 app.component('student-request', StudentRequest);
 
 

@@ -195,6 +195,7 @@
 
 <script>
 import axios from 'axios'
+ import Cookies from "js-cookie";
 export default {
     data() {
         return {
@@ -248,7 +249,7 @@ export default {
             ],
             PasswordRules: [
                 value => !!value || 'password is required',
-                value => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}|:"<>?~`]).{8,}$/i.test(value)|| 'password is required',
+                value => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}|:"<>?~`]).{8,}$/.test(value) || 'Value required and should contain uppercase, lowercase, number, sign and more than 8 characters',
             ],
             imageRules: [
                 value => !!value || 'image is required',
@@ -321,9 +322,9 @@ export default {
 
                 axios.post(`${ process.env.VUE_APP_API_URL}schools`,schoolDatas)
                 .then((res) => {
-                    console.log(res.data.data)
+                    console.log(res.data.data.id)
                     this.createUser(res.data.data.id)
-                    this.$router.push('/university')
+                   
                 })
                 .catch((error) => {
                         console.log(error);
@@ -337,6 +338,7 @@ export default {
         
 
         getUserAddressId() {
+            console.log('adress')
              const userAddressData = {
                 name: this.userAddressName,
                 street: this.userAddressesStreet,
@@ -347,6 +349,7 @@ export default {
             .post(`${process.env.VUE_APP_API_URL}address`, userAddressData)
             .then((res) => {
                 this.userAddressId = res.data.data.id;
+               
             })
             .catch((error) => {
                 console.log(error);
@@ -356,7 +359,7 @@ export default {
         createUser($id){
             console.log($id)
 
-             this.getUniversityAddressId()
+             this.getUserAddressId()
             .then(() => {
                 const userData  ={
                     name: this.name,
@@ -365,7 +368,7 @@ export default {
                     phone: this.phone,
                     gender:this.gender,
                     role_id: this.role_id,
-                    address_id: this.userAddressData,
+                    address_id: this.userAddressId,
                     school_id: $id
                 }
                 console.log("userData",userData)
@@ -373,6 +376,8 @@ export default {
                 axios.post(`${ process.env.VUE_APP_API_URL}users`,userData )
                 .then((res) => {
                     console.log(res);
+                    Cookies.set("userData", JSON.stringify(res.data), { expires: 30 });
+                    this.$router.push('/university')
                 })
                 .catch((error) => {
                         console.log(error);

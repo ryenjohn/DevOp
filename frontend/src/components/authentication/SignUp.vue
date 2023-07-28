@@ -80,7 +80,9 @@
               <v-btn class="me-4" @click="singIn">
                 <router-link
                   class="link-sign-up"
-                  v-if="state.role_id === '1'" to="/"> Sign up</router-link>
+                  v-if="state.role_id === '1'" to="/">
+                   Sign up
+                </router-link>
                 <router-link class="link-sign-up" v-else to="/logIn" >Sign up</router-link>
               </v-btn>
             </div>
@@ -113,9 +115,9 @@ const initialState = {
 const state = reactive(Object.assign({}, initialState));
 // Set role for password
 const passwordRule = (value) => {
-  const regex =
+  const password =
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}|:"<>?~`]).{8,}$/;
-  const result = regex.test(value);
+  const result = password.test(value);
   return result;
 };
 
@@ -159,7 +161,7 @@ async function singIn() {
     // Make an API call to add data to the database
     const response = await axios.post(`${ process.env.VUE_APP_API_URL}users`, data);
     Cookies.set("userData", JSON.stringify(response.data), { expires: 30 });
-
+    location.reload();
     // Check the server response and alert the user accordingly
     if (response.status === 200) {
       clear();

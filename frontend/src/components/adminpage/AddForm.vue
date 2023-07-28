@@ -1,125 +1,122 @@
 <template>
   <v-row justify="center">
-    <v-dialog
-      v-model="state.open"
-      persistent
-      width="1024"
-    >
+    <v-dialog v-model="state.open" persistent width="1024">
       <template v-slot:activator="{ props }">
-        <p class="addbtn"
-          color="primary"
-          v-bind="props"
-        >
-      
-          Add New User
-        </p>
-
+        <p class="addbtn" color="primary" v-bind="props">Add New User</p>
       </template>
       <v-card>
         <v-card-title> </v-card-title>
         <v-card-text>
           <v-container>
-            
-        <div class="container">
-          <div class="image">
-            <img
-              src="../../assets/images/register.png"
-              style="width: 400px; height: inherit"
-              alt="Image description"
-            />
-        </div>
-      <div class="form-container">
-        <form style="height: 500px;">
-          <h1>Add Student</h1>
-          <v-text-field
-            class="err"
-            v-model="state.name"
-            :error-messages="v$.name.$errors.map((e) => e.$message)"
-            :counter="10"
-            density="compact"
-            placeholder="Enter your name"
-            prepend-inner-icon="mdi-account"
-            variant="outlined"
-            color="#634B7A"
-            required
-            @input="v$.name.$touch"
-            @blur="v$.name.$touch"
-          ></v-text-field>
-
-          <v-text-field
-            class="err"
-            v-model="state.email"
-            :error-messages="v$.email.$errors.map((e) => e.$message)"
-            required
-            density="compact"
-            placeholder="Enter your email"
-            prepend-inner-icon="mdi-email"
-            variant="outlined"
-            color="#634B7A"
-            @input="v$.email.$touch"
-            @blur="v$.email.$touch"
-          ></v-text-field>
-          <p v-if="state.emailTakenError" class="text-error">
-            Email is already taken.
-          </p>
-
-          <v-text-field
-            class="err"
-            :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-            color="#634B7A"
-            :type="visible ? 'text' : 'password'"
-            density="compact"
-            placeholder="Enter your password"
-            prepend-inner-icon="mdi-lock-outline"
-            variant="outlined"
-            @click:append-inner="visible = !visible"
-            v-model="state.password"
-            :error-messages="
-              v$.password.$errors.map((e) =>
-                e.$params.custom
-                  ? e.$params.custom.message
-                  : 'Value required and should contain uppercase, lowercase, number, sign and more than 8 characters'
-              )
-            "
-            @input="v$.password.$touch"
-            @blur="v$.password.$touch"
-          ></v-text-field>
-
-          <v-checkbox
-            class="err"
-            v-model="state.checkbox"
-            :error-messages="v$.checkbox.$errors.map((e) => e.$message)"
-            label="Do you agree?"
-            required
-            @change="v$.checkbox.$touch"
-            @blur="v$.checkbox.$touch"
-          ></v-checkbox>
-        
-          <div class="select">
-            <select class="role" v-model="state.role_id">
-              <option color="purple" value="">Choose_Role</option>
-              <option value="1">Student</option>
-              <option value="2">Universtiy manager</option>
-            </select>
-            <p>Your role is: {{ state.role_id }}</p>
-          </div>
-  
-          <div class="btn d-flex justify-space-between">
-            <div class="btn">
-                <v-btn class="btnone"
-                  color="purple-darken-1"
-                  variant="text"
-                  @click="state.open = false; clear()">
-                  Cancel
-                  </v-btn>
+            <div class="container">
+              <div class="image">
+                <img
+                  src="../../assets/images/register.png"
+                  style="width: 400px; height: inherit"
+                  alt="Image description"
+                />
+              </div>
             </div>
-            <div class="btn">
-              <div class="btn" v-if="v$.$invalid">
-                <v-btn class="me-4" @click="v$.$touch()">Create</v-btn>
-              </div>
-              <div v-else class="sign-in">
-                  <v-btn class="me-4" @click="singIn"  >Create</v-btn>
-              </div>
+            <div class="form-container">
+              <form style="height: 500px">
+                <h1>Add Student</h1>
+                <v-text-field
+                  class="err"
+                  v-model="state.name"
+                  :error-messages="v$.name.$errors.map((e) => e.$message)"
+                  :counter="10"
+                  density="compact"
+                  placeholder="Enter your name"
+                  prepend-inner-icon="mdi-account"
+                  variant="outlined"
+                  color="#634B7A"
+                  required
+                  @input="v$.name.$touch"
+                  @blur="v$.name.$touch"
+                ></v-text-field>
+
+                <v-text-field
+                  class="err"
+                  v-model="state.email"
+                  :error-messages="v$.email.$errors.map((e) => e.$message)"
+                  required
+                  density="compact"
+                  placeholder="Enter your email"
+                  prepend-inner-icon="mdi-email"
+                  variant="outlined"
+                  color="#634B7A"
+                  @input="v$.email.$touch"
+                  @blur="v$.email.$touch"
+                ></v-text-field>
+                <p v-if="state.emailTakenError" class="text-error">
+                  Email is already taken.
+                </p>
+
+                <v-text-field
+                  class="err"
+                  :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+                  color="#634B7A"
+                  :type="visible ? 'text' : 'password'"
+                  density="compact"
+                  placeholder="Enter your password"
+                  prepend-inner-icon="mdi-lock-outline"
+                  variant="outlined"
+                  @click:append-inner="visible = !visible"
+                  v-model="state.password"
+                  :error-messages="
+                    v$.password.$errors.map((e) =>
+                      e.$params.custom
+                        ? e.$params.custom.message
+                        : 'Value required and should contain uppercase, lowercase, number, sign and more than 8 characters'
+                    )
+                  "
+                  @input="v$.password.$touch"
+                  @blur="v$.password.$touch"
+                ></v-text-field>
+
+                <v-checkbox
+                  class="err"
+                  v-model="state.checkbox"
+                  :error-messages="v$.checkbox.$errors.map((e) => e.$message)"
+                  label="Do you agree?"
+                  required
+                  @change="v$.checkbox.$touch"
+                  @blur="v$.checkbox.$touch"
+                ></v-checkbox>
+
+                <div class="select">
+                  <select class="role" v-model="state.role_id">
+                    <option color="purple" value="">Choose_Role</option>
+                    <option value="1">Student</option>
+                    <option value="2">Universtiy manager</option>
+                  </select>
+                  <p>Your role is: {{ state.role_id }}</p>
+                </div>
+
+                <div class="btn d-flex justify-space-between">
+                  <div class="btn">
+                    <v-btn
+                      class="btnone"
+                      color="purple-darken-1"
+                      variant="text"
+                      @click="
+                        state.open = false;
+                        clear();
+                      "
+                    >
+                      Cancel
+                    </v-btn>
+                  </div>
+                  <div class="btn">
+                    <div class="btn" v-if="v$.$invalid">
+                      <v-btn class="me-4" @click="v$.$touch()">Create</v-btn>
+                    </div>
+                    <div v-else class="sign-in">
+                      <v-btn class="me-4" @click="singIn">Create</v-btn>
+                    </div>
+                  </div>
+                </div>
+              </form>
             </div>
           </v-container>
         </v-card-text>
@@ -139,7 +136,6 @@ export default {
     };
   },
 };
-
 </script>
 <script setup>
 import { reactive } from "vue";
@@ -148,7 +144,7 @@ import { email, required, minLength } from "@vuelidate/validators";
 import axios from "axios";
 
 const initialState = {
-  open:false,
+  open: false,
   name: "",
   email: "",
   role_id: "",
@@ -156,7 +152,7 @@ const initialState = {
   password: "",
   emailTakenError: false,
   visible: false,
-  opend:true,
+  opend: true,
 };
 const state = reactive(Object.assign({}, initialState));
 // Set role for password
@@ -201,15 +197,18 @@ async function singIn() {
       role_id: state.role_id,
       password: state.password,
     };
-    console.log(data)
+    console.log(data);
     // Make an API call to add data to the database
 
-    const response = await axios.post(`${ process.env.VUE_APP_API_URL}users`, data);
+    const response = await axios.post(
+      `${process.env.VUE_APP_API_URL}users`,
+      data
+    );
 
     // Check the server response and alert the user accordingly
     if (response.status === 200) {
-      clear()
-      state.open=false
+      clear();
+      state.open = false;
       location.reload();
     } else {
       alert("Failed to singIn the form");

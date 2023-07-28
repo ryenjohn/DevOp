@@ -18,7 +18,7 @@ class ShowSchoolResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'img' => $this->media->file_url ?? null,
+            'image' => $this->media->file_url ?? null,
             'address' => $this->address->link,
             'description'=>$this->description,
             'type' => $this->type->name,
