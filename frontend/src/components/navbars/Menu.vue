@@ -5,7 +5,7 @@
       <template v-slot:activator="{ props }">
         <v-img
           v-bind="props"
-          src="https://cdn.vuetifyjs.com/images/john.jpg"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW1hrg-gaH6FpxGG2kEJ1_YSqoCe_wccQHQA&usqp=CAU"
           class="ml-5 accout-img"
           width="35"
           height="35"
@@ -48,18 +48,22 @@ export default {
   },
   methods: {
     submitLogOut() {
+
       if (confirm("Are you sure you want to log out?")) {
+        this.$router.push("/")
         axios
           .get(`${ process.env.VUE_APP_API_URL}logOut`)
           .then(() => {
             Cookies.remove("userData");
             delete axios.defaults.headers.common["Authorization"];
+            location.reload();
             this.$router.push("/");
           })
           .catch(() => {
             Cookies.remove("userData");
             delete axios.defaults.headers.common["Authorization"];
-             location.reload();
+            location.reload();
+          
           });
       }
     },

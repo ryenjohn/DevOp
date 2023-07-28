@@ -23,6 +23,7 @@ export default {
       this.dataname = dataName;
       axios.get(`${ process.env.VUE_APP_API_URL}${dataName}`).then((response) => {
         this.datas = response.data.data;
+        console.log(this.datas)
       });
     },
     defaultData() {

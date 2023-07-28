@@ -34,11 +34,13 @@
                                         <div  >
                                             
                                             <h2>{{user.user_id.name}}</h2>
-                                            <span>({{user.user_id.gender}})</span> 
+                                            <span>{{user.user_id.gender}}</span> 
                                         </div>   
                                     </div>
-                                    <h4>{{user.user_id.email}}</h4>
-                                    <p>{{user.user_id.phone}}</p>
+                                    <h4>Email: {{user.user_id.email}}</h4>
+                                    <h4>{{user.user_id.h4hone}}</h4>
+                                    <h4>Level: {{user.study_level}}</h4>
+                                    <h4>Year: {{user.year}}</h4>
                                 </v-container>
                             </v-card-text>
                             <v-card-actions>

@@ -29,17 +29,18 @@ export default {
     return {
       menbers: [
         {
+          name: "SCRUM MASTER",
+          description:
+            "Hello, my name is Navin Chhorn💙. I'm 19 years old. I'm from Kompong Cham province. Currently I'm a second years student at Passerellesnumeriques Cambodia. On the free time I like: cooking🫕🥗 , travelling🚵🏻🏕🏝, sleeping 🤪🤪",
+          src: require("@/assets/images/navin.jpg"),
+        },
+        {
           name: "TESTER",
           description:
             "My name is Loeub Seyla. I'm 19 years old. I'm from Bonteay MeanChey Province. My position is Tester.",
           src: require("@/assets/images/seyla.jpg"),
         },
-        {
-          name: "SCRAM MASTER",
-          description:
-            "Hello, my name is Navin Chhorn💙. I'm 19 years old. I'm from Kompong Cham province. Currently I'm a second years student at Passerellesnumeriques Cambodia. On the free time I like: cooking🫕🥗 , travelling🚵🏻🏕🏝, sleeping 🤪🤪",
-          src: require("@/assets/images/navin.jpg"),
-        },
+        
         {
           name: "DAVOPS MASTER",
           description:

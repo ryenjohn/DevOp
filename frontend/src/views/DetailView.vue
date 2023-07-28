@@ -29,8 +29,8 @@
     </div>
     <content-list  :datas="listSkill"  :dataname="'majors'"></content-list>
     <content-list   :datas="listSchool" :dataname='"schools"'></content-list>
-    <scholarship-workshop-card  :datas="listWorkshop" :dataname='"workshops"'></scholarship-workshop-card>
     <scholarship-workshop-card  :datas="listScholarship" :dataname='"scholarships"'></scholarship-workshop-card>
+    <scholarship-workshop-card  :datas="listWorkshop" :dataname='"workshops"'></scholarship-workshop-card>
 </template>
 
 <script>

@@ -30,7 +30,7 @@
                       <v-btn color="orange"  :to="{name: 'detail', params: { id: data.id,dataname:dataname}}"  >
                         Detail
                       </v-btn>
-                      <v-btn color="orange"  to="/payment"  >
+                      <v-btn color="orange"  v-if='dataname=="schools"' to="/payment"  >
                         Payment
                       </v-btn>
                     </v-card-actions>

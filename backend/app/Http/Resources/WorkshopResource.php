@@ -18,11 +18,11 @@ class WorkshopResource extends JsonResource
             'id'=>$this->id,
             'name'=>$this->name,
             'image' => $this->media->file_url ?? null,
-            'address'=>AddressResource::collection($this->address),
             'description'=>$this->description,
-            'start_date'=>$this->description,
-            'expired_date'=>$this->description,
-            'time'=>$this->description,     
+            'start_date'=>$this->start_date,
+            'expired_date'=>$this->expired_date,
+            'time'=>$this->time,    
+            'user_number'=>$this->user_number 
         ];
 
     }

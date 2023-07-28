@@ -29,7 +29,7 @@
                         <i class="material-icons">mail</i>
                         <h4>Email</h4>
                     </div>
-                    <p>vibol.phoung@student.passerellesnumeriques.org</p>
+                    <p>ero.cambodia@passerellesnumeriques.org</p>
                 </div>
             </div>
         </div>

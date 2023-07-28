@@ -88,8 +88,8 @@
             </div>
           </div>
           <p>
+            Create university page <router-link to="/sendMail/register">click me</router-link>
             Already have an account?<router-link to="/logIn">Log in</router-link><br>
-            Create university page<router-link to="/sendMail/register">click me</router-link>
           </p>
         </div>
       </form>
