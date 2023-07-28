@@ -37,7 +37,7 @@
 
 <style  scoped>
     .sidebar{
-      background: blueviolet;
+      background: #634b7a;
       color: white;
     }
 </style>

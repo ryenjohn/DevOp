@@ -140,4 +140,6 @@ Route::get('/getSchoolIdByName/{name}',[SchoolController::class,'getSchoolIdByNa
 Route::post('/apply',[SchoolUserController::class,'store']);
 
 
-
+// create address
+Route::post('/address',[AddressController::class,'store']);
+Route::get('/getTypeId/{name}',[SchoolTypeController::class,'getIdTypeOfSchool']);

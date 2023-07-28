@@ -1,6 +1,5 @@
 <template>
-  <div class="form-container">
-  </div>
+
       <v-form @submit.prevent="" ref="form" class="form-item">
         <h2>Add Workshop</h2>
         <div class="side-input">

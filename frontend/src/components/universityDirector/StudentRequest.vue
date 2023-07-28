@@ -75,6 +75,7 @@
 
 <script>
 import axios from 'axios'
+import Swal from "sweetalert2";
 
 export default{
     data(){
@@ -83,9 +84,14 @@ export default{
             errors: null,
             users:[],
             dialog: false,
+            // universityDirectorName: null,
+            universityDirectorId: '',
+
         }
     },
     methods:{
+
+
         getUser() {
             axios.get(`${ process.env.VUE_APP_API_URL}getSchoolUser`)
             .then((response)=>{
@@ -93,22 +99,51 @@ export default{
                 console.log(response.data.data)
             })
         },
+        
         isAccept(id) {
-            axios.put(`${process.env.VUE_APP_API_URL}acceptStudent/`+id)
-            .then(()=>{
-                location.reload();
-                this.$router.push("/university");
-            })
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#634b7a",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Accept!",
+                reverseButtons: true, // add this option
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.put(`${process.env.VUE_APP_API_URL}acceptStudent/`+id)
+                    .then(()=>{
+                        this.$router.push("/university");
+                        location.reload();
+                    })
+                }
+            });
         },
 
         isReject(id) {
-            axios.delete(`${process.env.VUE_APP_API_URL}studentReject/`+id)
-            .then((response)=>{
-                console.log(response.data.data);
-                location.reload();
-            })
+             Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#634b7a",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Reject!",
+                reverseButtons: true, // add this option
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete(`${process.env.VUE_APP_API_URL}studentReject/`+id)
+                    .then((response)=>{
+                        console.log(response.data.data);
+                        this.$router.push("/university");
+                        location.reload();
+                    })
+                }
+            });
         }
     },
+
     mounted(){
         this.getUser();
     }
@@ -137,18 +172,18 @@ export default{
     gap: 20px;
 }
 h1{
-    margin-left: 20%;
+    margin-left: 15%;
     margin-bottom: 3%;
 }
 .card{
-    width: 75%;
-    /* background:#ebeaea; */
-    margin-left: 20%;
+    width: 84%;
+    background:#dbdbdb;
+    box-shadow: rgb(38, 57, 77)0px 20px 20px -20px;
+    margin-left: 15%;
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 5px 20px;
     border-radius: 5px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
 }
 .card-left{
     display: flex;

@@ -66,6 +66,9 @@ export default {
            this.content='';
         },
        
+    },
+    mounted(){
+        this.content='student'
     }
 
 }
