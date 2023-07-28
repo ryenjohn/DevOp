@@ -1,30 +1,33 @@
 <template>
     <div class="groupForm">
-        <v-form v-model="valid" @submit="checkForm">
+        <v-form v-model="valid">
             <h2 style="margin-top:-12px">User data</h2> 
             <div class="item">
                 <v-text-field 
                     v-model="name" 
                     :rules="nameRules" 
+                    label="user_name"
                     required
                     density="compact"
-                    placeholder="Enter your Name"
+                    placeholder="Enter your name"
                     variant="outlined"
                     color="#634B7A"
+                    class="input-field"
                 ></v-text-field>
-                <div class="gender" style="width:48%;">
-                    <select class="select" style="width:100%" v-model="gender" >
-                        <option value="null">Choose the user gender:</option>
-                        <option value="male">male</option>
-                        <option value="female">female</option>
-                        <option value="other">other</option>
-                    </select>
-                    <p v-if="errors.length">
-                        <span v-for="error in errors" :key="error" style="color:#ae2012; font-size:13px">
-                            {{error.gender}}
-                        </span>
-                    </p>
-                </div>
+                <v-select
+                    v-model="gender"
+                    :rules="genderRules" 
+                    :items="['Male', 'Female', 'other']"
+                    label="Gender"
+                    required
+                    density="compact"
+                    placeholder="choose the user gender"
+                    variant="outlined"
+                    color="#634B7A"
+                    class="input-field"
+                ></v-select>
+                
+                
             </div>
             <div class="item">
                 <v-text-field 
@@ -35,6 +38,7 @@
                     placeholder="Enter your email"
                     variant="outlined"
                     color="#634B7A"
+                    class="input-field"
                 ></v-text-field>
                 <v-text-field 
                     v-model="phone" 
@@ -44,6 +48,7 @@
                     placeholder="Enter your phone number"
                     variant="outlined"
                     color="#634B7A"
+                    class="input-field"
                 ></v-text-field>
             </div>
             <div class="item">
@@ -52,13 +57,43 @@
                     label="Password" 
                     :rules="PasswordRules"
                     density="compact"
-                    placeholder="Enter your Password number"
+                    placeholder="Enter your password"
                     variant="outlined"
                     color="#634B7A"
+                    class="input-field"
                 ></v-text-field>
-                <select class="select" style="width:49%" v-model="userAddresses">
-                    <option v-for='address in userAddresses' :key="address" :value="address.id">{{address.name}}</option>
-                </select>
+                <v-text-field 
+                    v-model="userAddressName" 
+                    label="Address_name" 
+                    :rules="userAddressesNameRule"
+                    density="compact"
+                    placeholder="Enter your address name"
+                    variant="outlined"
+                    color="#634B7A"
+                    class="input-field"
+                ></v-text-field>
+            </div>
+            <div class="item">
+                <v-text-field 
+                    v-model="userAddressesStreet" 
+                    label="Enter_the_street" 
+                    :rules="userStreetRules"
+                    density="compact"
+                    placeholder="Enter the street of user"
+                    variant="outlined"
+                    color="#634B7A"
+                    class="input-field"
+                ></v-text-field>
+                <v-text-field 
+                    v-model="userAddressesLink" 
+                    label="link_addresses"  
+                    :rules="userLinkRules"
+                    density="compact"
+                    placeholder="Enter your link address"
+                    variant="outlined"
+                    color="#634B7A"
+                    class="input-field"
+                ></v-text-field>
             </div>
             <h2 style="margin-top:-12px">Universty data</h2> 
             <v-text-field
@@ -66,20 +101,60 @@
                 required
                 density="compact"
                 placeholder="Enter your school name"
+                label="university_name"
                 variant="outlined"
                 color="#634B7A"
-                :rules="universityRules"
+                :rules="universityNameRules"
             ></v-text-field>
-            <div class="item">  
-                <select class="select"  v-model="universityAddresses">
-                    <option value="Choose the school address" >Choose the school address:</option>
-                    <option  v-for='address in universityAddresses ' :key="address" :value="address.id">{{address.name}}</option>
-                </select>
-                <select class="select" v-model="schoolTypes">
-                    <option value="none">Choose the school type:</option>
-                    <option  v-for='type in schoolTypes ' :key="type" :value="type.id">{{type.name}}</option>
-                </select>
+
+            <div class="item"> 
+                <v-text-field 
+                    v-model="universityAddressesName" 
+                    label="university_address_name" 
+                    :rules="universityAddressesNameRule"
+                    density="compact"
+                    placeholder="Enter your university address  name"
+                    variant="outlined"
+                    color="#634B7A"
+                    class="input-field"
+                ></v-text-field> 
+                 <v-select
+                    v-model="schoolType"
+                    :rules="schoolTypesRule" 
+                    :items="schoolTypes"
+                    label="Type_of_school"
+                    required
+                    density="compact"
+                    placeholder="choose type of school"
+                    variant="outlined"
+                    color="#634B7A"
+                    class="input-field"
+                ></v-select>
             </div>
+            
+            <div class="item">
+                <v-text-field 
+                    v-model="universityAddressesStreet" 
+                    label="street" 
+                    :rules="universityStreetRules"
+                    density="compact"
+                    placeholder="Enter university street"
+                    variant="outlined"
+                    color="#634B7A"
+                    class="input-field"
+                ></v-text-field>
+                <v-text-field 
+                    v-model="universityAddressesLink" 
+                    label="link_address"  
+                    :rules="universityLinkRules"
+                    density="compact"
+                    placeholder="Enter your link address"
+                    variant="outlined"
+                    color="#634B7A"
+                    class="input-field"
+                ></v-text-field>
+            </div>
+            <p>Choose Major</p>
             <v-container fluid class="pt-0"  id="checkbox">
                 <v-checkbox
                     v-for="skill in skills" :key="skill"
@@ -120,7 +195,6 @@
 
 <script>
 import axios from 'axios'
-import Cookies from "js-cookie";
 export default {
     data() {
         return {
@@ -128,23 +202,35 @@ export default {
             name: '',
             phone: '',
             email: '',
-            userAddresses: null, 
+            userAddresses: '', 
+            userAddressName: '', 
+            userAddressesStreet: '', 
+            userAddressesLink: '', 
+
+            universityAddressesName: '', 
+            universityAddressesStreet: '', 
+            universityAddressesLink: '', 
+
+            userAddressId:null,
+            universityAddressId:null,
+
+
             universityAddresses: '',
             checkbox: '',
             password: '',
             universityName: '',
-            schoolTypes:null,
+            schoolTypes:[],
+            typesGet:[],
+            schoolType:'',
             skills :null,
             skillSelect: [],
             image:null,
             descriptions:'',
             valid: true,
             newUserID:'',
-            newSchool:[],
             role_id:2,
-            selectedUserAddress:null,
             gender:null,
-            imageValidate:null,
+            
             nameRules: [
                 value => !!value || 'Name is required',
                 value => (value && value.length >= 2) || 'Name needs to be at least 2 characters',
@@ -164,75 +250,157 @@ export default {
                 value => !!value || 'password is required',
                 value => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}|:"<>?~`]).{8,}$/i.test(value)|| 'password is required',
             ],
-            universityRules: [
-                value => !!value || 'Name university is required',
-                value => (value && value.length >= 2) || 'Name needs to be at least 2 characters',
-            ],
             imageRules: [
-                value => !!value || 'Email is required',
+                value => !!value || 'image is required',
+            ],
+            genderRules: [
+                value => !!value || 'gender is required',
+            ],
+            userStreetRules: [
+                value => !!value || 'street of user is required',
+            ],
+            universityNameRules: [
+                value => !!value || 'name of university is required',
+            ],
+            userAddressesNameRule: [
+                value => !!value || 'name address user is required',
+            ],
+            userLinkRules: [
+                value => !!value || 'link address of user is required',
+            ],
+            universityStreetRules: [
+                value => !!value || 'street of university is required',
+            ],
+            universityAddressesNameRule: [
+                value => !!value || 'name address university is required',
+            ],
+            universityLinkRules: [
+                value => !!value || 'link address of university is required',
+            ],
+            schoolTypesRule: [
+                value => !!value || 'type of university is required',
             ],
             descriptionRules: [
                 value => !!value || 'Descripiton is required',
-                value => (value && value.length >= 10) || 'Name needs to be at least 2 characters',
+                value => (value && value.length >= 10) || 'Name needs to be at least 10 characters',
             ],
         }
     },
     methods: {
-        createSchool(){
-            //  create school
-            axios.post(`${ process.env.VUE_APP_API_URL}schools`, {
-                name: this.universityName,
-                image: this.image,
-                description: this.descriptions,
-                type_education_id: this.schoolTypes,
-                address_id: this.universityAddresses,
-                skills: this.getMajorId()
-            })
+
+        getUniversityAddressId() {
+            const universityAddressData = {
+                name: this.universityAddressesName,
+                street: this.universityAddressesStreet,
+                link: this.universityAddressesLink,
+            };
+            console.log("universityAddressData", universityAddressData);
+            return axios
+            .post(`${process.env.VUE_APP_API_URL}address`, universityAddressData)
             .then((res) => {
-                console.log(res)
-                this.createUser(res.data.data.id)
-               
+                this.universityAddressId = res.data.data.id;
             })
             .catch((error) => {
                 console.log(error);
-            })
-
+            });
         },
-        createUser($id){
-            console.log($id)
-             axios.post(`${ process.env.VUE_APP_API_URL}users`, {
+        createSchool() {
+            // Create university address
+            this.getUniversityAddressId()
+            .then(() => {
+                // Create school
+                const schoolDatas = {
+                name: this.universityName,
+                image: this.image,
+                description: this.descriptions,
+                address_id: this.universityAddressId,
+                type_education_id: this.getTypeID(),
+                skills: this.getMajorId(),
+                };
+                console.log("schoolDatas", schoolDatas);
 
-                name: this.name,
-                email: this.email,
-                password: this.password,
-                phone: this.phone,
-                gender:this.gender,
-                role_id: this.role_id,
-                address_id: this.userAddresses,
-                school_id: $id
-            })
-            .then((res) => {
-                Cookies.set("userData", JSON.stringify(res.data), { expires: 30 });
-                this.$router.push('/university')
-            
-
+                axios.post(`${ process.env.VUE_APP_API_URL}schools`,schoolDatas)
+                .then((res) => {
+                    console.log(res.data.data)
+                    this.createUser(res.data.data.id)
+                    this.$router.push('/university')
+                })
+                .catch((error) => {
+                        console.log(error);
+                })
             })
             .catch((error) => {
-                console.error(error.response.data);
-            }) 
+                console.log(error);
+            });
         },
+     
+        
 
-        getAddress(){
-            axios.get(`${ process.env.VUE_APP_API_URL}addresses`).then((res)=>{
-            this.userAddresses = res.data.data;
-            this.universityAddresses = res.data.data;
+        getUserAddressId() {
+             const userAddressData = {
+                name: this.userAddressName,
+                street: this.userAddressesStreet,
+                link: this.userAddressesLink,
+            }
+            console.log("userAddressData", userAddressData);
+            return axios
+            .post(`${process.env.VUE_APP_API_URL}address`, userAddressData)
+            .then((res) => {
+                this.userAddressId = res.data.data.id;
             })
+            .catch((error) => {
+                console.log(error);
+            });
+        },
+        // create user
+        createUser($id){
+            console.log($id)
+
+             this.getUniversityAddressId()
+            .then(() => {
+                const userData  ={
+                    name: this.name,
+                    email: this.email,
+                    password: this.password,
+                    phone: this.phone,
+                    gender:this.gender,
+                    role_id: this.role_id,
+                    address_id: this.userAddressData,
+                    school_id: $id
+                }
+                console.log("userData",userData)
+
+                axios.post(`${ process.env.VUE_APP_API_URL}users`,userData )
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((error) => {
+                        console.log(error);
+                })
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         },
 
         getSchoolTypes(){
             axios.get(`${ process.env.VUE_APP_API_URL}schoolType`).then((res)=>{
-            this.schoolTypes = res.data.data
-            })
+            this.typesGet = res.data.data
+            res.data.data.forEach(schoolType => {
+                    this.schoolTypes.push(schoolType.name);
+                    
+                });
+            })   
+        },
+
+        getTypeID(){
+            let id = null;
+            this.typesGet.forEach(item => {
+                if(item.name == this.schoolType){
+                    id = item.id;
+                }
+            });
+            return id;
         },
 
         getskills(){
@@ -261,31 +429,12 @@ export default {
                     this.image = base64Image; // Store the base64 encoded image
                 };
                 reader.readAsDataURL(file);
+                console.log(file);
             }
         },
 
-        /* https://v2.vuejs.org/v2/cookbook/form-validation.html */
-        checkForm: function (e) {
-            if (this.gender && this.skillSelect && this.image) {
-                return true;
-            }
-            this.errors = [];
-
-            if (!this.gender) {
-                this.errors.push({gender:'Gender required.'});
-            } 
-            if ((this.skillSelect).length==0) {
-                this.errors.push({skillSelect:'SkillSelect required.' });
-            }
-            if (!this.image) {
-                    this.errors.push({image:'Image required.'});
-            }
-            console.log(this.errors);
-            e.preventDefault();
-        },
     },  
     mounted(){
-        this.getAddress()
         this.getSchoolTypes()
         this.getskills()
     }
@@ -301,7 +450,9 @@ form{
   background: #d8d6d6;
   margin: 20px;
 }
-
+.input-field {
+  width: 50%;
+}
 .select{
     width: 50%;
     height: 44px;
@@ -333,9 +484,6 @@ input[type="file"]{
     grid-gap: 10px; 
     margin-bottom: 10px;
 }
-/* v-checkbox{
-    background-color: aqua;
-} */
 h2{
   text-align: center;
   color: orange;

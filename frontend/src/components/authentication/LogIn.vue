@@ -124,6 +124,7 @@
   }
   .btn-log-in{
     background-color: #634b7a;
+    
     color:#ffffff;
   }
 

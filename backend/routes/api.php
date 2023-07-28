@@ -41,15 +41,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-// Route::get('/majors/{id}',[SkillController::class,'MajorDetail']);
-
-
 // User side -----------------------------------------
 Route::post('/users',[UserController::class, 'store']);
-
-
-
 
 Route::get('/workshops',[WorkShopController::class,'getworkShops']);
 Route::get('/workshop/{id}',[WorkShopController::class,'getWorkShopById']);
@@ -86,8 +79,10 @@ Route::post('/majors',[SkillController::class,'store']);
 Route::put('/majors/{id}',[SkillController::class,'editeSkill']);
 Route::delete('/majors/{id}',[SkillController::class,'deleteSkill']);
 
+
 // major with school
 Route::post("/schoolMajor",[SchoolSkillController::class,'store']);
+
 // Admin side --------------------------------
 Route::get('/users', [AdminController::class, 'index']);
 Route::get('/user/{id}', [AdminController::class, 'getUser']);
@@ -145,4 +140,6 @@ Route::get('/getSchoolIdByName/{name}',[SchoolController::class,'getSchoolIdByNa
 Route::post('/apply',[SchoolUserController::class,'store']);
 
 
-
+// create address
+Route::post('/address',[AddressController::class,'store']);
+Route::get('/getTypeId/{name}',[SchoolTypeController::class,'getIdTypeOfSchool']);

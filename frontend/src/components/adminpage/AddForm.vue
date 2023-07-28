@@ -13,10 +13,10 @@
       
           Add New User
         </p>
+
       </template>
       <v-card>
-        <v-card-title>
-        </v-card-title>
+        <v-card-title> </v-card-title>
         <v-card-text>
           <v-container>
             
@@ -121,12 +121,7 @@
                   <v-btn class="me-4" @click="singIn"  >Create</v-btn>
               </div>
             </div>
-          </div>
-        </form>
-      </div>
-  </div>
-
-  </v-container>
+          </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -135,20 +130,16 @@
     </v-dialog>
   </v-row>
 </template>
-
-
 <script>
-  export default {
-    data (){
-      return {
-        dialog: false,
-        role_id: '',
-      }
-    },
-    methods:{
-      
-    }
-  };
+export default {
+  data() {
+    return {
+      dialog: false,
+      role_id: "",
+    };
+  },
+};
+
 </script>
 <script setup>
 import { reactive } from "vue";
@@ -182,7 +173,7 @@ const rules = {
     required,
     email,
     async unique() {
-      const response = await axios.get(`${ process.env.VUE_APP_API_URL}users`);
+      const response = await axios.get(`${process.env.VUE_APP_API_URL}users`);
       // compare new data email with data in database
       const datas = response.data.data;
       const emailExists = datas.some((data) => data.email === state.email);
@@ -212,8 +203,8 @@ async function singIn() {
     };
     console.log(data)
     // Make an API call to add data to the database
-    const response = await axios.post(`${ process.env.VUE_APP_API_URL}users`, data);
 
+    const response = await axios.post(`${ process.env.VUE_APP_API_URL}users`, data);
 
     // Check the server response and alert the user accordingly
     if (response.status === 200) {
@@ -228,12 +219,11 @@ async function singIn() {
   }
 }
 </script>
-
 <style scoped>
-img{
+img {
   margin-top: 10%;
 }
-form{
+form {
   margin-top: -25%;
 }
 .container {
@@ -248,38 +238,36 @@ form{
   display: flex;
   margin-top: 7%;
 }
-.role{
-    border: 5px solid #634b7a;
-    padding: 5px;
-    border-radius: 8px;
+.role {
+  border: 5px solid #634b7a;
+  padding: 5px;
+  border-radius: 8px;
 }
-.role option{
+.role option {
   color: #634b7a;
 }
-.select p{
+.select p {
   color: #634b7a;
   margin-left: -0%;
 }
-.addbtn{
-  font-size: 20px;
-  background-color: rgb(124, 49, 196);
+.addbtn {
+  background-color: #6a4c93;
   padding: 8px;
   color: white;
-  margin-left: -42%;
-  border-radius: 8px;
+  margin-right: 55.5%;
+  border-radius: 5px;
+  width: 10%;
+  margin-bottom: -15px;
+  margin-top: 40px;
 }
-.addbtn:hover{
-  background-color: rgb(89, 12, 161);
+.addbtn:hover {
+  background-color: #6a4c93;
+  cursor: pointer;
+}
 
-}
-h1 {
-  margin-bottom: 25px;
-  margin-top: 10px;
-}
 p {
-  margin-bottom: 20px;
-  margin-left: 23%;
   margin-top: 12px;
+  width: 100%;
 }
 .err {
   text-align: start;
@@ -304,7 +292,6 @@ label {
   margin: 60px;
   flex: 1;
   padding: 35px;
-  /* height: 90vh; */
   border-radius: 10px;
 }
 .btn > div > div > button {

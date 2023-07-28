@@ -69,7 +69,7 @@ ul {
   list-style: none;
 }
 .footer {
-  background-color: blueviolet;
+  background-color: #6a4c93;
   padding: 70px 0;
 }
 .footer-col {

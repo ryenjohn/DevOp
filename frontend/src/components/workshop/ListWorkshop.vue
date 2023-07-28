@@ -28,10 +28,7 @@
       </thead>
       <tbody>
         <tr
-          v-for="(data, index) in dataWorkshop"
-          :key="index"
-          class="text-center"
-        >
+          v-for="(data, index) in dataWorkshop" :key="index" class="text-center">
           <td>{{ index + 1 }}</td>
           <td>{{ data.name }}</td>
           <td>{{ data.start_date }}</td>
@@ -135,7 +132,7 @@ body {
 th {
   font-size: 12px;
   font-weight: 600;
-  background-color: blueviolet;
+  background-color: #634b7a;
   border-bottom: 2px solid #e0e0e0;
   padding: 12px;
   text-align: center;
@@ -165,6 +162,6 @@ td {
   margin-bottom: 10px;
   color: white;
   text-decoration: none;
-  background: blueviolet;
+  background: #634b7a;
 }
 </style>

@@ -4,7 +4,14 @@
       <v-navigation-drawer style="height: 700px; width:14%" class="sidebar" >
         <v-divider style="height: 300px"></v-divider>
         <v-list density="compact" class="" nav>
-          <v-list-item  prepend-icon="mdi-home" class="mt-10" title="Home" value="Home" to="/"></v-list-item>
+          <v-list-item value="Students">
+            <template v-slot:prepend>
+              <v-list-item-avatar>
+                <img src="../../assets/images/logo.png" alt="" style="width:23%; margin-top: -30px; ">
+              </v-list-item-avatar>
+            </template><br>
+          </v-list-item>
+          <v-list-item  prepend-icon="mdi-home" class="" title="Home" value="Home" to="/"></v-list-item>
           <div v-if="this.$route.name!='admin'">
             <v-list-item  @click="show('student')" prepend-icon="mdi-account-school"  title="Student" value="Students"></v-list-item>
             <v-list-item  @click="show('workshop')" prepend-icon="mdi-hammer-wrench"  title="Workshop" value="Workshop"></v-list-item>
@@ -37,7 +44,8 @@
 
 <style  scoped>
     .sidebar{
-      background: blueviolet;
+      background: #634b7a;
       color: white;
     }
+    
 </style>

@@ -133,7 +133,7 @@ body {
 th {
   font-size: 12px;
   font-weight: 600;
-  background-color: blueviolet;
+  background-color: #634b7a;
   border-bottom: 2px solid #e0e0e0;
   padding: 12px;
   text-align: center;
@@ -163,6 +163,6 @@ td {
   margin-bottom: 10px;
   color: white;
   text-decoration: none;
-  background: blueviolet;
+  background: #634b7a;
 }
 </style>

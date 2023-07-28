@@ -16,4 +16,7 @@ export default {
 };
 </script>
 <style scoped>
+.icon{
+  color:white;
+}
 </style>

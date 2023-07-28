@@ -11,6 +11,7 @@
 
     <list-major v-if="content=='major'" :dataMajors="dataMajors"  @show="show"></list-major>
     <add-major v-if="content=='addMajor'" @show="show" :school_id="school_id" ></add-major>
+
 </template>
 
 <script>
@@ -82,6 +83,7 @@ export default {
     },
     mounted(){
         this.schoolID()
+        this.content='student'
     }
 
 }

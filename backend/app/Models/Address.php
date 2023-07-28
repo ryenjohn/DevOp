@@ -20,7 +20,11 @@ class Address extends Model
         'created_at',
         'updated_at'
     ];
-    
+    public static function address($request, $id=null){
+        $address = $request->only(['name', 'street', 'link']);
+        $address = self::updateOrCreate(['id'=>$id], $address);
+        return $address;
+    }
     public function school():BelongsTo{
         return $this->belongsTo(School::class);
     }

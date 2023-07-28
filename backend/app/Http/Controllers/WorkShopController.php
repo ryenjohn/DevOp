@@ -12,6 +12,7 @@ class WorkShopController extends Controller
     public function getworkShops()
     {
         $workShops = workShop::orderBy('id', 'DESC')->get();
+
         $workShops = ShowWorkShopResource::collection($workShops);
         return response()->json(['success' => true, 'data' => $workShops], 200);
     }
