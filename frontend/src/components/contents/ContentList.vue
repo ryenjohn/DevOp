@@ -47,7 +47,7 @@ export default {
   methods:{
     showDetail($id){
       this.$router.push('/detail/'+this.dataname+'/'+$id)
-      location.reload()
+      // location.reload()
     }
   }
 };
