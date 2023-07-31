@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  db:
+    image: mariadb:10.5
+    container_name: laravel-db
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    environment:
+      - MARIADB_ROOT_PASSWORD=securepassword
+      - MARIADB_DATABASE=vc_project
+      - MARIADB_USER=myser
+      - MARIADB_PASSWORD=password123
+    volumes:
+      - ./db:/var/lib/mysql
